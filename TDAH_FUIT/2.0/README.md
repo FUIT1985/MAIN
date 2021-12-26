@@ -27,7 +27,7 @@ TDAH_FUIT_2.0 (path: TDAH_FUIT/2.0/): ready, unofficial; before using it, you sh
 
 ###### Repository of patch (translation)
 
-https://github.com/FUIT1985/MAIN/TDAH_FUIT
+https://github.com/FUIT1985/MAIN/tree/main/TDAH_FUIT
 
 ###### Source-book:
 
