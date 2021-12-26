@@ -58,7 +58,7 @@ www.debian-handbook.info
 
 ###### TDAH_FUIT
 
-Acronimo di Free unofficial Italian translation of “The Debian Administrator’s Handbook. Traduzione non ufficiale di Antonio Bonaccorso. 
+Acronimo di "Free unofficial Italian translation of The Debian Administrator’s Handbook. Traduzione non ufficiale di Antonio Bonaccorso. 
 
 www.github.com/FUIT1985/MAIN/TDAH_FUIT
 
