@@ -60,7 +60,7 @@ https://github.com/FUIT1985/Linux/TDAH_FUIT
 
 ###### Source-book:
 
-###### for TDAH_FUIT_1.0 (path: TDAH_FUIT/1.0/)
+for TDAH_FUIT_1.0 (path: TDAH_FUIT/1.0/)
 
 “The Debian Administrator’s Handbook. Debian Jessie from Discovery to Mastery”
 
@@ -74,7 +74,7 @@ Copyright © 2012-2015 Freexian SARL
 
 ————————
 
-###### for TDAH_FUIT_2.0 (path: TDAH_FUIT/2.0/)
+for TDAH_FUIT_2.0 (path: TDAH_FUIT/2.0/)
 
 “The Debian Administrator’s Handbook. Debian Buster from Discovery to Mastery”
 
@@ -88,7 +88,7 @@ Copyright © 2012-2020 Freexian SARL
 
 ###### Source-book-Version:
 
-###### for TDAH_FUIT_1.0 (path: TDAH_FUIT/1.0/)
+for TDAH_FUIT_1.0 (path: TDAH_FUIT/1.0/)
 
 “The Debian Administrator’s Handbook. Debian Jessie from Discovery to Mastery”
 
@@ -100,7 +100,7 @@ ISBN: 979-10-91414-05-0 (English ebook).
 
 ————————
 
-###### for TDAH_FUIT_2.0 (path: TDAH_FUIT/2.0/)
+for TDAH_FUIT_2.0 (path: TDAH_FUIT/2.0/)
 
 “The Debian Administrator’s Handbook. Debian Buster from Discovery to Mastery”
 
