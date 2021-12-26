@@ -1,0 +1,2 @@
+# Raphael_Hertzog
+Questi appunti non intendono sostituirsi ai testi in questione. Inoltre sono una mia personale visione degli argomenti trattati che esperti del settore potrebbero non condividere (autori compresi). Si consiglia pertanto, qualora fossero argomenti oggetto d’esame per un corso di studi professionalizzante, di fare esclusivamente riferimento ai testi in questione ed alle lezioni del vostro corso accademico o di perfezionamento.
