@@ -1,0 +1,55 @@
+The Debian Administrator’s Handbook
+TRADUZIONE GRATUITA E NON UFFICIALE IN ITALIANO
+
+Debian GNU/Linux, è una distribuzione non commerciale molto popolare, famosa per la sua affidabilità e
+sicurezza. Il Progetto Debian, realizzato e tenuto in piedi da un’impressionante comunità di migliaia di
+sviluppatori sparsi in tutto il mondo, è indissolubilmente fedele al contratto sociale da cui ha avuto
+origine. Questo testo basilare definisce l’obiettivo chiave del progetto: soddisfare le esigenze degli utenti
+con un sistema operativo 100% libero. Il successo di Debian e delle distribuzioni derivate dal suo stesso
+ecosistema (con Ubuntu in testa) testimonia che un numero crescente di amministratori si avvale dei
+progressi compiuti da Debian.
+
+Il Manuale dell’Amministratore di Debian, che è stato interamente aggiornato a Debian 10 “Buster”, si
+basa su 7 precedenti edizioni ed è la conseguenza del loro stesso successo. Indicato per tutti, questo libro
+insegna le basi a chiunque desideri diventare un amministratore Debian GNU/Linux efficiente ed
+autonomo. Difatti tratta tutte le tematiche che un diligente amministratore Linux dovrebbe conoscere
+esaustivamente dall’installazione all’aggiornamento del sistema, dalla creazione dei pacchetti alla
+compilazione del kernel, compresi anche il monitoraggio, il ripristino e la migrazione, senza dimenticare
+argomenti complessi come la configurazione di SELinux o AppArmor sino a giungere ai servizi di
+sicurezza del sistema, alle installazioni automatiche o alla virtualizzazione con Xen, KVM o LXC.
+
+Questo libro non è destinato esclusivamente agli amministratori di sistema professionisti. Chiunque usi
+Debian o Ubuntu è di fatto un amministratore del suo stesso computer e pertanto sarà particolarmente
+interessato a conoscere il suo sistema operativo e le sue funzioni. Dopo l’analisi della presente opera,
+sarete quindi in grado di comprendere le origini delle problematiche e risolverle, risparmiando il vostro
+tempo prezioso.
+
+
+
+                     Raphaël Hertzog è un ingegnere                         Roland Mas, sviluppatore
+                     informatico laureatosi presso                          Debian dal 2000 e nel contempo
+                     l’Istituto Nazionale di Scienze                        sviluppatore e maintainer del
+                     Applicate (INSA) di Lione, in                          software FusionForge, è un
+                     Francia ed è uno sviluppatore                          consulente freelance
+                     Debian dal 1997. Fondatore di                          specializzato nell’installazione
+                     Freexian, la prima società                             e nella migrazione di/verso
+                     fornitrice di servizi IT di                            sistemi Debian GNU/Linux e
+                     bandiera francese specializzata                        nella configurazione-sviluppo
+                     in Debian GNU/Linux, è uno                             di strumenti (tools) per il
+                     dei più influenti contributori di                      collaborative work.
+                     questa distribuzione Linux.
+
+
+
+
+                Questo libro ha una storia. Nato inizialmente come opera in lingua francese
+                (“Cahier de l’Admin Debian” pubblicato da Eyrolles), è stato poi tradotto in
+            inglese grazie ad una campagna di raccolta fondi a cui hanno partecipato centinaia
+            di persone. Per saperne di più visitate https://debian-handbook.info, dove potrete
+              anche ottenere una copia della versione originale in inglese in formato digitale.
+
+
+
+
+                                                     https://debian-handbook.info        https://freexian.com
+

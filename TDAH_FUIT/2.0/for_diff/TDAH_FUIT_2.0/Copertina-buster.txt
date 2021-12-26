@@ -1,0 +1,79 @@
+TRADUZIONE
+GRATUITA E
+NON UFFICIALE
+IN ITALIANO
+Il Manuale dell’Amministratore di Debian
+Debian Buster dall’approccio iniziale sino alla completa padronanza
+
+
+
+
+                          Raphaël Hertzog e Roland Mas
+
+
+
+                                       Freexian SARL
+                                             Sorbiers
+
+
+Traduzione gratuita e non ufficiale in italiano di Antonio Bonaccorso dell’opera in inglese:
+“The Debian Administrator’s Handbook. Debian Buster from Discovery to Mastery.”
+di Raphaël Hertzog e Roland Mas
+Copyright © 2003-2020 Raphaël Hertzog
+Copyright © 2006-2015 Roland Mas
+Copyright © 2012-2020 Freexian SARL
+ISBN: 979-10-91414-19-7 (English paperback)
+ISBN: 979-10-91414-20-3 (English ebook).
+La presente versione in italiano presenta un layout somigliante (tra cui l'impaginazione) a quello
+della versione originale in inglese, in modo da invogliare altre parti interessate alla lettura di
+entrambe le versioni ed al loro relativo confronto al fine di apportare migliorie, come ad esempio
+aggiornamenti, note personali, eventuali correzioni di refusi o di erronee interpretazioni del testo
+originale in inglese, ecc.. Il formato di stampa consigliato è in A4, a colori o in bianco e nero.
+I collegamenti link riportati nella versione originale in inglese (e di conseguenza nella presente
+versione in italiano) potrebbero aver subito variazioni nel corso del tempo e non essere più
+accessibili. In tal caso verificare il soggetto o i soggetti da questi trattati attraverso la loro fonte
+ufficiale e/o sui motori di ricerca web, in modo da poter usufruire della loro versione ufficiale più
+recente oppure dell’alternativa più idonea.
+Le modifiche e la susseguente distribuzione gratuita rispettano e comportano anche nei confronti
+di terzi: le condizioni stabilite dalle licenze, nonché le garanzie annesse dagli autori e dagli editori
+dell’opera in inglese. Per maggiori informazioni leggere la pagina seguente in inglese, copia
+conforme della rispettiva pagina originale.
+                                           23 Giugno, 2020
+The Debian Administrator’s Handbook
+
+Raphaël Hertzog and Roland Mas
+
+Copyright © 2003-2020 Raphaël Hertzog
+Copyright © 2006-2015 Roland Mas
+Copyright © 2012-2020 Freexian SARL
+
+
+ISBN: 979-10-91414-19-7 (English paperback)
+ISBN: 979-10-91414-20-3 (English ebook)
+This book is available under the terms of two licenses compatible with the Debian Free
+Software Guidelines.
+
+Creative Commons License Notice: This book is licensed under a Creative Commons
+Attribution ShareAlike 3.0 Unported License.
+  https://creativecommons.org/licenses/by-sa/3.0/
+
+GNU General Public License Notice: This book is free documentation: you can
+redistribute it and/or modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation, either version 2 of the License, or (at your
+option) any later version.
+
+This book is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this
+program. If not, see https://www.gnu.org/licenses/.
+
+
+Show your appreciation
+This book is published under a free license because we want everybody to benefit from it. That
+said maintaining it takes time and lots of eﬀort, and we appreciate being thanked for this. If you
+find this book valuable, please consider contributing to its continued maintenance either by
+buying a paperback copy or by making a donation through the book’s oﬃcial website:
+    https://debian-handbook.info
+
