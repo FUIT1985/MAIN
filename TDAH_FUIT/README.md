@@ -1,4 +1,4 @@
-###### DEAR SIR, DEAR MADAME
+###### DEAR SIR, DEAR MADAME, 
 
 I made these translations (patch) independently and for free in compliance with source-book license.
 Unfortunately no files with pot, po, mo, webml, etc. filename extensions are available: I have shared these translations and their sources only in PDF and TXT in compliance with source-book license. You can use TXT files for diff-like applications. I'm sorry, I can't help you any more than that.
