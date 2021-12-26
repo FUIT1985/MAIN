@@ -7,7 +7,7 @@ In ordine alfabetico autori, testi o argomenti trattati in questo repository.
 
 L’arte dell’inganno - I consigli dell’hacker più famoso del mondo di Kevin D. Mitnick e William L. Simon (2003) - Premessa di Steve Wozniak - Traduzione di Giancarlo Carlotti - Consulenza scientifica di Raoul Chiesa - Editore Italiano: Universale Economica Feltrinelli/Saggi
 
-wwww.github.com/FUIT1985/MAIN/Kevin_Mitnick/L’arte_dell’inganno.pdf
+www.github.com/FUIT1985/MAIN/Kevin_Mitnick/L’arte_dell’inganno.pdf
 
 ###### DEBIAN
 
