@@ -134,7 +134,7 @@ This book is distributed in the hope that it will be useful, but WITHOUT ANY WAR
 
 You should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses/.
 
-Licenses and warranties of the patch (translation):
+###### Licenses and warranties of the patch (translation):
 
 same licenses and warranties of the original source-book
 
