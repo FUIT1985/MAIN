@@ -11,4 +11,4 @@ https://www.mitnicksecurity.com/about-kevin-mitnick-mitnick-security
 
 L’arte dell’inganno - I consigli dell’hacker più famoso del mondo di Kevin D. Mitnick e William L. Simon (2003) - Premessa di Steve Wozniak - Traduzione di Giancarlo Carlotti - Consulenza scientifica di Raoul Chiesa - Editore Italiano: Universale Economica Feltrinelli/Saggi
 
-www.github.com/FUIT1985/MAIN/Kevin_Mitnick/L’arte_dell’inganno.pdf
+https://github.com/FUIT1985/MAIN/Kevin_Mitnick/L’arte_dell’inganno.pdf
