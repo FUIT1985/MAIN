@@ -1,0 +1,325 @@
+ Valutazione
+ configurazione
+ preesistente e
+ migrazione
+                                                            Capitolo 3
+3. Valutazione configurazione preesistente e migrazione                                          pag. 39
+   1. Coesistenza in ambienti eterogenei                                                         pag. 40
+       1. Integrazione con macchine Windows                                                      pag. 40
+       2. Integrazione con macchine OS X                                                         pag. 40
+       3. Integrazione con altre macchine Linux/Unix                                             pag. 40
+   2. Come Migrare                                                                               pag. 41
+       1. Rilevamento ed Identificazione dei Servizi                                             pag. 41
+          1. Network e processi                                                                  pag. 42
+       2. Back-Up (Copia di Ripristino) della Configurazione Preesistente                        pag. 42
+       3. Recupero ed Integrazione di un Server Debian Preesistente                              pag. 43
+       4. Installazione di Debian                                                                pag. 44
+       5. Installazione e Configurazione dei Servizi Prescelti                                   pag. 44
+
+ << Qualsiasi revisione di un sistema informatico aziendale dovrebbe tenere in considerazione la sua
+ preesistente configurazione. In questo modo sarà possibile, nella migliore maniera, riutilizzare le
+ risorse disponibili e garantire l’interoperabilità delle componenti dello stesso sistema. Questa analisi
+ presenterà un “generico framework” [qui da intendersi molto elasticamente come “prassi generica”]
+ da seguire per qualsiasi migrazione di un’infrastruttura informatica a Linux. >>
+
+ [Molto genericamente un “framework” è un'architettura logica di supporto che include: support
+ programs, compilers, code libraries, tool sets, application programming interfaces (APIs), ecc. In
+ pratica è un modello da cui lo sviluppatore può gettare le basi per lo sviluppo di un’applicazione o
+ software e che fornisce delle funzionalità standard che possono essere selettivamente modificate dal
+ codice aggiuntivo scritto dallo stesso sviluppatore in base alle sue esigenze.]
+3.1 Coesistenza in ambienti eterogenei
+
+Debian si integra molto bene in tutti gli ambienti preesistenti a prescinderne dal tipo, riuscendo ad
+interagire, con esiti alquanto positivi, con altri sistemi operativi. Questa sua simbiosi, che rasenta la
+perfezione, deriva dalla pressione del relativo mercato, che esige dai produttori di software lo
+sviluppo dei programmi entro determinati standard. L’adesione agli standard concede però la
+possibilità agli amministratori di fare una cernita dei programmi da utilizzare: fra free o non free,
+siano questi programmi clients o servers.
+
+
+
+3.1.1 Integrazione con macchine Windows
+
+Il supporto SMB/CIFS di Samba garantisce un’eccellente comunicazione in un contesto Windows.
+Condivide i files e le code di stampa con i clients Windows ed include il software che consente alle
+macchine Linux di usare le risorse disponibili sui servers Windows.
+
+
+     STRUMENTI          L’ultima versione di Samba può sostituire la maggior parte dei servizi di
+                        Windows: da quelli offerti da un semplice server Windows NT
+         TOOLS
+                        (autenticazione, files, code di stampa, condivisione dei driver delle
+Samba                   stampanti, DFS, ecc.) a quelli più complessi (ad esempio di un domain
+                        controller compatibile con l’Active Directory di Windows).
+
+
+
+
+3.1.2 Integrazione con macchine OS X
+
+Le macchine OS X forniscono, e sono in grado di utilizzare, i servizi network tra cui quelli tipici di un
+file servers e la condivisione delle stampanti. Questi servizi sono distribuiti ed annunciati su una rete
+locale, consentendo ad altre macchine di accedervi e di utilizzarli senza alcuna necessità di una
+configurazione manuale, grazie a Bonjour, implementazione di Apple del protocollo di rete
+denominato Zeroconf o Zero Configuration Networking. Debian, invece, include un’implementazione
+chiamata Avahi, che di fatto ha funzioni simili.
+
+D’altro canto, il demone Netatalk può essere usato per fornire i file servers alle macchine OS X sulla
+rete. Netatalk è un’implementazione del protocollo di rete AFP (utilizzato anche da AppleShare) che,
+attraverso le dovute notifiche su una rete locale, consente ai servers di poter essere rilevati
+automaticamente dai clients OS X.
+
+Prima di OS X, le più vecchie reti per Mac OS usavano un differente protocollo denominato
+AppleTalk. NetaTalk fornisce anche il protocollo AppleTalk, appositamente per quegli ambienti che
+includono ancora macchine compatibili con il summenzionato protocollo (difatti, NetaTalk fu in
+origine una implementazione del protocollo AppleTalk). NetaTalk garantisce sia le operazioni tipiche
+di un file server, le code di stampa nonché le funzionalità di un time server (con sincronizzazione
+dell’ora dei clients). I suoi servizi di router consentono quindi l’interconnessione con le reti
+AppleTalk.
+
+
+
+
+3.1.3 Integrazione con altre macchine Linux/Unix
+
+Infine, NFS e NIS, entrambi inclusi, garantiscono l’interazione con i sistemi Unix. NFS assicura le
+funzionalità di un file server, mentre NIS crea le user directories. Il demone per la stampa basato sul
+layer BSD [il modello a livelli del Kernel BSD], usato dalla maggior parte dei sistemi Unix, consente
+inoltre la condivisione delle code di stampa.
+
+
+
+
+Pagina 40 Il Manuale dell’Amministratore di Debian        TDAH_FUIT_1.0
+      Figura 3.1 Rappresentazione grafica della coesistenza di Debian con OS X, Windows e sistemi Unix.
+
+
+
+
+3.2 Come Migrare
+
+Al fine di assicurare la continuità dei servizi, la migrazione di ciascun computer deve essere
+pianificata ed eseguita in base ad una tabella di marcia prestabilita. Questo metodo deve essere
+applicato a prescindere dal sistema operativo a cui si intenda “migrare”.
+
+
+
+3.2.1. Rilevamento ed Identificazione dei Servizi
+
+Pur essendo semplice come sembra, questo passaggio è essenziale. Un amministratore serio conosce
+veramente i ruoli cardine di ciascun server, per quanto questi possano essere cambiati nel corso del
+tempo, in quanto gli utenti con esperienza tendono ad installare servizi “alla selvaggia”. Per lo meno
+la mera conoscenza della loro esistenza vi consentirà di decidere cosa farne, piuttosto che cancellarli
+a casaccio.
+Per queste ragioni, è prudente informare gli utenti del progetto di migrazione prima che questo
+venga messo in atto. Inoltre potrebbe essere utile anche coinvolgere i suddetti utenti nel progetto,
+installando, prima della migrazione, i più comuni programmi free software nei loro rispettivi
+desktop, così che possano rincontrarli anche dopo sul nuovo sistema operativo, ovvero su Debian; le
+suite Libre Office e Mozilla sono un esempio calzante dei programmi free software più comuni.
+   TDAH_FUIT_1.0       Capitolo III — Valutazione configurazione preesistente e migrazione        Pagina 41
+3.2.1.1 Network e processi
+
+Lo strumento nmap (incluso nel suo omonimo pacchetto) identificherà rapidamente i servizi
+Internet ospitati da una macchina connessa alla rete, senza esserci il bisogno ogni volta di accedervi.
+Basterà semplicemente eseguire il seguente comando su un’altra macchina connessa alla stessa rete:
+
+
+$ nmap mirwiz
+Starting Nmap 6.47 ( http://nmap.org ) at 2015-03-24 11:34 CET
+Nmap scan report for mirwiz (192.168.1.104)
+Host is up (0.0037s latency).
+Not shown: 999 closed ports
+PORT STATE SERVICE
+22/tcp open ssh
+
+Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds
+
+
+         ALTERNATIVA          Sulle macchine linux il comando netstat -tupan mostrerà l’elenco
+                              delle sessioni attive o pendenti, come ad esempio gli UDP ports sui
+Utilizzare netstat per        quali i programmi in funzione sono in ricezione. Ciò facilità
+trovare l’elenco dei          l’identificazione dei servizi offerti sulla rete.
+servizi disponibili.
+
+
+
+
+     ANDANDO OLTRE            Alcuni comandi di rete potranno lavorare sia con l’IPv4 (solitamente
+                              come impostazione predefinita), sia con l’IPv6. Tra questi comandi
+IPv6                          troviamo nmap, netstat, ma anche altri come ad esempio route o ip.
+                              È convenzione che l’impostazione IPv6 sia abilitata nei suddetti
+                              comandi dall’opzione -6.
+
+
+Quando il server è una macchina Unix che fornisce degli accounts shell agli utenti, è molto utile
+verificare se i processi sono eseguiti in background in assenza del loro proprietario. Il comando ps
+auxw mostrerà un elenco di tutti i processi con l’identità utente di chi li ha avviati. Confrontando
+accuratamente questa informazione con l’output del comando who, che fornisce una lista degli utenti
+loggati, è possibile identificare i server non autorizzati (rogue server) o non annunciati o i
+programmi ancora in funzione in modalità background. La ricerca sulle crontabs (le tavole che
+elencano le azioni automatiche programmate dagli utenti) vi munirà spesso di rilevanti informazioni
+sui servizi svolti dal server (una spiegazione completa di cron è disponibile nel paragrafo 9.7
+“Scheduling Tasks attraverso cron e atd” a pag. 205).
+
+Comunque, è essenziale una copia di ripristino dei vostri servers: ciò vi consentirà di recuperare le
+informazioni, qualora gli utenti vi segnalino specifici problemi scaturiti a seguito della migrazione.
+
+
+
+
+3.2.2. Back-Up (Copia di Ripristino) della Configurazione Preesistente
+
+È utile conservare la configurazione di tutti i servizi identificati in modo da poter installare sul
+server aggiornato i programmi equivalenti. Il minimo è fare una copia di backup dei file di
+configurazione.
+
+
+
+
+Pagina 42 Il Manuale dell’Amministratore di Debian        TDAH_FUIT_1.0
+Nelle macchine Unix, i file di configurazione si trovano generalmente in /etc/, ma potrebbero anche
+trovarsi in una subdirectory di /usr/local/. Tale evenienza si verifica se un programma è stato
+installato da delle sorgenti, piuttosto che da un pacchetto. In alcuni casi, potrebbero essere anche
+sotto /opt/.
+
+Nei servizi di gestione dati (come ad esempio nel caso di un database), è caldamente raccomandato
+esportare i dati in un formato standard, così che possano essere importati facilmente nel nuovo
+software. Solitamente il formato è testuale e documentale; potrebbe essere, ad esempio, in SQL dump
+per un database, on in LDIF per un server LDAP.
+
+
+
+
+          Figura 3.2 Esportazione copie di ripristino in formati standard in base al database d’origine.
+
+I software per server sono differenti fra loro ed è impossibile descriverli tutti dettagliatamente.
+Occorre confrontare la documentazione del software esistente con quella del nuovo software per
+identificare le sezioni esportabili (e di conseguenza re-importabili) e quelle che richiederanno una
+procedura manuale. La lettura del presente libro chiarirà la configurazione dei principali programmi
+per server Linux.
+
+
+3.2.3. Recupero ed Integrazione di un Server Debian Preesistente
+
+Per l’effettivo recupero ed integrazione delle funzionalità di una macchina Debian già in vostro
+possesso occorre dapprima verificarla.
+
+Il primo file che occorre controllare è /etc/debian_version, che contiene il numero della versione
+del sistema operativo Debian (fa parte del pacchetto base-files). Se riporta la dicitura codename/
+sid, significa che il sistema è stato aggiornato con i pacchetti provenienti da una delle distribuzioni
+in sviluppo (o testing o unstable).
+
+Il programma apt-show-versions (derivante dal pacchetto Debian omonimo) riporta la lista dei
+pacchetti installati e identifica le versioni disponibili. Anche aptitude può essere usato per queste
+attività, sebbene in modo meno preciso.
+
+Uno sguardo al file /etc/apt/sources.list (ed alla directory /etc/apt/sources/list.d)
+mostrerà da dove verosimilmente provengono i pacchetti. Qualora dovessero presentarsi diverse
+risorse, l’amministratore potrà scegliere di reinstallare completamente l’intero sistema del
+computer pur di garantire un livello ottimale di compatibilità con il software distribuito da Debian.
+
+   TDAH_FUIT_1.0      Capitolo III — Valutazione configurazione preesistente e migrazione            Pagina 43
+Il file sources.list è spesso un buon strumento di verifica: la maggior parte degli amministratori
+annota nei commenti la lista delle sorgenti APT precedentemente utilizzata. Ma ciò potrebbe trarvi
+in inganno, difatti le osservazioni potrebbero essere state cancellate e/o potrebbero essere stati
+installati manualmente alcuni pacchetti presi alla cieca da internet (con il comando dpkg). Quindi
+non fatevi fuorviare da una macchina Debian con un’apparentemente configurazione standard. E
+prestate attenzione a qualsiasi dettaglio che potrebbe essere indice della presenza di un pacchetto
+esterno (ad esempio la collocazione inusuale di un file deb in una directory o lo speciale suffisso della
+versione di un pacchetto, come ubuntu o lmde, che ne evidenzia le origini estranee al progetto
+Debian, ecc.).
+
+Inoltre è bene verificare i contenuti della directory /usr/local/, il cui scopo è accogliere i
+programmi installati e compilati manualmente. Ovviamente l’elenco dei programmi installati in
+questo modo pur essendo meramente informativo solleva delle domande sulle ragioni per cui non
+sono stati utilizzati invece i corrispondenti pacchetti Debian, qualora questi fossero disponibili.
+
+
+         RAPIDO         Il pacchetto cruft elenca i files che non appartengono a nessun pacchetto.
+                        Ha dei filtri (più o meno efficaci e più o meno aggiornati), che evitano di
+        ACCENNO
+                        segnalare files legittimi (files generati dai pacchetti Debian o files di
+cruft                   configurazione creati ad hoc e non gestiti da dpkg, ecc.)
+                        Fate pertanto attenzione a non cancellare alla cieca ogni cosa che cruft vi
+                        segnala.
+
+
+
+3.2.4. Installazione di Debian
+
+Una volta annotate tutte le informazioni rilevanti inerenti al server preesistente, si può spegnere per
+poi iniziare la procedura di installazione di Debian.
+Per scegliere la versione appropriata, dobbiamo conoscere prima l’architettura del computer. Se è un
+pc relativamente recente, si tratta presumibilmente di un amd64 (i più vecchi sono solitamente
+i386). In altri casi, è possibile limitare le alternative in base al sistema precedentemente usato.
+
+La tavola 3.1 non è esaustiva, ma sicuramente può essere d’aiuto. In ogni caso, la documentazione
+originale del computer è la fonte più attendibile per trovare questa informazione.
+
+
+
+     HARDWARE           I più recenti computers hanno processori Intel o AMD a 64 bit, compatibili
+                        con i vecchi processori a 32 bit; il software compilato per le architetture
+Confronto fra PC        “i386” dovrebbe pertanto funzionare. D'altro canto, questo metodo, pur
+a 64 bit e PC a         rendendoli compatibili, non consente di sfruttare a pieno le capacità di
+32 bit                  questi nuovi processori. Per questo Debian distribuisce le architetture
+                        “amd64”, che sono compatibili sia con i recenti processori AMD, sia con i
+                        processori Intel “em64t”, che a loro volta includono la maggior parte dei
+                        processori della serie Core e sono molto simili agli AMD64.
+
+
+
+
+3.2.5. Installazione e Configurazione dei Servizi Prescelti
+
+Una volta installato Debian, occorre installare anche tutti i servizi che il computer deve ospitare, uno
+ad uno. La nuova configurazione deve tener conto di quella antecedente in modo da garantire una
+transizione indolore. Tutte le informazioni ottenute attraverso le precedenti fasi vi consentiranno di
+completare quest’ultima parte.
+
+
+
+
+Pagina 44 Il Manuale dell’Amministratore di Debian        TDAH_FUIT_1.0
+Sistema operativo                                                                          Architetture
+                            DEC Unix (OSF/1)             alpha, mipsel
+                                       HP Unix           ia64, hppa
+                                      IBM AIX            powerpc
+                                           Irix          mips
+                                          OS X           amd64, powerpc, i386
+                                    z/OS, MVS            s390x, s390
+                               Solaris, SunOS            sparc, i386, m68k
+                                        Ultrix           mips
+                                          VMS            alpha
+                           Windows 95/98/ME              i386
+                            Windows NT/2000              i386, alpha, ia64, mipsel
+           Windows XP / Windows Server 2008              i386, amd64, ia64
+        Windows Vista / Windows 7 / Windows 8            i386, amd64
+
+
+
+                     Tavola 3.1 Relativo confronto fra sistemi operativi ed architetture
+
+
+
+
+                                 Figura 3.3 Installazione dei servizi scelti
+
+
+
+
+Prima di procedere in questo esercizio da soli, è caldamente consigliato che leggiate il resto del libro.
+Dopo avrete una maggiore comprensione di come configurare i servizi da voi desiderati.
+
+
+
+
+   TDAH_FUIT_1.0      Capitolo III — Valutazione configurazione preesistente e migrazione      Pagina 45
+             Parole Chiave
+Installazione
+Partizionamento
+Formattazione
+File System
+Boot Sector
+Rilevamento Hardware
+

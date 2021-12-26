@@ -1,0 +1,128 @@
+Epilogo: Il Futuro di
+Debian
+                                                                      Capitolo 16
+16. Epilogo: Il Futuro di Debian                                                               pag. 437
+        1. I Developments imminenti                                                            pag. 438
+        2. Il Futuro di Debian                                                                 pag. 438
+        3. Il Futuro di questo Libro                                                           pag. 439
+
+
+<< Con quest’ultimo capitolo si conclude la storia della Falcot Corp [la società immaginaria utilizzata
+in questo libro come caso studio]; diversamente Debian non morirà mai e continuerà a riservarci in
+futuro molte piacevoli sorprese.>>
+          16.1. I Developments imminenti
+
+          Poche settimane o pochi mesi prima del rilascio di una nuova versione di Debian, il Release Manager
+           ssa il nome in codice della sua futura versione successiva. La versione corrente di Debian è la 8, ma
+          gli sviluppatori sono già impegnati a preparare la versione successiva alla corrente, nome in codice
+          Stretch ...
+
+          Debian non piani ca uf cialmente attraverso una lista le modi che da apportare o si impegna
+          uf cialmente al raggiungimento di traguardi tecnici per le versioni che verranno rilasciate in futuro.
+          Tuttavia, le tendenze di alcune aree di sviluppo fungono da indice per poter pronosticare eventuali
+          novità (o no).
+
+          Per migliorare la ducia e la sicurezza, la maggior parte (se non tutti) i pacchetti vengono compilati
+          garantendone la riproducibilità [principio che fa parte sia del metodo scienti co, sia delle
+          scienze computazionali]; ovvero il principio di riproducibilità prevede che sia possibile ricompilare i
+          pacchetti binari ed ottenerli identici agli originali (byte per byte) partendo dai pacchetti sorgente, in
+          modo che tutti possano veri care che non siano state apportate modi che-manomissioni
+          indesiderate durante la compilazione.
+
+          Inoltre per assecondare il suddetto scopo, l’impegno profuso, per migliorare lo standard di sicurezza
+          e per limitare sia gli attacchi "tradizionali" nonché le nuove minacce legate alla sorveglianza di
+          massa, è notevole.
+
+          Ovviamente le suites del main software ricevono maggiori rilasci. Le versioni Desktop più recenti
+          tendenzialmente sono più ergonomiche ed offrono nuove funzionalità. Wayland, un nuovo display
+          server sviluppato per offrire un’alternativa più al passo con i tempi rispetto a X11, sarà presto
+          disponibile (forse non come display server prede nito) almeno per alcuni ambienti desktop.
+
+          Grazie ad una nuova funzionalità dell’archive maintenance software, "bikesheds", gli sviluppatori
+          potranno fare riferimento non solo ai main repositories, ma anche a special-purpose package
+          repositories [trad. non lett. “repositories ad hoc”]; ossia repositories per pacchetti personali,
+          repositories per il software non ancora pronto per il main archive, repositories per software di
+          nicchia, repositories temporanei per testare nuove idee, ecc.
+
+
+          16.2. Il Futuro di Debian
+
+          A parte i progetti di sviluppo interni, è probabile che in futuro emergano nuove distribuzioni basate
+          su Debian, in particolare grazie ai diversi tools che facilitano la loro realizzazione. Avranno inoltre
+          inizio nuovi subprojects allo scopo di ampliare l’area di azione di Debian verso nuovi orizzonti.
+
+          La comunità degli utenti Debian crescerà di numero e nuovi contributori si uniranno al progetto ...
+          chissà, forse anche voi!
+
+          Il progetto Debian si consoliderà sempre più, avendo adottato la giusta strategia per candidarsi un
+          giorno come distribuzione universale; scherzosamente i membri della comunità in riferimento al
+          suddetto obiettivo parlano di World Domination (trad. lett. “Dominio del Mondo”).
+
+          Nonostante sia un progetto avanti con gli anni ed abbia già grandi dimensioni, Debian tende a
+          crescere ed a intraprendere nuovi orientamenti, alcuni dei quali del tutto inaspettati. I contributori
+          brulicano di idee e le discussioni nelle development mailing lists, seppur luogo a volte di scontro, ne
+          incrementano il fervore. Difatti spesso Debian viene paragonato ad un buco nero: la sua densità è
+          tale da attrarre sistematicamente qualsiasi nuovo progetto free software.
+
+          È indiscutibile che dietro il percettibile soddisfacimento dei bisogni degli utenti da parte di Debian
+          sta emergendo un nuovo trend: gli stessi utenti iniziano a rendersi conto che attraverso la
+          collaborazione si ottengono risultati migliori per tutti rispetto a quelli che possono scaturire dal
+          singolo impegno profuso.
+
+
+
+          Pagina 438 Il Manuale dell’Amministratore di Debian TDAH_1.0
+fi
+     fi
+               fi
+                    fi
+                         fi
+                              fi
+                                                   fi
+                                                                   fi
+                                                                         fi
+                                                                                  fi
+     Questa è la logica seguita da tutte le distribuzioni che decidono di unirsi a Debian, nelle vesti di
+     subprojects.
+
+     Grazie a quanto sopra espresso il progetto Debian non morirà mai ...
+
+
+     16.3. Il Futuro di questo Libro
+
+     Desideriamo che questo manuale si evolva in linea con lo spirito che anima il free software. Per tale
+     ragione vi invitiamo a contribuire condividendo con noi le vostre osservazioni, suggerimenti e
+     giudizi. Per piacere scriveteci direttamente: Raphaël (hertzog@debian.org) e Roland
+     (lolando@debian.org). Il sito web, indicato attraverso il link sottostante, è stato realizzato per
+     raccogliere tutte le informazioni relative allo sviluppo di questo libro ed in particolare troverete
+     dettagli su come contribuire, magari attraverso la sua traduzione in modo che possa bene ciarne un
+     pubblico ancora più vasto di quello corrente.
+
+       http://debian-handbook.info/
+
+     Abbiamo cercato di trasferire in questa opera tutta la nostra esperienza acquisita nel progetto
+     Debian, in modo che chiunque possa usufruire di questa distribuzione e trarne i massimi bene ci n
+     dalla prima interazione. Ci auguriamo che faciliti l’apprendimento di Debian e renda questa
+     distribuzione più popolare. Pertanto non esitate a promuovere questo manuale!
+
+     In ne desideriamo porvi un’ultima precisazione. La realizzazione (scrittura e traduzione) di questo
+     libro ha richiesto diverso tempo a discapito delle nostre consuete attività professionali. Siamo
+     entrambi consulenti IT freelance, pertanto qualsiasi fonte di reddito aggiuntiva ci permetterebbe di
+     avere la libertà di dedicare ancora più tempo allo sviluppo di Debian. Ci auguriamo che il successo di
+     questa opera possa contribuire a tale scopo. Allo stesso tempo non esitate ad utilizzare i nostri
+     servizi!
+
+       http://www.freexian.com
+       http://www.gnurandal.com
+
+     A presto!
+
+
+
+
+                                                       TDAH_1.0   Capitolo XVI - Epilogo: Il Futuro di Debian Pagina 439
+fi
+                                                                                          fi
+                                                                                                fi
+                                                                                                     fi
+

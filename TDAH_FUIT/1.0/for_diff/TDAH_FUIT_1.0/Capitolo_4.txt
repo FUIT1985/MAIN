@@ -1,0 +1,1099 @@
+Installazione
+                                                          Capitolo 4
+4. Installazione                                                                              pag. 47
+    1. Metodi di Installazione                                                                pag. 48
+        1. Installazione da un CD-ROM/DVD-ROM                                                 pag. 48
+        2. Booting (avviamento) da una chiave USB                                             pag. 49
+        3. Installazione per mezzo del Network Booting (Avviamento via                        pag. 50
+            Rete)
+        4. Altri Metodi di Installazione                                                      pag. 50
+    2. Installazione Passo dopo Passo                                                         pag. 50
+        1. Booting (avviamento) ed Inizio del Programma di Installazione                      pag. 50
+        2. Selezione della lingua                                                             pag. 52
+        3. Selezione del paese                                                                pag. 53
+        4. Selezione del layout della tastiera                                                pag. 53
+        5. Rilevamento dell’Hardware                                                          pag. 54
+        6. Caricamento delle componenti software                                              pag. 54
+        7. Rilevamento dell’Hardware di Rete                                                  pag. 54
+        8. Configurazione della Rete                                                          pag. 55
+        9. La password dell’Amministratore                                                    pag. 55
+        10. Creazione del Primo Utente                                                        pag. 56
+        11. Configurazione dell’ora                                                           pag. 57
+        12. Rilevamento di Dischi e di altri dispositivi                                      pag. 57
+        13. Inizio del Programma di Partizione                                                pag. 57
+            1. Partizionamento Guidato                                                        pag. 59
+            2. Partizionamento Manuale                                                        pag. 61
+            3. Configurazione dei Dispositivi Multidisco (RAID)                               pag. 62
+            4. Configurazione del Logical Volume Manager (LVM)                                pag. 62
+            5. Creazione di Partizioni Criptate                                               pag. 63
+        14. Installazione del Sistema Base                                                    pag. 64
+        15. Configurazione del Package Manager (apt)                                          pag. 64
+        16. Adesione al Debian Package Popularity Contest                                     pag. 65
+        17. Selezione dei Pacchetti da Installare                                             pag. 66
+        18. Installazione di GRUB come bootloader (programma di avvio)                        pag. 66
+        19. Termine dell’Installazione e Riavvio                                              pag. 67
+    3. Dopo il Primo Avvio                                                                    pag. 67
+        1. Installazione del Software Aggiuntivo                                              pag. 68
+        2. Aggiornamento del Sistema                                                          pag. 69
+
+<< Per poter utilizzare Debian dovrete innanzitutto installarlo sul vostro computer; questa attività
+viene svolta dal programma di installazione denominato debian-installer; un’installazione
+standard comprende molte fasi. Questo capitolo le elenca tutte nello stesso ordine in cui si
+presentano agli utenti durante l’installazione. >>
+               BASILARE          L’installazione di un computer è più facile quando se ne conoscono le
+                                 funzionalità. Se non siete ancora in possesso di tali competenze,
+Un corso di                      scorrete le pagine di questo libro sino all’appendice B, “Breve Corso
+approfondimento                  di Recupero” a pag. 447 prima della lettura di questo capitolo.
+nell’appendice
+
+
+L’installer di Jessie è basato su debian-installer. La sua struttura modulare gli consente di
+operare in diversi contesti e gli permette di mutare ed adattarsi in base ai cambiamenti o esigenze
+peculiari. Nonostante le difficoltà derivanti dalla necessità di supportare un vasto numero di
+architetture, l’installer di Debian è davvero facile per i neofiti, in quanto assiste gli utenti passo per
+passo durante il processo di installazione. Il rilevamento automatico dell’hardware, il
+partizionamento guidato, l’interfaccia grafica utente hanno risolto i problemi che furono costretti a
+fronteggiare durante i suoi primi anni di vita i “novellini” di allora.
+
+L’installazione richiede 80 MB di RAM (Random Access Memory) ed un minimo di 700 MB di hard
+disk. Tutti i computers della Falcot rispettano i suddetti requisiti. Ciò nonostante, è bene far presente
+che i summenzionati requisiti minimi si riferiscono ad un’installazione davvero essenziale e priva di
+un’interfaccia grafica desktop. Difatti sono caldamente raccomandati, in particolare per installare
+Jessie su una postazione desktop da ufficio di basso livello, un minimo di 512 MB di RAM e 5 GB di
+spazio dell’hard disk.
+
+
+     FARE ATTENZIONE             Se Debian Wheezy è già installato sul vostro computer, questo
+                                 capitolo non è destinato a voi. Diversamente da altre distribuzioni,
+Aggiornamento da                 Debian consente l’aggiornamento del sistema alla versione
+Wheezy                           successiva senza la necessità di una sua reinstallazione. La
+                                 reinstallazione, oltre a non essere necessaria, potrebbe nel contempo
+                                 essere rischiosa, dal momento che potrebbe rimuovere i programmi
+                                 già installati.
+                                 Il processo di aggiornamento sarà descritto nel paragrafo 6.6,
+                                 “Aggiornamento di una distribuzione alla versione corrente Stable” a
+                                 pag. 123
+
+
+
+4.1. Metodi d’Installazione
+
+Un sistema Debian può essere installato attraverso mezzi diversi di diverso tipo, a condizione che il
+BIOS della macchina lo consenta. Potrete avviare l’installazione per ipotesi da un CD-ROM, da una
+chiave USB, oppure attraverso una rete.
+
+
+               BASILARE          Il BIOS (che sta per Basic Input/Output System) è un software che è
+                                 incluso nella scheda madre (la scheda elettronica che connette tutte
+BIOS, l’interfaccia del          le periferiche) ed eseguito quando il computer è avviato, allo scopo di
+software dell’hardware.          caricare un sistema operativo (attraverso un bootloader adatto).
+                                 Resta attivo in background per far mantenere un’interconnessione
+                                 fra l’hardware ed il software (nel nostro caso, il Kernel Linux).
+
+
+
+4.1.1. L’installazione da un CD-ROM/DVD-ROM
+
+Il metodo d’installazione maggiormente utilizzato è quello da CD-ROM (o da DVD-ROM, che si
+comporta esattamente allo stesso modo): il computer è avviato dal supporto o dallo strumento
+prescelto dall’utente, ed il programma d’installazione ne prende il controllo.
+
+Esistono diverse famiglie di CD-ROM [per “famiglia” si intende una grande classificazione di grado
+superiore al genere ed inferiore all’ordine], distinte per finalità e che eseguono l’installazione in
+modo diverso: il CD-ROM netinst (“netinst” è la contrazione dell’espressione inglese “network
+installation”) contiene l’installer ed il sistema base Debian; il resto dei programmi di cui avrà
+necessità l’installer durante l’installazione sarà scaricato direttamente dalla rete.
+Pagina 48 Il Manuale dell’Amministratore di Debian         TDAH_FUIT_1.0
+L’immagine del CD-ROM netinst di Jessie altri non che è copia fedele del suddetto disco e dei suoi
+contenuti con un filesystem ISO-9660, che soddisfa pienamente i requisiti tecnici del supporto (in
+questo caso un cd) su cui sarà copiata, occupandone dai 150 MB ai 280 MB circa (ovviamente lo
+spazio occupato dipende anche dall’architettura su cui si basa l’installer). Esiste anche una collana
+completa di CD-ROM che accoglie tutti i pacchetti, in modo da consentire l'installazione su un
+computer privo dell’accesso ad internet; peccato però che la suddetta collana necessiti di circa 84
+CD-ROM (o 12 DVD-ROM, o 2 Blu-ray disk). Si precisa inoltre che i programmi in essa contenuti sono
+distribuiti tra i dischi secondo un ordine di popolarità ed importanza; come conseguenza a ciò, i
+primi tre dischi saranno sufficienti per la maggior parte delle installazioni, in quanto questi
+racchiudono di per sé il software maggiormente utilizzato dagli utenti standard.
+
+Infine esiste un’ulteriore tipo di immagine (di epoca più recente), denominata mini.iso, distribuita
+sostanzialmente sotto forma di derivato dell’installer. L’immagine in questione, difatti, contiene il
+minimo indispensabile per configurare la rete in modo che si possa scaricare tutto il resto (incluse
+anche parti dello stesso installer, ragione per cui codeste immagini tendono a “rompersi” durante il
+loro avvio se nel contempo una nuova versione dell’installer è stata rilasciata). Le immagini mini.iso
+sono disponibili sui mirror ordinari di Debian sotto la directory dists/release/main/installer-arch/
+current/images/netboot/ [i link riportati in quest’opera potrebbero aver subito variazioni nel corso
+del tempo, ad esempio nel 2019 il collegamento per scaricare la mini.iso di Debian Buster dal mirror
+ftp.nl.debian.org per le architetture amd64 è il seguente http://ftp.nl.debian.org/debian/dists/
+buster/main/installer-amd64/current/images/netboot/].
+
+
+SUGGERIMENTO           La maggior parte delle installazioni da CD-ROMs e da DVD-ROMs funzionano
+                       solo con una specifica architettura hardware. Qualora desideriate scaricare
+Dischi Multi-          delle immagini complete, dovrete avere anche cura di selezionarle in base
+architettura           all’hardware del computer su cui intendete effettuare la loro installazione.
+                       Alcune immagini CD/DVD-ROM sono in grado di essere eseguite su diverse
+                       architetture. Ovvero esistono immagini CD-ROMs netinst che sono allo
+                       stesso tempo rivolte ad architetture i386 e amd64.
+                       Esiste anche un’immagine in formato DVD-ROM che contiene l’installer ed
+                       una selezione di pacchetti binari per i386 e amd64, compresi i
+                       corrispondenti pacchetti sorgente.
+
+Per ottenere le immagini CD-ROM Debian, dovrete dapprima scaricarle e poi masterizzarle sul disco.
+Inoltre potrete anche acquistarle, elargendo, così, al progetto un piccolo sostegno finanziario.
+Utilizzate l’indirizzo web sottostante per prendere visione della lista dei venditori di CD-ROM
+immagine e di siti da cui si possono scaricare le immagini.
+
+ http://www.debian.org/CD/index.html
+
+
+
+4.1.2 Booting (avviamento) da una chiave USB
+
+Dal momento che la maggior parte dei computers sono in grado di effettuare l’avvio da un dispositivo
+USB, potrete installare Debian anche da una chiave USB (che non è niente di più di un piccolo disco
+di memoria flash).
+
+Il manuale dell’installazione spiega come creare una chiave USB che contenga debian-installer. La
+procedura è molto semplice in quanto le immagini ISO per i386 e amd64, essendo ibride, possono
+essere avviate sia da CD-ROM, sia da chiave USB.
+
+Dovrete prima identificare il nome del dispositivo della chiave USB (ad esempio: /dev/sdb); il più
+semplice metodo per ottenere tale informazione è verificare i messaggi emessi dal kernel in risposta
+al comando dmesg. Poi dovrete copiare l’immagine ISO precedentemente scaricata (per esempio
+debian-8.0.0-amd64-i386-netinst.iso) con il comando cat debian-8.0.0-amd64-i386-netinst.iso >/dev/
+sdb;sync . Tale comando richiede il possesso dei privilegi di amministratore del sistema, in quanto
+accede direttamente alla chiave USB e ne cancella i contenuti senza verificarli preventivamente.
+
+
+                                             TDAH_FUIT_1.0     Capitolo IV — Installazione Pagina 49
+Una spiegazione maggiormente dettagliata è disponibile nel manuale dell’installazione. Fra le altre
+cose, questi descrive un metodo di preparazione alternativo della chiave USB più complesso, ma che
+consente di personalizzare le opzioni dell’installer predefinite (opzioni che devono essere collocate
+nel kernel-command-line).
+
+ http://www.debian.org/releases/stable/amd64/ch04s03.html
+
+[Per maggiori informazioni riguardo al kernel-command-line e alle variabili configurabili cercate
+online la correlata documentazione: man pages, guide per i kernels, ecc.]
+
+4.1.3. Installazione per mezzo del Network Booting (Avviamento via Rete)
+
+Molti BIOSes consentono l’avvio dell’installazione direttamente dalla rete, attraverso cui scaricano il
+kernel ed un’immagine del filesystem minimale. Questo metodo (che ha diversi nomi, tra cui PXE o
+TFTP boot) può rappresentare un’ancora di salvezza, se il computer non ha un lettore CD-ROM o se il
+BIOS non può effettuare il boot da un’altra periferica simile.
+
+Questo metodo di installazione procede in due fasi. Dapprima, mentre il computer effettua il boot, il
+BIOS (o la scheda di rete) emette una richiesta BOOTP/DHCP per acquisire automaticamente un
+indirizzo IP. Quando un server via BOOTP o un server DCHP risponde alla suddetta richiesta include
+anche il filename, nonché la configurazione di rete. [Un filename o file name è un nome utilizzato per
+identificare in modo univoco un file del computer archiviato in un filesystem. Ogni filesystem può
+imporre delle restrizioni sulla lunghezza e sui caratteri consentiti per il filename. Un filename può
+includere una di queste componenti: host (o server), device (o drive), directory (o path), file (il nome
+base del file), type (formato o estensione), version (un numero progressivo che si riferisce alla
+versione-revisione del file.].
+Dopo aver configurato la rete, il computer client emette in seguito una richiesta TFTP (Trivial File
+Transfer Protocol) per il file precedentemente indicatogli specificamente attraverso il suo nome. Una
+volta che ha acquisito il file, il computer client lo esegue come farebbe qualsiasi bootloader. Infine
+lancia il programma di installazione di Debian, indifferentemente dai classici avvii dall’ hard drive,
+da un CD-ROM o da una chiave USB.
+
+Tutti i dettagli di questo metodo sono disponibili nella guida all’installazione (al paragrafo
+“Preparing files for TFTP Net Booting”).
+
+ http://www.debian.org/releases/stable/amd64/ch05s01.html#boot-tftp
+ http://www.debian.org/releases/stable/amd64/ch04s05.html
+
+4.1.4. Altri Metodi di Installazione
+
+Quando ci richiedono delle installazioni personalizzate per un vasto numero di computers,
+solitamente preferiamo un’installazione automatica piuttosto che una manuale. In base ai contesti
+ed alla complessità delle installazioni da realizzare, generalmente utilizziamo il FAI (Fully Automatic
+Installer, descritto al paragrafo 12.3.1. “Fully Automatic Installer (FAI)” a pag. 339), o perfino
+un’installazione personalizzata attraverso il preseeding da CD-ROM (vedete il paragrafo 12.3.2.
+“Preseeding Debian-Installer” a pag. 340”).
+
+
+4.2 Installazione Passo dopo Passo
+
+
+4.2.1. Booting (avviamento) ed Inizio del Programma di Installazione
+
+Una volta che il BIOS ha iniziato il booting dal CD-ROM o dal DVD-ROM, il menù di Isolinux
+bootloader appare. In questa fase, il Kernel Linux non è ancora stato caricato; questo menu permette
+di scegliere il kernel da avviare e di inserire eventuali parametri da trasmettere allo stesso Kernel
+durante il processo di installazione.
+Per una installazione standard dovrete, semplicemente, scegliere “Install” o “Graphical install” (con
+i tasti Freccia della vostra tastiera) e, poi, premere il tasto Enter per dare inizio alle fasi successive
+del processo di installazione.
+
+Pagina 50 Il Manuale dell’Amministratore di Debian        TDAH_FUIT_1.0
+Se il DVD-ROM è un disco “Multi-arch”, e la macchina ha un processore Intel o AMD a 64 bit, le
+opzioni del menù “64 bit install” e “64 bit graphical install” attiveranno la variante dell’installazione
+a 64 bit (amd64) invece della variante predefinita a 32 bit (i386). In pratica, la versione a 64 bit è
+solitamente quella più utilizzata: la maggior parte dei recenti processori sono a 64 bit e la versione a
+64 bit si adatta meglio alla massiccia quantità di RAM che i nuovi computer tendono ad avere.
+
+
+ANDANDO OLTRE            La fondamentale differenza fra i sistemi a 32 bit ed a 64 bit consiste nella
+                         dimensione della memoria dedicata. In teoria un sistema a 32 bit non può
+32 o 64 bits?                                                  32
+                         lavorare con più di 4 GB di RAM (2 bytes). In pratica è possibile far
+                         funzionare il sistema a 32 bit su una macchina vicina a questo limite
+                         attraverso la variante del kernel 686-pae, a patto che anche il processore
+                         sia in grado di gestire la funzionalità PAE (Physical Address Extension).
+                         Sebbene l’utilizzo di tale funzionalità abbia un notevole impatto sulle
+                         prestazioni del sistema. Per questo motivo è più conveniente usufruire della
+                         modalità a 64 bit su un server con una grande quantità di RAM.
+                         Per un computer da ufficio (dove una minima differenza percentuale in
+                         termini di prestazioni è insignificante), dovete tenere a mente che parecchi
+                         programmi proprietario non sono disponibili nelle versioni a 64 bit (come al
+                         momento della stesura di questo libro lo stesso Skype, ad esempio). È
+                         tecnicamente possibile utilizzarli sui sistemi a 64 bit, solo se avete
+                         precedentemente installato tutte le librerie necessarie della versioni a 32
+                         bit (vedete il paragrafo 5.4.5. “Supporto Multi-Arch” a pagina 94), e qualche
+                         volta utilizzando i comandi setarch o linux32 (inclusi nel pacchetto util-
+                         linux) per ingannare le applicazioni quando rilevano la versione del
+                         sistema.
+
+
+      IN PRATICA         Se sul computer è già presente Windows, non è necessario cancellare il
+                         sistema per installare Debian. Potrete utilizzare entrambi i sistemi sulla
+L’installazione          stessa macchina, installando i sistemi individualmente su partizioni
+accanto ad un            differenti o dischi separati e scegliendo quale partizione o disco utilizzare
+esistente sistema        quando il computer si avvia. Questa configurazione è spesso chiamata “dual
+Windows                  boot” e l’installazione del sistema Debian può essere indirizzata a tal fine.
+                         Ovvero durante la fase di partizionamento del disco del programma di
+                         installazione e quando viene configurato il bootloader (vedete le caselle di
+                         testo “Diminuire le dimensioni della partizione di Windows” a pag. 61 e
+                         “Bootloader e dual boot” a pag. 67).
+                         Se avete un sistema Windows funzionante potrete pure evitare di usare un
+                         CD-ROM; Debian distribuisce un programma Windows che scaricherà una
+                         versione light dell’installer e la caricherà sull’hard disk.
+                         Avrete poi la necessità di riavviare il sistema e di scegliere fra l’avvio
+                         normale di Windows o del programma di installazione di Debian.
+                         Potrete trovare il suddetto programma su un sito dedicato con un nome
+                         piuttosto esplicito…
+                           http://ftp.debian.org/debian/tools/win32-loader/stable/
+                           http://www.goodbye-microsoft.com/
+
+
+        BASILARE         Il bootloader è un programma di basso profilo che si occupa di avviare il
+                         kernel Linux ed è a sua volta caricato dal BIOS che gli concede di espletare
+Bootloader               la suddetta funzione. Per svolgere il suo compito, il bootloader deve essere in
+                         grado di localizzare sul disco il Kernel Linux per avviarlo. Sulle architetture
+                         i386 e amd64, i programmi maggiormente usati per eseguire tale mansione
+                         sono LILO, il più vecchio dei due, e GRUB, l’alternativa più moderna del
+                         primo. Isolinux e Syslinux sono le soluzioni frequentemente utilizzate per
+                         l’avvio da media rimovibili.
+
+Ciascun voce del menù è in realtà una specifica boot command line, che può essere configurata, se
+necessario, premendo il tasto TAB prima di confermare la voce del menù e procedere con l’avvio. La
+voce “Help” del menù visualizza la vecchia interfaccia a riga di comando, dove i tasti da F1 a F10
+aprono differenti help screens che trattano dettagliatamente le varie opzioni disponibili sul prompt
+[“prompt" significa letteralmente in italiano “sollecito”].
+
+
+                                              TDAH_FUIT_1.0      Capitolo IV — Installazione Pagina 51
+Avrete raramente necessità di utilizzare questa facoltà, eccetto in specifici casi.
+
+La voce “Expert mode” (disponibile dopo aver selezionato la voce “Advanced options” dal menu)
+consente di prendere visione in modo dettagliato di tutte le opzioni disponibili durante il processo di
+installazione, e consente la navigazione fra le varie fasi del suddetto processo senza che queste
+debbano necessariamente susseguirsi automaticamente in sequenza. Occorre però prestare
+attenzione, in quanto questa modalità particolarmente “verbosa” potrebbe confondervi a causa
+dell’ampia quantità di configurazioni, da scegliere o scartare, di cui è provvista.
+
+
+
+
+             Figura 4.1 Boot screen (Schermata principale del bootloader dell’installer di Debian).
+
+Una volta avviato, il programma di installazione vi guiderà passo dopo passo fino alla conclusione del
+processo. Questo paragrafo descrive nel dettaglio ciascuna di queste fasi. Qui in particolare seguiamo
+il processo di installazione avviato da un DVD-ROM Multi-Arch (più specificatamente, la versione
+beta4 dell’installer di Jessie); le installazioni netinst, tra cui lo stesso rilascio finale dell’installer,
+potrebbero essere esteticamente leggermente differenti. Tratteremo anche l’installazione in
+graphical mode, ma l’unica differenza con l’installazione “classica” (in text-mode) risiede solo in
+termini di “Visual Appearance”.
+
+
+
+4.2.2. Selezione della lingua
+
+Il programma di installazione inizia in inglese, ma la prima fase consente agli utenti di scegliere una
+lingua da utilizzare nelle fasi successive del processo. Ad esempio, la selezione della voce French vi
+restituirà l’intero programma di installazione tradotto in francese (e di conseguenza anche un
+futuro sistema configurato in francese). Questa scelta è anche utilizzata per suggerire le più
+importanti opzioni predefinite nelle fasi successive (in particolar modo il layout della tastiera).
+
+
+        BASILARE          Qualche fase del processo di installazione richiede che immettiate delle
+                          informazioni. Queste schermate hanno diverse aree che potrebbero
+La navigazione            contenere delle parti dedicate al suddetto scopo (text entry area,
+con la tastiera           checkboxes, liste di preferenze da selezionare o scartare, i bottoni OK e
+                          Cancel), ed il tasto TAB vi consentirà di spostarvi fra queste aree (da una
+                          all’altra).
+                          Con la preferenza graphical mode, potrete usare il mouse allo stesso modo
+                          di come lo utilizzereste normalmente in un programma, dotato di
+                          interfaccia grafica utente, installato su un desktop.
+Pagina 52 Il Manuale dell’Amministratore di Debian           TDAH_FUIT_1.0
+                                    Figura 4.2 Selezione della lingua
+
+
+
+4.2.3. Selezione del paese
+
+La seconda fase consiste nella scelta del vostro paese. In combinazione con la lingua, questa
+informazione metterà il programma nelle condizioni di suggerirvi il layout della tastiera più
+appropriato. Inoltre, la suddetta informazione, influenzerà anche la configurazione dell’ora locale.
+Ad esempio, qualora selezionate Stati Uniti, il programma vi proporrà il relativo modello standard di
+tastiera qwerty, nonché sarà suggerita la preferenza del fuso orario.
+
+
+
+
+                                     Figura 4.3 Selezione del paese
+
+
+
+4.2.4. Selezione del layout della tastiera
+
+La tastiera “American English” suggerita dal programma corrisponderà alla solita tastiera con
+layout qwerty in inglese americano.
+
+
+
+
+                                             TDAH_FUIT_1.0        Capitolo IV — Installazione Pagina 53
+                               Figura 4.4 Selezione della lingua della tastiera
+
+
+
+4.2.5. Rilevamento dell’Hardware
+
+Questa fase è completamente automatica nella maggior parte dei casi. L’installer rileva
+automaticamente l’hardware e procede all’identificazione del drive utilizzato dal CD-ROM allo scopo
+di accedere ai suoi contenuti. Carica inoltre i moduli corrispondenti alle diverse componenti
+hardware rilevate e successivamente monta il CD-ROM allo scopo di leggerlo. Le fasi precedenti sono
+comprese interamente nell’immagine di avvio contenuta dal CD-ROM, un file di dimensioni limitate e
+caricato nella memoria dal BIOS quando il CD-ROM è stato, precedentemente, avviato dallo stesso
+BIOS.
+L’installer è compatibile con la maggior parte dei drives, specialmente con le periferiche con
+standard ATAPI (qualche volta denominate IDE e EIDE). Qualora il rilevamento del lettore CD-ROM
+dovesse fallire, l’installer consente la possibilità di caricare un modulo Kernel (per esempio dalla
+chiave USB) relativo al driver del CD-ROM.
+
+
+
+4.2.6 Caricamento delle componenti software
+
+Essendo, ora, disponibili i contenuti del CD-ROM, l’installer carica tutti i files necessari per procedere
+con il suo compito. Tra questi files sono inclusi sia i drivers suppletivi per il resto dell’hardware (in
+particolare della scheda di rete), sia le componenti dello stesso programma di installazione.
+
+
+
+4.2.7 Rilevamento dell’Hardware di Rete
+
+Questa fase prevede l’identificazione della scheda di rete ed il caricamento del corrispondente
+modulo. Se il rilevamento automatico dovesse fallire, potrete manualmente scegliere il modulo da
+caricare. Se nessun modulo incluso nell’installer è compatibile, è possibile caricare un modulo
+specifico da un dispositivo rimovibile. Quest’ultima soluzione è strettamente necessaria soltanto
+quando il driver corretto non è incluso nel Kernel Linux standard, ma disponibile altrove, come ad
+esempio nello stesso sito ufficiale del produttore della scheda di rete.
+
+
+
+
+Pagina 54 Il Manuale dell’Amministratore di Debian           TDAH_FUIT_1.0
+Questa fase deve concludersi con successo per le installazioni netinst, dal momento che i pacchetti
+Debian devono essere caricati dalla rete.
+
+
+4.2.8 Configurazione della Rete
+
+Allo scopo di automatizzare il processo di installazione quanto più è possibile, l’installer tenta di
+effettuare anche una configurazione automatica della rete durante il rilevamento della stessa rete,
+via DHCP (se IPv4) oppure secondo il protocollo IPV6. Se questa fase fallisce, l’installer propone più
+soluzioni: provare un nuovo tentativo secondo i normali standard di configurazione DHCP; tentare
+una nuova configurazione DHCP dichiarando anche il nome della macchina; oppure suggerisce la
+configurazione di una rete statica.
+Quest’ultima alternativa richiede un indirizzo IP, una subnet mask [una maschera di sottorete], un
+indirizzo IP per il potenziale gateway, un nome per la macchina e un domain name [un nome di
+dominio].
+
+
+   SUGGERIMENTO           Qualora la vostra rete locale fosse equipaggiata di un server DHCP che
+                          non intendiate sfruttare, in quanto desiderate invece assegnare un
+Configurazione            indirizzo IP statico alla vostra macchina da utilizzare nel corso
+senza DHCP                dell’installazione, potrete aggiungere lo script netcfg/use_dhcp=false
+                          come opzione durante il boot da CD-ROM.
+                          Per aggiungere una vostra opzione dovrete semplicemente selezionare la
+                          voce inerente dal menù premendo il tasto TAB, immettendo poi lo script
+                          dell’opzione desiderata prima di premere il tasto ENTER.
+
+
+FARE ATTENZIONE           Molte reti locali sono basate sul presupposto che tutte le macchine
+                          connesse possano considerarsi fidate ed un’inadeguata configurazione di
+Non improvvisate          un singolo computer potrebbe compromettere le funzionalità dell’intera
+                          rete. Di conseguenza, non connettete il vostro computer ad una rete
+                          senza esservi prima consultati con l’amministratore della suddetta rete,
+                          riguardo ai parametri idonei (per esempio l’indirizzo IP, la netmask e
+                          l’indirizzo di broadcast).
+
+
+
+
+4.2.9. La password dell’Amministratore
+
+L’account super-user root, riservato all’amministratore della macchina, è creato automaticamente
+durante l’installazione; per tale ragione è richiesta una password. L’installer chiede inoltre di
+confermare la suddetta password per scongiurare qualsiasi refuso a cui difficilmente poi si potrebbe
+trovare un rimedio.
+
+
+          SICUREZZA       La password dell’utente root deve essere lunga almeno (8 caratteri o più)
+                          e realizzata in modo che per terzi sia impossibile da supporre. Infatti,
+La password
+                          qualsiasi computer (ed a maggior ragione qualsiasi server) connesso ad
+dell’Amministratore
+                          Internet è regolarmente oggetto di tentativi di connessioni automatiche
+                          per mezzo di passwords notoriamente utilizzate dall’utente medio.
+                          Ovvero essere spesso soggetti ad attacchi denominati “a dizionario”, dove
+                          molte combinazioni di parole e numeri sono utilizzate come passwords.
+                          Evitate quindi di utilizzare i nomi dei vostri figli, dei vostri genitori, date
+                          di nascita, ecc.: molti vostri collaboratori potrebbero conoscere queste
+                          informazioni e non crediamo che vogliate consentire loro di accedere
+                          liberamente al vostro computer.
+                          Queste osservazioni sono valide anche per le altre passwords degli altri
+                          utenti, ma le conseguenze di un account utente compromesso senza
+                          diritti di amministrazione sono meno pericolose.
+                          Se siete a corto di ispirazione, non esitate ad utilizzare i generatori di
+                          password, come ad esempio pwgen (incluso nell’omonimo pacchetto).
+                                             TDAH_FUIT_1.0       Capitolo IV — Installazione Pagina 55
+                              Figura 4.5 Creazione Password Amministratore
+
+
+
+4.2.10. Creazione del Primo Utente
+
+Debian impone anche la creazione di un account utente standard così che l’amministratore non
+prenda la cattiva abitudine di lavorare al computer direttamente con l’account di root. Tale
+precauzione essenzialmente serve a far sì che qualsiasi attività sia svolta con i diritti utente minimi
+richiesti, allo scopo di limitare i danni dovuti all’errore umano. Per questo l’installer vi domanderà il
+nome completo del primo utente, un username e la sua password (quest’ultima due volte, onde
+evitare il rischio di una battitura erronea).
+
+
+
+
+                                  Figura 4.6 Creazione del primo utente
+
+
+
+
+Pagina 56 Il Manuale dell’Amministratore di Debian        TDAH_FUIT_1.0
+4.2.11. Configurazione dell’ora
+
+Se la rete è disponibile, l’orologio interno del sistema verrà aggiornato da un NTP server
+(istantaneamente). In questo modo l’ora con cui sono contrassegnati i logs sarà corretta dal primo
+avvio. Per far sì che questi siano costantemente precisi, occorre che il demone NTP rimanga in
+funzione dopo l’installazione iniziale (vedete il paragrafo 8.9.2. “Sincronizzazione dell’orologio” a
+pagina 169)
+
+
+
+4.2.12. Rilevamento di Dischi e di altri dispositivi
+
+Questa fase rileva automaticamente gli hard drives sui quali Debian potrebbe essere installato.
+Questi saranno poi elencati nella fase successiva, denominata partizionamento.
+
+
+
+
+4.2.13 Inizio del Programma di Partizione
+
+
+
+
+        CULTURA         Il partizionamento, un’indispensabile fase nell’installazione, consiste nel
+                        suddividere lo spazio disponibile sugli hard drives (da ciò ciascuna
+Le pratiche che         suddivisione è denominata “partizione”), in base ai dati da caricare e all’uso
+si svolgono             che si intende fare del computer.
+durante il              Questa fase inoltre comprende la scelta del filesystem da impiegare. Tutte
+partizionamento         queste decisioni avranno un effetto sulle prestazioni, sulla sicurezza dei dati
+                        e sull’amministrazione del server.
+
+La fase di partizionamento è notoriamente difficile per i nuovi utenti. Occorre difatti definire le
+porzioni dei dischi (o “partizioni”) sul quale i filesystems di Linux e la memoria virtuale (swap)
+saranno caricati. Questa attività si complica qualora intendiate mantenere un altro sistema
+operativo già installato sulla macchina. Difatti, dovrete fare attenzione che le sue partizioni non
+siano alterate (o che il loro ridimensionamento non causi danni irreparabili).
+
+Fortunatamente, il software di partizionamento ha una modalità guidata, che suggerisce agli utenti
+le partizioni da realizzare — nella maggior parte dei casi, dovrete quindi semplicemente confermare i
+suggerimenti del software.
+
+
+
+                                             TDAH_FUIT_1.0      Capitolo IV — Installazione Pagina 57
+                          Figura 4.7 Selezione della modalità di partizionamento
+
+
+
+La prima schermata dello strumento di partizionamento offre la possibilità di utilizzare l’intero hard
+drive per creare diverse partizioni. Per un (nuovo) computer, che utilizzerà soltanto Linux, questa
+soluzione è chiaramente la più semplice da intraprendere e di conseguenza la voce per voi indicata
+sarà “Guided - use entire disk”. Se il computer possiede due hard drives distinti ed è possibile quindi
+caricare separatamente i due sistemi operativi, ossia un singolo sistema operativo su un singolo
+hard drive, la summenzionata voce potrà aiutarvi anche in tale contesto nel partizionamento. In
+ogni caso, la successiva schermata vi offrirà la possibilità di scegliere il disco su cui intendete
+installare Linux, attraverso la mera selezione della voce corrispondente (per esempio, SCSI1 (0,0,0)
+(sda) - 12.9 GB ATA VBOX HARDDISK”. Dopodiché inizierà il partizionamento guidato vero e
+proprio.
+
+
+
+
+                     Figura 4.8 Selezione del disco da partizionare in modalità guidata
+
+
+
+
+Pagina 58 Il Manuale dell’Amministratore di Debian         TDAH_FUIT_1.0
+Il partizionamento guidato consente anche la configurazione dei volumi logici LVM invece delle
+partizioni (guardate in basso). Dal momento che la configurazione guidata dei volumi logici LVM è
+identica a quella della voce illustrata precedentemente, “Guided - use entire disk”, non tratteremo
+nel dettaglio le voci “Guided - use entire disk and set up encrypted LVM” e “Guided - use entire disk
+and set up LVM” e ci limiteremo esclusivamente a citarle.
+Diversamente, qualora Linux debba essere installato a fianco di altre partizioni già esistenti, avrete
+necessità del partizionamento manuale.
+
+
+4.2.13.1. Partizionamento Guidato
+
+Il partizionamento guidato è uno strumento che offre tre metodi di partizionamento, dedicati
+distintamente ad impieghi diversi.
+
+
+
+
+                              Figura 4.9 Partizionamento in modalità guidata
+
+
+Il primo metodo di partizionamento guidato è chiamato ““All files in one partition”. In questo caso
+l’intero Linux system tree [“tree”, tradotto in italiano, significa letteralmente “albero”] sarà caricato
+in un singolo filesystem, corrispondente alla directory di root / [“root”, tradotto in italiano, significa
+letteralmente “radice”]. Questo semplice e solido metodo di partizionamento si adatta perfettamente
+alle esigenze dei sistemi personali o riservati a singoli utenti. Difatti, saranno create solo due
+partizioni: la prima ospiterà l’intero sistema, mentre la seconda sarà dedicata alla memoria virtuale
+(swap).
+
+Il secondo metodo di partizionamento guidato, chiamato “Separate /home/ partition”, è simile al
+primo metodo, sebbene divida la gerarchia del file system in due parti: la prima partizione conterrà il
+sistema Linux (/), mentre la seconda partizione comprenderà le “home directories” (ovvero i dati
+utente suddivisi in files e subdirectories accessibili sotto /home/).
+
+L’ultimo metodo di partizionamento guidato, denominato “Separate /home, /var, and /tmp
+partitions” è destinato ai servers ed ai sistemi multi-utente. Questi divide il file tree in diverse
+partizioni: oltre ad includere le partizioni di root (/) e degli account utenti (/home/), aggiunge anche
+le partizioni, tipiche dei servers, destinate ai dati software (/var/) ed ai files temporanei (/tmp/). Tali
+suddivisioni contribuiscono a fornire diversi vantaggi. Gli utenti, ad esempio, non sono in grado di
+bloccare il server occupando tutto lo spazio disponibile sul disco (dovendo imparare a controllarsi
+nelle loro attività in quanto lo spazio loro riservato è limitato soltanto alle partizioni /tmp/ e /
+home/). Ovvero il demone dati (in particolare i logs) non può in questo modo più intasare il resto del
+sistema.
+                                               TDAH_FUIT_1.0      Capitolo IV — Installazione Pagina 59
+       BASILARE         Il filesystem delinea il criterio attraverso cui i dati sono organizzati nel
+                        disco. Ciascun filesystem ancora in uso ha i suoi pregi ed i suoi difetti.
+La scelta di un         Alcuni di questi sono solidi altri sono più efficienti: se siete in grado di
+filesystem              riconoscere le vostre esigenze, ricercate il filesystem più consono a voi.
+                        Diversi confronti sono stati realizzati in passato per valutarne le
+                        caratteristiche: il ReiserFS pare che sia particolarmente efficiente con i files
+                        di dimensione alquanto ridotta; invece lo XFS procede più rapidamente con
+                        i files di grandi dimensioni. L’Ext4, il filesystem solitamente predefinito di
+                        Debian, è un buon compromesso, basato sulle tre precedenti versioni dei
+                        filesystem storicamente utilizzati da Linux (ext, ext2 e ext3). L’Ext4 inoltre
+                        ha superato i diversi limiti dell’ext3 ed è particolarmente indicato per gli
+                        hard drives con grande capacità. Un’ulteriore alternativa per voi potrebbe
+                        essere lo sperimentare l’alquanto promettente btrfs, che include numerose
+                        funzionalità, bisognose, almeno sino ad ora [ovvero al tempo della stesura di
+                        questo libro], dell’utilizzo di un LVM e/o di un RAID.
+                        Un journalized filesystem [in informatica “il journaling” è una tecnica
+                        utilizzata da molti file system moderni per preservare l'integrità dei dati da
+                        eventuali cadute di tensione] (come ad esempio gli stessi ext3, ext4, btrfs,
+                        reiserfs oppure l’xfs) è in grado di prendere delle contromisure
+                        straordinarie dopo un’interruzione indesiderata tali da rendere possibile
+                        ripristinare il precedente stato inalterato senza analizzare in toto l’intero
+                        disco (mentre con l’ext2 ciò era necessario). La suddetta funzionalità è
+                        espletata attraverso la compilazione di un registro [in inglese “Journal”]
+                        che descrive le operazioni da eseguire prima che di fatto le stesse siano
+                        messe in atto. Se una operazione, quindi, dovesse essere interrotta, sarà
+                        possibile ripristinarla attraverso il registro. Contrariamente, qualora
+                        dovesse capitare un’interruzione durante un aggiornamento del registro,
+                        l’ultima variazione richiesta sarà semplicemente ignorata; i dati che sono in
+                        fase di trascrizione potrebbero andare persi, mentre i dati che non hanno
+                        subito cambiamenti sul disco, rimarranno esenti da danni. Pertanto la
+                        suddetta procedura non è niente di più o niente di meno di un mero
+                        meccanismo di trascrizione su un registro applicato al filesystem.
+
+Dopo che l’utente ha scelto il metodo di partizionamento, il software ne calcola e ne propone allo
+stesso utente, attraverso una schermata, un potenziale schema di partizionamento; l’utente
+ovviamente può modificarlo se lo ritiene opportuno. Potrete, in particolare, scegliere un altro
+filesystem se la soluzione standard (ext4) non soddisfa le vostre esigenze. Sebbene, nella maggior
+parte dei casi, lo schema di partizionamento proposto dal software sia il più conveniente e sarebbe
+bene limitarsi ad accettarlo selezionando la voce “Finish partitioning and write changes to disk”.
+
+
+
+
+           Figura 4.10 Validazione dello schema di partizionamento suggerito in modalità guidata
+
+Pagina 60 Il Manuale dell’Amministratore di Debian        TDAH_FUIT_1.0
+4.2.13.2. Partizionamento Manuale
+
+Il partizionamento manuale conferisce all’utente grande flessibilità, consentendogli di scegliere lo
+scopo e la dimensione di ciascuna partizione. Inoltre questa modalità è obbligata qualora desideriate
+utilizzare il software RAID.
+
+
+      IN PRATICA        Per installare Debian accanto ad un sistema operativo già caricato
+                        (Windows o altri), dovrete avere parecchio spazio disponibile non utilizzato
+Diminuire le            da altri sistemi, in modo da essere in grado di realizzare le partizioni
+dimensioni della        dedicate a Debian. Nella maggior parte dei casi, ciò comporta diminuire le
+partizione di           dimensioni della partizione di Windows per riutilizzare lo spazio liberatosi.
+Windows                 Debian Installer consente di effettuare questa operazione nella modalità di
+                        partizionamento manuale. Dovrete semplicemente selezionare la partizione
+                        Windows ed immettere la sua nuova dimensione (tale sistema funziona sia
+                        con le partizioni FAT, sia con le partizioni NTFS).
+
+La prima schermata mostra i dischi disponibili, le loro partizioni e tutto lo spazio libero disponibile
+che non è stato ancora partizionato. Potrete selezionare, quindi, uno degli elementi elencati;
+premendo poi il tasto Enter potrete visualizzare la lista di tutte le azioni disponibili.
+
+Potrete inoltre cancellare tutte le partizioni su un disco semplicemente selezionandolo.
+
+Quando selezionate lo spazio libero di un disco, potete manualmente creare una nuova partizione.
+Oppure potete creare una nuova partizione attraverso un partizionamento guidato, una soluzione
+proficua per un disco che già contiene un altro sistema operativo, ma a condizione che voi
+desideriate partizionarlo per Linux secondo i canoni standard. Per maggiori dettagli al riguardo
+andate a vedere il paragrafo 4.2.13.1. “Partizionamento Guidato” a pagina 59.
+
+
+       BASILARE         Il punto di Mount rappresenta il directory tree che ospiterà gli elementi del
+                        filesystem sulla partizione selezionata. Pertanto una partizione “montata”
+Punto di Mount          come /home/ è destinata notoriamente a contenere i dati utente.
+                        Quando questa directory è contrassegnata come “/“ (radice), rappresenta il
+                        root [la radice] del file tree [albero], ovvero il root della partizione destinata
+                        ad accogliere di fatto il sistema Debian.
+
+
+
+       BASILARE         La memoria virtuale consente al Kernel Linux, quando scarseggia
+                        sufficiente memoria RAM, di liberare un po’ di memoria immagazzinando,
+Memoria                 sulla partizione della swap del disco, gli elementi della RAM che sono
+virtuale, swap          rimasti inattivi per parecchio tempo.
+                        Per simulare la memoria aggiuntiva, Windows usa un swap file [file di
+                        swap], contenuto direttamente in un filesystem. Diversamente, Linux usa
+                        per tale scopo una partizione dedicata, da cui prende il nome ossia la
+                        “partizione swap”.
+
+Quando scegliete una partizione, potete anche contrassegnare “l’istruzione” in base alla quale
+intendete utilizzarla:
+
+• formattarla ed includerla nel file tree, scegliendo un punto di mount;
+• impiegarla come swap;
+• renderla un “volume fisico per la criptazione" (per proteggere i dati confidenziali su specifiche
+  partizioni — troverai maggiori informazioni al riguardo più avanti);
+• renderla un "volume fisico LVM” (questo concetto è descritto con maggiori dettagli in questo
+  capitolo, ma più avanti);
+
+
+
+
+                                              TDAH_FUIT_1.0      Capitolo IV — Installazione Pagina 61
+• usarla come un dispositivo RAID (troverete maggiori informazioni al riguardo più avanti in questo
+  capitolo);
+• potete decidere anche di non utilizzarla, ossia di lasciarla inalterata.
+
+
+4.2.13.3. Configurazione dei Dispositivi Multidisco (RAID)
+
+Alcuni tipi di RAID consentono la duplicazione delle informazioni contenute negli hard drives per
+scongiurare la perdita di dati qualora un problema dell’hardware li colpisca direttamente. Il Livello 1
+RAID conserva una semplice copia conforme (mirror — tradotto in italiano significa letteralmente
+specchio) di un hard drive su un altro drive, mentre il livello 5 RAID suddivide la ridondante copia di
+dati su diversi dischi, così da consentire la completa ricostruzione del drive danneggiato.
+
+Descriveremo solo il RAID di livello 1, che è il più semplice da realizzare. La prima fase richiede la
+creazione di due partizioni di identica dimensione dislocate su due differenti hard drives e di
+classificarle come “physical volume for RAID”.
+
+Dovrete poi scegliere “Configure software RAID” nello strumento di partizionamento per unire
+queste due partizioni in un nuovo disco virtuale e selezionare “Create MD Device” nella schermata di
+configurazione. Successivamente dovrete rispondere ad una serie di domande riguardo a questo
+nuovo dispositivo. La prima domanda vi chiederà quale livello RAID utilizzare e nel nostro caso sarà
+“RAID1”. La seconda domanda vi chiederà il numero dei dispositivi pronti per tale scopo — due nel
+nostro caso ovvero il numero delle partizioni che devono essere incluse in questo MD device. La
+terza domanda vi chiederà il numero dei dispositivi di riserva — 0; non abbiamo designato nessun
+disco per sostituire un potenziale disco difettoso. L’ultima domanda vi chiederà di scegliere le
+partizioni per il dispositivo RAID — ovvero le due partizioni che abbiamo messo da parte per questo
+scopo (accertatevi di aver selezionato solo quelle che esplicitamente sono contrassegnate come
+“raid”).
+
+Ritornate al menu principale ed un nuovo disco virtuale “RAID” apparirà. Questo disco vi sarà
+presentato sotto forma di un’unica singola partizione e non sarà più possibile cancellarlo, ma potrete
+sceglierne solo l’uso di cui farne (così come per ciascun’altra partizione).
+
+Per maggiori dettagli sulle funzionalità dei dischi RAID, fate riferimento al paragrafo 12.1.1.
+“Software RAID” a pagina 302.
+
+
+4.2.13.4. Configurazione del Logical Volume Manager (LVM)
+
+IL LVM vi permette di creare partizioni “virtuali” che si estendono su diversi dischi. I vantaggi sono
+duplici: la dimensione delle partizioni non è più limitata dai singoli dischi ma dal loro volume
+cumulativo e potrete ridimensionare le partizioni già esistenti sempre, possibilmente dopo aver
+aggiunto un ulteriore disco se il caso lo richiede.
+
+Il sistema LVM usa una specifica terminologia: una partizione virtuale è un “volume logico”, che è
+parte di un “gruppo di volumi” o l’unione di diversi “volumi fisici”. Difatti ciascuno di questi termini
+indica una corrispondente partizione “reale” (oppure un dispositivo software RAID).
+
+Questa tecnica funziona in maniera semplice: ciascun volume, sia fisico o logico, viene diviso in
+blocchi della stessa dimensione, che sono realizzati al fine di corrispondere alle caratteristiche ed
+alle funzioni del LVM. L’aggiunta di un nuovo disco innescherà la creazione di un nuovo volume fisico
+e questi nuovi blocchi potranno essere uniti a qualsiasi gruppo di volumi. Tutte le partizioni del
+gruppo dei volumi, il cui gruppo è stato esteso, avranno pertanto un ulteriore spazio in cui
+estendersi a loro volta.
+
+
+
+
+Pagina 62 Il Manuale dell’Amministratore di Debian        TDAH_FUIT_1.0
+Lo strumento di partizionamento configura il LVM attraverso diverse fasi. Prima dovete creare sui
+dischi esistenti le partizioni da utilizzare come “physical volumes for LVM”. Per attivare il LVM,
+dovete selezionare “Configure the Logical Volume Manager (LVM)”, successivamente nella stessa
+schermata di configurazione “Create a volume group”, attraverso cui unirete gli esistenti volumi
+fisici. Infine, potete creare i volumi logici all’interno di questo gruppo di volumi. Facciamo presente
+che il sistema di partizionamento automatico è in grado di eseguire tutte queste fasi
+automaticamente.
+
+Nel menu dello strumento di partizionamento, ciascun volume fisico apparirà come un disco con una
+singola partizione che non può essere cancellato, ma potrete utilizzarlo come desiderate.
+
+Le modalità d’uso di un LVM sono descritte con maggiori dettagli nel paragrafo 12.1.2. “LVM” a
+pagina 312.
+
+
+4.2.13.5. Creazione di Partizioni Criptate
+
+Per garantire la riservatezza dei vostri dati, per esempio nell’eventualità di perdita o furto del vostro
+computer o di un vostro hard drive, è possibile criptare i dati su qualche partizione. Questa
+funzionalità può essere aggiunta sotto qualsiasi filesystem, dal momento che, come i LVM, Linux (e
+più specificamente il driver dm-crypt) usa il Device Mapper [“Mapper” tradotto letteralmente in
+italiano significa “Mappatore”] per creare una partizione virtuale (il cui contenuto è protetto) basata
+su una partizione sottostante che conserverà i dati in formato criptato (grazie a LUKS, Linux Unified
+Key Setup, un formato standard che abilita il salvataggio dei dati criptati e della loro stessa meta-
+informazione, attraverso cui sono dichiarati gli algoritmi utilizzati per la criptazione).
+
+
+
+
+      SICUREZZA         Quando viene utilizzata una partizione criptata, la chiave di criptazione è
+                        conservata nella memoria (RAM). Dal momento che questa chiave consente
+La partizione           la de-criptazione dei dati è di primaria importanza evitare di lasciare o
+swap criptata           dimenticare una copia di questa chiave in modo da non renderla accessibile
+                        a potenziali ladri del computer o dell’hard drive o alla assistenza tecnica.
+                        Tuttavia ciò capita facilmente con un laptop, in quanto durante la modalità
+                        di ibernazione (detta anche “sospensione”) i contenuti della RAM sono
+                        conservati sulla partizione swap. Se la partizione swap non è stata criptata il
+                        ladro potrebbe “catturare” la chiave ed utilizzarla per decriptare i dati dalle
+                        partizioni criptate. Questo è il motivo per cui è bene, quando si utilizzano
+                        delle partizioni criptate, criptare anche la partizione swap!
+                        L’Installer di Debian comunque avvertirà l’utente qualora intendesse creare
+                        una partizione criptata senza aver criptato la partizione swap.
+
+
+
+Per creare una partizione criptata, dovete prima designare a questo scopo una partizione ancora
+disponibile. Per fare ciò, selezionate una partizione e contrassegnatela da utilizzare come “physical
+volume for encryption”. Dopo il partizionamento del disco contenente il volume fisico da modificare,
+selezionate “Configure encrypted volumes”. Il software successivamente vi proporrà di cancellare il
+volume fisico attraverso la sovrascrittura di dati a caso (rendendo la localizzazione dei dati reali più
+difficile) e vi chiederà inoltre di immettere una “encryption passphrase” [una parola chiave], che
+dovrete immettere ad ogni avvio del computer per poter accedere al contenuto della partizione
+criptata. Una volta completata questa fase e che siete ritornate al menu dello strumento di
+partizionamento, una nuova partizione sarà disponibile in un “volume criptato”, che potrete in
+seguito configurare così come qualsiasi altra partizione. Nella maggior parte dei casi, questa
+partizione è usata sia come volume fisico per LVM sia per tutelare la sicurezza di diverse partizioni
+(LVM logical volumes) con la stessa chiave di criptazione, inclusa la partizione swap (andate a
+vedere la casella di testo “La partizione swap criptata” a pagina 63).
+
+
+
+
+                                              TDAH_FUIT_1.0      Capitolo IV — Installazione Pagina 63
+4.2.14. Installazione del Sistema Base
+
+Questa fase, che non necessita di nessuna interazione da parte dell’utente, installa il pacchetto "base
+system”. Questo pacchetto include sia dpkg e apt tools, che gestiscono i pacchetti Debian, sia i servizi
+necessari ad avviare il sistema ed incominciare ad utilizzarlo.
+
+
+
+
+                                 Figura 4.11 Installazione del Sistema Base
+
+
+
+
+4.2.15 Configurazione del Package Manager (apt)
+
+Al fine di essere reso in grado di installare del software aggiuntivo, APT necessita di essere
+configurato ed istruito su dove può trovare i pacchetti Debian. Questa fase è stata resa automatica
+per quanto possibile. Incomincia con la richiesta all’utente se utilizzare una sorgente di rete per i
+pacchetti, oppure se deve fare solo riferimento per la sua ricerca dei pacchetti al CD-ROM.
+
+
+             NOTA       Se l’installer rileva un disco di installazione di Debian nel lettore CD/DVD
+                        non è indispensabile configurare APT per la ricerca dei pacchetti sulla rete:
+Il CD-ROM di            APT sarà configurato automaticamente per leggere i pacchetti dal media
+Debian nel              drive rimovibile. Se il disco fa parte di una serie di dischi di installazione, il
+lettore-drive           software vi concederà l’opportunità di “esaminare” altri dischi allo scopo di
+                        mettere in relazione tutti i pacchetti su di essi immagazzinati.
+
+Se invece è sollecitata la ricerca dei pacchetti attraverso la rete, le successive due istanze del
+software consentiranno all’utente di scegliere il server da dove scaricare i suddetti pacchetti,
+selezionando dapprima il paese, poi un mirror disponibile in quel paese (un mirror è un server
+pubblico che ospita le copie conformi di tutti i files originali dell’archivio principale di Debian).
+
+
+
+Pagina 64 Il Manuale dell’Amministratore di Debian         TDAH_FUIT_1.0
+                                Figura 4.12 Selezione di un mirror Debian
+
+
+
+Infine, il programma consente all’utente di utilizzare un proxy HTTP. Se non userete un proxy,
+l’accesso via internet sarà diretto. Ad esempio qualora immettiate http://proxy.falcot.com:3128, APT
+utilizzerà il proxy/cache della Falcot, attraverso il programma server della stessa Falcot Corp
+denominato “Squid”. Potrete trovare i parametri per questa configurazione verificando le
+configurazioni pregresse del web browser delle altre macchine connesse alla stessa rete.
+
+I files Packages.gz e Sources.gz sono poi scaricati automaticamente per aggiornare la lista dei
+pacchetti validati da APT.
+
+
+       BASILARE         Un HTTP proxy è un server che invia una richiesta HTTP per gli utenti della
+                        rete. Questo server è in grado qualche volta di incrementare la velocità dei
+Proxy HTTP              download conservando le copie dei files che sono state stornate suo tramite.
+                        In parecchi casi, un HTTP proxy è l’unico strumento attraverso cui è
+                        possibile accedere ad un web server esterno e, di conseguenza, diventa
+                        essenziale rispondere alla domanda del programma di installazione che lo
+                        riguarda direttamente per poter essere in grado di scaricare i pacchetti
+                        Debian suo tramite.
+                        Squid è il nome del software server utilizzato dalla Falcot Corp per offrire
+                        questo servizio.
+
+
+
+
+4.2.16. Adesione al Debian Package Popularity Contest
+
+Il sistema Debian contiene un pacchetto denominato popularity-contest, il cui fine è il redigere
+un’analisi statistica sull’uso dei pacchetti. Ogni settimana, questo programma raccoglie informazioni
+riguardo ai pacchetti installati ed a quelli utilizzati recentemente, che anonimamente invia ai
+servers del progetto Debian.
+Il progetto può pertanto utilizzare tali informazioni per determinare la relativa importanza di
+ciascun pacchetto, importanza che inevitabilmente influenza anche la priorità che deve essere loro
+garantita. Difatti, la maggior parte dei pacchetti “popolari” sono e saranno inclusi nei CD-ROM di
+installazione, in modo da facilitarne la disponibilità per gli utenti che non desiderano scaricare i
+pacchetti individualmente o acquisirne l’intera serie.
+Per rispetto alla riservatezza riguardo all’uso dei pacchetti da parte degli utenti, questo pacchetto è
+attivabile solo su richiesta degli stessi utenti.
+
+                                              TDAH_FUIT_1.0      Capitolo IV — Installazione Pagina 65
+4.2.17 Selezione dei Pacchetti da Installare
+
+La fase seguente vi consentirà di delineare a grandi linee i fini della macchina; le dieci tasks [“task”
+tradotto in italiano significa letteralmente “attività”] proposte corrispondono agli elenchi dei
+pacchetti che possono essere installati dall’utente. La lista dei pacchetti, che sarà di fatto installata
+in questa fase, sarà messa a punto e completata più avanti, ma questa fase, di per sé, in modo
+semplice vi farà giungere ad un buon punto su cui poi basare la vostra avventura con Debian Linux.
+
+Inoltre alcuni pacchetti sono installati automaticamente in base all’hardware rilevato (grazie al
+programma discover-pkginstall incluso nel pacchetto discover). Per esempio, se viene rilevata
+una macchina virtuale Virtual Box, il programma installerà il pacchetto virtualbox-guest-dkms,
+conferendo una migliore integrazione della macchina virtuale con l’host system.
+
+
+
+
+                                       Figura 4.13 Scelta delle tasks
+
+
+
+
+4.2.18 Installazione di GRUB come bootloader (programma di avvio)
+
+Il bootloader è il primo programma avviato dal BIOS. Questo programma carica il kernel Linux nella
+memoria e poi lo esegue. Spesso il bootloader è fornito di un menu che consente all’utente di
+scegliere il kernel da caricare e/o il sistema operativo da avviare.
+
+
+
+Pagina 66 Il Manuale dell’Amministratore di Debian         TDAH_FUIT_1.0
+     FARE ATTENZIONE            Durante questa fase del processo di installazione di Debian vengono
+                                rilevati i sistemi operativi che sono già installati sul computer ed
+Bootloader e dual boot          automaticamente sono aggiunte le relative voci nel menu del
+                                programma di boot; ma non tutti i programmi d’installazione dei
+                                sistemi operativi hanno questa funzionalità.
+                                In particolare, se installate (o reinstallate) in seguito Windows, il
+                                bootloader verrà cancellato. Debian sarà ancora caricato sull’hard
+                                drive, ma non sarà più accessibile dal menu di boot. Dovrete quindi
+                                avviare il sistema di installazione Debian in modalità rescue [ossia in
+                                modalità di recupero o ripristino] per configurare un bootloader
+                                meno esclusivo [ovvero non riservato esclusivamente ad un
+                                particolare sistema operativo]. Questa operazione è descritta
+                                dettagliatamente nel manuale di installazione.
+                                  http://www.debian.org/releases/stable/amd64/ch08s07.html
+
+Per sua pre-impostazione, il menu offerto da GRUB contiene sia tutti i kernels Linux installati, sia
+qualsiasi altro sistema operativo rilevato. Per questo motivo si dovrebbe accettare la proposta
+dell’installer di installarlo nel Master Boot Record [o “settore di avvio principale” ovvero di fatto
+la partizione EFI (ESP) del primo disco. Si precisa che la tabella delle partizioni potrebbe essere in
+GUID (GPT). Qualora, in dual boot mode, utilizzaste più dischi sarebbe opportuno che spostiate GRUB
+nella partizione EFI del disco su cui è installato Debian, onde evitare anomalie nell’avvio dello stesso
+Debian o degli altri sistemi operativi]. GRUB inoltre mantiene le vecchie versioni dei Kernel,
+preservando così nel contempo la sua capacità di avviare lo stesso il sistema, anche nel caso in cui il
+kernel più aggiornato e recentemente installato dovesse presentare anomalie o essere
+insufficientemente compatibile con l’hardware.
+
+GRUB è, per pre-impostazione dell’installer, il primo bootloader in elenco proposto all’utente per
+l’avvio di Debian, a seguito soprattutto della sua nota superiorità tecnica [rispetto ai rivali]: questi,
+difatti, funziona con la maggior parte dei filesystems e di conseguenza non richiede un
+aggiornamento dopo ogni installazione di un nuovo kernel, in quanto in grado di leggere la sua stessa
+configurazione durante l’avvio e trovare l’esatta posizione del nuovo kernel. GRUB nella sua
+versione 1 (al momento della stesura di questo libro conosciuta come “Grub Legacy”) non è in grado
+di gestire tutte le combinazioni di LVM e del software RAID; la versione 2 di GRUB invece, installata
+per impostazione predefinita dello stesso installer, è più completa della versione 1. Anche se quanto
+espresso non esclude l’eventualità di contesti in cui è più raccomandabile l’utilizzo di LILO (un altro
+bootloader); in ogni caso sarà l’installer a suggerivi automaticamente la corretta indicazione.
+
+Per maggiori informazioni sulla configurazione di GRUB, per favore fate riferimento al paragrafo
+8.8.3 “La configurazione di GRUB 2” a pagina 166.
+
+
+     FARE ATTENZIONE            LILO e GRUB, i bootloaders menzionati in questo capitolo, sono
+                                compatibili con le architetture i386 e amd64. Se installerete Debian
+Bootloaders e                   su un’altra architettura, avrete necessità di un altro bootloader. Fra
+architetture                    gli altri disponibili, ci limiteremo a citare yaboot o quik per
+                                powerpc, silo per sparc, aboot per alfa, arcboot per mips.
+
+
+
+
+4.2.19 Termine dell’Installazione e Riavvio
+
+Giunti a questo punto l’installazione è completa, il programma vi inviterà a rimuovere il CD-ROM dal
+lettore ed a riavviare il computer.
+
+
+4.3 Dopo il Primo Avvio
+
+Se avete attivato la task “Debian desktop environment” senza aver scelto esplicitamente un
+ambiente grafico, e di conseguenza pur non avendo scelto “GNOME”, verrà installato il gdm3 login
+manager, che apparirà dopo il primo avvio del computer.
+                                              TDAH_FUIT_1.0      Capitolo IV — Installazione Pagina 67
+                                         Figura 4.14 Primo Avvio
+
+
+Attraverso l’utente creato durante il processo di installazione si può eseguire il log in ed iniziare a
+lavorare immediatamente.
+
+
+4.3.1. Installazione del Software Aggiuntivo
+
+I pacchetti installati sono il riflesso delle opzioni selezionate durante il processo di installazione, ma
+non sono tutti indispensabili per il reale uso che verrà fatto della macchina. Fra l’altro, potreste
+desiderare di utilizzare uno strumento di gestione dei pacchetti per raffinare la selezione dei
+pacchetti installati. I due strumenti maggiormente usati (già installati se la voce “Debian desktop
+environment” è stata selezionata durante il processo di installazione) sono apt (disponibile tramite
+terminale) e synaptic (“Synaptic Package Manager” accessibile dal menu).
+
+Per facilitare l’installazione di programmi idonei alle proprie esigenze Debian li suddivide,
+coerentemente al suddetto scopo, in dei gruppi compatti, creando delle “tasks” dedicate a specifiche
+destinazioni d’uso (mail server, file server, ecc.). Sebbene abbiate già avuto l’opportunità di
+selezionarle durante il processo di installazione, avrete di nuovo la possibilità di gestirle attraverso
+gli strumenti di gestione pacchetti fra cui aptitude (le cui tasks sono elencate in un paragrafo
+distinto) e synaptic (attraverso il menu Edit —> Mark Packages by Task…).
+
+Aptitude è un’interfaccia di APT in full-screen text mode. Consente all’utente di cercare con cura
+l’elenco dei pacchetti disponibili filtrati in base a diverse categorie (pacchetti installati o non
+installati, tasks, classe di appartenenza, ecc.) e di visualizzare tutte le informazioni disponibili su di
+loro (dipendenze, conflitti, descrizione, ecc.). Ciascun pacchetto potrà essere contrassegnato
+dall’utente come “install” (per essere installato, tasto +) o “remove” (per essere rimosso, tasto -).
+Tutte queste operazioni potranno essere svolte simultaneamente una volta che le avrete confermate
+attraverso il tasto g (“g” sta per “go!” che tradotto dall’inglese, non letteralmente, significa
+“procedi!”). Se dimenticherete di selezionare qualche programma che dovevate installare, non
+disperate; sarete in grado di riavviare aptitude una volta che l’installazione in corso sarà conclusa.
+
+
+
+
+Pagina 68 Il Manuale dell’Amministratore di Debian         TDAH_FUIT_1.0
+            SUGGERIMENTO           Diverse attività sono dedicate alla localizzazione del sistema in
+                                   altre lingue oltre all’inglese. Queste includono documentazione
+Debian si ricorda di chi non       tradotta, dizionari ed altri pacchetti vantaggiosi per chi parla
+parla la lingua Inglese            lingue differenti. Se l’utente non sceglie la lingua Inglese durante
+                                   l’installazione la task appropriata è selezionata
+                                   automaticamente.
+
+
+
+
+                    CULTURA        Prima di aptitude, il programma standard per selezionare i
+                                   pacchetti da installare era dselect, la vecchia interfaccia
+dselect, la vecchia                grafica connessa a dpkg. Non ci sentiamo di raccomandarlo, in
+interfaccia per installare i       quanto potrebbe essere un programma difficile per i neofiti.
+pacchetti
+
+
+Certamente, è possibile non selezionare alcuna task da installare. In questo caso, potrete installare
+manualmente il software da voi desiderato con i comandi apt-get o aptitude (che sono entrambi
+disponibili da terminale).
+
+
+                 DIZIONARIO        Nel gergo del Debian packaging, una “dipendenza” di un
+                                   pacchetto altri non è che un altro pacchetto necessario per il suo
+Dipendenze dei pacchetti,          funzionamento appropriato. Diversamente, un “conflitto” è un
+conflitti                          pacchetto che non può essere installato e coesistere con un altro.
+                                   Questi concetti sono trattati con maggiori dettagli nel capitolo 5
+                                   “Packaging System (Sistema Gestione dei Pacchetti): Strumenti
+                                   e Principi Fondamentali” a pagina 72
+
+
+
+
+4.3.2. Aggiornamento del Sistema
+
+Dapprima è generalmente richiesto il comando aptitude safe-upgrade (un comando utilizzato
+per aggiornare automaticamente i programmi), specialmente per gli aggiornamenti di sicurezza
+possibilmente usciti dopo il rilascio dell’ultima versione stabile di debian. Questi aggiornamenti
+potrebbero includere altre richieste attraverso debconf, lo strumento di configurazione standard di
+Debian. Per maggiori informazioni sugli aggiornamenti svolti da aptitude, per favore fate riferimento
+al paragrafo 6.2.3., “Aggiornamento del Sistema” a pagina 109.
+
+
+
+
+                                             TDAH_FUIT_1.0      Capitolo IV — Installazione Pagina 69
+               Parole chiave
+Pacchetto Binario
+Pacchetto Sorgente
+dpkg
+dipendenze
+conflitto
+

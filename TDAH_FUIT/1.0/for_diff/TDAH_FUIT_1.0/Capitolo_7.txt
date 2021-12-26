@@ -1,0 +1,691 @@
+Come risolvere le
+problematiche e
+trovare le
+informazioni adeguate
+                                                                         Capitolo 7
+7. Come risolvere le problematiche e trovare le informazioni adeguate                         pag. 133
+       1. Le “Sorgenti” della documentazione                                                  pag. 134
+               1. Manual Pages                                                                pag. 134
+               2. Documentazione info                                                         pag. 136
+               3. Documentazione speci ca                                                     pag. 137
+               4. I Websites                                                                  pag. 137
+               5. I Tutorials (HOWTO)                                                         pag. 138
+       2. Le procedure abituali                                                               pag. 139
+               1. Come con gurare un programma                                                pag. 139
+               2. Come monitorare l’attività dei Demoni                                       pag. 140
+               3. Come effettuare una richiesta di assistenza su una mailing                  pag. 140
+               list
+               4. Come effettuare la segnalazione di un bug qualora non si                     pag. 141
+               riuscisse a trovare una soluzione
+
+<<Un amministratore di grande talento deve essere in grado di far fronte a qualsiasi problematica,
+nota o sconosciuta. In questo capitolo vengono trattate delle strategie che vi consentiranno - si spera
+- di isolare la causa delle anomalie (che purtroppo avrete sempre modo di incontrare), in modo che
+possiate giungere ad una soluzione.>>
+fi
+             fi
+               7.1 Le "Sorgenti" della documentazione
+
+               Prima che possiate essere in grado di comprendere cosa realmente succede quando si presenta
+               un'anomalia, è necessario che conosciate il ruolo sotto l'aspetto teoretico di ogni singolo programma
+               coinvolto. Per fare ciò, la migliore soluzione è consultare la loro documentazione; ma la
+               documentazione in generale è copiosa e sparsa un po' ovunque, di conseguenza è consigliabile
+               conoscerne tutte le collocazioni possibili dove potrete reperirne delle copie.
+
+               7.1.1 Manual Pages
+
+                         CULTURA              Questo acronimo è l’abbreviazione di “Read The F***ing Manual” (“Leggi il f***uto
+                RTFM                          manuale”), di cui esiste un’interpretazione estensiva con un signi cato decisamente
+                                              più amichevole “Read The Fine Manual” (“Leggi il bel manuale”). La suddetta
+                                              espressione viene utilizzata come risposta (laconica) alle domande dei principianti;
+                                              è piuttosto brusca, ma ri ette l’irritazione conseguente a delle domande poste da
+                                              qualcuno che non si è neppure preso la briga di leggere la documentazione. In molti
+                                              sostengono che questa “classica” risposta in realtà sia “meglio” di un’omessa
+                                              risposta (visto che quanto meno cita la documentazione con le informazioni
+                                              ricercate) o, peggio, di una risposta irata e più “articolata”.
+                                              In ogni caso, se qualcuno vi dovesse rispondere “RTFM”, cercate di non offendervi.
+                                              Diversamente fate di tutto per non provocarla, piuttosto che riceverla, perché è a
+                                              sua volta irritante. Speci cate, preferibilmente nella domanda iniziale, che non vi
+                                              sono informazioni inerenti nel manuale, in quanto ragionevolmente può succedere;
+                                              descrivete pure le varie fasi che avete messo in atto autonomamente per ricercare
+                                              le informazioni prima di essere stati costretti a fare riferimento al forum. Seguendo
+                                              le linee guida standardizzate da Eric Raymond eviterete di commettere sbagli, così
+                                              da poter ricevere risposte utili.
+                                                 http://catb.org/~esr/faqs/smart-questions.html
+
+
+               Le manual pages, pur essendo concise, tuttavia contengono una grande quantità, di informazioni
+               essenziali. Senza troppi fronzoli ivi citiamo il comando per visualizzarle. Dovrete semplicemente
+               digitare man nomedellamanualpage — il nome della manual page spesso coincide con quello del
+               comando di cui desiderate esaminare la documentazione. Ad esempio, per scoprire le opzioni messe
+               a vostra disposizione dal comando cp, dovrete digitare il comando man cp dal prompt Shell (per
+               maggiori dettagli leggete il riquadro "La Shell, un interprete dell'interfaccia a riga di comando [La
+               Shell in italiano viene de nita "interprete dei comandi"]" a pagina 134).
+
+                        BASILARE              Un interprete dell’interfaccia a riga di comando - spesso de nito shell - è un
+                La Shell, un                  programma che esegue i comandi ricevuti dall’utente o memorizzati in uno script.
+                                              In modalità interattiva, visualizza un prompt (che di solito termina con un $ per un
+                interprete                    utente normale o con # per l’amministratore) pronto a ricevere un nuovo comando.
+                dell’interfaccia a            L’Appendice B “Breve Corso di Recupero” a pag. 447 descrive le basi per l’utilizzo
+                riga di comando               della shell.
+                [La Shell in                  La shell più comune e prede nita è bash (Bourne Again SHell), ma ne esistono altre
+                italiano viene                tra cui dash, csh, tcsh, zsh.
+                                              Inoltre la maggior parte delle shell offrono anche funzioni di assistenza per
+                de nita
+                                              l’immissione degli input dal prompt, come il completamento dei comandi o del nome
+                “interprete dei               dei les (che generalmente si possono attivare premendo il tasto tab), oppure la
+                comandi”]                     possibilità di richiamare i comandi già eseguiti (history management).
+
+
+
+               Le man pages documentano non solo i programmi accessibili da riga di comando, ma anche i les di
+               con gurazione, le chiamate di sistema, le funzioni della libreria C e così via.
+
+
+
+
+               Pagina 134 Il Manuale dell’Amministratore di Debian TDAH_1.0
+fi
+     fi
+          fi
+                          fl
+                               fi
+                                    fi
+                                         fi
+                                                                fi
+                                                                       fi
+                                                                                                             fi
+               [Una system call o chiamata di sistema indica un meccanismo attraverso cui un programma
+               informatico richiede una funzione al kernel del sistema operativo su cui è installato. Una funzione è
+               un blocco di codice organizzato utilizzato (e riutilizzabile) per eseguire una singola azione correlata.
+               Una libreria è una raccolta di risorse non volatili utilizzate dai programmi informatici, spesso per lo
+               sviluppo software. Un device le o special le, nei sistemi operativi Unix, è un'interfaccia del driver
+               di un dispositivo (o periferica) che appare in un le system come se fosse un normale le. Il
+               con guration le o con g le è un le utilizzato per con gurare i parametri e le initial settings di un
+               programma informatico. Una macro è una regola o un pattern che speci ca come una determinata
+               sequenza di input (spesso una sequenza di caratteri) debba essere convertita in una sequenza
+               output. In questo modo, le sequenze output frequenti o ripetitive possono essere eseguite
+               velocemente o automatizzate attraverso delle sequenze input. Uno standard è un insieme di
+               speci che per hardware o software, concordate da collaboratori accademici e del settore. Uno
+               standard consente ai produttori di creare prodotti compatibili tra loro. Gli standard possono essere
+               stabiliti da organizzazioni uf ciali o non uf ciali. La sezione "kernel routines" contiene le
+               informazioni relative al funzionamento interno del kernel di sistema.].
+
+               Qualche volta i nomi possono collidere. Ad esempio, il comando shell "read" possiede, da come si può
+               facilmente intuire, lo stesso nome della chiamata di sistema "read". Per tale ragione le manual pages
+               sono organizzate in sezioni numerate:
+
+               1. comandi che possono essere eseguiti da riga di comando;
+
+               2. system calls (funzioni offerte dal kernel);
+
+               3. library functions (funzioni offerte dalle librerie di sistema);
+
+               4. devices (nei sistemi Unix, si tratta di special les, generalmente collocati nella directory /dev/);
+
+               5. con guration les (formati e convenzioni);
+
+               6. giochi;
+
+               7. collezione di macros e standards;
+
+               8. comandi per l'amministrazione del sistema;
+
+               9. kernel routines.
+
+               È possibile speci care la sezione della manual page che state cercando: ad esempio per consultare la
+               documentazione per la chiamata di sistema read, dovrete digitare man 2 read. Se non dichiarerete
+               una sezione esplicitamente, il suddetto comando mostrerà la prima sezione utile contenente una
+               manual page con il nome da voi richiesto. Di conseguenza se digiterete man shadow otterrete la
+               manual page di shadow contenuta nella sezione 5 [shadow(5)] perché non ci sono manual page
+               "shadow" nelle sezioni dalla 1 alla 4.
+
+                    SUGGERIMENTO                       Se non desiderate visualizzare l’intera manual page di comando, ma ottenere solo
+                    whatis                             una breve descrizione del comando in questione (per confermare che è quello che vi
+                                                       serve), digitate semplicemente whatis nomedelcomando .
+                                                       $ whatis sc
+                                                       scp (1) - secure copy (remote file copy program
+                                                       Questa breve descrizione è presente in tutte le manual pages sotto la voce NAME.
+
+
+               Ovviamente, per il suddetto metodo è imperativo che conosciate il nome del comando. Qualora non
+               fosse così potrete usufruire del comando apropos, che consente di effettuare delle ricerche nelle
+               manual pages, o più precisamente nelle loro descrizioni in breve. Essenzialmente le manual pages
+               iniziano tutte con un riepilogo. Di conseguenza apropos restituisce un elenco di manual pages che
+               menzionano nella loro descrizione la parola chiave o le parole chiave richieste. Scegliendo le parole
+               chiave con cura, troverete il nome del comando di cui avete bisogno.
+
+
+
+
+                                                TDAH_1.0        Capitolo VII - Come risolvere le problematiche e trovare le informazioni adeguate Pagina 135
+fi
+     fi
+          fi
+               p
+
+               fi
+                      fi
+                       fi
+                            fi
+                                 fi
+                                      fi
+                                           fi
+                                                  fi
+                                                           fi
+                                                                fi
+                                                                      fi
+                                                                           fi
+                                                                                fi
+                                                                                     )
+
+                                                                                                fi
+                                                                                                               fi
+                                                                     Esempio 7.1 Come trovare cp con apropos
+
+                $ apropos “copy file
+                cp (1)                                      -   copy     files and directorie
+                cpio (1)                                    -   copy     files to and from archive
+                gvfs-copy (1                                -   Copy     file
+                gvfs-move (1                                -   Copy     file
+                hcopy (1                                    -   copy     files from or to an HFS volum
+                install (1                                  -   copy     files and set attribute
+                ntfscp (8)                                  -   copy     file to an NTFS volume.
+
+
+                     SUGGERIMENTO                 Molte manual pages hanno una voce denominata SEE ALSO (VEDI ANCHE) di solito
+                    Consultate anche              alla ne della stessa pagina. La suddetta voce si riferisce ad altre manual pages
+                    i collegamenti                relative a comandi simili oppure a della documentazione esterna. Vi sarà quindi
+                                                  possibile trovare la documentazione pertinente comunque anche qualora la man
+                                                  page correntemente consultata non fosse la scelta ottimale.
+
+
+
+               Il comando man non è l'unico "mezzo" attraverso cui consultare le manual pages, difatti pure i
+               programmi konqueror (sotto KDE) e yelp (sotto GNOME) offrono questa possibilità. Esiste inoltre
+               un'interfaccia web, supportata dal pacchetto man2html, che consente la consultazione delle man
+               pages attraverso un web browser. Sul computer dove è installato il summenzionato pacchetto,
+               utilizzate il seguente URL:
+
+                          http://localhost/cgi-bin/man/man2html
+
+               Questa utility però richiede un web server [il termine inglese "web server", in italiano "server web",
+               indica un dispositivo hardware o un software in grado di soddisfare le richieste da o sul web di un
+               client]. Pertanto qualora desideriate installarla potrete farlo su uno dei vostri server: in questo modo
+               tutti gli utenti della rete locale potranno trarre vantaggio dal summenzionato servizio di questo
+               pacchetto (comprese le workstation non Linux) ed eviterete di dover con gurare su ogni
+               workstation un server HTTP. Si consiglia inoltre di limitare l'accesso a questo servizio solo agli utenti
+               della rete locale qualora il vostro server fosse accessibile da altre reti [esterne a quella locale].
+
+                     DEBIAN POLICY                Debian impone che ogni programma abbia una manual page. Se l’autore a monte
+                    Manuali                       non provvede alla realizzazione della manual page, se ne occupa il manutentore del
+                    obbligatori                   pacchetto Debian, generalmente, scrivendo una pagina che abbia lo stretto
+                                                  necessario e che quanto meno sia in grado di indirizzare il lettore alla posizione
+                                                  della documentazione originale.
+
+
+
+
+               7.1.2 Documentazione info
+
+               Il progetto GNU ha scritto i manuali della maggior parte dei suoi programmi in formato info; per
+               questo motivo molte manual pages richiamano la correlata documentazione info. Il formato info
+               offre diversi vantaggi, ma il programma che ne consente di consultare i relativi documenti
+               (denominato anch’esso info) è leggermente più complesso. Vi consigliamo pertanto di utilizzare
+               pinfo (dal pacchetto pinfo).
+
+               La documentazione info ha una sua struttura gerarchica, di conseguenza se invocherete pinfo
+               otterrete l'elenco dei nodi disponibili al primo livello. Solitamente, i nodi prendono il loro nome dal
+               comando corrispondente.
+
+
+
+
+               Pagina 136 Il Manuale dell’Amministratore di Debian TDAH_1.0
+fi
+     )
+
+          s
+
+          s
+
+               )
+
+                     )
+
+                     )
+
+                                  ”
+
+                                        s
+
+                                             s
+
+                                                   
+
+                                                        
+
+                                                       s
+
+                                                                e
+
+                                                                                                   fi
+Attraverso pinfo, potrete "navigare" tra i nodi semplicemente utilizzando i tasti freccia. In
+alternativa potrete utilizzare un graphical browser, che sarà leggermente più user-friendly. Vi
+citiamo nuovamente konqueror e yelp in quanto compatibili; inoltre info2www fornisce
+un'interfaccia web.
+
+ http://localhost/cgi-bin/info2www
+
+Si precisa che l’info system non consente la traduzione, a differenza del man page system. Pertanto
+la documentazione info è quasi sempre in inglese. Tuttavia se richiederete al programma pinfo di
+visualizzare una pagina info inesistente, verrete reindirizzati sulla pagina man omonima (se esiste),
+che potrebbe essere stata tradotta.
+
+
+7.1.3 Documentazione speci ca
+
+Ogni pacchetto include una sua documentazione particolareggiata: anche il software meno
+documentato generalmente possiede un le README ["leggimi"] che riporta diverse informazioni,
+salienti e/o importanti. La summenzionata documentazione è installata nella directory /usr/
+share/doc/package/ (dove package rappresenta il nome del pacchetto). Se la documentazione è
+molto vasta, potrebbe non essere inclusa nel pacchetto principale del programma, bensì essere
+rilasciata in un pacchetto dedicato, che è solitamente denominato package-doc. Il pacchetto
+principale del programma generalmente raccomanda il pacchetto dedicato alla documentazione così
+che possiate recuperarla facilmente.
+
+La directory /usr/share/doc/package/ contiene pure alcuni les rilasciati da Debian che
+integrano la documentazione del pacchetto precisandone le peculiarità o i miglioramenti rispetto ad
+un’installazione tradizionale del software. Il le README.Debian riporta inoltre tutte le modi che
+effettuate per conformare il pacchetto alla Debian Policy. Il le changelog.Debian.gz consente
+all'utente di seguire cronologicamente le modi che effettuate sul pacchetto: può essere utile per
+comprendere cosa è cambiato tra due versioni dello stesso pacchetto installato che non funzionano
+allo stesso modo. In ne, a volte è incluso anche un le NEWS.Debian.gz che documenta i principali
+cambiamenti del programma. I cambiamenti citati dal le NEWS.Debian.gz potrebbero direttamente
+concernere l'amministratore.
+
+
+7.1.4 I Websites
+
+Nella maggior parte dei casi, i programmi free software hanno websites dedicati alla distribuzione
+del software, alla formazione di una comunità ed all'incontro di sviluppatori ed utenti. In questi siti
+viene frequentemente caricata dell'informazione in formati diversi: documentazione uf ciale, FAQ
+(Frequently Asked Questions — domande richieste spesso), mailing list archives, ecc. Di conseguenza
+un problema da voi riscontrato potrebbe essere già stato l'argomento cardine di molte domande;
+pertanto sia le FAQ, sia gli archivi di una delle mailing list potrebbero contenere una soluzione
+valida. Una buona padronanza dei motori di ricerca si rivelerà davvero utile per trovare
+rapidamente le pagine pertinenti (limitando la ricerca al dominio Internet o al sottodominio dedicati
+al programma). Se il motore di ricerca restituisce troppe pagine o se le risposte non soddisfano la
+vostra ricerca, l'aggiunta della parola chiave debian vi consentirà di restringere sia risultati, sia le
+informazioni rilevanti sul vostro "target" [obiettivo].
+
+
+
+
+                TDAH_1.0   Capitolo VII - Come risolvere le problematiche e trovare le informazioni adeguate Pagina 137
+       fi
+                   fi
+                             fi
+                                   fi
+                                        fi
+                                             fi
+                                                  fi
+                                                       fi
+                                                            fi
+                                                                                      fi
+                                                                                              fi
+                                                                                                    
+
+ SUGGERIMENTO                                 Se il software restituisce uno speci co messaggio di errore, utilizzate un motore di
+ Come trovare                                 ricerca inserendo tra due quotes [virgolette] “ il summenzionato messaggio, in
+ una soluzione ad                             modo che il motore di ricerca cerchi l’espressione completa e non le singole
+                                              keywords. Nella maggior parte dei casi i primi links inclusi fra i risultati di ricerca
+ un errore                                    dovrebbero contenere la risposta che state cercando. In altri casi, potreste
+                                              semplicemente scontrarvi con un errore molto generico come ad esempio
+                                              “Permission denied” [Autorizzazione non concessa]. Per risolvere questa
+                                              anomalia dovrete quindi veri care i “permessi” degli elementi coinvolti ( les, user
+                                              ID, gruppi, ecc.).
+
+
+Se non conoscete l'indirizzo del sito Web del software, esistono diversi modi per recuperarlo.
+Innanzitutto veri cate se è presente un Homepage eld nelle meta-informazioni del pacchetto (apt-
+cache show package). Anche la descrizione del pacchetto potrebbe, in alternativa, contenere un
+collegamento al sito Web uf ciale del programma. Se la descrizione non speci ca alcun URL, date
+un'occhiata a /usr/share/doc/package/copyright. Solitamente il manutentore Debian indica la
+collocazione da cui si può ottenere il codice sorgente del programma e tale collocazione potrebbe
+corrispondere al sito web uf ciale che necessitate trovare. Se giunti a questo punto la vostra ricerca
+continua a non dare gli esiti sperati, provate a consultare un archivio free software come quello di
+FSF (Free Software Directory), oppure provate ad eseguire una ricerca direttamente su un motore
+come ad esempio Google, DuckDuckgo, Yahoo, ecc.
+
+  https://directory.fsf.org/wiki/Main_Page
+
+Inoltre, dovreste veri care Debian wiki, un collaborative website [un sito che consente ai suoi utenti
+di collaborare fra loro] dove persino dei semplici visitatori possono dare dei suggerimenti attraverso
+un browser. Debian Wiki è utilizzato sia dai sviluppatori per progettare e ssare i loro progetti, sia
+dagli utenti per condividere le loro conoscenze attraverso la redazione di documenti in
+collaborazione.
+
+  http://wiki.debian.org/
+
+
+[L'IP Masquerading o Mascheramento IP a grandi linee è una tecnica che consente di tradurre gli
+indirizzi IP interni (solitamente privati) in un indirizzo esterno (generalmente pubblico). In pratica
+dall'esterno tutte le connessioni (solitamente private) sembreranno aver origine dalla macchina
+condivisa (generalmente pubblica) che effettua il mascheramento.]
+
+
+7.1.5 I Tutorials (HOWTO)
+
+Un howto ["come fare"] è un documento che descrive, passo dopo passo e concretamente, come
+raggiungere un obiettivo prede nito. Gli obiettivi trattati da questi documenti sono relativamente
+vari, ma solitamente sono di natura prettamente tecnica: per esempio possono spiegare come
+impostare un IP Masquerading, con gurare il software RAID, installare un server Samba, ecc. In
+pratica questi documenti generalmente tentano di argomentare preventivamente tutti i problemi
+che potrebbero sorgere durante la messa in esecuzione di una determinata tecnologia.
+
+Molti tutorials sono gestiti dal Linux Documentation Project (LPD) [progetto di documentazione
+Linux], che ospita di conseguenza nel suo sito Web tutti questi documenti:
+
+  http://www.tldp.org/
+
+Rimanete scettici quando leggete questi documenti, "prendendoli con le pinze". Il più delle volte
+questi documenti hanno diversi anni; pertanto le informazioni da questi contenute potrebbero essere
+obsolete. Per di più la suddetta evenienza si veri ca più frequentemente con le loro traduzioni, in
+quanto quest'ultime non vengono aggiornate sistematicamente o a seguito della pubblicazione di una
+nuova versione del documento originale. Purtroppo fa parte delle "gioie" della collaborazione
+volontaria e senza vincoli ...
+
+
+
+Pagina 138 Il Manuale dell’Amministratore di Debian TDAH_1.0
+      fi
+           fi
+                fi
+                     fi
+                          fi
+                               fi
+                                    fi
+                                         fi
+                                                            fi
+                                                                 fi
+                                                                                fi
+                                                                                         fi
+                                                                                              fi
+                                        7.2 Le procedure abituali
+
+                                        Questo paragrafo espone diversi suggerimenti in merito ad alcune operazioni che spesso un
+                                        amministratore deve eseguire. Queste procedure non saranno mai in grado ovviamente di occuparsi
+                                        di tutti i casi possibili in modo esaustivo, ma potrebbero essere utili come punto di partenza per i casi
+                                        più dif cili.
+
+
+                                             ESPLORANDO                 Spesso la documentazione tradotta dall’inglese è disponibile in un pacchetto
+                                         Documentazione                 separato che ha lo stesso nome del pacchetto (a cui la documentazione è riferita)
+                                                                        seguito dal codice ISO uf ciale per la lingua ricercata: ad esempio per i documenti
+                                         in altre lingue
+                                                                        tradotti in francese il codice ISO corrispondente è -fr.
+                                                                        Pertanto, il pacchetto apt-howto-fr contiene la traduzione in francese dell’howto
+                                                                        dedicato ad APT. Così come i pacchetti quick-reference-fr e debian-
+                                                                        reference-fr sono le guide di riferimento di Debian tradotte in francese (di Osamu
+                                                                        Aoki e da questi scritti originariamente in inglese).
+
+
+
+
+                                        7.2.1 Come con gurare un programma
+
+                                        Se e quando sarete di fronte ad un pacchetto sconosciuto che desiderate con gurare, dovrete
+                                        procedere passo dopo passo. Innanzitutto, dovrete leggere tutto ciò il manutentore del pacchetto ha
+                                        documentato. La lettura di /usr/share/doc/package/README.Debian vi consentirà difatti di
+                                        apprendere le disposizioni realizzate ad hoc per facilitare l'utilizzo del software in questione. A volte
+                                        la suddetta lettura è essenziale per comprendere le differenze con il funzionamento originale del
+                                        programma, descritto nella documentazione generale, così come negli howtos. A volte questo le
+                                        descrive anche gli errori più comuni in modo da farvi evitare di perdere tempo con delle
+                                        problematiche note.
+
+                                        Pertanto dovreste consultare la documentazione uf ciale del software — leggete al riguardo il
+                                        paragrafo 7.1, "Le "Sorgenti" della documentazione" a pagina 134 per conoscere le diverse sorgenti
+                                        esistenti di documentazione. Il comando dpkg -L nomedelpacchetto vi elencherà i les inclusi nel
+                                        pacchetto; questo vi permetterà di individuare rapidamente la documentazione disponibile (così
+                                        come i les di con gurazione, che si trovano in /etc/). Il comando dpkg -s nomedelpacchetto vi
+                                        mostrerà i metadati del pacchetto nonché tutti i pacchetti raccomandati o suggeriti: in questo modo
+                                        vi sarà possibile trovare qualsiasi documentazione o utilità in grado di agevolarvi nella
+                                        con gurazione del software.
+
+                                        In ne, i les di con gurazione sono spesso “self-documented" attraverso numerosi commenti
+                                        esplicativi che descrivono dettagliatamente i diversi possibili valori di ciascun parametro. Al punto
+                                        che a volte è suf ciente scegliere la riga da attivare tra quelle proposte. Certe volte, gli esempi dei
+                                         les di con gurazione sono rilasciati nella directory /usr/share/doc/package/examples/. I
+                                        suddetti esempi potrebbero servirvi come modello per i vostri les di con gurazione.
+                                        [In programmazione, il self-documenting (o self-describing) codice sorgente e le self-documenting (o
+                                        self-describing) interfacce utente seguono le convenzioni di denominazione e di "programmazione
+                                        strutturata" che consentono l'uso del sistema senza una conoscenza speci ca ex ante. Nello sviluppo
+                                        web, il self-documenting si riferisce ad un sito Web che presenta al pubblico il suo intero modello di
+                                        sviluppo attraverso documentazione pubblica ed allo stesso tempo rilascia pubblicamente la sua
+                                        documentazione secondo quanto previsto dal suo modello di sviluppo.]
+
+
+
+
+                                          DEBIAN POLICY                 Gli esempi devono essere installati nella directory /usr/share/doc/package/
+                                         Posizione degli                examples/ . Possono riguardare les di con gurazione, il codice sorgente del
+                                                                        programma (un esempio sull’impiego di una libreria) o un data conversion script
+                                         esempi
+                                                                        che l’amministratore potrebbe utilizzare in svariati casi (tra cui per inizializzare un
+                                                                        database). Se l’esempio si riferisce ad una particolare architettura, dovrebbe essere
+                                                                        installato in /usr/lib/package/examples/ e dovrebbe esserci un collegamento al
+                                                                        suddetto le nella directory /usr/share/doc/package/examples/
+
+
+                                                                 TDAH_1.0   Capitolo VII - Come risolvere le problematiche e trovare le informazioni adeguate Pagina 139
+fi
+     fi
+          fi
+               fi
+                    fi
+                         fi
+                              fi
+                                   fi
+                                            fi
+                                             fi
+                                                  fi
+                                                       fi
+                                                            fi
+                                                                  fi
+                                                                             fi
+                                                                                            fi
+                                                                                                         fi
+                                                                                                                      fi
+                                                                                                                           fi
+                                                                                                                                fi
+                                                                                                                                      fi
+                                                                                                                                               fi
+                    7.2.2 Come monitorare l'attività dei Demoni
+
+                    Riuscire a comprendere l'attività di un demone è più complicato, in quanto il demone non interagisce
+                    direttamente con l'amministratore. Per veri carne il funzionamento, è quindi necessario testarlo. Ad
+                    esempio è possibile veri care il funzionamento del demone (web server) Apache con una richiesta
+                    HTTP.
+
+                    Per consentire questi controlli, ogni demone di solito tiene traccia della sua attività, nonché degli
+                    errori riscontrati - nei cosiddetti logs [registri] o system logs [registri di sistema]. I logs sono
+                    conservati in /var/log/ o in una delle sue subdirectories. Per conoscere il nome esatto del le log di
+                    ciascun demone, dovrete consultare la sua documentazione. Si precisa che un singolo test non è
+                    sempre suf ciente, in particolare modo se non può coprire tutti i possibili use cases [un use case o
+                    caso d'uso è un elenco di azioni o di eventi che in genere de niscono le interazioni tra un "attore" —
+                    un ruolo de nito dall'Uni ed Modeling Language o UML — e un sistema messe in atto per
+                    raggiungere un obiettivo]; alcuni problemi si veri cano solo in determinate circostanze particolari.
+
+
+                              STRUMENTI                 rsylogd è speciale: raccoglie i logs (i messaggi interni al sistema) trasmessigli da
+                                   TOOLS                altri programmi. Ciascuna log entry [voce log] è associata ad un sottosistema (e-
+                         Il demone                      mail, kernel, autenticazione, ecc.) con una correlata priorità; l’informazione,
+                         rsyslogd                       contenuta nella suddetta voce, viene elaborata da rsyslogd per decidere come
+                                                        svolgere la sua attività. Il log message [il messaggio log] potrebbe essere registrato
+                                                        in diversi log les [ les log] e/o inviato ad una administration console. I dettagli
+                                                        sono de niti nel le di con gurazione /etc/rsyslogd.conf (documentato
+                                                        nell’omonima man page).
+                                                        Alcune funzioni di C, specializzate nell’invio dei logs, facilitano l’uso del demone
+                                                        rsyslogd. Comunque alcuni demoni gestiscono i propri log les (ad esempio, questo è
+                                                        il caso di samba che implementa le condivisioni Windows su Linux).
+                                                        Si precisa che quando viene utilizzato systemd, i logs vengono di fatto raccolti da
+                                                        systemd prima di essere trasmessi a rsyslogd. Sono quindi disponibili nel journal di
+                                                        systemd e possono essere visualizzati con journalctl (per maggiori dettagli leggete il
+                                                        paragrafo 9.1.1 “Il sistema init systemd” a pagina 182).
+
+
+                              BASILARE                  Un demone è un programma non esplicitamente invocato dall’utente e che rimane
+                         Daemon                         in background, in attesa che sia soddisfatta una condizione prima di eseguire
+                         [Demone]                       un’attività. Molti server programs sono demoni - difatti per rievocare il termine
+                                                        “demone” i suddetti programmi includono alla ne del loro nome la lettera “d”
+                                                        (sshd, smtpd, httpd, ecc.).
+
+
+                    A scopo preventivo, l'amministratore dovrà consultare regolarmente i più rilevanti logs del server.
+                    In questo modo il summenzionato amministratore potrà diagnosticare le anomalie prima ancora che
+                    vengano segnalate da utenti scontenti. Inoltre, solitamente gli utenti attendono, che il problema si
+                    veri chi ripetutamente per diversi giorni, prima di effettuare la dovuta segnalazione. Nella maggior
+                    parte dei casi esistono dei tools speci ci per analizzare il contenuto dei les log più grandi. In
+                    particolare queste utilities possono essere dedicate ai servers Web (ad esempio analog, awstats,
+                    webalizer per Apache), ai servers FTP, ai servers proxy/cache, ai rewalls, ai servers e-mail, ai
+                    servers DNS ed anche ai servers di stampa. Alcune di queste utilities funzionano in modo modulare e
+                    consentono di analizzare diversi tipi di les log. Questo è il caso di lire. Altri strumenti, come il
+                    logcheck (un software che verrà trattato nel capitolo 14, "Sicurezza" a pagina 376), consentono la
+                    scansione di questi les per individuare eventuali alerts, che devono essere analizzati.
+
+
+                    7.2.3 Come effettuare una richiesta di assistenza su una mailing list
+
+                    Se le vostre ricerche sono state infruttuose e non sono state in grado di giungere al nocciolo della
+                    questione, potete chiedere aiuto a terzi, forse più esperti di voi. Questo è il proposito della mailing list
+                    debian-user@lists.debian.org.
+
+
+
+
+                    Pagina 140 Il Manuale dell’Amministratore di Debian TDAH_1.0
+fi
+     fi
+          fi
+               fi
+                    fi
+                          fi
+                               fi
+                                    fi
+                                         fi
+                                              fi
+                                                   fi
+                                                        fi
+                                                             fi
+                                                                  fi
+                                                                       fi
+                                                                            fi
+                                                                                 fi
+                                                                                      fi
+                                                                                           fi
+                                                                                                fi
+                                                                                                                       fi
+Come qualsiasi comunità, anche la mailing list ha le sue regole che devono essere rispettate. Prima di
+effettuare una richiesta, dovrete veri care che il vostro disagio non sia già stato affrontato in una
+recente discussione della mailing list oppure in qualche documentazione uf ciale.
+
+ https://wiki.debian.org/DebianMailingLists
+ https://lists.debian.org/debian-user/
+
+[Netiquette è un vocabolo nato dall'unione di due termini di due lingue differenti, l'inglese ed il
+francese: "network" in inglese ed "étiquette" in francese. Tale espressione indica un insieme di
+regole, prive di forza di legge, ma solitamente rispettate, che disciplinano l'interazione degli utenti
+su: un newsgroup, mailing list, forum, blog, reti sociali o email in genere.]
+
+
+
+  SUGGERIMENTO           A causa della grande mole di mailing lists, tra cui la stessa debian-
+ Leggere una             user@lists.debian.org, potrebbe esservi utile farne una cernita, visitando ad esempio
+ mailing list via        un gruppo di discussione forum (o un newsgroup). Gmane.org vi consentirà di
+                         consultare via internet gli elenchi mailing lists Debian. La mailing list sopra
+ internet                menzionata è disponibile al seguente indirizzo:
+                          http://dir.gmane.org/gmane.linux.debian.user
+
+
+        BASILARE         In generale, a causa della copiosa corrispondenza elettronica attraverso le mailing
+ Le netiquette che       lists, le Netiquette devono essere osservate. Questa espressione indica un insieme di
+                         regole di comune buon senso, che spaziano dalla generica cortesia agli errori
+ vengono
+                         comuni da evitare.
+ applicate                 http://tools.ietf.org/html/rfc1855
+                         Inoltre, tutti i canali di comunicazione gestiti dal progetto Debian sono regolati dal
+                         Debian Code of Conduct (Codice di Condotta Debian):
+                           https://www.debian.org/code_of_conduct
+
+
+Di conseguenza se ci sono le condizioni, potrete considerare di descrivere l'anomalia nella mailing
+list. Includete quante più e pertinenti informazioni possibili: i diversi tentativi eseguiti, la
+documentazione consultata, il modo in cui siete risaliti al problema, i pacchetti coinvolti o che
+potrebbero essere coinvolti. Consultate il sistema di tracciamento dei bugs di Debian o BTS descritto
+nel riquadro "Bug tracking system (Il sistema di tracciamento del bug)" a pagina 14) per trovare
+eventualmente un problema af ne e condividere i risultati della vostra ricerca, inserendo anche i
+collegamenti ai bug trovati. Potrete trovare il BTS attraverso il seguente link:
+
+ http://m.debian.org/Bugs/index.html
+
+Più cortesi e precisi sarete, maggiori saranno le probabilità di ottenere una risposta — o almeno una
+risposta parziale. Se ricevete informazioni pertinenti via email, considerate di fare un riepilogo
+pubblico delle risposte ricevute in modo che tutti possano bene ciarne. Questo farà sì che gli archivi
+della mailing list, esplorati attraverso i vari motori di ricerca, includano la soluzione anche per quei
+terzi che hanno incontrato il vostro stesso disagio.
+
+
+
+
+7.2.4 Come effettuare la segnalazione di un bug qualora non si riuscisse a trovare una soluzione
+
+Se fallirete nel trovare una soluzione al problema riscontrato, è probabile che non sia dipeso dal voi e
+che in realtà sia un bug già noto del programma. In questo caso, per prassi dovreste segnalare il
+disagio a Debian oppure ai sviluppatori upstreams. Per fare ciò, è consigliabile isolare il problema nel
+miglior modo possibile, realizzando dei test minimi che vi consentano di riprodurlo. Se per voi un
+programma è apparentemente la causa del problema, potrete trovare il suo pacchetto
+corrispondente utilizzando il comando dpkg -S file_in_questione .
+
+
+
+
+                 TDAH_1.0        Capitolo VII - Come risolvere le problematiche e trovare le informazioni adeguate Pagina 141
+                   fi
+                            fi
+                                                               fi
+                                                                              fi
+Controllate il Sistema di Tracciamento dei Bugs (https://bugs.debian.org/package/) per assicurarvi
+che l'anomalia non sia già stata presentata [e registrata]. Potrete quindi inviare la vostra
+segnalazione bug attraverso il comando reportbug, includendo quante più informazioni possibili, in
+particolare una descrizione completa degli test minimi, in modo che chiunque possa "riprodurre" il
+bug.
+
+Gli elementi trattati in questo capitolo sono un mezzo attraverso cui risolvere ef cacemente i disagi
+che i prossimi capitoli potrebbero causarvi. Pertanto riprendete l'analisi degli elementi ivi trattati
+tutte le volte che lo riterrete necessario!
+
+
+
+
+Pagina 142 Il Manuale dell’Amministratore di Debian TDAH_1.0
+                                                                     fi
+TDAH_1.0   Capitolo VII - Come risolvere le problematiche e trovare le informazioni adeguate Pagina 143
+                 Parole chiave
+     Con gurazione
+     Localizzazione
+     Locales
+     Network
+     Name Resolution
+     Utenti
+     Gruppi
+     Accounts
+     Shell - l’Interprete
+     dell’interfaccia a Riga
+     di Comando
+     Stampa
+     Bootloader
+     Compilazione del
+     Kernel
+fi
+
