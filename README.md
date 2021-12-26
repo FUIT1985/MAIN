@@ -1,4 +1,4 @@
-Questi appunti, che saranno condivisi gratuitamente senza alcuna garanzia né per i lettori, né per terze parti, non intendono sostituirsi ai testi in questione. Inoltre sono una mia personale visione degli argomenti trattati che esperti del settore potrebbero non condividere (autori compresi). Si consiglia pertanto, qualora fossero argomenti oggetto d’esame per un corso di studi professionalizzante, di fare esclusivamente riferimento ai testi in questione ed alle lezioni del vostro corso accademico o di perfezionamento.
+Questi appunti e le traduzioni non ufficiali, che saranno condivisi gratuitamente senza alcuna garanzia né per i lettori, né per terze parti, non intendono sostituirsi ai testi sorgente. Inoltre sono una mia personale visione degli argomenti trattati che esperti del settore potrebbero non condividere (autori compresi). Si consiglia pertanto, qualora fossero argomenti oggetto d’esame per un corso di studi professionalizzante, di fare esclusivamente riferimento ai testi in questione ed alle lezioni del vostro corso accademico o di perfezionamento. Antonio Bonaccorso 
 
 
 In ordine alfabetico autori, testi o argomenti trattati in questo repository. 
