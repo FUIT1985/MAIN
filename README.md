@@ -1,7 +1,11 @@
-Questi appunti non intendono sostituirsi ai testi in questione. Inoltre sono una mia personale visione degli argomenti trattati che esperti del settore potrebbero non condividere (autori compresi). Si consiglia pertanto, qualora fossero argomenti oggetto d’esame per un corso di studi professionalizzante, di fare esclusivamente riferimento ai testi in questione ed alle lezioni del vostro corso accademico o di perfezionamento.
+Questi appunti, che saranno condivisi gratuitamente senza alcuna garanzia né per i lettori, né per terze parti, non intendono sostituirsi ai testi in questione. Inoltre sono una mia personale visione degli argomenti trattati che esperti del settore potrebbero non condividere (autori compresi). Si consiglia pertanto, qualora fossero argomenti oggetto d’esame per un corso di studi professionalizzante, di fare esclusivamente riferimento ai testi in questione ed alle lezioni del vostro corso accademico o di perfezionamento.
 
 
 In ordine alfabetico autori, testi o argomenti trattati in questo repository. 
+
+###### ADI_v.1.0 - Appunti di Antonio Bonaccorso tratti da:
+
+L’arte dell’inganno - I consigli dell’hacker più famoso del mondo di Kevin D. Mitnick e William L. Simon (2003) - Premessa di Steve Wozniak - Traduzione di Giancarlo Carlotti - Consulenza scientifica di Raoul Chiesa - Editore Italiano: Universale Economica Feltrinelli/Saggi
 
 ###### DEBIAN
 
@@ -14,6 +18,18 @@ ecosistema (con Ubuntu in testa) testimonia che un numero crescente di amministr
 progressi compiuti da Debian.
 
 www.debian.org
+
+###### Kevin Mitnick
+
+Kevin David Mitnick, detto Condor, è un programmatore, phreaker, cracker, imprenditore statunitense ed esperto di ingegneria sociale, che oggi si occupa, attraverso la sua società di sicurezza informatica, di divulgazione, pentesting, ecc..
+
+www.mitnicksecurity.com/about-kevin-mitnick-mitnick-security
+
+###### L'arte dell'inganno
+
+Questo libro descrive le strategie di "social engineering" impiegate dagli hacker, dagli agenti dello spionaggio industriale e dai criminali comuni per penetrare nelle reti.
+
+www.feltrinellieditore.it/opera/opera/larte-dellinganno/
 
 ###### Raphaël Hertzog
 
@@ -44,7 +60,7 @@ www.debian-handbook.info
 
 Acronimo di Free unofficial Italian translation of “The Debian Administrator’s Handbook. Traduzione non ufficiale di Antonio Bonaccorso. 
 
-
+www.github.com/FUIT1985/MAIN/TDAH_FUIT
 
 
 
