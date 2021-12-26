@@ -7,7 +7,7 @@ In ordine alfabetico autori, testi o argomenti trattati in questo repository.
 
 L’arte dell’inganno - I consigli dell’hacker più famoso del mondo di Kevin D. Mitnick e William L. Simon (2003) - Premessa di Steve Wozniak - Traduzione di Giancarlo Carlotti - Consulenza scientifica di Raoul Chiesa - Editore Italiano: Universale Economica Feltrinelli/Saggi
 
-www.github.com/FUIT1985/MAIN/Kevin_Mitnick/L’arte_dell’inganno.pdf
+https://github.com/FUIT1985/MAIN/Kevin_Mitnick/L’arte_dell’inganno.pdf
 
 ###### DEBIAN
 
@@ -25,7 +25,7 @@ www.debian.org
 
 Questo progetto gratuito, a cui questa pagina di github.com è dedicata, nasce per caso. Il suo motto è "I'm Still Standing", perché non so per quanto tempo riuscirò a "mantenerlo in piedi". Sinceramente scaturisce dalla necessità dello scrivente di possedere degli appunti personali su testi di distribuzione libera in lingua inglese (o tradotti in inglese, chiaramente non dall'italiano) e quindi non per velleità. Anche l'acronimo FUIT non è che sia stato scelto con eccessiva cura o con un disegno promozionale ben preciso (per quanto per la sussistenza dei progetti free la promozione o il mero passaparola, nonché il supporto di natura economica siano essenziali). Antonio Bonaccorso 
 
-www.github.com/FUIT1985/MAIN/FUIT_README_DISCLAIMER.md
+https://github.com/FUIT1985/MAIN/FUIT_README_DISCLAIMER.md
 
 ###### Kevin Mitnick
 
@@ -68,7 +68,7 @@ www.debian-handbook.info
 
 Acronimo di "Free unofficial Italian translation of The Debian Administrator’s Handbook". Traduzione non ufficiale di Antonio Bonaccorso. Fa parte del progetto opensource FUIT. 
 
-www.github.com/FUIT1985/MAIN/TDAH_FUIT/
+https://github.com/FUIT1985/MAIN/TDAH_FUIT/
 
 
 
