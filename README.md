@@ -68,7 +68,7 @@ www.debian-handbook.info
 
 Acronimo di "Free unofficial Italian translation of The Debian Administrator’s Handbook". Traduzione non ufficiale di Antonio Bonaccorso. Fa parte del progetto opensource FUIT. 
 
-www.github.com/FUIT1985/MAIN/TDAH_FUIT
+www.github.com/FUIT1985/MAIN/TDAH_FUIT/
 
 
 
