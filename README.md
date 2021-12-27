@@ -21,6 +21,12 @@ progressi compiuti da Debian.
 
 www.debian.org
 
+###### DIY - Do It Yourself
+
+Projects, Handbooks, Tech Tips & How-Know - Si tratta di una raccolta di documenti su qualsiasi argomento che ritenga interessante. 
+
+https://github.com/FUIT1985/MAIN/tree/main/DIY/
+
 ###### Free unofficial Italian translation - FUIT
 
 Questo progetto gratuito, a cui questa pagina di github.com è dedicata, nasce per caso. Il suo motto è "I'm Still Standing", perché non so per quanto tempo riuscirò a "mantenerlo in piedi". Sinceramente scaturisce dalla necessità dello scrivente di possedere degli appunti personali su testi di distribuzione libera in lingua inglese (o tradotti in inglese, chiaramente non dall'italiano) e quindi non per velleità. Anche l'acronimo FUIT non è che sia stato scelto con eccessiva cura o con un disegno promozionale ben preciso (per quanto per la sussistenza dei progetti free la promozione o il mero passaparola, nonché il supporto di natura economica siano essenziali). Antonio Bonaccorso 
