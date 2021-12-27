@@ -3,6 +3,8 @@ Questi appunti e le traduzioni non ufficiali, che saranno condivisi gratuitament
 
 In ordine alfabetico autori, testi o argomenti trattati in questo repository. 
 
+p.s. I progetti, licenze permettendo, sono e saranno inclusi in un unico repository, in modo che nessuno di questi possa singolarmente essere ritenuto più importante di altri. 
+
 ###### ADI_v.1.0 - Appunti di Antonio Bonaccorso tratti da:
 
 L’arte dell’inganno - I consigli dell’hacker più famoso del mondo di Kevin D. Mitnick e William L. Simon (2003) - Premessa di Steve Wozniak - Traduzione di Giancarlo Carlotti - Consulenza scientifica di Raoul Chiesa - Editore Italiano: Universale Economica Feltrinelli/Saggi
