@@ -81,6 +81,10 @@ www.freexian.com
 
 Ha collaborato per la realizzazione di The Debian Administrator’s Handbook con Roland Mas.  
 
+###### Richard Stallman
+
+Richard Matthew Stallman è un programmatore, informatico e attivista statunitense fondatore del progetto Free Software Foundation (FSF). 
+
 ###### Roland Mas
 
 Roland Mas, sviluppatore Debian dal 2000 e nel contempo sviluppatore e maintainer del software FusionForge, è un consulente freelance specializzato nell'installazione e nella migrazione di/verso sistemi Debian GNU/Linux e nella configurazione-sviluppo di strumenti (tools) per il collaborative work.
