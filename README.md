@@ -43,11 +43,27 @@ Kevin David Mitnick, detto Condor, è un programmatore, phreaker, cracker, impre
 
 www.mitnicksecurity.com/about-kevin-mitnick-mitnick-security
 
+
+
+
+
 ###### L'arte dell'inganno
 
 Questo libro descrive le strategie di "social engineering" impiegate dagli hacker, dagli agenti dello spionaggio industriale e dai criminali comuni per penetrare nelle reti.
 
 www.feltrinellieditore.it/opera/opera/larte-dellinganno/
+
+###### Linus Torvalds
+
+Linus Benedict Torvalds è un ingegnere del software finlandese-americano, creatore e, storicamente, il principale sviluppatore del kernel Linux, utilizzato sia dalle distribuzioni Linux, sia da altri sistemi operativi come Android.
+
+https://github.com/torvalds
+
+###### Linux
+
+Linux è uno dei progetti più rilevanti di collaborazione per la realizzazione di software open source ed allo stesso tempo il kernel di diverse distribuzioni open source (rilasciato per la prima volta nel 1991 da Linus Torvalds). Il suo codice sorgente può essere utilizzato, modificato e distribuito (volendo anche con finalità commerciali) in base ai termini delle licenze associate, come la GNU General Public License.
+
+https://www.kernel.org/
 
 ###### Raphaël Hertzog
 
