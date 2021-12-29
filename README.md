@@ -125,7 +125,7 @@ https://github.com/FUIT1985/MAIN/tree/main/TDAH_FUIT
 
 ###### The Debian Administrator’s Handbook 
 
-Indicato per tutti, questo libro insegna le basi a chiunque desideri diventare un amministratore Debian efficiente ed autonomo. Difatti tratta tutte le tematiche che un diligente amministratore Linux dovrebbe conoscere esaustivamente dall’installazione all’aggiornamento del sistema, dalla creazione dei pacchetti alla compilazione del kernel, compresi anche il monitoraggio, il ripristino e la migrazione, senza dimenticare argomenti complessi come la configurazione di SELinux o AppArmor sino a giungere ai servizi di sicurezza del sistema, alle installazioni automatiche o alla virtualizzazione con Xen, KVM o LXC. (Presentazione sulla copertina del libro originale, tradotta non ufficialmente e compresa nel progetto TDAH_FUIT) 
+Indicato per tutti, questo libro insegna le basi a chiunque desideri diventare un amministratore Debian efficiente ed autonomo. Difatti tratta tutte le tematiche che un diligente amministratore Linux dovrebbe conoscere esaustivamente dall’installazione all’aggiornamento del sistema, dalla creazione dei pacchetti alla compilazione del kernel, compresi anche il monitoraggio, il ripristino e la migrazione, senza dimenticare argomenti complessi come la configurazione di SELinux o AppArmor sino a giungere ai servizi di sicurezza del sistema, alle installazioni automatiche o alla virtualizzazione con Xen, KVM o LXC. (Presentazione sulla copertina del libro cartaceo originale, tradotta non ufficialmente e compresa nel progetto TDAH_FUIT) 
 
 www.debian-handbook.info
 
