@@ -38,6 +38,10 @@ La GNU General Public License è sia una licenza gratuita, sia una licenza copyl
 
 https://www.gnu.org/licenses/gpl-3.0.en.html
 
+###### Ian Murdock
+
+Ian Murdock, deceduto nel 2015, era un informatico statunitense ed il fondatore di Debian, di APT Advanced Packaging Tool e della distribuzione commerciale Progeny.
+
 ###### Kevin Mitnick
 
 Kevin David Mitnick, detto Condor, è un programmatore, phreaker, cracker, imprenditore statunitense ed esperto di ingegneria sociale, che oggi si occupa, attraverso la sua società di sicurezza informatica, di divulgazione, pentesting, ecc..
