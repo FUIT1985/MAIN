@@ -16,10 +16,7 @@ https://github.com/FUIT1985/MAIN/tree/main/Kevin_Mitnick/L’arte_dell’inganno
 Debian GNU/Linux, è una distribuzione non commerciale molto popolare, famosa per la sua affidabilità e 
 sicurezza. Il Progetto Debian, realizzato e tenuto in piedi da un’impressionante comunità di migliaia di 
 sviluppatori sparsi in tutto il mondo, è indissolubilmente fedele al contratto sociale da cui ha avuto 
-origine. Questo testo basilare definisce l’obiettivo chiave del progetto: soddisfare le esigenze degli utenti 
-con un sistema operativo 100% libero. Il successo di Debian e delle distribuzioni derivate dal suo stesso 
-ecosistema (con Ubuntu in testa) testimonia che un numero crescente di amministratori si avvale dei 
-progressi compiuti da Debian.
+origine. 
 
 www.debian.org
 
