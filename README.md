@@ -35,7 +35,11 @@ Questo progetto gratuito, a cui questa pagina di github.com è dedicata, nasce p
 
 https://github.com/FUIT1985/MAIN/tree/main/FUIT_README_DISCLAIMER.md
 
- 
+###### GNU General Public License
+
+La GNU General Public License è sia una licenza gratuita, sia una licenza copyleft per software o altre opere in generale redatta da Richard Stallman, fondatore del progetto Free Software Foundation (FSF). 
+
+https://www.gnu.org/licenses/gpl-3.0.en.html
 
 ###### Kevin Mitnick
 
