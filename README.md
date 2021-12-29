@@ -42,6 +42,8 @@ https://www.gnu.org/licenses/gpl-3.0.en.html
 
 Ian Murdock, deceduto nel 2015, era un informatico statunitense ed il fondatore di Debian, di APT Advanced Packaging Tool e della distribuzione commerciale Progeny.
 
+https://web.archive.org/web/20151229024342/https://ianmurdock.com/
+
 ###### Kevin Mitnick
 
 Kevin David Mitnick, detto Condor, è un programmatore, phreaker, cracker, imprenditore statunitense ed esperto di ingegneria sociale, che oggi si occupa, attraverso la sua società di sicurezza informatica, di divulgazione, pentesting, ecc..
@@ -84,7 +86,9 @@ Ha collaborato per la realizzazione di The Debian Administrator’s Handbook con
 
 ###### Richard Stallman
 
-Richard Matthew Stallman è un programmatore, informatico e attivista statunitense fondatore del progetto Free Software Foundation (FSF). 
+Richard Matthew Stallman è un programmatore, informatico e attivista statunitense fondatore del progetto Free Software Foundation (FSF).
+
+https://stallman.org/
 
 ###### Roland Mas
 
