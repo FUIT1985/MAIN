@@ -80,17 +80,24 @@ Linux è uno dei progetti più rilevanti di collaborazione per la realizzazione 
 
 https://www.kernel.org/
 
+###### LXC
+
+LXC (abbreviazione di Linux Containers) è un ambiente di virtualizzazione che si basa sulla tecnologia definita cointainer e che consente di creare delle macchine isolate similmente a chroot. 
+
+https://linuxcontainers.org/
+
 ###### Raphaël Hertzog
 
 Raphaël Hertzog è un ingegnere informatico laureatosi presso l’Istituto Nazionale di Scienze Applicate (INSA) di Lione, in 
 Francia ed è uno sviluppatore Debian dal 1997. Fondatore di Freexian, la prima società fornitrice di servizi IT di 
 bandiera francese specializzata in Debian GNU/Linux, è uno dei più influenti contributori di questa distribuzione Linux.
+Ha collaborato per la realizzazione di The Debian Administrator’s Handbook con Roland Mas.  
+
 
 www.freexian.com
 
 
 
-Ha collaborato per la realizzazione di The Debian Administrator’s Handbook con Roland Mas.  
 
 ###### Richard Stallman
 
