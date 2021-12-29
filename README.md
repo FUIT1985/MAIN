@@ -5,6 +5,12 @@ In ordine alfabetico autori, testi o argomenti trattati in questo repository.
 
 p.s. I progetti, licenze permettendo, sono e saranno inclusi in un unico repository, in modo che nessuno di questi possa singolarmente essere ritenuto più importante di altri. 
 
+###### AppArmor
+
+AppArmor è un software di sicurezza per Linux distribuito sotto licenza GNU General Public License.
+
+https://apparmor.net/
+
 ###### ADI_v.1.0 - Appunti di Antonio Bonaccorso tratti da:
 
 L’arte dell’inganno - I consigli dell’hacker più famoso del mondo di Kevin D. Mitnick e William L. Simon (2003) - Premessa di Steve Wozniak - Traduzione di Giancarlo Carlotti - Consulenza scientifica di Raoul Chiesa - Editore Italiano: Universale Economica Feltrinelli/Saggi
@@ -50,9 +56,11 @@ Kevin David Mitnick, detto Condor, è un programmatore, phreaker, cracker, impre
 
 www.mitnicksecurity.com/about-kevin-mitnick-mitnick-security
 
+###### KVM
 
+KVM (Kernel-based Virtual Machine) è una tecnologia di virtualizzazione open source integrata in Linux. 
 
-
+http://www.linux-kvm.org/
 
 ###### L'arte dell'inganno
 
@@ -108,9 +116,11 @@ Indicato per tutti, questo libro insegna le basi a chiunque desideri diventare u
 
 www.debian-handbook.info
 
+###### Xen
 
+Il progetto Xen si occupa di virtualizzazione avanzata e della sua applicazione in diversi campi, commerciali o open source, tra cui: virtualizzazione server, Infrastructure as a Services (IaaS), virtualizzazione desktop, applicazioni di sicurezza, dispositivi hardware ed integrati, automotive/aviazione.
  
-
+https://xenproject.org/
 
 
 
