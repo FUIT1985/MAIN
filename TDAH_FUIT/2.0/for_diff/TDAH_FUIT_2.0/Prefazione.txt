@@ -1,0 +1,49 @@
+     Prefazione
+     Sono lieto di avere l'opportunità di potervi presentare Debian e "The Debian Administrator
+     Handbook". Sono in molti ad aver scelto Debian: circa il 10% dei web servers attivi su Internet esegue
+     Debian. Inoltre se si includono i sistemi operativi basati su Debian, statisticamente parlando la
+     percentuale raggiunge il 20%. Chi legge lo scrivente deve tenere presente che Debian è la scelta
+     preferenziale come sistema operativo della Stazione Spaziale Internazionale. Debian è anche
+     impiegato per gestire i computer che rendono possibile sia la ricerca sica all'avanguardia, sia
+     progetti per la crescita delle risorse alimentari nonostante l'inquinamento.
+
+     Perché Debian riesce a conquistare l'interesse di grandi aziende, ricercatori, attivisti e hobbisti?
+     Ritengo che ciò sia dovuto alla essibilità di Debian ed alla sua comunità.
+
+     Debian è essibile. Sì, ed è un eccellente sistema operativo di interesse generale pronto all'uso.
+     Attraverso i suoi strumenti potrete personalizzarlo in modo da renderlo idoneo ai vostri interessi a
+     prescindere dall'ambiente che state utilizzando. Non importa se si tratta di cloud o di un'architettura
+     container, di un insieme di workstations, di singoli computer o di un'appliance: Debian vi offrirà
+     comunque la essibilità necessaria per poter lavorare egregiamente in quel determinato ambiente.
+     Troverete sempre strumenti e modelli pertinenti per soddisfare le vostre esigenze.
+
+     La comunità di Debian è un luogo d'incontro per individui con interessi diversi: gli sviluppatori di
+     grandi società collaborano al anco di volontari, ricercatori e meri utenti nali. Troverete esperti di
+     sicurezza, sviluppatori web, programmatori di sistemi o architetti, ecc. Ed anche voi potrete far
+     parte di questa comunità se lo desiderate. Difatti chiunque sia in grado di migliorare Debian
+     attraverso il suo contributo è il benvenuto.
+
+     Ci siamo uniti in una comunità per realizzare un sistema operativo gratuito di eccellenza a livello
+     mondiale. Nessuna azienda controlla Debian; nessuna agenda de nisce il nostro lavoro. E possiamo
+     migliorare Debian nei modi che riteniamo più opportuni. Vi ringraziamo anticipatamente per aver
+     deciso di "curiosare" su ciò che abbiamo realizzato. E speriamo caldamente che possa essere di vostro
+     gradimento.
+
+     Questo libro è un ottimo mezzo per esplorare Debian. Per anni l'ho consigliato ad amici che
+     desideravano conoscere meglio Debian e sono lieto di avere l'opportunità di poterlo fare ancora in
+     una maniera più plateale. Questo manuale è stato scritto ed è manutenuto da membri di lunga data
+     della comunità Debian. Tra questi vi sono anche coloro i quali si occupano dello sviluppo del
+     sistema operativo e che si sono uniti per aiutarvi a comprenderlo. E ovviamente il libro è stato
+     sviluppato utilizzando un processo comunitario simile a quello su cui si basa Debian ed incentrato
+     sul principio di libertà.
+
+     Agosto 2019
+
+     Sam Hartman (Debian Project Leader)
+fl
+      fl
+                       fi
+                            fl
+                                                           fi
+                                                                fi
+                                                                     fi
