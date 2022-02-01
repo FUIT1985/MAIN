@@ -1,0 +1,430 @@
+Introduzione
+          Linux ha acquisito nel corso degli anni sino ad oggi validità e la sua crescita di popolarità incoraggia
+          molti utenti a cambiare, a testarlo. Il primo passo in questo percorso è scegliere una distribuzione.
+          Questa è un’importante decisione, perché ogni distribuzione ha le sue peculiarità ed i costi della
+          futura migrazione possono essere evitati se la giusta scelta è fatta sin dall’inizio.
+
+
+
+                  BASILARE         Strettamente parlando, Linux è soltanto il Kernel, la componente fondamentale del
+           Distribuzione           software, che si frappone fra l’hardware e le applicazioni.
+           Linux,                  Una “distribuzione Linux” è un sistema operativo completo; solitamente include il
+           Kernel Linux            kernel Linux, un programma di installazione, le più importanti applicazioni e altri
+                                   software necessari per trasformare un computer in uno strumento effettivamente
+                                   ef ciente.
+
+
+
+          Debian GNU/Linux è una distribuzione Linux “generalista” che accontenta molti utenti. Il proposito
+          di questo libro è mostrare i suoi molti aspetti cosi che, attraverso un’informazione completa, voi
+          possiate scegliere validamente.
+
+
+          Perché questo libro?
+
+                   CULTURA         La maggior parte delle distribuzioni di linux sono seguite da una società a scopo di
+           Distribuzioni           lucro, che si occupa dello sviluppo e della diffusione commerciale. Ad esempio:
+           Commerciali             Ubuntu, principalmente sviluppato da Canonical Ltd; Red Hat Enterprise Linux, da
+                                   Red Hat, Inc. società che appartiene a IBM; e Suse Linux, manutenuto e
+                                   commercializzato da SUSE Software Solutions Germany GmbH, società che
+                                   appartiene a EQT Partners.
+                                   In contrasto con la suddetta prassi troviamo Debian e Apache Software Fondation
+                                   (che gestisce lo sviluppo di Apache web server). Come già espresso Debian è
+                                   interamente un progetto legato al mondo Free Software, implementato attraverso il
+                                   lavoro collaborativo di volontari tramite internet. Alcuni di questi volontari si
+                                   occupano di Debian come mansione di un impiego pagato presso una società, ma il
+                                   progetto, come un organismo a se stante, non è legato a nessuna compagnia in
+                                   particolare, in modo che nessuna società possa avere più voce in capitolo nelle
+                                   decisioni nali rispetto ad un mero gruppo di contributori volontari.
+
+
+
+          Linux ha raggiunto una buona copertura mediatica nel corso degli anni; in gran parte grazie alle
+          distribuzioni supportate da un reale dipartimento commerciale — in altre parole, le società dietro le
+          distribuzioni (Ubuntu, Red Hat, SUSE, e cosi via). Ma Debian è lontano dall’essere una marginale
+          distribuzione; molteplici studi hanno dimostrato che nel corso degli anni è stato ampiamente
+          utilizzato sia su servers sia su desktops. In particolare modo fra i webservers, dove Debian è la
+          distribuzione di riferimento.
+fi
+     fi
+       https://w3techs.com/technologies/detail/os-linux/all/all
+
+     Il proposito di questo libro è aiutarvi a scoprire questa distribuzione. Noi speriamo di poter essere in
+     grado di condividere l’esperienza che abbiamo accumulato sin dalla nostra iniziale partecipazione al
+     progetto come sviluppatori e contributori nel 1998 (Raphaël) e nel 2000 (Roland). Con un po’ di
+     fortuna il nostro entusiasmo sarà contagioso e forse un giorno collaborerete con noi …
+
+     La prima edizione di questo libro (2004) è servita per colmare un vuoto senza fondo: è stato il primo
+     libro in francese incentrato esclusivamente su Debian. All’epoca, molti altri libri sull’argomento
+     erano scritti sia in francese, sia in inglese. Sfortunatamente quasi nessuno di questi era stato
+     aggiornato e nel corso degli anni la situazione degenerò al punto che rimasero solo pochi testi validi
+     su Debian in circolazione. Noi speriamo che questo testo, aggiornato con l’edizione inglese (e tradotto
+     dall’inglese in diverse altre lingue), possa colmare questo vuoto e aiutare molti utenti.
+
+
+     A chi è destinato questo libro?
+
+     Noi abbiamo provato a rendere questo libro soddisfacente per diversi tipi di utente. Innanzitutto gli
+     amministratori di sistema (principianti o esperti che siano) troveranno spiegazioni riguardo
+     all’installazione e alla con gurazione di Debian su molti computers. Prenderanno così con denza con
+     i servizi più diffusi su Debian, confrontandosi con i comandi di con gurazione e una descrizione delle
+     caratteristiche delle future distribuzioni. Attraverso la comprensione dei complessi meccanismi
+     dello sviluppo in Debian gli utenti saranno in grado di affrontare i problemi inattesi, potendosi
+     sempre af dare per risolverli all’assistenza della comunità.
+
+     Gli utenti di altre distribuzioni di Linux, o di altre varianti Unix, scopriranno le caratteristiche di
+     Debian, diventando (si presume) operativi velocemente, appro ttando pienamente degli
+     ineguagliabili vantaggi di questa distribuzione.
+
+     Finalmente i lettori che hanno già dimestichezza con Debian e desiderano conoscere meglio la
+     comunità che gli ruota attorno potranno vedere le loro aspettative soddisfatte. Questo libro
+     probabilmente li invoglierà a diventare contributori.
+
+
+     Approccio Generale
+
+     Tutta la documentazione generica che voi potete trovare su GNU/Linux è valida anche per Debian,
+     difatti da tempo Debian racchiude in sé il software free comune. Comunque la distribuzione è
+     cresciuta notevolmente, tanto che abbiamo preferito introdurre sin dalla descrizione iniziale il
+     “Metodo Debian” ovvero letteralmente “fare cose”.
+
+     È consigliabile seguire le raccomandazioni di Debian, ma è spesso preferibile comprenderne la loro
+     ragione di esistere. Pertanto non intendiamo limitarci a delle spiegazioni pratiche; bensì intendiamo
+     descrivere il funzionamento costruttivo di Debian in modo da fornirvi conoscenze complete ed
+     esaustive.
+
+
+
+
+     Pagina XX   Il Manuale dell’Amministratore di Debian   TDAH_2.0
+fi
+                    fi
+                                                                 fi
+                                                                       fi
+                                                                                       fi
+Struttura del libro
+
+Questo libro riprende l’approccio ricorrente del “caso studio” ovviamente con illustrazioni e relativo
+supporto per tutte le argomentazioni trattate.
+
+              NOTA         Questo libro ha un sito uf ciale, che contiene tutti quegli strumenti che possono
+ Sito Web, email           migliorarne l’interazione. In particolare include una sua versione online con
+                           iperlinks attivi ed eventuali revisioni. Sentitevi liberi di visitarlo e di lasciare
+ degli autori              qualche segnalazione. Noi saremo felici
+                           di leggere i vostri commenti o dei messaggi di supporto. Mandateli via email a
+                           hertzog@debian.org (Raphaël) ed a lolando@debian.org (Roland).
+                              https://debian-handbook.info/
+
+
+
+Il capitolo 1 è incentrato su una presentazione non tecnica del progetto Debian e sulla descrizione
+dei suoi obiettivi e della sua organizzazione. Questi aspetti sono importanti perché de niscono la
+struttura generale che altri capitoli completeranno con solide informazioni.
+
+I capitoli 2 e 3 affrontano una vasta trattazione a grandi linee di un caso studio. A questo punto i
+lettori meno esperti possono prendersi del tempo per dedicarsi alla lettura dell’appendice B, dove
+troveranno un breve corso di recupero dedicato alle nozioni base, ai concetti relativi a qualsiasi
+sistema Unix.
+
+Per prendere meglio con denza con il soggetto della presente trattazione, inizieremo naturalmente
+con il processo di installazione (capitolo 4); nei capitoli 5 e 6 sveleremo gli strumenti base che ogni
+amministratore Debian dovrebbe conoscere ed utilizzare, in quanto parte della famiglia APT [in
+questo caso per famiglia si intende una grande classi cazione, superiore al genere ed inferiore
+all’ordine], a cui si deve l’eccellente reputazione della distribuzione. Questi capitoli non sono in alcun
+modo riservati solo ai professionisti, dato che tutti quanti sono in fondo legittimi “amministratori” a
+casa propria.
+
+Il capitolo 7 sarà un’importante parentesi; descrive i work ows in modo che possiate ef cacemente
+utilizzare la correlata documentazione e migliorare la gestione dei problemi al ne di risolverli.
+
+I capitoli successivi saranno più dettagliati, dall’infrastruttura ai servizi base (capitoli 8 a 10),
+rovistando pian pian “il pagliaio” sino a giungere alle applicazioni utente nel capitolo 13. Il capitolo
+12 tratta argomenti più complessi relativi agli amministratori dei vasti raggruppamenti di
+computers (servers inclusi), mentre il capitolo 14 è una presentazione inerente la sicurezza
+informatica al ne di evitare i problemi più comuni.
+
+Il capitolo 15 è per gli amministratori che vogliono spingersi oltre e creare i propri pacchetti.
+
+     DIZIONARIO            Un pacchetto Debian è un archivio contenente tutti i les necessari per
+                           l’installazione di un componente software. È generalmente un le con
+ Pacchetto Debian
+                           estensione .deb, che può essere gestito attraverso il comando dpkg. Un
+                           pacchetto viene de nito binary package (pacchetto binario) se i les che contiene
+                           possano essere direttamente usati (come programmi o documentazione). Mentre
+                           un pacchetto viene de nito source package (pacchetto sorgente) se contiene il
+                           source code (codice sorgente) per il software e le istruzioni richieste per build
+                           (costruire) il pacchetto binario.
+
+
+
+La presente versione è la nona edizione di questo libro (le prime quattro erano pubblicate solo in
+francese). Questa edizione è basata su Debian versione 10 (Debian 10), nome in codice Buster.
+
+
+
+
+                                                                                  TDAH_2.0    Introduzione Pagina XXI
+  fi
+       fi
+            fi
+                 fi
+                      fi
+                                        fi
+                                              fi
+                                                   fi
+                                                        fl
+                                                        fi
+                                                                             fi
+                                                                                    fi
+                                                                                         fi
+     Tra le novità, Debian oggi supporta UEFI Secure Boot, nonché alcune funzionalità extra di sicurezza
+     per contrastare potenziali attacchi all’infrastruttura del boot, conferendo piena compatibilità ai
+     computers più recenti con Secure Boot abilitato per impostazione prede nita. Inoltre dal punto di
+     vista della sicurezza, AppArmor (Mandatory Access Control system), abilitato di default, si occupa
+     della regolamentazione della titolarità dei diritti delle applicazioni e di conseguenza della gestione
+     del loro ambito di azione. Tutti i pacchetti sono ovviamente aggiornati, incluso GNOME desktop, che
+     ora è alla versione 3.30.
+
+     Abbiamo aggiunto qualche nota e commento nelle caselle di testo della presente opera. Queste
+     giocano diversi ruoli: focalizzano l’attenzione in parti ostiche, completano le nozioni del caso studio,
+     de niscono meglio dei termini o si prestano come promemoria. Questa è la lista delle più comuni
+     caselle di testo:
+
+     • BASILARE: come promemoria di qualche nozione che si presuppone conosciate già;
+     • DIZIONARIO: de nisce termini tecnici, qualche volta speci ci di Debian;
+     • COMUNITÀ: menziona le persone ed i ruoli cardine del progetto;
+     • POLICY: dalle condizioni alle raccomandazioni della Debian Policy (Linee guida di condotta).
+     Questo documento è essenziale per comprendere il progetto e descrive le procedure secondo le quali
+     viene realizzato [trad. non lett. dall’inglese “to package”] il software. Le linee guida di condotta
+     evidenziate in questo libro incrementano i bene ci degli utenti (ad esempio la standardizzazione
+     della posizione dei documenti e degli esempi imposta dalle linee guida di condotta consente con
+     facilità di trovarli sempre nel package [pacchetto] più recente);
+     • STRUMENTI—TOOLS: fa conoscere strumenti e servizi;
+     • IN PRATICA: teoria e pratica non vanno spesso d’accordo; queste caselle contengono consigli
+     derivati dalla nostra personale esperienza, fornendo esempi concreti e dettagliati;
+     • Altre caselle, più o meno frequenti, sono maggiormente esplicite: CULTURA,
+     SUGGERIMENTO, ATTENZIONE, ANDANDO OLTRE, SICUREZZA, ecc..
+
+
+     Contributi
+
+     Questo libo è stato sviluppato nelle vesti di progetto free software, pertanto qualsiasi iniziativa è
+     gradita. Il modo più banale per contribuire è partecipare alla sua traduzione. Ma non è l’unico
+     sistema per rendersi utili. Potrete inviare dei reports in merito a dei bugs per consentirci di
+     correggere eventuali incomprensioni, refusi, informazioni ormai obsolete o suggerire degli
+     argomenti da trattare. Oppure potrete inviarci le vostre xs sulle problematiche da voi riscontrate.
+
+     Troverete istruzioni dettagliate al riguardo sul sito uf ciale del manuale:
+
+       https://debian-handbook.info/contribute/
+
+
+     Ringraziamenti
+
+     Un po’ di storia
+
+     Nel 2003, Nat Makarévitch contattò Raphaël perché voleva pubblicare un libro su Debian nella
+     collana Cahier de l’Admin (Manuale dell’amministratore) che era stata promossa da Eyrolles, una
+
+
+
+
+     Pagina XXII   Il Manuale dell’Amministratore di Debian     TDAH_2.0
+fi
+           fi
+                                               fi
+                                                      fi
+                                                           fi
+                                                                 fi
+                                                                           fi
+     casa editrice francese di rifermento per la manualistica tecnica. Raphaël accettò immediatamente
+     l’incarico. La prima edizione uscì il 14 ottobre del 2004 e fu un gran successo — esaurita in soli
+     quattro mesi.
+
+     Da allora sono state pubblicate altre 7 edizioni del libro francese, una per ogni relativo rilascio di
+     Debian (fatta eccezione per Debian 9). Roland, che ha iniziato come correttore di bozze,
+     gradualmente è diventato il suo co-autore.
+
+     Eravamo ovviamente soddisfatti del successo del libro, ma nel contempo speravamo che Eyrolles
+     convincesse un editore internazionale a tradurre il libro in inglese. Ricevevamo diversi commenti a
+     dimostrazione del fatto che il libro fosse un ausilio per le persone che iniziavano ad utilizzare Debian,
+     avendo avuto cura di realizzare il libro in modo da agevolare contemporaneamente diverse categorie
+     di lettori.
+
+     Ahimè, nessun editore di lingua nativa inglese che noi avevamo contattato fu interessato ad
+     accollarsi il rischio della traduzione e della pubblicazione del libro. Non trovando una via d’uscita a
+     questo piccolo intoppo, tornammo a negoziare con il nostro editore francese Eyrolles per farci
+     restituire i diritti necessari per tradurre il libro in inglese e pubblicarlo noi stessi. Grazie ad una
+       orida compagna di raccolta fondi (https://www.ulule.com/debian-handbook/) avemmo modo di
+     lavorare sulla traduzione fra dicembre 2011 e maggio 2012. Il “Debian Administrator’s Handbook”
+     così nacque e fu pubblicato sotto licenza free-software.
+
+     Questo fu un importante raggiungimento, ma sapevamo che la suddetta questione era
+     potenzialmente aperta se avessimo voluto realizzare una traduzione in francese del testo uf ciale in
+     inglese. Difatti ciò non era possibile in quanto il libro in francese era ancora distribuito sotto licenza
+     non free-software da Eyrolles.
+
+     Nel 2013, il rilascio di Debian 7 ci concesse la buona opportunità di discutere nuovamente un nuovo
+     contratto con Eyrolles. Li convincemmo che una licenza più in linea con i valori di Debian avrebbe
+     contribuito al successo del libro. Ciò non fu facile e dovemmo accettare di iniziare una nuova
+     campagna di raccolta fondi (https://www.ulule.com/debian-handbook/liberation-cahier-admin-
+     debian/) per coprire parte dei costi e ridurre i rischi indesiderati. L’operazione fu di nuovo uno
+     strepitoso successo e nel Luglio 2013, fu aggiunta una traduzione in francese dell’edizione inglese di
+     Debian Administrator’s Handbook.
+
+     Desideriamo ringraziare tutti coloro che hanno contribuito a queste campagne di raccolte fondi, da
+     coloro i quali hanno investito il loro denaro, a chi si è occupato invece del passaparola. Non avremmo
+     potuto fare tutto questo senza di voi.
+
+     Purtroppo per “risparmiare carta”, 5 anni dopo le campagne di raccolta fondi e dopo due edizioni
+     consecutive, abbiamo deciso di rimuovere l’elenco dei nominativi dei contributori menzionati a titolo
+     di riconoscimento. Ne troverete comunque una copia nei ringraziamenti dell’edizione del libro
+     incentrata su Wheezy:
+
+       https://debian-handbook.info/browse/wheezy/sect.acknowedgments.html
+
+
+     Ringraziamenti speciali ai contributori.
+
+     Questo libro non potrebbe esistere senza i contributi di molte persone che hanno giocato un
+     importante ruolo durante la fase di traduzione e successiva. Ci piacerebbe ringraziare Marilyne
+     Brun, che ci ha aiutato a tradurre il capitolo campione e che ci ha chiarito alcune regole della
+
+
+
+
+                                                                              TDAH_2.0   Introduzione Pagina XXIII
+fl
+                                                                                          fi
+     traduzione ordinaria. Lei ha anche revisionato molti capitoli, che erano disperatamente bisognosi di
+     ulteriori attenzioni. Grazie a Anthony Baldwin (di Baldwin Linguas) che ha tradotto diversi capitoli
+     per noi.
+
+     Dato che Roland è stato troppo impegnato per aggiornare il manuale a Debian 10, con il modesto
+     ricavato delle vendite e delle donazioni sono stati assunti dei collaboratori per sobbarcarsi la
+     maggior parte dell’impegno. Ringraziamo in particolare Daniel Leidert e Jorge Maldonado Ventura
+     per l’ingente carico di lavoro svolto per eseguire il suddetto aggiornamento.
+
+     Abbiamo bene ciato del generoso aiuto di correttori di bozze: Daniel Phillips, Gerold Rupprecht,
+     Gordon Dey, Jacob Owens e Tom Syroid. Ciascuno di loro ha revisionato molti capitoli. Grazie mille.
+     Poi, una volta che la versione in inglese è stata affrancata, abbiamo ricevuto numerose segnalazioni,
+     suggerimenti e correzioni da lettori e pro cuamente da parte di teams che hanno preso l’incarico di
+     tradurre questo libro in altre lingue. Grazie!
+
+     Noi vorremmo anche ringraziare i lettori del libro in francese che ci hanno recensito favorevolmente
+     confermando che il libro era pronto per essere tradotto: grazie a Christian Perrier, David Bercot,
+     Étienne Liétart e Gilles Roussi. Anche Stefano Zacchiroli — che è stato Debian Project Leader
+     durante la campagna raccolta fondi — merita un grande ringraziamento, avendo gentilmente
+     appoggiato il progetto con una citazione esauriente sulla necessità dei libri (indipendenti) free
+     software.
+
+     Se avete il piacere di leggere queste righe in una copia cartacea di questo libro, dovreste ringraziare
+     con noi Benoît Guillon, Jean-Côme Charpentier e Sébastien Mengin che hanno lavorato sul design
+     interno del libro. Benoît è l’autore upstream (a monte) di dblatex (https://dblatex.sourceforge.net/)
+     — lo strumento usato per convertire DocBook in LaTeX (e poi in PDF). Sébastien è il designer che ha
+     creato il bel layout del libro e Jean-Côme l’esperto LaTex che lo ha completato con un foglio-stile
+     (stylesheet) compatibile con dblatex.
+
+     Grazie ragazzi per tutto il duro lavoro.
+
+     Dulcis in fundo, grazie a Thierry Stempfel per le belle immagini che introducono ogni capitolo e
+     grazie a Doru Patrascu per la bellissima copertina del libro.
+
+
+     Grazie ai traduttori
+
+     Quando il libro è stato pubblicato con licenza libera molti volontari si sono impegnati nella sua
+     traduzione in diverse lingue: arabo, portoghese brasiliano, tedesco, italiano, spagnolo, giapponese
+     bokmål (norvegese), ecc. Se volete scoprire la lista completa delle traduzioni consultate il sito
+     uf ciale del libro: https://debian-handbook.info/get/#other
+
+     Desideriamo ringraziare tutti i traduttori ed i revisori delle traduzioni. Il vostro lavoro è altamente
+     apprezzato perché rende disponibile Debian per tutte quelle persone che non conoscono l’inglese.
+
+
+     Ringraziamenti personali da parte di Raphaël
+
+     Prima di tutto, desidero ringraziare Nat Makarévitch, che mi ha offerto la possibilità di scrivere
+     questo libro e che è stato per me un punto di riferimento nell’anno in cui lo redissi.
+
+
+
+
+     Pagina XXIV   Il Manuale dell’Amministratore di Debian   TDAH_2.0
+fi
+       fi
+                                       fi
+     Grazie anche all’eccellente team presso Eyrolles, in particolare a Muriel Shan Sei Fan. Lei è stata
+     davvero paziente con me ed ho imparato molto da lei.
+
+     Il periodo delle campagne su Ulule fu particolarmente stressante, ma desidero ringraziare tutti
+     quelli che mi hanno aiutato a renderle un successo, specialmente il team di Ulule che ha dato seguito
+     prontamente alle mie esigenze. Grazie anche a tutti quelli che hanno promosso le soprastanti
+     attività. Io non ho fatto nessuna lista esaustiva (e qualora avessi tentato sarebbe stata
+     probabilmente troppo lunga), ma desidero ringraziare lo stesso coloro che mi sono stati vicini: Joey-
+     Elijah Sneddon e Benjamin Humphrey di OMG! Ubuntu, Florent Zara di LinuxFr.org, Manu di
+     Korben.info, Frédéric Couchet di April.org, Jake Edge di Linux Weekly News, Clement Lefebvre di
+     Linux Mint, Ladislav Bodnar di Distrowatch, Steve Kemp di Debian-Administration.org, Christian
+     Pfeiffer Jensen di Debian- News.net, Artem Nosulchik di LinuxScrew.com, Stephan Ramoin di
+     Gandi.net, Matthew Bloch di Bytemark.co.uk, il team di Divergence FM, Rikki Kite di Linux New
+     Media, Jono Bacon, il team marketing di Eyrolles e innumerevoli altri che ho dimenticato (scusatemi
+     per questo).
+
+     Mi piacerebbe indirizzare i miei ringraziamenti più sinceri a Roland Mas, mio co-autore. Noi abbiamo
+     collaborato a questo libro sin dall’inizio e lui è sempre stato all’altezza della s da. Devo ammettere
+     che pur di ultimare the Debian Administrator’s Handbook si è sobbarcato molto lavoro …
+     In ne, ma non per ultima, grazie a mia moglie Sophie. Lei ha davvero supportato molto il mio lavoro
+     su questo libro e su Debian in generale. Sono stati molti i giorni e (le notti) che ho lasciato lei da sola
+     con i nostri due gli per fare qualche progresso sul libro. Sono grato per il suo supporto e sono
+     consapevole di quanto sia fortunato ad averla.
+
+
+     Ringraziamenti personali da parte di Roland
+
+     Bene, Raphaël mi ha già preceduto nei ringraziamenti. Devo mettere in luce la mia personale
+     gratitudine nei confronti del buon personale dell’Eyrolles, con il quale la collaborazione è stata
+     spesso piacevole e confortevole. Sono pienamente ducioso che la loro eccellente consulenza non
+     andrà persa con la traduzione.
+
+     Sono estremamente grato a Raphaël per essersi sobbarcato la sfera gestionale di questa edizione
+     inglese. Dall’organizzazione della campagna raccolta fondi all’ultimo dettaglio del layout del libro,
+     realizzando un’edizione che è molto più di una mera traduzione o revisione, e Raphaël ha fatto (o
+     delegato o supervisionato) tutto questo. Pertanto grazie.
+
+     Grazie anche a tutti coloro che hanno direttamente o indirettamente collaborato a questo libro,
+     fornendo chiarimenti, consulenze o servizi di traduzione. Sono in tanti da menzionare, ma la
+     maggior parte di loro si possono generalmente ritrovare sui diversi #debian-* IRC channels.
+
+     Di sicuro qualcuno è già stato precedentemente citato, ma un particolare ringraziamento va
+     innanzitutto alle persone che attualmente realizzano Debian. Non esisterebbe molto più di un
+     semplice testo senza di loro e io sono ancora meravigliato di cosa, nelle vesti di organizzazione, il
+     progetto Debian riesce a realizzare, a come riesce a rendere disponibile tutto per chiunque.
+
+
+
+
+                                                                              TDAH_2.0   Introduzione Pagina XXV
+fi
+         fi
+                                             fi
+                                                                         fi
+I più personali ringraziamenti vanno ad amici e clienti: per la loro comprensione quando io ero poco
+presente perché stavo lavorando su questo libro e anche per il loro costante supporto,
+incoraggiamento ed incitamento. Voi sapete chi siete; pertanto grazie.
+
+E dulcis in fundo … Sono sicuro che rimarranno sorpresi di essere citati qui, ma desiro lo stesso
+porgere la mia riconoscenza a Terry Pratchett, Jasper Fforde, Tom Holt, William Gibson, Neal
+Stephenson e non di meno al compianto Douglas Adams. Le innumerevoli ore spese nel godermi i
+loro libri mi hanno consentito di prendere parte prima soltanto alle traduzioni e dopo alla stesura di
+nuove parti.
+
+
+
+
+Pagina XXVI   Il Manuale dell’Amministratore di Debian   TDAH_2.0
+          Parole chiave
+Obiettivo
+Mezzi
+Operazione
+Volontario
+
