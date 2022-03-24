@@ -1,4 +1,4 @@
-Art. 3 We will not hide problems. We will keep our entire bug report database open for public view at all times. Reports that people file online will promptly become visible to others.
+<<Art. 3 We will not hide problems. We will keep our entire bug report database open for public view at all times. Reports that people file online will promptly become visible to others.>>
 
 From "Debian Social Contract" - Version 1.1 ratified on April 26, 2004. Supersedes Version 1.0 ratified on July 5, 1997.
 
