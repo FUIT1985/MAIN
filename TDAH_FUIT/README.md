@@ -8,7 +8,7 @@ From "Debian Social Contract" - Version 1.1 ratified on April 26, 2004. Supersed
 I made these translations (patch) independently and for free in compliance with source-book license.
 Unfortunately no files with pot, po, mo, webml, etc. filename extensions are available: I have shared these translations and their sources only in PDF and TXT in compliance with source-book license. You can use TXT files for diff-like applications. I'm sorry, I can't help you any more than that.
 
-Unfortunately, for economic reasons I cannot test all the services described in the source-book. 
+Unfortunately, for economic reasons I cannot test all the services described in the source-book. I'll update it to Buster soon (if my free time allows it).
 
 In order to allow fixes and improvements, the patch (as a starting point for native italian speakers) has a similar layout (table of contents and page numbering) of the source-book. In order to help the readers, using the following ISO characters: [ ], I have added some tips about the terms in technical language (for instance: “deployment”, “NP-complete", "TCO", "Disaster recovery", etc.), that the authors have simply mentioned in the source-book.
 
