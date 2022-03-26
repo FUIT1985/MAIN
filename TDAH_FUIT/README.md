@@ -61,7 +61,7 @@ for TDAH_FUIT_2.0 (path: TDAH_FUIT/2.0/) -> Il Manuale dell’Amministratore di 
 
 TDAH_FUIT_1.0 (path: TDAH_FUIT/1.0/): ready, unofficial; before using it, you should read the license warnings. Due to the complexity of the topics covered by the source-book, I still recommend the review by a data science expert (obviously Italian).
 
-TDAH_FUIT_2.0 (path: TDAH_FUIT/2.0/): ready, unofficial; before using it, you should read the license warnings. Due to the complexity of the topics covered by the source-book, I still recommend the review by a data science expert (obviously Italian).
+TDAH_FUIT_2.0 (path: TDAH_FUIT/2.0/): step-by-step ready, unofficial; before using it, you should read the license warnings. Due to the complexity of the topics covered by the source-book, I still recommend the review by a data science expert (obviously Italian).
 
 ###### Repository of patch (translation)
 
