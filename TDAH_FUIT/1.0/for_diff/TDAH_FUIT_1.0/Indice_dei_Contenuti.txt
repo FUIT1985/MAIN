@@ -632,7 +632,7 @@ fi
                         2. Sapere cosa aspettarsi                                                         pag. 409
                         3. Scegliere il software con prudenza                                             pag. 411
                         4. Gestire una macchina nel suo insieme                                           pag. 411
-                        5. Gli utenti sono Giocatori                                                      pag. 412
+                        5. Gli utenti sono Giocatori/Attori                                                      pag. 412
                         6. Sicurezza sica                                                                 pag. 412
                         7. Responsabilità legale                                                          pag. 413
                 7. Come comportarsi con una macchina compromessa                                          pag. 413
