@@ -27,7 +27,7 @@ During the translation process, I haven't used tools like google translator and 
 
 I reserve the right to evaluate or reject any collaboration proposal. Italian data science expert doesn't need to be a member or contributor of the Debian community. The invitation is open to everyone and to any entity (public or private) or community (free software or not) in the world.
 
-PS. Several services are described in the source-book, some of which are designated for other distributions (eg Fedora). The review could be an opportunity for collaboration with other communities and further promotion of Debian. 
+PS. Several services are described in the source-book, some of which are designated for other distributions (eg. Fedora). The review could be an opportunity for collaboration with other communities and further promotion of Debian. 
 
 ###### Antonio Bonaccorso
 
