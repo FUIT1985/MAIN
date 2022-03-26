@@ -16,6 +16,6 @@
 
 —————————
 
-Ho dato comunicazione formale via email a tutti gli autori reperibili ed a terzi suggeriti da Mr. Raphaël Hertzog (debian-l10n-italian <debian-l10n-italian@lists.debian.org>) 
+Ho dato comunicazione formale via email a tutti gli autori reperibili ed a terzi suggeriti da Mr. Raphaël Hertzog (debian-l10n-italian:  debian-l10n-italian@lists.debian.org) 
 
 —————————
