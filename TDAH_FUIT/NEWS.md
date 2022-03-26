@@ -13,3 +13,9 @@
 —————————
 
 22 Marzo 2022 - Ho dato comunicazione informale via email all'autore principale dell'opera sorgente (Mr. Raphaël Hertzog) dell'esistenza del progetto FUIT e del sottoprogetto TDAH_FUIT. 
+
+—————————
+
+Ho dato comunicazione formale via email a tutti gli autori reperibili ed a terzi suggeriti da Mr. Raphaël Hertzog (debian-l10n-italian <debian-l10n-italian@lists.debian.org>) 
+
+—————————
