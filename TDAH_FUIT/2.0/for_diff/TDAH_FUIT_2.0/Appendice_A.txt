@@ -1,0 +1,300 @@
+     Distribuzioni Derivate
+                                                                       Appendice A
+     A. Distribuzioni Derivate                                                                      pag. 469
+             1. Censimento e Cooperazione                                                           pag. 469
+             2. Ubuntu                                                                              pag. 469
+             3. Linux Mint                                                                          pag. 470
+             4. Knoppix                                                                             pag. 471
+             5. Aptosid e Siduction                                                                 pag. 471
+             6. Grml                                                                                pag. 472
+             7. Tails                                                                               pag. 472
+             8. Kali Linux                                                                          pag. 472
+             9. Devuan                                                                              pag. 472
+             10. DoudouLinux                                                                        pag. 472
+             11. Raspbian                                                                           pag. 473
+             12. PureOS                                                                             pag. 473
+             13. SteamOS                                                                            pag. 473
+             14. Le altre distribuzioni                                                             pag. 473
+
+
+     A.1. Censimento e Cooperazione
+
+     Il progetto Debian, pienamente consapevole della rilevanza delle distribuzioni derivate, si prodiga
+     attivamente af nché tutte le parti interessate cooperino. Nella maggior parte dei casi si tratta della
+     reintegrazione delle migliorie sviluppate dalle distribuzioni derivate in modo che tutti possano
+     bene ciarne, riducendo di fatto anche il carico di lavoro del supporto a lungo termine.
+
+     Per le summenzionate ragioni le distribuzioni derivate sono invitate a partecipare alle discussioni
+     debian-derivatives@lists.debian.org ed a farsi censire. L’obiettivo del censimento è la realizzazione di
+     una banca dati sull’operato svolto dalle distribuzioni derivate, in modo che i manutentori uf ciali
+     Debian possano tracciare più facilmente lo stato dei loro pacchetti anche nelle altre distribuzioni.
+
+       https://wiki.debian.org/DerivativesFrontDesk
+       https://wiki.debian.org/Derivatives/Census
+
+     Segue una descrizione sintetica delle distribuzioni derivate più rilevanti e popolari.
+
+
+     A.2. Ubuntu
+
+     Ubuntu si è distinta sin dal suo ingresso nella scena del Free Software per diverse ragioni: Canonical
+     Ltd., la società che ha creato questa distribuzione, ha assunto 30 sviluppatori Debian ad hoc e si è
+     fatta carico pubblicamente della colossale realizzazione di una distribuzione per l’intera collettività
+     con nuove releases due volte l’anno.
+fi
+       fi
+                                                      ​​
+                                                                                       fi
+     Inoltre si è impegnata a manutenere ciascuna versione per un anno e mezzo.
+
+     Tali obiettivi necessariamente hanno determinato una riduzione del campo d’azione della suddetta
+     distribuzione: Ubuntu ha dovuto concentrarsi su un numero inferiore di pacchetti rispetto a Debian,
+     af dandosi principalmente a GNOME (tuttavia esistono distribuzioni derivate da Ubuntu che hanno
+     preferito bene ciare di altri ambienti desktop-gra ci). L’intera distribuzione è stata
+     internazionalizzata e resa disponibile in diverse lingue.
+
+     Finora Ubuntu è riuscita a rispettare i termini pre ssati di pubblicazione delle releases. Per di più
+     distribuisce una Long Term Support (LTS) release, impegnandosi a manutenerla per 5 anni. Durante
+     la stesura di questo manuale ossia Giugno 2019, la corrente versione LTS è la 18.04, nome in codice
+     Bionic Beaver. Mentre la versione più recente non LTS è la 19.04, denominata Disco Dingo. È palese
+     che il numero di versione si riferisce alla data di pubblicazione della release: 19.04, ad esempio,
+     indica il mese di aprile del 2019.
+
+
+
+            IN PRATICA               Canonical ha più volte cambiato la sua regolamentazione preposta alla durata del
+                                     periodo di manutenzione delle releases. Canonical, in veste di società, si è
+      Il supporto di
+                                     impegnata a supportare gli aggiornamenti di sicurezza dell’intero software
+      Ubuntu e la sua                distribuito nelle sezioni main e restricted dell'archivio di Ubuntu per almeno 5
+      promessa di                    anni per le releases LTS e 9 mesi per le releases non LTS. Il resto del software
+      manutenzione                   (distribuito nelle sezioni universe e multiverse) viene gestito nel miglior modo
+                                     possibile su base volontaria dai membri del team MOTU (Masters Of The
+                                     Universe). Preparatevi a dovervi occupare personalmente del supporto alla
+                                     sicurezza se dovrete fare af damento sul software distribuito in quest’ultime
+                                     sezioni.
+
+
+
+     Ubuntu ha conquistato un vasto pubblico di qualsiasi categoria sociale. Diversi milioni di utenti sono
+     rimasti impressionati dalla sua facilità di installazione e dal lavoro svolto per renderne più agevole
+     l'utilizzo desktop.
+
+     Ubuntu e Debian hanno avuto un rapporto non esente da tensioni; gli sviluppatori Debian, che
+     nutrivano grandi speranze che Ubuntu contribuisse direttamente a Debian, rimasero delusi per le
+     differenze sostanziali fra quanto dichiarato durante il marketing da Canonical, ossia che la comunità
+     di Ubuntu si sarebbe comportata come un gruppo di “onesti cittadini” del mondo del software libero,
+     e le pratiche concrete della summenzionata derivata, che si limitava solo a rendere disponibili
+     pubblicamente le modi che apportate ai pacchetti Debian. Per fortuna nel corso degli anni le cose
+     sono migliorate ed Ubuntu nalmente ha provveduto a mettere in atto la politica di inoltrare le
+     patches alle destinazioni corrette (tuttavia tale politica viene attuata solo per il software esterno
+     “impacchettato” da Ubuntu e non per il software speci co per la stessa derivata come Mir e Unity).
+
+       https://www.ubuntu.com/
+
+
+     A.3. Linux Mint
+
+     Linux Mint è una distribuzione (parzialmente) gestita da una comunità, nanziata da donazioni e da
+     campagne pubblicitarie. Il prodotto di punta di tale comunità è basato su Ubuntu, ma viene anche
+     supportata una variante denominata “Linux Mint Debian Edition”, in continua evoluzione (essendo
+     una derivata di Debian Testing). Entrambe le distro prevedono il boot da un LiveDVD o da un
+     dispositivo di memorizzazione USB per l’installazione iniziale.
+
+     L’obiettivo della distribuzione è di sempli care l'accesso a tecnologie avanzate, inoltre Linux Mint
+     supporta speci che interfacce gra che che gestiscono il software comune. L’interfaccia gra ca
+     Cinnamon ne è un esempio e viene distribuita dalla summenzionata distribuzione di default a
+     dispetto della più popolare GNOME (pur essendo incluse anche MATE e Xfce); allo stesso tempo,
+
+
+
+
+     Pagina 470 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+       fi
+            fi
+                 fi
+                      fi
+                           fi
+                                fi
+                                          fi
+                                                   fi
+                                                        fi
+                                                             fi
+                                                                             fi
+                                                                                                 fi
+     l’interfaccia di gestione dei pacchetti, che tuttavia si basa su APT, prevede una valutazione del
+     rischio associata ad ogni singolo aggiornamento di ogni singolo pacchetto.
+
+     Linux Mint, pur di garantire il soddisfacimento dei bisogni degli utenti, nonché la migliore
+     esperienza utente, include una vasta serie di software “proprietario” . Un esempio sono Adobe Flash
+     ed i codecs multimediali.
+
+       https://linuxmint.com/
+
+
+     A.4. Knoppix
+
+     La distribuzione Knoppix non avrebbe bisogno di essere descritta. In quanto è stata la prima
+     distribuzione popolare che ha introdotto il LiveCD: ovvero un CD-Rom bootable che consente di
+     eseguire un sistema Linux funzionante e pronto per l'uso, senza la necessità di un disco rigido:
+     qualsiasi sistema già presente sulla macchina rimarrà quindi intatto. Il rilevamento automatico dei
+     dispositivi disponibili permette a questa distribuzione di funzionare con quasi tutte le con gurazioni
+     hardware. La versione per CD-Rom contiene quasi 2 GB di software (compresso), mentre la versione
+     per DVD-Rom è più estesa.
+
+     Se caricherete la versione per CD-Rom su una chiave USB, potrete portare con voi i vostri les ed
+     utilizzare qualsiasi computer senza lasciare traccia dato che la distribuzione non utilizza affatto un
+     disco rigido. Knoppix utilizza LXDE (un’interfaccia gra ca desktop leggera) per impostazione
+     prede nita, mentre la versione per DVD-Rom include anche GNOME e Plasma. Le altre distribuzioni
+     rilasciano diverse combinazioni di interfacce gra che desktop e software. Ed il merito di ciò è dovuto
+     in parte al pacchetto Debian live-build che facilita incredibilmente la realizzazione di un LiveCD.
+
+       https://live-team.pages.debian.net/live-manual/
+
+     Comunque la distribuzione offre anche un installer, di conseguenza potrete provare prima Knoppix
+     come LiveCD e poi installarla su hard disk per ottenere prestazioni migliori.
+
+       https://www.knopper.net/knoppix/index-en.html
+
+
+     A.5. Aptosid e Siduction
+
+     Queste distribuzioni sostenute da comunità si basano sugli sviluppi di Debian Sid (Unstable) da cui
+     deriva anche il loro nome. Le modi che nelle suddette distribuzioni sono limitate a causa del loro
+     stesso scopo, ossia: offrire il software più recente ed i drivers più aggiornati per l'hardware di ultima
+     generazione, consentendo allo stesso tempo all’utenza di ritornare alla distribuzione uf ciale Debian
+     in qualsiasi momento. Aptosid era precedentemente denominato Sidux; Siduction è un fork di
+     Aptosid più recente.
+
+       http://aptosid.com
+       https://siduction.org
+
+
+
+
+                                                          TDAH_2.0   Appendice A - Distribuzioni Derivate Pagina 471
+fi
+                            fi
+                                           fi
+                                                  fi
+                                                                                     fi
+                                                                                          fi
+                                                                                               fi
+     A.6. Grml
+
+     Grml è una LiveCD che include molti strumenti per gli amministratori di sistema e che si focalizza
+     sull'installazione, il deployment ed il system rescue. Questa LiveCD è distribuita in due varianti,
+     small e full, entrambe disponibili per PC a 32 bit o a 64 bit. Ovviamente le varianti differiscono sia
+     per quantità di contenuti software, sia per le dimensioni.
+
+       https://grml.org
+
+
+     A.7. Tails
+
+     Tails (acronimo di “The Amnesic Incognito Live System”) distribuisce un sistema live il cui obiettivo
+     è la tutela dell'anonimato e della privacy. A tale scopo il summenzionato sistema fa in modo di non
+     lasciare tracce sul computer su cui è in esecuzione ed utilizza la rete Tor per connettersi ad Internet
+     tentando di garantire, per quanto è possibile, una soglia minima di anonimato.
+
+       https://tails.boum.org
+
+
+     A.8. Kali Linux
+
+     Kali Linux è una distribuzione basata su Debian specializzata in penetration testing (in breve
+     “pentesting”). Include software che consente agevolmente di testare la sicurezza di una rete
+     preesistente o di un computer (su cui la live è in esecuzione) e di analizzare quest’ultimo dopo un
+     attacco (branca della scienze informatiche nota come “informatica forense”).
+
+       https://kali.org
+
+
+     A.9. Devuan
+
+     Devuan è un fork relativamente recente di Debian: è nato nel 2014 a seguito della decisione di Debian
+     di utilizzare systemd come default init system. Un gruppo di utenti sostenitori di sysv si sono
+     opposti all’uso di systemd eccependo di aver riscontrato in quest’ultimo degli inconvenienti ed
+     hanno deciso di rilasciare Devuan con l'obiettivo di manutenere un sistema che non si basasse su
+     systemd.
+
+       https://devuan.org
+
+
+     A.10. DoudouLinux
+
+     DoudouLinux è una distro che si rivolge ai bambini piccoli (dai 2 anni in sù). A questo scopo la
+     summenzionata distribuzione viene rilasciata con un'interfaccia gra ca altamente personalizzata
+     (basata su LXDE) e viene integrata con molti giochi e software educativi. L'accesso ad Internet è
+      ltrato per evitare che i bambini possano visitare siti non appropriati. Gli annunci pubblicitari
+     vengono bloccati. L'obiettivo di DouduLinux è di consentire ai genitori di lasciare che i propri gli
+     usino un computer da soli. Inoltre far sì che i bambini apprezzino DoudouLinux nelle vesti di console
+     di gioco.
+
+       https://www.doudoulinux.org
+
+
+
+
+     Pagina 472 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+                                                                    fi
+                                                                                        fi
+A.11. Raspbian
+
+Raspbian è una rebuild Debian ottimizzata per la popolare (ed economica) famiglia di computer SBC
+(single-board computer) Raspberry Pi. Purtroppo la versione Debian per l’architettura armel non
+sfrutta appieno la potenza del summenzionato hardware ed allo stesso tempo sempre il suddetto
+hardware non è compatibile con le funzionalità offerte dall'architettura armhf; di conseguenza
+Raspbian altri non è che un compromesso ed è stata ricompilata (patches incluse) speci catamente
+per l’hardware in questione.
+
+  https://raspbian.org
+
+
+A.12. PureOS
+
+PureOS è una distribuzione basata su Debian realizzata per perseguire i seguenti obiettivi: privacy,
+ergonomia e sicurezza. Ottempera la GNU Free System Distribution Guidelines (https://
+www.gnu.org/distros/free-system-distribution-guidelines.html). La social purpose company
+Purism si occupa del suo sviluppo. [Una social purpose company (nel common law) è un ente a
+scopo di lucro che nel suo processo decisionale interno valuta, non obbligatoriamente, l’offerta di
+servizi sociali, sanitari, educativi, ecc.]
+
+  https://pureos.net/
+
+
+A.13. SteamOS
+
+SteamOS è una distribuzione basata su Debian progettata dalla Valve Corporation con nalità video-
+ludiche (gaming). È stata adottata dalle “Steam Machine”, una linea di computers per gaming.
+
+  https://store.steampowered.com/steamos/
+
+
+A.14. Le altre distribuzioni
+
+Il sito Distrowatch a titolo meramente informativo ha individuato un gran numero di distribuzioni
+Linux, molte delle quali sono basate su Debian. Non esitate pertanto a consultarlo per orientarvi nel
+mondo del software libero!
+
+  https://distrowatch.com
+
+[Il testo originale in inglese riguardo all’attività del sito Distrowatch utilizza il termine inglese
+reference che per l’appunto è un espressione associata all’attività di consulenza, informazione ed
+orientamento dei bibliotecari]
+
+Il search form (trad. in ital. modulo di ricerca) del summenzionato sito web vi consentirà di
+cercare le distribuzioni in base alle distro da cui derivano. A Giugno 2019 selezionando ad esempio
+Debian troverete 127 distribuzioni attive!
+
+  https://distrowatch.com/search.php
+
+
+
+
+                                                    TDAH_2.0   Appendice A - Distribuzioni Derivate Pagina 473
+                                                                              fi
+                                                                                   fi
+
