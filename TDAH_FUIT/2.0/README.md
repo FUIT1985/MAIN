@@ -2,7 +2,7 @@
 The_Debian_Administrator’s_Handbook_free_unofficial_Italian_translation
 
 ###### Code-name of the patch (translation):
-TDAH_FUIT
+TDAH_FUIT (TDAH_, in short)
 
 ###### Patch (translation) Version:
 You have to search in this repository for the folder with the most recent version (the folder and the patch have the same incremental number).
