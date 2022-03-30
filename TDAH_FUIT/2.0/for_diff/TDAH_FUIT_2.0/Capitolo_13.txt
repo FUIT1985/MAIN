@@ -734,7 +734,7 @@ Pagina 394 Il Manuale dell’Amministratore di Debian TDAH_2.0
                                   ALTERNATIVA                                                  FusionForge è stato utilizzato per supportare la piattaforma alioth.debian.org
                                GitLab                                                          impiegata a sua volta dal progetto Debian e dai suoi sviluppatori per la gestione
                                                                                                collaborativa dei pacchetti e dello sviluppo per circa un decennio. A causa dei suoi
-                                                                                               limiti è stato sostituito e chiuso nel 2018 da un nuovo servizio supportato da GitLab.
+                                                                                               limiti è stato chiuso nel 2018 e sostituito da un nuovo servizio supportato da GitLab.
                                                                                                Per maggiori informazioni andate a leggere la casella di testo “GitLab, l’hosting dei
                                                                                                repositories Git e molto altro ancora” a pagina 19.
 
