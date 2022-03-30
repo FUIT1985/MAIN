@@ -1,0 +1,1043 @@
+Workstation
+                                                                         Capitolo 13
+     13. Workstation                                                                           pag. 381
+            1. Con gurazione dell’ X11 server                                                  pag. 382
+            2. Personalizzazione della GUI (Interfaccia gra ca)                                pag. 383
+                    1. Scegliere un display manager                                            pag. 383
+                    2. Scegliere un Window Manager                                             pag. 383
+                    3. Gestione del menù                                                       pag. 384
+            3. Graphical Desktops                                                              pag. 385
+                    1. GNOME                                                                   pag. 385
+                    2. KDE e Plasma                                                            pag. 386
+                    3. Xfce e altri                                                            pag. 387
+                    4. Altri Ambienti Desktop                                                  pag. 388
+            4. E-mail                                                                          pag. 389
+                    1. Evolution                                                               pag. 389
+                    2. KMail                                                                   pag. 390
+                    3. Thunderbird                                                             pag. 390
+            5. I web browsers                                                                  pag. 391
+            6. Development (Sviluppo)                                                          pag. 393
+                    1. Strumenti per GTK+ dedicati a GNOME                                     pag. 393
+                    2. Strumenti per Qt dedicati a KDE                                         pag. 393
+            7. Collaborative Work (Lavoro collaborativo)                                       pag. 394
+                    1. Lavoro di gruppo: groupware                                             pag. 394
+                    2. Lavoro collaborativo attraverso FusionForge                             pag. 394
+            8. Le Suites per Uf cio                                                            pag. 395
+            9. Emulazione di Windows: Wine                                                     pag. 396
+            10. Real-Time Communication Software                                               pag. 397
+
+
+
+     << Dato che i deployments dei servers sono già stati [nell’use-case] completati, gli ipotetici
+     amministratori potranno occuparsi delle singole workstation e della creazione di una con gurazione
+     tipica.>>
+fi
+           fi
+                                       fi
+                                                                                fi
+                     13.1. Con gurazione dell’ X11 server
+
+                     Una breve precisazione: X.org è la componente software che consente la visualizzazione delle
+                     “ nestre” sullo schermo. Inoltre comprende un driver che rende ef ciente l’impiego della scheda
+                     gra ca video. Le funzionalità offerte dalle applicazioni gra che vengono esportate attraverso
+                     un'interfaccia standardizzata denominata X11 (in Buster viene distribuita la versione X11R7.7).
+
+
+                      IN PROSPETTIVA           X11 è il sistema gra co utilizzato dalla maggior parte dei sistemi Unix-like
+                                               (ma è disponibile anche per Windows e per Mac OS). In realtà il termine X11 indica
+                      X11, XFree86 e           la speci ca del protocollo ma viene di fatto usato anche per riferirsi
+                      X.org                    all’implementazione.
+                                               Nonostante abbia avuto un inizio travagliato, negli anni '90 XFree86 è riuscito ad
+                                               emergere come implementazione di riferimento in quanto esportabile [su diverse
+                                               piattaforme - dall’ingl. portable], gratuita e manutenuta attraverso un sistema
+                                               collaborativo. Tuttavia la sua crescita si limitò all’aggiunta di alcuni drivers. Questo
+                                               contesto, nonché l’applicazione controversa di una nuova licenza, ha determinato la
+                                               nascita del fork X.org nel 2004. X.org è attualmente l’implementazione di
+                                               riferimento; Debian Buster impiega la versione 7.7 di X.org.
+
+
+                     L'ultima versione di X.org è in grado di rilevare l'hardware automaticamente (autodetect): ovvero
+                     sia la scheda video, lo schermo, la tastiera ed il mouse; è talmente funzionale che il pacchetto
+                     correlato non genera più automaticamente il le di con gurazione /etc/X11/xorg.conf.
+
+                     Invece la con gurazione della tastiera si trova in /etc/default/keyboard. Questo le viene
+                     impiegato sia per la con gurazione della console testuale, sia per quella dell'interfaccia gra ca ed è
+                     gestito dal pacchetto keyboard-configuration. Troverete maggiori dettagli riguardo alla
+                     con gurazione del layout della tastiera nel paragrafo “8.1.2. Come con gurare la tastiera” a pagina
+                     161.
+
+                     Il pacchetto xserver-xorg-core supporta un server X generico, utilizzato dalle versioni 7.x di
+                     X.org. Tale server è modulare ed include una raccolta di drivers indipendenti per gestire diversi
+                     modelli di schede video. L'installazione di xserver-xorg garantisce la presenza in sé del server,
+                     nonché di un driver video.
+
+                     Si precisa che se la scheda video rilevata non è compatibile con nessuno dei drivers disponibili sul
+                     computer X.org tenterà di utilizzare i drivers VESA e fbdev. Il primo driver generalmente è
+                     compatibile in qualsiasi contesto, ma con evidenti carenze (scarna disponibilità di scelta di
+                     risoluzioni; assenza di accelerazione gra ca sia per i giochi, sia per VFX [Visual effects] sul
+                     desktop; ecc.). Il secondo funziona attraverso la gestione del framebuffer della scheda video da parte
+                     del Kernel. Inoltre il server X oggigiorno può processare senza alcun privilegio amministrativo (in
+                     modo che possa essere in grado di con gurare lo screen - il monitor) ed il suo log le viene
+                     conservato in ~/.local/share/xorg/Xorg.0.log; mentre nei sistemi antecedenti a Debian
+                     Stretch il server X veniva avviato attraverso privilegi di root ed il suo log le veniva conservato in /
+                     var/log/Xorg.0.log. Per conoscere quale driver sta utilizzando una macchina vi basterà
+                     analizzare i messaggi che il server X trascrive nel log le. Ad esempio, troverete il seguente snippet
+                     per il driver Intel [lo snippet è un estratto-frammento di codice sorgente, codice macchina o mero
+                     testo]:
+
+                     (==)        Matched intel as autoconfigured driver 0
+                     (==)        Matched modesetting as autoconfigured driver 1
+                     (==)        Matched vesa as autoconfigured driver 2
+                     (==)        Matched fbdev as autoconfigured driver 3
+                     (==)        Assigned the driver to the xf86ConfigLayout
+
+
+
+
+                     Pagina 382 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+     fi
+      fi
+           fi
+                fi
+                      fi
+                            fi
+                                     fi
+                                                 fi
+                                                      fi
+                                                           fi
+                                                                   fi
+                                                                        fi
+                                                                             fi
+                                                                                  fi
+                                                                                       fi
+                                                                                            fi
+                                                                                                    fi
+                                                                                                         fi
+                                                                                                              fi
+           (II) LoadModule: ”intel”
+           (II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so
+
+
+                              EXTRA       Diversi produttori di schede gra che (in particolare nVidia) si ri utano di
+                    Drivers               concedere le speci che necessarie per implementare drivers gratuiti ef cienti.
+                                          D'altra parte, concedono drivers proprietari che consentono comunque di utilizzare
+                    proprietari           il loro hardware. Tale politica in realtà è controversa dato che il driver supportato,
+                                          se esiste, non viene aggiornato come dovrebbe essere; inoltre potrebbe non essere
+                                          compatibile con gli aggiornamenti di X.org, impedendo di fatto l’impiego dell'ultima
+                                          versione disponibile che potrebbe non funzionare correttamente (in tutto o in
+                                          parte). Vi invitiamo pertanto a non tollerare il suddetto comportamento ed a
+                                          rivolgere le vostre attenzioni ad altri produttori.
+                                          Se in ogni caso possedete una delle sopracitate schede, troverete i correlati
+                                          pacchetti nella sezione non free ossia nvidia-driver per le schede NVIDIA. Inoltre
+                                          sono necessari i moduli del Kernel corrispondenti. La compilazione dei moduli può
+                                          essere automatizzata, installando i pacchetti nvidia-kernel-dkms per nVidia.
+                                          Il progetto “nouveau” mira a realizzare drivers gratuiti per le schede nVidia e
+                                          vengono con gurati per impostazione prede nita in Debian. In generale, le loro
+                                          funzionalità non eguagliano ancora i drivers proprietari. Va detto a difesa degli
+                                          sviluppatori che il progetto nouveau è realizzato attraverso il reverse engineering,
+                                          che non rende le cose facili.
+                                          I drivers free per le schede ATI sono denominati "radeon" e “amdgpu” e sono più
+                                          funzionali rispetto ai precedenti, anche se spesso richiedono un rmware non-free
+                                          incluso nel pacchetto firmware-amd-graphics.
+
+
+
+           13.2. Personalizzazione della GUI (Interfaccia gra ca)
+
+
+           13.2.1. Scegliere un display manager
+
+           La GUI supporta solo il display space [il display space o trad. lett. “spazio di visualizzazione” altri
+           non è che il desktop visualizzato da uno o più monitor, in modalità individuale oppure wall per le
+           schede nVidia o eyefinity per le schede ATI]. La mera esecuzione del server X comporta l’empty
+           screen [o blank screen o black screen - in sostanza una schermata vuota, nera, bianca o
+           incomprensibile per l’utente], pertanto è necessaria l’installazione di un display manager in grado di
+           avviare la schermata “gra ca” di autenticazione per gli utenti e poi, ad autenticazione avvenuta, il
+           desktop “gra co”. Fra i display managers più popolari attualmente potrete trovare gdm3 (GNOME
+           Display Manager), sddm (KDE Plasma) e lightdm (Light Display Manager). Gli amministratori della
+           Falcot Corp hanno scelto come ambiente desktop GNOME e quindi di conseguenza gdm3 come display
+           manager. Il le di con gurazione /etc/gdm3/daemon.conf dispone di diverse opzioni per
+           controllarne il funzionamento (ne troverete l’elenco nello schema le /usr/share/gdm/
+           gdm.schemas), mentre /etc/gdm3/greeter.dconf-defaults contiene le impostazioni per la
+           sessione greeter (che è molto più di una schermata iniziale e potrebbe essere paragonata ad un
+           desktop gra co limitato dato che include strumenti relativi alla gestione dell'energia e
+           all'accessibilità). Occorre precisare che le impostazioni più utili per gli utenti nali possono essere
+           con gurate tramite il pannello di controllo di GNOME.
+
+
+           13.2.2. Scegliere un Window Manager
+
+           Ciascun graphical desktop supporta un proprio window manager, pertanto solitamente è la scelta del
+           graphical desktop a determinare la presenza di un window manager. Ad esempio il window manager
+
+
+
+
+                                                                            TDAH_2.0    Capitolo XIII - Workstation Pagina 383
+fi
+     fi
+          fi
+          fi
+               fi
+                      fi
+                           fi
+                                fi
+                                     fi
+                                              fi
+                                                             fi
+                                                                  fi
+                                                                       fi
+                                                                              fi
+                                                                                   fi
+                                                                                           fi
+               di GNOME è mutter, Plasma impiega kwin e Xfce (che verrà trattato in seguito) utilizza xfwm. Però
+               la loso a Unix consente comunque di scegliere un window manager, anche se le con gurazioni
+               raccomandate concedono agli amministratori di bene ciare degli sforzi di integrazione compiuti dai
+               progetti.
+
+
+                     BASILARE         Il window manager gestisce la visualizzazione dei “temi” delle nestre relative alle
+                Window manager        applicazioni in uso, ovvero frames (bordi) e la barra del titolo. Tra le funzionalità
+                                      offerte sono incluse la riduzione, il ripristino, la massimizzazione e l’occultamento
+                                      delle nestre. La maggior parte dei window manager supporta anche un menu che
+                                      può essere richiesto dall’utente attraverso un correlato pops up che si attiva con un
+                                      click sul desktop. Tale menù inoltre permette di chiudere la sessione del window
+                                      manager, avviare nuove applicazioni e talvolta di cambiare il window manager (a
+                                      condizione che siano installati più window managers).
+
+
+               Tuttavia, alcuni computer troppo obsoleti potrebbero avere dif coltà ad eseguire graphical desktop
+               troppo pesanti. In questo casi è consigliabile una con gurazione più leggera. Tra i windows managers
+               che possono essere considerati “light” (o “small footprint”) occorre menzionare: WindowMaker
+               (incluso nel pacchetto wmaker), Afterstep, fvwm, icewm o anche blackbox. Per utilizzare un
+               determinato window manager dovrete ovviamente con gurare il vostro sistema ad hoc ed
+               associargli una priorità; ciò è possibile attraverso x-window-manager, in particolare per mezzo del
+               comando update-alternatives --config x-window-manager.
+
+
+
+                SINGOLARITÀ DI        La Debian Policy de nisce un numero di comandi standard in grado di eseguire
+                         DEBIAN       un'azione prede nita. Ad esempio il comando x-window-manager invoca un
+                Alternative           window manager. Debian però non associa questo comando ad un pre ssato window
+                                      manager. Bensì viene consentito all'amministratore di poter invocare un window
+                                      manager a sua scelta.
+
+                                      Ogni window manager, attraverso l’installazione del correlato pacchetto, registra un
+                                      proprio comando da trasmettere a x-window-manager come potenziale scelta e x-
+                                      window-manager ne gestisce la priorità. Ciò consente, in assenza di una scelta
+                                      esplicita da parte dell’amministratore, di avviare una selezione automatica del
+                                      window manager più opportuno quando viene messo in esecuzione il comando
+                                      generico.
+
+                                      Lo script update-alternatives entra in gioco quando, oltre alla registrazione dei
+                                      comandi, esiste anche una scelta esplicita dell'amministratore. È consigliabile
+                                      utilizzare un comando simbolico con update-alternatives --config
+                                      symbolic-command per “puntare” ad un comando. Ogni comando simbolico difatti
+                                      punta ad un link simbolico, creato (e gestito) dallo script update-alternatives
+                                      nella directory /etc/alternatives/, mentre attraverso la sopracitata directory
+                                      viene dichiarata la posizione del correlato eseguibile. L’amministratore potrebbe
+                                      decidere nel corso del tempo di cambiare la sua scelta esplicita o di rimuovere dei
+                                      pacchetti. Di conseguenza se un pacchetto che supporta un determinato comando
+                                      viene disinstallato, verrà selezionato come scelta alternativa il comando con
+                                      priorità successiva.
+
+                                      La Debian Policy non impone che tutti i comandi simbolici vengano elencati
+                                      esplicitamente e difatti i manutentori dei pacchetti Debian utilizzano la suddetta
+                                      procedura nei casi più ostici per raggiungere un’apprezzabile essibilità (ad
+                                      esempio con x-www-browser, www-browser, cc, c++, awk , ecc).
+
+
+
+               13.2.3. Gestione del menù
+
+               Gli attuali ambienti desktop e diversi window managers supportano i menù che elencano le
+               applicazioni disponibili all’utente. Ciascun pacchetto di solito memorizza un le .desktop
+               in /usr/share/applications in modo che l’elenco nei menù delle applicazioni disponibili sia
+               sempre aggiornato. Il formato dei suddetti les è stato standardizzato da FreeDesktop.org:
+
+
+
+
+               Pagina 384 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+     fi
+          fi
+                 fi
+                      fi
+                                             fi
+                                                        fi
+                                                             fi
+                                                                  fi
+                                                                       fl
+                                                                            fi
+                                                                                 fi
+                                                                                  fi
+                                                                                       fi
+                                                                                            fi
+            https://standards.freedesktop.org/desktop-entry-spec/latest/
+
+          È possibile personalizzare l’elenco delle applicazioni nei menù attraverso un metodo standard,
+          descritto da “Desktop Menu Speci cation”, che prevede l’impiego di les di con gurazione.
+          Inoltre gli utenti nali possono persino personalizzare i menù attraverso strumenti con interfaccia
+          gra ca come kmenuedit (in Plasma), alacarte (in GNOME) o menulibre.
+
+            https://standards.freedesktop.org/menu-spec/latest/
+
+
+                     STORIA          In realtà in passato, prima dell’avvento degli standard di FreeDesktop.org, Debian
+           Il sistema dei            aveva già predisposto un proprio sistema per i menu che prevedeva la
+                                     memorizzazione da parte di ciascun pacchetto di una descrizione generica
+           menu di
+                                     riguardante le preferenze delle voci del menu in /usr/share/menu/. Pur essendo
+           Debian
+                                     questo strumento ancora disponibile in Debian (nel pacchetto menu), non è che
+                                     un’utilità marginale, dal momento che i manutentori dei pacchetti sono incoraggiati
+                                     a fare af damento ai les .desktop.
+
+
+
+          13.3. Graphical Desktops
+
+          Tra i Graphical Desktops liberi sono due le collezioni software che si sono distinte: GNOME e Plasma
+          di KDE, entrambe molto popolari. Questo fenomeno è piuttosto raro nel mondo free software; ad
+          esempio Apache non ha un gran numero di software concorrenti.
+
+          L’eccezione alla regola del suddetto fenomeno ha anche una sua storia: Plasma (precedentemente
+          denominato KDE - ormai è solo il nome della correlata comunità) è il primo progetto mai realizzato
+          di Graphical Desktop, ma la decisione di impiegare la libreria gra ca Qt non è stata gradita a diversi
+          sviluppatori. Difatti all'epoca Qt non era ancora un software libero, a differenza del progetto GNOME
+          che si basò sulla libreria gra ca GTK+. Con il passare del tempo Qt è stato concesso come free
+          software e dagli esordi entrambi i progetti si sono evoluti parallelamente, senza mai fondersi.
+
+          Però attraverso FreeDesktop.org entrambi i progetti collaborano insieme nel concordare gli standard
+          inerenti l’interoperabilità tra le diverse applicazioni.
+
+          Questa trattazione non intende pronunciarsi riguardo alla nota “querelle” su quale dei due progetti
+          sia migliore. In questa sede vengono semplicemente prese in esame le opportunità e gli elementi che
+          possono rendervi maggiormente consapevoli. Prima di af darsi ad uno dei due progetti è meglio
+          provarli entrambi per sperimentarli.
+
+
+          13.3.1. GNOME
+
+          Debian Buster include la versione 3.30 di GNOME, che può essere installata attraverso il comando
+          apt install gnome (viene anche installata automaticamente dall'attività “Debian desktop
+          environment” [di debian installer]).
+
+          Sono considerevoli del progetto GNOME gli sforzi in merito alla fruibilità ed all’accessibilità.
+          I professionisti di design hanno collaborato nella redazione degli standards e delle raccomandazioni
+          da seguire. Ciò ha consentito agli sviluppatori di creare interfacce gra che soddisfacenti. Il progetto
+          è stato inoltre incoraggiato anche da noti operatori economici di informatica come Intel, IBM, Oracle,
+          Novell, nonché da diverse distribuzioni Linux. In ne diversi linguaggi di programmazione sono
+          compatibili per sviluppare le applicazioni che si interfacciano con GNOME.
+
+
+
+
+                                                                 TDAH_2.0          Capitolo XIII - Workstation Pagina 385
+fi
+     fi
+               fi
+                    fi
+                          fi
+                                fi
+                                                   fi
+                                                            fi
+                                                                    fi
+                                                                         fi
+                                                                              fi
+                                                                                       fi
+                                              Figura 13.1 Il desktop GNOME
+
+     Solitamente gli amministratori considerano GNOME più consono per i deployment massivi.
+     La con gurazione dell'applicazione viene gestita dall'interfaccia GSettings e memorizzata nel
+     database DConf. Ossia potrete richiedere o modi care le impostazioni di con gurazione attraverso gli
+     strumenti da riga di comando gsettings e dconf oppure dall'interfaccia gra ca utente dconf-
+     editor. L'amministratore può quindi modi care la con gurazione degli utenti con un semplice
+     script. Il sottostante sito Web raccoglie tutte le informazioni che potrebbero interessare un
+     amministratore responsabile di diverse workstations che utilizzano GNOME:
+
+       https://help.gnome.org/admin/
+
+
+     13.3.2. KDE e Plasma
+
+     Debian Buster include la versione 5.14 di KDE Plasma, che può essere facilmente installata con il
+     comando apt-get install kde-standard.
+
+     Plasma si è evoluto rapidamente grazie ad un approccio pragmatico. Gli autori del progetto sono
+     riusciti a raggiungere ottimi risultati rapidamente, che hanno incrementato il bacino di utenza.
+     Tutti questi fattori hanno contribuito alla qualità complessiva del progetto. Difatti Plasma è ormai un
+     ambiente desktop perfettamente maturo con una vastissima raccolta di applicazioni.
+
+
+
+
+     Pagina 386 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+                                    fi
+                                         fi
+                                                    fi
+                                                                         fi
+                                                                              fi
+                                        Figura 13.2 Il desktop Plasma
+
+Dal rilascio 4.0 di Qt, i disaccordi relativi alle licenze di KDE si sono conclusi. Difatti la sopracitata
+versione è stata rilasciata con licenza GPL, sia per Linux, sia per Windows (la versione Windows
+precedentemente veniva rilasciata con una licenza non libera). Occorre far presente in ne che le
+applicazioni KDE sono soprattutto sviluppate con il linguaggio C++.
+
+
+13.3.3. Xfce e altri
+
+
+Xfce è un desktop gra co semplice e leggero, perfetto per un computer con risorse limitate. Potrete
+effettuarne l’installazione attraverso il comando apt install xfce4. Xfce come
+GNOME si basa sulla libreria gra ca GTK+ e molte componenti dei due sopracitati progetti sono
+difatti le stesse.
+
+A differenza di GNOME e Plasma, Xfce non aspira per nulla ad essere un progetto di grande
+dimensioni. Di conseguenza in aggiunta alle componenti di base di qualsiasi desktop moderno ( le
+manager, window manager, session manager, un pannello di avvio per le applicazioni, ecc.),
+comprende solo poche applicazioni: un terminale, un agenda (Orage), un viewer per le immagini,
+uno strumento per masterizzare CD/DVD, un lettore di le multimediali (Parole), un controller del
+volume ed un editor di testo (mousepad).
+
+  https://xfce.org/
+
+
+
+
+                                                     TDAH_2.0     Capitolo XIII - Workstation Pagina 387
+          fi
+                       fi
+                                               fi
+                                                                                 fi
+                                                                                         fi
+                                       Figura 13.3 Il desktop Xfce
+
+
+13.3.4 Altri Ambienti Desktop
+
+LXDE e LXQt sono due ambienti desktop realizzati allo scopo di essere “leggeri”. LXDE è basato su
+GTK+, mentre LXQt è basato su Qt. Possono essere installati rispettivamente attraverso i
+metapacchetti lxde e lxqt.
+
+  https://lxde.org
+  https://lxqt.org
+
+Quando GNOME 3 ha deciso di modi care il suo ambiente desktop tradizionale - inclusi il suo solito
+pannello e menù a favore di un nuova shell con based-search - sono stati avviati come risposta i
+progetti Cinnamon e MATE. Cinnamon ha reintrodotto un pannello-fork di GNOME Shell, mentre
+MATE ha continuato ad utilizzare GNOME 2. Possono essere installati rispettivamente attraverso i
+metapacchetti cinnamon-desktop-environment e mate-desktop-environment.
+
+  https://developer.linuxmint.com/projects/cinnamon-projects.html
+  https://mate-desktop.org/
+
+[based-search è una tecnica che ottimizza la ricerca di soluzioni attraverso l’euristica]
+
+
+
+
+Pagina 388 Il Manuale dell’Amministratore di Debian TDAH_2.0
+                        fi
+     13.4. E-mail
+
+     13.4.1. Evolution
+
+
+            COMUNITÀ         Installando il pacchetto popularity-contest potrete partecipare ad un sondaggio
+      I pacchetti            automatico attraverso cui Debian individua i pacchetti più popolari. In sostanza
+      popolari               viene implementato settimanalmente uno script attraverso cron, che invia
+                             anonimamente (via HTTP o email) l’elenco dei pacchetti installati e l’ultimo accesso
+                             ai les da essi contenuti. Così facendo i maintainers Debian potranno conoscere
+                             statisticamente sia i pacchetti maggiormente installati, sia la frequenza del loro
+                             utilizzo.
+                             Questa informazione rappresenta un gran contributo nei confronti di Debian e viene
+                             impiegata per stabilire quali programmi includere nel primo disco di installazione.
+                             Inoltre i dati sulle installazioni effettive permettono di decidere riguardo alle sorti
+                             dei pacchetti ossia in merito alla loro eventuale rimozione dalla distribuzione
+                             qualora il loro bacino di utenza fosse scarno. Per tali ragioni vi invitiamo ad
+                             installare il pacchetto popularity-contest ed a partecipare al sondaggio.
+
+                             I dati raccolti [anonimamente] vengono condivisi pubblicamente ogni giorno.
+                                https://popcorn.debian.org/
+
+                             In aggiunta le statistiche agevolano gli utenti nella scelta fra due pacchetti con
+                             caratteristiche apparentemente simili. A volte scegliere il pacchetto più popolare è
+                             la soluzione migliore.
+
+
+
+     Evolution è l’email client di GNOME, che può essere installato con il comando apt install
+     evolution. Questo programma è molto di più di un semplice software di posta elettronica, difatti
+     dispone di: un'agenda, una rubrica degli indirizzi, di una lista delle attività e di un memo (per brevi
+     note a schema libero). Per di più include un potente sistema di indicizzazione dei messaggi per
+     consentire la creazione di cartelle virtuali, di tutti i messaggi archiviati, basate sulle query di
+     ricerca. In altre parole tutti i messaggi archiviati vengono conservati come fa qualsiasi email client,
+     ma la loro consultazione può essere organizzata sotto forma di cartelle virtuali, che di fatto
+     corrispondono ad una serie di criteri impostati attraverso dei ltri.
+
+
+
+
+                                Figura 13.4 Il software di posta elettronica Evolution
+
+
+
+
+                                                         TDAH_2.0      Capitolo XIII - Workstation Pagina 389
+fi
+                                                          fi
+Un'estensione software permette l’integrazione con Microsoft Exchange; il pacchetto Debian
+richiesto è evolution-ews — Il pacchetto evolution-ews non è stato incluso in Debian Buster. Per
+ragioni di sicurezza è stato rimosso durante la fase di rilascio della distribuzione. Ma al tempo della
+stesura di questo manuale è comunque disponibile attraverso backport (per maggiori informazioni
+andate a leggere il paragrafo 6.1.2.4 “Stable Backports” a pagina 112).
+
+
+13.4.2. KMail
+
+Il software di posta elettronica di KDE può essere installato eseguendo apt install kmail. KMail
+gestisce solo la posta elettronica, ma fa parte di una suite software denominata KDE-PIM
+(Personal Information Manager) che include funzionalità come la rubrica, l’agenda, ecc. Kmail ha
+tutte le caratteristiche necessarie per essere un eccellente client di posta elettronica.
+
+
+
+
+                               Figura 13.5 Il software di posta elettronica KMail
+
+
+13.4.3. Thunderbird
+
+Questo software di posta elettronica fa parte della suite software Mozilla. Per la sua localizzazione
+nella vostra lingua madre dovrete fare riferimento ai pacchetti thunderbird-l10n-*; l'estensione
+enigmail consente di crittografare e rmare le emails (purtroppo non è disponibile la traduzione di
+questa estensione in diverse lingue).
+
+
+
+
+Pagina 390 Il Manuale dell’Amministratore di Debian TDAH_2.0
+                          fi
+                         Figura 13.6 Il software di posta elettronica Thunderbird
+
+
+
+
+13.5. I web browsers
+
+Epiphany è il web browser che appartiene alla suite GNOME; questo programma impiega il display
+engine WebKit, sviluppato da Apple per il web browser Safari (anch’esso appartiene ad Apple). Il
+pacchetto Debian corrispondente è epiphany-browser.
+
+Konqueror, il le manager di KDE, funge anche da web browser. Questo programma utilizza un
+rendering engine realizzato appositamente per l’ambiente desktop KDE denominato KHTML.
+KHTML è un motore eccellente e, a testimonianza di ciò, Apple ha deciso di creare WebKit (utilizzato
+da Safari) basandosi su KHTML. Konqueror è disponibile nel pacchetto Debian konqueror.
+
+Qualora le vostre esigenze non fossero compatibili con i due sopracitati web browsers potrete sempre
+fare riferimento a Firefox. Questo browser, incluso nel pacchetto Debian firefox-esr, impiega il
+render Gecko (sviluppato dal progetto Mozilla) e dispone di un'interfaccia leggera con comandi
+espandibili.
+
+
+
+
+                                                   TDAH_2.0      Capitolo XIII - Workstation Pagina 391
+ fi
+                                       Figura 13.7 Il web browser Firefox
+
+
+
+           DIZIONARIO      Il ciclo di rilascio implementato da Mozilla per Firefox è piuttosto rapido. Le nuove
+      Firefox ESR          releases sono pubblicate ogni 6/8 settimane e soltanto l’ultima versione viene
+                           supportata per ragioni di sicurezza. Purtroppo tale meccanismo potrebbe non
+                           essere consono per tutti gli utenti nali, pertanto viene pubblicata ogni 10 cicli
+                           un’Extended Support Release (ESR) che riceve aggiornamenti di sicurezza (non
+                           riguardanti le funzionalità) nei successivi 10 cicli (periodo che corrisponde a poco
+                           più di un anno).
+                           Debian include entrambe le versioni. La versione ESR, inclusa attraverso il
+                           pacchetto firefox-esr, viene distribuita da Debian di default per il suo lungo
+                           periodo di supporto (compresi gli aggiornamenti della ESR durante il ciclo di vita di
+                           Debian Stable). Diversamente la versione standard di Firefox è disponibile soltanto
+                           per gli utenti di Debian Unstable attraverso il pacchetto firefox.
+
+
+
+
+              CULTURA      Prima di Debian Stretch, Firefox e Thunderbird non erano inclusi nelle
+      Iceweasel,           distribuzioni Debian. Il pacchetto iceweasel includeva Iceweasel, che di fatto era
+      Firefox e altri      Firefox con un altro nome.
+                           Le ragioni di questa ridenominazione erano dovute alle norme sull’uso imposte da
+                           Mozilla Foundation attraverso la registrazione del marchio Firefox™: il software
+                           denominato Firefox doveva utilizzare il logo e le icone uf ciali di Firefox. Purtroppo
+                           il logo e le icone di Firefox non erano stati concessi con una licenza libera, di
+                           conseguenza Debian non poteva distribuirli nella sezione main. Il manutentore
+                           pertanto decise di non spostare l'intero web browser nella sezione non-free e di
+                           scegliere un nome alternativo. Per le stesse ragioni Thunderbird™ (il software di
+                           posta elettronica) era stato ridenominato Icedove. Diversamente oggi sia il logo, sia
+                           le icone sono rilasciate sotto licenza free software: la stessa Mozilla ha riconosciuto
+                           che le modi che apportate dal progetto Debian rientrano nei termini sui marchi
+                           imposti dalla licenza e ciò consente la pubblicazione delle applicazioni realizzate da
+                           Mozilla con il loro nome uf ciale nelle distribuzioni Debian.
+
+
+
+
+     Pagina 392 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+               fi
+                      fi
+                                            fi
+                                      Netscape Navigator era il browser prede nito quando il web stava iniziando ad
+                         CULTURA
+                                      entrare nella cultura di massa, ma è stato soppiantato dall'arrivo di Microsoft
+               Mozilla
+                                      Internet Explorer imposto dai nuovi contratti dell’epoca fra la Microsoft ed i
+                                      produttori di computers sul software preinstallato. Di fronte a questo fallimento, la
+                                      società Netscape decise di "liberare" i codici sorgente di sua proprietà, rilasciandoli
+                                      con una licenza gratuita, nel tentativo di dare al suddetto browser una seconda
+                                      possibilità. Così facendo nacque il progetto Mozilla. Dopo diversi anni di sviluppo, il
+                                      risultato raggiunto è più che soddisfacente: il progetto Mozilla ha dato alla luce ad
+                                      un motore di rendering HTML (denominato Gecko) che ottempera agli standards-
+                                      compliant [del World Wide Web Consortium (W3C)]. Il sopracitato motore di
+                                      rendering viene impiegato in particolare da Mozilla Firefox, che a sua volta si è
+                                      rivelato uno dei browser più popolari.
+
+
+          In ne Buster include anche il web browser Chromium (disponibile nel pacchetto chromium). Questo
+          browser viene sviluppato da Google ed è diventato molto popolare in pochi anni. L’obiettivo di Google
+          è chiaramente rendere i suoi servizi web più accattivanti ottimizzando sia le performance sia la
+          sicurezza-utente del browser. Il codice sorgente free di Chronium viene impiegato anche da una
+          versione proprietaria denominata Google Chrome.
+
+
+          13.6. Development (Sviluppo)
+
+          13.6.1. Strumenti per GTK+ dedicati a GNOME
+
+          Anjuta (disponibile nel pacchetto anjuta) e GNOME Builder (incluso nel pacchetto gnome-builder)
+          sono Integrated Development Environments (IDE) ottimizzati per le applicazioni GTK+ per GNOME.
+          Glade (disponibile nel pacchetto glade) è un’applicazione designata alla creazione di interfacce
+          gra che GTK+ per GNOME ed alla loro memorizzazione nel formato le XML.
+
+          I sopracitati les XML possono essere caricati dalla libreria condivisa GTK+ (attraverso GtkBuilder)
+          che consente di ricreare le interfacce salvate — tale funzionalità si dimostra utile ad esempio per i
+          plugins che richiedono una nestra di dialogo.
+
+               https://wiki.gnome.org/Apps/Builder
+               http://anjuta.org/
+               https://glade.gnome.org
+
+
+          13.6.2. Strumenti per Qt
+
+          KDevelop (incluso nel pacchetto Debian kdevelop) è un ambiente di sviluppo di KDE, mentre
+          Qt Designer (incluso nel pacchetto Debian qttools5-dev-tools) è designato alla progettazione del
+          design dell’interfacce gra che Qt.
+
+          KDevelop è anche un generico IDE e supporta anche altri linguaggi come Python e PHP e differenti
+          sistemi per la compilazione.
+
+
+
+
+                                                                   TDAH_2.0      Capitolo XIII - Workstation Pagina 393
+fi
+     fi
+          fi
+                            fi
+                                 fi
+                                      fi
+                                                                           fi
+13.7. Collaborative Work (Lavoro collaborativo)
+
+13.7.1. Lavoro di gruppo: groupware
+
+Gli strumenti groupware tendono ad essere relativamente complessi da manutenere perché
+aggregano molteplici tools ed hanno requisiti non sempre facili da conciliare nell'ambito di una
+distribuzione integrata. Motivo per cui una lunga lista di strumenti groupware, che faceva parte in
+parte di Debian, è stata rimossa per mancanza di manutentori o incompatibilità con altri (più
+recenti) software inclusi da Debian. È il caso di PHPGroupware, eGroupware e Kolab.
+
+  https://www.egroupware.org/
+  http://www.kolab.org/
+
+Ma non ci sono solo aspetti negativi riguardo a questa tematica. Difatti le funzionalità
+tradizionalmente supportate dai groupwares vengono sempre più integrate nel software "standard".
+Ciò mitiga la necessità di software dedicato e designato ai groupwares. Tuttavia, un groupware
+normalmente richiede la presenza di un server destinato ad hoc.
+In ogni caso Citadel (incluso nel pacchetto citadel-suite), Sogo (incluso nel pacchetto sogo) e
+Kopano (incluso nel pacchetto kopano-core) sono due alternative presenti in Debian Buster.
+
+
+13.7.2. Lavoro collaborativo attraverso FusionForge
+
+FusionForge è uno strumento di sviluppo collaborativo, che ha origini in comune con SourceForge, a
+sua volta un servizio di hosting online per progetti software gratuiti. FusionForge implementa lo
+stesso approccio globale basato sul modello standard di sviluppo per il free software [I modelli di
+sviluppo software altri non sono che una piani cazione ex ante delle fasi del processo di sviluppo del
+software onde evitare che possono subentrare dei costi (in termini di tempo e denaro) non
+necessari].
+Il software di FusionForge ha continuato ad evolversi [in modo indipendente] a seguito della
+concessione con diritti di proprietà intellettuale del codice di SourceForge. Difatti gli autori di
+SourceForce hanno deciso di non rilasciare più il loro software con licenza gratuita. E lo stesso era
+già successo anche con GForce, il primo fork, che poi è stato concesso con una licenza proprietaria.
+In ogni caso, visto che la realizzazione di FusionForge ha coinvolto diversi sviluppatori, il software in
+questione include diverse funzionalità da quelle tipiche dell’approccio tradizionale per lo sviluppo a
+quelle destinate a progetti non dedicati al mero sviluppo software.
+
+FusionForge è pertanto una raccolta di strumenti diversi dedicati alla gestione, al tracciamento ed al
+coordinamento dei progetti. Questi strumenti possono essere classi cati in tre grandi famiglie:
+
+• communication (comunicazione): web forums, un mailing list manager (un gestore di mailing
+lists), un sistema di divulgazione delle notizie che consentono ad un progetto di rilasciare
+pubblicamente delle informazioni-dichiarazioni;
+• tracking: un task tracker che consente il monitoraggio dei progressi e delle attività programmate,
+  un tracker per il monitoraggio dei bugs (incluse patches e richieste di integrazione di nuove
+  funzionalità, nonché qualsiasi tipo di “ticket”), sondaggi;
+• sharing (condivisione): un documentation manager (un gestore della documentazione) che
+  controlla un central point [trad. lett. punto nevralgico] della documentazione inerente a: un
+  progetto; al generic le release manager (il gestore che si occupa del rilascio dei les); ai siti web
+  dedicati a ciascun progetto.
+
+Ovviamente FusionForge è ampiamente dedicato allo sviluppo software e di conseguenza integra
+diversi strumenti dedicati al source control management (denominato anche configuration
+management o version control [- è il processo attraverso cui vengono registrate le modi che
+apportate al codice sorgente in collaborative work]) tra cui: CVS, Subversion, Git,
+Bazaar, Darcs, Mercurial, Arch.
+
+
+
+
+Pagina 394 Il Manuale dell’Amministratore di Debian TDAH_2.0
+        fi
+                                   fi
+                                                         fi
+                                                                      fi
+                                                                                 fi
+                              I sopracitati programmi conservano la cronologia di tutte le revisioni dei les monitorati (spesso
+                                les che contengono codice sorgente), incluse tutte le modi che apportate in modo che possano
+                              essere fuse se diversi sviluppatori collaborano simultaneamente allo stesso progetto.
+
+                              La maggior parte di questi strumenti sono disponibili e persino gestibili attraverso un'interfaccia
+                              web, con un sistema di controllo dei permessi fine-grained [termine che può essere tradotto
+                              letteralmente come “a grana ne”, ma che si riferisce all’omonima tecnica di controllo accessi
+                              capillare implementata per la gestione di grandi moli di dati] ed un sistema di noti che e-mail per
+                              comunicare i diversi eventi.
+
+
+                                  ALTERNATIVA                                                  FusionForge è stato utilizzato per supportare la piattaforma alioth.debian.org
+                               GitLab                                                          impiegata a sua volta dal progetto Debian e dai suoi sviluppatori per la gestione
+                                                                                               collaborativa dei pacchetti e dello sviluppo per circa un decennio. A causa dei suoi
+                                                                                               limiti è stato sostituito e chiuso nel 2018 da un nuovo servizio supportato da GitLab.
+                                                                                               Per maggiori informazioni andate a leggere la casella di testo “GitLab, l’hosting dei
+                                                                                               repositories Git e molto altro ancora” a pagina 19.
+
+
+
+
+                              13.8. Le Suites per Uf cio
+
+                              Purtroppo il software per uf cio è stato per diversi anni una lacuna nel mondo del software libero.
+                              Difatti, nonostante le richieste di intervento degli utenti, strumenti equivalenti a quelli di Microsoft
+                              come ad esempio Word o Excel erano complessi da sostituire o da ricreare. La situazione cambiò con
+                              l’avvio del progetto OpenOf ce.org (a seguito del rilascio di Sun con licenza libera del codice
+                              StarOf ce). Oggi nalmente Debian include Libre Of ce, un fork di OpenOf ce.org. Inoltre GNOME e
+                              KDE continuano ad impegnarsi al miglioramento dei servizi da loro offerti, GNOME attraverso
+                              AbiWord come word processor e Gnumeric come spreadsheet, mentre KDE attraverso Calligra Suite
+                              (precedentemente nota come KOf ce). Ciascun progetto ha i suoi punti forza. Ad esempio lo
+                              spreadsheet (il foglio di calcolo o foglio elettronico) Gnumeric (offerto da GNOME) è migliore per
+                              alcuni aspetti di OpenOf ce.org/Libre Of ce e preciso nei calcoli. Per quel che riguarda il word
+                              precessing (videoscrittura) le suites OpenOf ce.org e Libre Of ce continuano ad eccellere
+                              sull’alternative.
+
+                              Un’altra importante funzionalità per gli utenti è la possibilità di importare documenti Microsoft
+                              Of ce. E nonostante tutte le suites per uf cio abbiano la suddetta funzionalità, solo OpenOf ce.org e
+                              Libre Of ce sono riuscite a raggiungere un livello apprezzabile per un utilizzo giornaliero.
+
+
+
+                                  PANORAMICA                                                   I contributori di OpenOf ce.org hanno creato una fondazione (The Document
+                               Libre Of ce ha                                                  Foundation) per promuovere lo sviluppo del progetto. La creazione della
+                               sostituito                                                      sopracitata fondazione è stata per diverso tempo oggetto di discussione, ma
+                                                                                               l'acquisizione di Sun da parte di Oracle ha spinto i contributori a concretizzarla.
+                               OpenOf ce.org                                                   Difatti il futuro di OpenOf ce.org sotto Oracle era considerato incerto. In aggiunta
+                                                                                               Oracle si è ri utata di aderire alla suddetta fondazione costringendo gli sviluppatori
+                                                                                               a rinunciare al nome OpenOf ce.org. Per tali ragioni il software curato dagli
+                                                                                               sviluppatori della fondazione oggi è denominato Libre Office ed è disponibile in
+                                                                                               Debian. Dopo un periodo di relativa stagnazione nei confronti di OpenOf ce.org,
+                                                                                               Oracle ha deciso di donare sia il codice, sia i diritti associati ad Apache Software
+                                                                                               Foundation e di conseguenza OpenOf ce.org è attualmente un progetto Apache.
+                                                                                               Debian include solo Libre Of ce. La software suite OpenOf ce rilasciata da Apache
+                                                                                               Software Foundation non è al momento disponibile in Debian.
+
+
+
+                              Il pacchetto Debian di Libre Of ce è libreoffice mentre quello relativo a Calligra Suite si chiama
+                              calligra. Sebbene il pacchetto di GNOME Of ce (gnome-office) era un tempo utilizzato per
+
+
+
+
+                                                                                                                                      TDAH_2.0   Capitolo XIII - Workstation Pagina 395
+fi
+     fi
+          fi
+               fi
+                    fi
+                    fi
+                         fi
+                                   fi
+                                        fi
+                                             fi
+                                             fi
+                                                  fi
+                                                       fi
+                                                            fi
+                                                                 fi
+                                                                      fi
+                                                                           fi
+                                                                                fi
+                                                                                     fi
+                                                                                          fi
+                                                                                                   fi
+                                                                                                        fi
+                                                                                                             fi
+                                                                                                                  fi
+                                                                                                                       fi
+                                                                                                                            fi
+                                                                                                                                 fi
+                                                                                                                                      fi
+                                                                                                                                           fi
+                                                                                                                                                 fi
+                                                                                                                                                 fi
+                                                                                                                                                         fi
+                                                                                                                                                                 fi
+installare l’omonima suite, oggi non è più disponibile ed i pacchetti Abiword e Gnumeric hanno i loro
+rispettivi pacchetti. La localizzazione di Libre-Of ce è distribuita in diversi pacchetti, in particolare
+in libreoffice-l10n-* e libreoffice-help-*. Alcune funzionalità come il dizionario per il
+controllo ortogra co, le regole attinenti alla divisione in sillabe ed i thesaurus [l’insieme delle parole
+chiave o descrittori che consentono le ricerche in vocabolari o elenchi di sinonimi e contrari] sono
+anch’essi disponibili in pacchetti separati, tra cui myspell-*, hunspell-*, hyphen-* e mythes-*.
+
+
+13.9. Emulazione di Windows: Wine
+
+Nonostante i precedenti sforzi menzionati, purtroppo diversi strumenti non sono ancora disponibili
+in Linux, pertanto potreste avere l’esigenza di usufruire delle loro versioni originali. In questo caso
+avrete la necessità di emulare Windows via software. Uno dei sistemi di emulazione più popolari è
+Wine.
+
+  https://www.winehq.org/
+
+
+                           CrossOver è stato prodotto da CodeWeavers ed è una raccolta di migliorie per Wine
+  INFORMAZIONE
+     ACCESSORIA            per ampliarne le funzionalità già disponibili ed inerenti all’emulazione in modo da
+ CrossOver Linux           rendere gli strumenti di Microsoft Of ce pienamente utilizzabili. Le suddette
+                           migliorie vengono integrate periodicamente in Wine.
+
+                             https://www.codeweavers.com/products/
+
+
+Tuttavia, dovrete tenere a mente che Wine è soltanto una delle tante soluzioni a vostra disposizione
+e che altre soluzioni potrebbero essere più ef cienti per le vostre problematiche come ad esempio
+una macchina virtuale o VNC; troverete maggiori informazioni riguardo a quest’ultime due soluzioni
+nelle seguenti caselle di testo "Macchine virtuali" a pagina 397 e "Windows Terminal Server o VNC" a
+pagina 397.
+
+Occorre brevemente ribadire che: un'emulazione consente di eseguire un programma (sviluppato ad
+per un target system [in altre parole un sistema terzo] ) su un host system [un sistema che offre
+servizi ad utenti o ad altri sistemi]. Il software di emulazione utilizza l’host system, attraverso cui
+vengono messe in esecuzione le applicazioni, imitando le caratteristiche e le funzionalità del target
+system.
+
+Per procedere all’installazione dei seguenti pacchetti eseguite il sottostante script (si precisa che
+ttf-mscorefonts-installer appartiene alla sezione contrib):
+
+# apt install wine ttf-mscorefonts-installer
+
+Per eseguire le applicazioni Windows a 32 bit su un sistema a 64 bit (amd64) dovrete attivare la
+funzionalità multi-arch per poter installare il pacchetto wine32 destinato all’architettura i386 (per
+maggiori informazioni andate a leggere il paragrafo 5.4.5 “Supporto Multi-Arch” a pagina 101).
+
+L'utente dovrà poi eseguire winecfg ed individuare le posizioni (in Debian) assegnate ai drives
+(Windows). winecfg è con gurato con impostazioni prede nite adeguate e può rilevare
+automaticamente più drives; se avete con gurato il vostro sistema in dual boot, onde evitare di
+sovrascrivere, perdere dati importanti o rendere del tutto inutilizzabile la partizione Windows, non è
+consigliabile assegnare come partizione Windows di Wine in Debian il drive C:. Potrete lasciare le
+altre impostazioni con gurate con i valori prede niti. Per eseguire i programmi Windows con wine,
+dovrete prima installarli eseguendo il loro programma di installazione (Windows) sotto Wine, ad
+esempio con il comando wine .../setup.exe; dopodiché una volta installato il programma, potrete
+metterlo in esecuzione attraverso Wine con il comando wine .../program.exe.
+
+
+
+
+Pagina 396 Il Manuale dell’Amministratore di Debian TDAH_2.0
+     fi
+           fi
+                fi
+                      fi
+                                 fi
+                                      fi
+                                           fi
+                                                fi
+                                                     fi
+La posizione esatta di program.exe dipende dal mapping sull'unità C:; tuttavia, nella maggior parte
+dei casi, è suf ciente eseguire wine program per implementare il programma, dato che Wine
+ispezionerà, dopo l’esecuzione del precedente comando, la posizione prede nita.
+
+
+
+  SUGGERIMENTO            In alcuni casi, winecfg (che è solo un wrapper) potrebbe non funzionare. Il work-
+ Un work-around           around in questi casi per aggirare il soprastante malfunzionamento è eseguire
+                          manualmente il comando completo:
+ se winecfg non
+                          wine64 /usr/lib/x86_64-linux-gnu/wine/wine/winecfg.exe.so o wine32 /
+ funziona                 usr/lib/i386-linux-gnu/wine/wine/winecfg.exe.so.
+
+
+
+Prima di fare af damento a Wine o a soluzioni simili, dovrete effettuare tutte le veri che del caso
+personalmente: soltanto un test, in cui la messa in esecuzione è effettiva, può stabilire se
+l’emulazione è una soluzione pienamente ef ciente.
+
+
+   ALTERNATIVA            Invece di emulare il sistema operativo Microsoft, in alternativa potrete utilizzare
+ Macchine virtuali        una macchina virtuale che emula una macchina hardware completa. In questo
+                          modo potrete installare qualsiasi sistema operativo a prescindere. Il Capitolo 12,
+                          "Amministrazione avanzata" a pagina 328 descrive diversi sistemi di
+                          virtualizzazione, in particolare Xen e KVM (ma anche QEMU, VMWare e Bochs).
+
+
+
+
+    ALTERNATIVA           Un'ultima soluzione che potreste prendere in considerazione è eseguire da remoto le
+ Windows                  applicazioni legacy di Windows su un central server con Windows Terminal Server
+ Terminal Server          ed accedere alle suddette applicazioni dalle macchine Linux attraverso rdesktop.
+                          rdesktop è un Linux client per il protocollo RDP (Remote Desktop Protocol)
+ o VNC
+                          utilizzato da Windows NT/2000 Terminal Server per trasmettere il desktop alle
+                          machine remote.
+                          Il software VNC offre funzioni simili ed è compatibile con diversi sistemi operativi. I
+                          clients ed i servers Linux VNC sono descritti nel paragrafo 9.2, “Remote Login” a
+                          pagina 207.
+
+
+
+13.10. Real-Time Communication Software
+
+Debian offre un'ampia raccolta di Real-Time Communication Client (RTC). La con gurazione dei
+servers RTC è già stata descritta nel paragrafo 11.8 “Real-Time Communication Service” a pagina
+320. Nel gergo SIP (Session Initiation Protocol), un'applicazione client o un dispositivo vengono
+genericamente de niti user agent.
+
+Le applicazioni client non hanno tutte le stesse funzionalità. Alcune applicazioni sono più indicate
+per gli utenti delle chats ad alta intensità, mentre altre offrono una migliore stabilità per chi impiega
+le webcams. Pertanto è consigliabile testare le diverse applicazioni per individuare quelle che meglio
+soddisfano le proprie esigenze. Difatti un utente potrebbe avere necessità di più applicazioni, ad
+esempio di un'applicazione XMPP per i messaggi istantanei con la clientela e di un’applicazione IRC
+per collaborare con le comunità online.
+
+Per gli utenti che desiderano massimizzare i propri mezzi di comunicazione con il resto del mondo, è
+consigliabile che con gurino sia un SIP client, sia un XMPP client oppure che con gurino entrambi i
+protocolli su un singolo client.
+
+Le impostazioni prede nite dell’ambiente desktop GNOME includono il client per le comunicazioni
+Empathy. Empathy è compatibile sia con il protocollo SIP, sia con il protocollo XMPP. Difatti offre:
+messaggistica istantanea (IM); servizi voce e video.
+
+
+
+
+                                                      TDAH_2.0      Capitolo XIII - Workstation Pagina 397
+ fi
+      fi
+           fi
+                fi
+                     fi
+                                  fi
+                                                                      fi
+                                                                             fi
+                                                                             fi
+                                                                                  fi
+     Il progetto KDE include KDE Telepathy, un client per le comunicazioni che si basa sull’API di
+     Telepathy, che a sua volta viene anche impiegato dal client Empathy di GNOME.
+     Le alternative più popolari per Empathy/Telepathy sono Ekiga, Linphone, Psi e Jami
+     (precedentemente conosciuto come Ring).
+
+     Alcune di queste applicazioni possono interagire anche con i mobile users attraverso le apps, come
+     ad esempio Lumicall su Android.
+
+       https://lumicall.org
+
+     La Real-Time Communication Quick Start Guide include un capitolo dedicato al client software.
+
+       http://rtcquickstart.org/guide/multi/useragents.html
+
+
+       SUGGERIMENTO             Alcuni RTC clients hanno problematiche persistenti durante la trasmissione voce e
+      Scegliete i clients       video attraverso rewall e reti NAT. Le anomalie più frequenti sono: le ghost calls (o
+                                phantom calls), chiamate in cui il telefono del destinatario squilla, ma quest’ultimo
+      che supportano            non è in grado di sentire il mittente dall’altro capo della chiamata; la totale
+      ICE e TURN                impossibilità di effettuare chiamate.
+                                I protocolli ICE e TURN sono stati sviluppati per risolvere questi problemi. Per
+                                migliorare l’esperienza utente dovrete con gurare un server TURN con un indirizzo
+                                IP pubblico in ogni sito ed utilizzare un client software che supporti entrambi i
+                                protocolli (ICE e TURN).
+                                Non avrete necessità del supporto dei protocolli ICE e TURN se intendete utilizzare
+                                il client software soltanto per la messaggistica istantanea.
+
+
+
+     Gli sviluppatori Debian sostengono per la comunità un servizio SIP su rtc.debian.org (https://
+     rtc.debian.org). La comunità gestisce anche un wiki con la documentazione su come con gurare la
+     maggior parte delle applicazioni client disponibili in Debian. Gli articoli wiki e gli screenshots vi
+     potranno servire per con gurare qualsiasi servizio equipollente su un vostro dominio privato.
+
+       https://wiki.debian.org/Uni edCommunications/DebianDevelopers/UserGuide
+
+
+         ALTERNATIVA            Oltre ai servizi SIP e XMPP potreste prendere in considerazione un IRC. L’IRC si
+      Internet Relay            basa maggiormente sul concetto di canale, con nomi che iniziano tipicamente con il
+                                simbolo del cancelletto #. Ciascun canale tratta un topic (argomento) ed un insieme
+      Chat (IRC)
+                                di persone può partecipare alla discussione (o all’occorrenza due utenti possono
+                                comunicare privatamente). Il protocollo IRC, essendo ormai obsoleto, non offre la
+                                possibilità di criptare i messaggi end-to-end; in ogni caso è possibile crittografare le
+                                comunicazioni tra gli utenti ed il server attraverso il tunneling del protocollo IRC
+                                tramite SSL.
+                                I clients IRC sono più complessi da gestire ed offrono diverse funzionalità con usi
+                                limitati nel mondo degli affari. Ad esempio gli “operators” (operatori) del canale
+                                sono utenti con incarichi di sorveglianza in modo che la conversazione rimanga
+                                paci ca e che possono escludere da un canale altri utenti o persino bloccarli
+                                permanentemente impedendogli di partecipare alla chat.
+                                Dato che il protocollo IRC è ormai datato, diversi clients sono già disponibili per
+                                venire incontro alle più disparate esigenze degli utenti: ad esempio XChat o Smuxi
+                                (clients con interfaccia gra ca basati su GTK+), Irssi (in modalità testuale), Erc
+                                (integrato con Emacs), ecc.
+
+
+
+
+     Pagina 398 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+        fi
+                 fi
+                      fi
+                           fi
+                                  fi
+                                                                                            fi
+                Parole chiave
+     Firewall
+     Net lter
+     nftables
+     IDS/NIDS
+fi
+
