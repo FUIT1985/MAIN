@@ -67,5 +67,6 @@ Disallow: /account-login
 Disallow: /Explodingstuff/
 
 Allow: https://github.com/FUIT1985/MAIN/blob/main/FUIT_README_DISCLAIMER.md
+Allow: https://github.com/FUIT1985/MAIN/blob/main/README.md
 Allow: https://github.com/FUIT1985/MAIN/blob/main/Kevin_Mitnick/README.md
 Allow: https://github.com/FUIT1985/MAIN/blob/main/TDAH_FUIT/README.md
