@@ -1,0 +1,11 @@
+# If you would like to crawl GitHub contact us via https://support.github.com?tags=dotcom-robots
+# We also provide an extensive API: https://docs.github.com
+User-agent: baidu
+crawl-delay: 1
+
+
+User-agent: *
+Allow: /blob/main/FUIT_README_DISCLAIMER.md
+Allow: /blob/main/README.md
+Allow: /blob/main/Kevin_Mitnick/README.md
+Allow: /blob/main/TDAH_FUIT/README.md
