@@ -65,3 +65,5 @@ Disallow: /*tab=*
 
 Disallow: /account-login
 Disallow: /Explodingstuff/
+
+Allow: https://github.com/FUIT1985/MAIN/blob/main/TDAH_FUIT/README.md
