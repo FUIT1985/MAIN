@@ -66,7 +66,7 @@ Disallow: /*tab=*
 Disallow: /account-login
 Disallow: /Explodingstuff/
 
-Allow: /FUIT1985/MAIN/blob/main/FUIT_README_DISCLAIMER.md
-Allow: /FUIT1985/MAIN/blob/main/README.md
-Allow: /FUIT1985/MAIN/blob/main/Kevin_Mitnick/README.md
-Allow: /FUIT1985/MAIN/blob/main/TDAH_FUIT/README.md
+Allow: /blob/main/FUIT_README_DISCLAIMER.md
+Allow: /blob/main/README.md
+Allow: /blob/main/Kevin_Mitnick/README.md
+Allow: /blob/main/TDAH_FUIT/README.md
