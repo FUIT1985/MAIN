@@ -25,7 +25,7 @@ Devo precisare inoltre che: per quanto il passaparola possa essere fondamentale,
 
 Antonio Bonaccorso
 
-Bonaccorso
+
 
 ————————
 
