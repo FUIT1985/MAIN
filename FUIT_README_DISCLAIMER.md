@@ -24,3 +24,12 @@ LA DISTRIBUZIONE, IN FORMATO CARTACEO E NON, DELLE MIE TRADUZIONI NON UFFICIALI 
 Devo precisare inoltre che: per quanto il passaparola possa essere fondamentale, mi limiterò solo ad informare gli autori della documentazione sorgente dell'esistenza della mia traduzione non ufficiale (non sono un procacciatore d'affari); non ho delegato nessuno a mediare o a svolgere attività di promozione per mio conto o per il progetto in sé; lo scrivente, non per mancanza di volontà, bensì per mancanza di risorse (materiali e non) non potrà svolgere in alcun modo attività promozionali o investire risorse economiche o personali a fondo perduto nel presente progetto o in progetti terzi (anche qualora dovesse essere a rischio la sopravvivenza del progetto stesso o dei summenzionati progetti terzi); eventuali enti con proposte di collaborazione per lo scrivente o il progetto in sé, potranno fare riferimento ad un’email creata appositamente per loro e condivisa nella pagina github.com - https://github.com/FUIT1985; non verrà inserito in github.com alcun mio recapito personale (che condividerò con gli autori della documentazione sorgente, con i teams con cui loro collaborano e con gli enti interessati ai miei progetti, solo se mi faranno esplicita richiesta e dopo avermi dato modo di verificare che non si tratta di phishing); non è stato realizzato alcun sito ufficiale (o iscrizione a social networks) né per la mia persona, né per i miei progetti; potrete rivolgere i vostri apprezzamenti nei miei riguardi o nei riguardi del progetto in sé (sia che siate persone fisiche o non) direttamente agli autori della documentazione sorgente, nonché agli enti di cui fanno parte oppure ad enti terzi (di qualsiasi nazionalità) che sostengono il free software o che comunque nella loro attività (imprenditoriale o no-profit) oppure nelle vesti di pubblica amministrazione sono coinvolti anche in progetti open source, incentivando il mio operato attraverso il passaparola e sostenendo la sopravvivenza di "FUIT".
 
 Antonio Bonaccorso
+
+
+————————
+
+NEWS
+
+27 Marzo 2022 Il repository privato MAIN (ed indirettamente tutti i progetti correlati) è stato condiviso pubblicamente per consentire la consultazione di TDAH_FUIT.
+
+16 Aprile 2022. Per migliorare SEO e fruibilità dei servizi è stata creata una presentazione del progetto su WordPress.com. Per il momento i contenuti essenziali rimangono disponibili solo sui repositories github.com.
