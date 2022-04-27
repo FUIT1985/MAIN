@@ -2433,7 +2433,7 @@ Pagina 140 Il Manuale dell’Amministratore di Debian TDAH_2.0
                                    "guida" la macchina] possono tuttavia presentarsi comunque per le seguenti tre "sorgenti": possono
                                    essere generate dallo stesso APT; possono essere gestite da debconf; possono veri carsi da riga di
                                    comando come conseguenza agli scripts di con gurazione di un pacchetto (qualche volta gestiti da
-                                   ufc).
+                                   ucf).
 
 
                                    6.9.2 Come con gurare APT
