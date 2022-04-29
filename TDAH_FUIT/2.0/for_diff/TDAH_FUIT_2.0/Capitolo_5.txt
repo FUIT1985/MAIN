@@ -1,0 +1,2023 @@
+     Packaging System
+     (Sistema Gestione dei
+     Pacchetti): Strumenti
+     e Principi
+     Fondamentali
+                                                                                          Capitolo 5
+     5. Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi                        pag. 77
+     Fondamentali
+             1. Struttura di un Pacchetto Binario                                                      pag. 78
+             2. La Meta-Informazione di un Pacchetto                                                   pag. 80
+                      1. Descrizione: il control File                                                  pag. 80
+                                1. Dipendenze: il Depends Field (il campo "Dipende da ...")            pag. 81
+                                2. Con itti: il Con icts Field (il campo "Entra in con itto            pag. 83
+                                con ...")
+                                3. Incompatibilità: il Breaks Field (il campo "Interrompe ...")        pag. 83
+                                4. Provided Items [Gli Oggetti Forniti]: il Provides Field (il         pag. 83
+                                campo "Fornisce ...")
+                                          1. Un esempio di un "Servizio fornito".                      pag. 84
+                                          2. L'intercambiabilità con un altro pacchetto.               pag. 84
+                                          3. Le limitazioni passate.                                   pag. 85
+                                5. Sostituzione dei Files: il Replaces Field (il campo                 pag. 86
+                                "Sostituisce ...")
+                      2. Scripts di Con gurazione                                                      pag. 86
+                                1. Installazione e Aggiornamento                                       pag. 87
+                                2. Rimozione di un Pacchetto                                           pag. 87
+                      3. Checksum, Elenco dei Files di Con gurazione                                   pag. 89
+             3. Struttura di un Pacchetto Sorgente                                                     pag. 90
+                      1. Struttura                                                                     pag. 90
+                      2. Utilizzo in Debian                                                            pag. 93
+             4. Manipolazione dei Pacchetti con dpkg                                                   pag. 94
+                      1. Installazione dei Pacchetti                                                   pag. 94
+                      2. Rimozione di un Pacchetto                                                     pag. 96
+                      3. Querying (Richieste) per il Database di dpkg ed ispezione dei                 pag. 97
+                      Files .deb
+                      4. Il Log File di dpkg                                                          pag. 101
+                      5. Supporto Multi-Arch                                                          pag. 102
+                                1. Abilitare Multi-Arch                                               pag. 102
+                                2. I cambiamenti dovuti a Multi-Arch                                  pag. 103
+             5. Coesistenza con altri Packaging Systems                                               pag. 104
+
+     <<Nelle vesti di Amministratore di Sistema, gestirete abitudinariamente i pacchetti .deb, in quanto
+     destinati a relative unità funzionali (applicazioni, documentazione, ecc.), delle quali vi faciliteranno
+     l'installazione e la manutenzione. È bene pertanto conoscere cosa sono e come usufruirne.>>
+fl
+        fi
+             fl
+                             fi
+                                             fl
+               Questo capitolo descrive la struttura ed i contenuti dei pacchetti binari e dei pacchetti sorgente. I
+               pacchetti binari sono les, che si possono usare direttamente con dpkg, mentre i pacchetti
+               sorgente includono il codice sorgente, ossia le istruzioni necessarie per montare i pacchetti binari.
+
+               5.1 Struttura di un Pacchetto Binario
+
+               Il formato di un pacchetto Debian è concepito in modo che i suoi contenuti possano essere estratti in
+               qualsiasi sistema Unix, che abbia i classici comandi: ar, tar e gzip (talvolta xz o bzip2). Questa
+               qualità, sebbene possa sembrare futile, garantisce la portabilità ed il disaster recovery.
+
+               [Il "porting", in informatica è il processo di adattamento, del software e/o dell'hardware, eseguito allo scopo di
+               renderli compatibili a destinazioni (usi e/o ambienti) differenti rispetto a quelli originari. Di conseguenza in
+               questo caso la "portabilità" di un pacchetto indica "quanto e se" possa essere compatibile ad usi o ad ambienti
+               differenti rispetto a quelli nativi.
+               Il "Disaster Recovery", in informatica ed in particolare nell'ambito della sicurezza informatica, è l'insieme di
+               contromisure, tecnologiche e logistico-organizzative, impiegate per garantire l'erogazione continua di servizi (di
+               attività commerciali, associazioni, enti, amministrazioni, ecc.), nonostante il sopraggiungere di gravi
+               esternalità, dovute ad errore umano o ad eventi accidentali. Il "Disaster Recovery Plan (DRP)" è solitamente il
+               documento che esplicita tali contromisure ed è incluso nel "Business Continuity Plan (BCP)", ossia nel piano che
+               de nisce il livello minimo di qualità dei servizi erogati, da garantire obbligatoriamente anche in contesti
+               de citari e/o precari].
+
+               Immaginate ad esempio, che erroneamente abbiate cancellato il programma dpkg e che non possiate
+               più installare i pacchetti Debian. Essendo lo stesso dpkg un pacchetto Debian, uno sprovveduto
+               istintivamente potrebbe credere che il suo sistema sia stato realizzato appositamente per [i
+               pacchetti Debian]. Diversamente da questi, per fortuna, conoscete le proprietà del formato di un
+               pacchetto, dunque sapete che potete scaricarlo (https://www.debian.org/distrib/
+               packages#search_packages) ed installarlo manualmente (leggete al riguardo la casella di testo
+               "dpkg, APT e ar" a pagina 78). Se per qualche esternalità uno o più dei seguenti programmi "ar, tar o
+               gzip/xz/bzip2" dovessero cancellarsi, necessiterete soltanto di copiarli da un altro sistema (in
+               quanto ciascuno dei suddetti programmi funziona in modo completamente autonomo, senza
+               dipendenze e di conseguenza una semplice copia sarà suf ciente). E se per assurdo la fortuna vi
+               avesse girato le spalle al punto che il vostro sistema continui a non funzionare nonostante il
+               soprastante suggerimento (magari a causa della perdita di librerie fondamentali) dovrete fare
+               semplicemente riferimento alla versione "static" di busybox (inclusa nel pacchetto busybox-
+               static), in quanto più indipendente rispetto ai programmi sopracitati e poiché vi consentirà di
+               usufruire dei suoi sotto-comandi fra cui busybox ar, busybox tar e busybox xz.
+               Inoltre è consigliabile come misura proattiva contro eventi accidentali organizzare un back-up del
+               sistema (per maggiori informazioni fate riferimento al paragrafo 9.10 Backup a pag. 227).
+
+                    STRUMENTI                   dpkg è il programma che gestisce i les .deb (pacchetti binari), speci catamente la
+                          TOOLS                 loro estrazione, analisi e “spacchettamento”.
+                                                APT (acronimo di Advanced Packaging Tool) è un gruppo di programmi che
+                dpkg, APT e ar
+                                                consente di mettere in atto delle rilevanti modi che (tipiche di un tool di Alto
+                                                Livello), che hanno in uenza sull’intero sistema: effettua l’installazione e la
+                                                rimozione dei pacchetti (mantenendo nel contempo soddisfatte le dipendenze),
+                                                aggiorna il sistema, crea una lista di pacchetti al bisogno disponibili, ecc.
+                                                Il programma archiver noto come ar consente la gestione dei les richiamandoli
+                                                semplicemente attraverso il loro stesso nome, ad esempio: ar t archive mostra
+                                                l’elenco dei les contenuti nell’archivio denominato “archive”, presente nella stessa
+                                                directory da cui avete fatto partire il comando; ar x archive estrae i les contenuti
+                                                nell’archivio denominato “archive”, nella stessa directory da cui avete fatto partire
+                                                il comando, dove tra l’altro si trova lo stesso archivio; ar d archive file cancella il
+                                                  le denominato “ le” dall’archivio denominato “archive”, presente nella stessa
+                                                directory da cui avete fatto partire il comando; e così via ... La sua man page
+                                                [ar(1)] documenta tutte le sue altre funzioni.
+                                                Occorre precisare che l’archiver ar è un tool rudimentale, che solitamente un
+                                                amministratore Unix non utilizza spesso, se non per rare occasioni o necessità, in
+                                                quanto preferisce utilizzare tar, per di più con una certa regolarità, essendo fra i
+                                                due il programma [di gestione les ed archivi] più moderno ed evoluto. Infatti
+                                                grazie a tar è possibile ripristinare un le dpkg, cancellato a causa di un evento
+                                                accidentale. Dovrete soltanto scaricare il pacchetto Debian ed estrarre tramite tar il
+                                                contenuto dell’archivio data.tar.xz nella directory root del sistema (/):
+
+                                                # ar x dpkg_1.19.7_amd64.deb
+                                                # tar -C / -p -xJf data.tar.xz
+
+               Pagina 78 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+     fi
+     fi
+          fi
+                  fi
+                       fl
+                            fi
+                                 fi
+                                      fi
+                                           fi
+                                                       fi
+                                                                      fi
+                                                                           fi
+                                                                                fi
+                                                                                     fi
+             BASILARE               La notazione di man page può confondere i neo ti che la incontrano per la prima
+      Man Page: la                  volta, in particolare quando la manualistica la richiama per citare un programma
+      notazione                     come ad esempio: “ar(1)”. In questo caso si riferisce alla pagina man page dedicata
+                                    ed intitolata ar nella sezione 1.
+                                    In realtà la notazione di man page viene comunemente utilizzata per rimuovere le
+                                    ambiguità, ovvero per distinguere le pagine omonime di sezioni diverse come ad
+                                    esempio nel caso di printf(1), nella sezione 1 e dedicata al comando printf, e di
+                                    printf(3), nella sezione 3 e dedicata alla funzione printf in C (linguaggio di
+                                    programmazione).
+                                    Il capitolo 7 “Come risolvere le problematiche e trovare le informazioni adeguate” a
+                                    pagina 148 tratta le man pages dettagliatamente (andate anche a vedere il
+                                    paragrafo 7.1.1, “Manual Pages” a pagina 148).
+
+
+     Adesso veri cate il contenuto di un le .deb:
+
+     $ ar t dpkg_1.19.7_amd64.deb
+     debian-binary
+     control.tar.gz
+     data.tar.xz
+     $ ar x dpkg_1.19.7_amd64.deb
+     $ ls
+     control.tar.gz data.tar.xz debian-binary dpkg_1.19.7_amd64.deb
+     $ tar tJf data.tar.xz | head -n 16
+     ./
+     ./
+     ./etc/
+     ./etc/alternatives/
+     ./etc/alternatives/README
+     ./etc/cron.daily/
+     ./etc/cron.daily/dpkg
+     ./etc/dpkg/
+     ./etc/dpkg/dpkg.cfg
+     ./etc/dpkg/dpkg.cfg.d/
+     ./etc/logrotate.d/
+     ./etc/logrotate.d/alternatives
+     ./etc/logrotate.d/dpkg
+     ./sbin/
+     ./sbin/start-stop-daemon
+     ./usr/
+     ./usr/bin/
+     $ tar tJf control.tar.xz
+     ./
+     ./conffiles
+     ./control
+     ./md5sums
+     ./postinst
+     ./postrm
+     $ cat debian-binary
+     2.0
+
+     Come potrete notare, l'archivio ar è composto da tre les:
+
+
+
+
+       TDAH_2.0   Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 79
+fi
+                               fi
+                                          fi
+                                                      fi
+     • debian-binary. Questo è un le text che semplicemente indica la versione del le .deb utilizzata
+     (ad esempio, in Debian Buster, ancora la versione 2.0);
+     • control.tar.xz. Questo le d'archivio contiene tutte le meta-informazioni disponibili, tra cui il
+     nome e la versione del pacchetto, nonché gli scripts che devono essere eseguiti prima, durante o
+     dopo l’installazione (o disinstallazione) dello stesso pacchetto. Alcune di queste meta-informazioni
+     sono necessarie af nché gli strumenti di gestione dei pacchetti possano valutare se è possibile
+     installare o disinstallare un pacchetto, ad esempio in base all'elenco dei pacchetti già installati sulla
+     macchina;
+     •data.tar.xz, data.tar.bz2, data.tar.gz. Questo archivio contiene tutti i les che devono
+     essere estratti dal pacchetto; ovvero contiene i les eseguibili, librerie la documentazione, ecc..
+     Qualche pacchetto può essere in un altro formato di compressione ed in tal caso il nome del le
+     d'archivio che lo riguarderà lo dichiarerà esplicitamente (ad esempio data.tar.bz2 per bzip2,
+     data.tar.xz per xz, data.tar.gz per gzip).
+
+
+     5.2 La Meta-Informazione di un Pacchetto
+
+     Il pacchetto Debian non è solo un archivio di les destinato all'installazione. Bensì è una componente
+     di una vasta struttura organizzata, tanto che questi de nisce anche il suo “rapporto” con gli altri
+     pacchetti Debian (requisiti, dipendenze, con itti e suggerimenti). Inoltre i suoi scripts consentono
+     l'esecuzione dei comandi relativi al ciclo di vita dello stesso pacchetto (installazione, aggiornamenti,
+     rimozione). I soprastanti dati sono usati dallo strumento di gestione dei pacchetti, ma non fanno
+     parte del software “impacchettato”; altri non sono che meta-informazione [o metadato,
+     letteralmente "(dato) per mezzo di un (altro) dato"], contenuta all'interno del pacchetto.
+
+
+     5.2.1 Descrizione: il control File
+
+     Questo le usa una struttura simile agli headers email (struttura, nel caso degli headers email,
+     stabilita dallo standard RFC 2822) descritta sia nella Debian Policy, sia nelle manual pages deb-
+     control(5) e deb822(5).
+
+       https//www.debian.org/doc/debian-policy/ch-control elds.html
+
+     Ad esempio, il le control di apt si presenta in questo modo:
+
+     apt-cache show apt
+     Package: apt Version: 1.8.2
+     Installed-Size: 4064
+     Maintainer: APT Development Team <deity@lists.debian.org>
+     Architecture: amd64
+     Replaces: apt-transport-https (<< 1.5~alpha4~), apt-utils (<< 1.3~exp2~) Provides: apt-
+     transport-https (= 1.8.2)
+     Depends: adduser, gpgv | gpgv2 | gpgv1, debian-archive-keyring, libapt-pkg5.0 (>=
+     -> 1.7.0~alpha3~), libc6 (>= 2.15), libgcc1 (>= 1:3.0), libgnutls30 (>= 3.6.6),
+     -> libseccomp2 (>= 1.0.1), libstdc++6 (>= 5.2)
+     Recommends: ca-certificates
+     Suggests: apt-doc, aptitude | synaptic | wajig, dpkg-dev (>= 1.17.2), gnupg | gnupg2
+     -> | gnupg1, powermgmt-base
+
+
+
+
+     Pagina 80 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+       fi
+            fi
+                       fi
+                            fi
+                                         fl
+                                              fi
+                                                   fi
+                                                        fi
+                                                             fi
+                                                                           fi
+                                                                                fi
+                                                                                        fi
+Breaks: apt-transport-https (<< 1.5~alpha4~), apt-utils (<< 1.3~exp2~), aptitude
+(<< -> 0.8.10)
+Description-en: commandline package manager
+  This package provides commandline tools for searching and
+  managing as well as querying information about packages
+  as a low-level access to all features of the libapt-pkg library.
+.
+These include:
+* apt-get for retrieval of packages and information about them
+   from authenticated sources and for installation, upgrade and
+   removal of packages together with their dependencies
+* apt-cache for querying available information about installed
+   as well as installable packages
+* apt-cdrom to use removable media as a source for packages
+* apt-config as aninterface to the configuration settings
+* apt-key as an interface to manage authentication keys
+Description-md5: 9fb97a88cb7383934ef963352b53b4a7
+Tag: admin::package-management, devel::lang:ruby, hardware::storage,
+  hardware::storage:cd, implemented-in::c++, implemented-in::perl,
+  implemented-in::ruby, interface::commandline, network::client, protocol::ftp,
+  protocol::http, protocol::ipv6, role::program,
+  scope::application, scope::utility, suite::debian, use::downloading,
+  use::organizing, use::playing, use::searching, works-with-format::html,
+  works-with::audio, works-with::software:package, works-with::text
+Section: admin
+Priority: required
+Filename: pool/main/a/apt/apt_1.8.2_amd64.deb
+Size: 1418108
+MD5sum: 0e80dedab6ec1e66a8f6c15f1925d2d3
+SHA256: 80e9600822c4943106593ca5b0ec75d5aafa74c6130ba1071b013c42c507475e
+
+
+        BASILARE                RFC è l’acronimo di “Request for Comments”. Solitamente un documento “RFC” è un
+ RFC - Internet                 documento tecnico il cui contenuto descrive un potenziale internet standard.
+ Standards                      Prima che questi vengano standardizzati o ibernati sono sottoposti ad una revisione
+                                pubblica (modalità da cui ha origine il termine “RFC”). Lo IETF (Internet
+                                Engineering Task Force) decide lo status, e quindi la promozione o il declassamento
+                                da uno status ad un altro, di questi documenti (proposed standard, draft standard,
+                                o standard).
+                                Il documento RFC 2026 de nisce il processo di standardizzazione dei protocolli
+                                internet.
+                                   http://www.faqs.org/rfcs/rfc2026.html
+
+
+
+5.2.1.1 Dipendenze: il Depends Field (il campo “Dipende da...")
+
+Le dipendenze vengono dichiarate attraverso il Depends Field nell'header del pacchetto. Il Depends
+Field è un elenco di condizioni che devono essere soddisfatte per poter far funzionare il pacchetto
+correttamente - queste informazioni sono usate dai programmi come apt per installare le librerie, gli
+strumenti, drivers necessari nella loro versione più idonea, ovvero nella versione che al meglio
+soddisfa le dipendenze del pacchetto che deve essere installato.
+Difatti, attraverso il Depends Field, è possibile soddisfare le dipendenze limitando di fatto il numero
+di versioni che assecondano l'elenco delle suddette condizioni. Ad esempio, attraverso il Depends
+Field è possibile dichiarare che il pacchetto ha bisogno del pacchetto 1ibc6 nella versione maggiore
+di o uguale alla "2.15" [che si scrive "libc6 (>=2.15)"]. Gli operatori di relazione (o di confronto)
+
+
+
+
+  TDAH_2.0        Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 81
+             fi
+           [l'operatore, in informatica, è il simbolo che speci ca quale legge applicare ad uno o più operandi per
+           generare un risultato] utilizzati per de nire le versioni sono i seguenti:
+
+           • <<: minore di;
+           • <=: minore di o uguale a;
+           • =: uguale a (vi facciamo notare che la versione "2.6.1" non è uguale alla versione "2.6.1-1");
+           • >=: maggiore di o uguale a;
+           • >>: maggiore di.
+
+           [Un connettivo logico o operatore logico è un elemento grammaticale di collegamento che instaura
+           fra due proposizioni A e B una qualche relazione che dia origine ad una terza proposizione C con un
+           valore vero o falso, in base ai valori delle due proposizioni fattori ed al carattere del connettivo
+           utilizzato.]
+
+           In un elenco di condizioni da soddisfare, la virgola viene impiegata per i delimiter-separated values
+           (o DSV) ossia viene utilizzata per delimitare i valori separati. Deve essere interpretata come una
+           congiunzione logica "e" (and). [Ad esempio i le "CSV" o "comma-separated values" devono il loro
+           nome alla loro struttura dove i valori separati sono delimitati da una virgola]. Inoltre nel suddetto
+           elenco di condizioni viene anche utilizzato come delimitatore la "pipe" o "vertical bar" ("|"), che può
+           essere assunta come disgiunzione inclusiva "o" (or) [detta anche "disgiunzione logica"] e non come
+           una "disgiunzione esclusiva" (in latino "aut/aut" — "o/o"). Nelle proposizioni, del summenzionato
+           elenco di condizioni, la disgiunzione inclusiva "o" può essere utilizzata tutte le volte di cui se ne ha
+           bisogno ed ha un ordine di priorità maggiore rispetto ad una congiunzione logica "e". Pertanto la
+           dipendenza "(A o B) e C" verrà espressa nel seguente modo: "A|B, C". Diversamente l'enunciato "A o
+           (B e C)" dovrà essere espresso come "(A o B) e (A o C)" ovvero in "A|B, A|C", dal momento che il
+           Depends Field rispetta l'ordine di priorità degli operatori logici e non consente che le parentesi siano
+           usate per violare tale ordine.
+              https://www.debian.org/doc/debian-policy/#document-ch-relationships.html
+           Il sistema delle dipendenze rappresenta un buon metodo organizzativo per garantire il corretto
+           funzionamento dei programmi e grazie ai "meta-packages" ha anche un ulteriore scopo. Difatti questi
+           pacchetti sono vuoti, descrivono solo le dipendenze e sono impiegati singolarmente per facilitare
+           l'installazione di un consistente gruppo di programmi prede nito dal manutentore dello stesso meta-
+           package; di conseguenza, il comando apt install meta-package installerà tutti i programmi
+           automaticamente semplicemente soddisfacendo le dipendenze del meta-pacchetto. gnome, kde-
+           full e linux-image-amd64 sono esempi di meta-pacchetto.
+
+             DEBIAN POLICY                   I elds Recommends e Suggests descrivono delle dipendenze che in realtà non sono
+            I elds:                          obbligatorie. Le dipendenze “raccomandate” sono le più importanti e migliorano
+            Recommends [Le                   considerevolmente le funzionalità messe a disposizione dal pacchetto, ma non sono
+                                             indispensabili per il suo funzionamento. Le dipendenze “consigliate” sono al
+            Dipendenze                       contrario di importanza secondaria e noti cano che alcuni pacchetti possono
+            Raccomandate],                   integrare ed incrementare l’utilità del pacchetto in questione, ma è
+            Suggests [Le                     comprensibilmente ragionevole non installare tutti i pacchetti consigliati,
+            Dipendenze                       se non addirittura limitarsi all’installazione di uno soltanto.
+            Consigliate] e                   Dovreste installare invece sempre i pacchetti “raccomandati”, a meno che non
+                                             abbiate la certezza che non siano necessari. Infatti APT installa i pacchetti
+            Enhances                         raccomandati per impostazione prede nita a meno che non lo abbiate impostato
+            [Ulteriori                       diversamente. Inoltre non è essenziale installare i pacchetti “consigliati” a meno
+            Suggerimenti per                 che non abbiate la certezza che siano indispensabili. Il funzionamento di apt può
+            migliorare le                    essere gestito attraverso le opzioni di con gurazione APT::Install-Recommends e
+            Dipendenze]                      APT::Install-Suggests oppure le corrispondenti opzioni da riga di comando --
+                                             [no-]install-recommends and --[no]install-suggests.
+                                             Anche il eld Enhances espone dei suggerimenti, ma che riguardano altro. Il
+                                             miglioramento proposto di fatto risiede nel pacchetto suggerito e non nel pacchetto
+                                             che bene cia dei suggerimenti. La sua utilità consiste nella possibilità di poter
+                                             aggiungere un ulteriore “suggerimento” senza essere obbligati a modi care il
+                                             pacchetto coinvolto. Pertanto, tutti gli add-ons [i componenti aggiuntivi], i plugins [i
+                                             programmi non autonomi che interagiscono con un altro programma per ampliarne
+                                             o estenderne le funzionalità originarie] e le altre estensioni di un programma
+                                             possono essere elencati fra i suggerimenti pertinenti al software. Quest’ultimo eld,
+                                             pur esistendo da diversi anni è ancora solitamente ignorato dai programmi come
+                                             apt o synaptic. Inoltre lo scopo del eld Enhances è anche proporre all’utente
+                                             ulteriori suggerimenti, attraverso uno speci co eld in aggiunta ai tradizionali
+                                             suggerimenti che si trovano nel eld Suggests.
+
+           Pagina 82 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+ fi
+      fi
+      fi
+                              fi
+                                   fi
+                                        fi
+                                              fi
+                                                   fi
+                                                        fi
+                                                             fi
+                                                                  fi
+                                                                       fi
+                                                                            fi
+                                                                                 fi
+                                                                                      fi
+                                                                                           fi
+                     DEBIAN POLICY                          Le “pre-dipendenze”, che sono elencate nel eld “Pre-depends” negli headers dei
+                    Pre-Depends, le                         pacchetti, completano le normali dipendenze; la loro sintassi è identica [alle
+                    Dipendenze più                          normali dipendenze]. Le dipendenze normali si limitano ad imporre che lo
+                                                            spacchettamento e la con gurazione del pacchetto che attenzionano sia eseguito
+                    gravose [per apt]                       prima della con gurazione del pacchetto che ne dichiara la dipendenza. Le pre-
+                                                            dipendenze, invece, stabiliscono che lo spacchettamento e la con gurazione del
+                                                            pacchetto che attenzionano sia eseguito prima dello script di pre-installazione del
+                                                            pacchetto che ne dichiara la dipendenza, ovvero prima della sua stessa
+                                                            installazione.
+                                                            Una pre-dipendenza è più “gravosa” per apt, in quanto impone un ulteriore obbligo
+                                                            “intransigibile” nella sua scaletta di pacchetti da installare. Se ne sconsiglia
+                                                            pertanto l’impiego a meno che non sia strettamente necessario. Ad ogni modo è
+                                                            caldamente consigliato consultarsi con altri sviluppatori su debian-
+                                                            devel@lists.debian.org prima del suo impiego. Solitamente è possibile evitarne l’uso
+                                                            ricercando un’altra soluzione come un work-around [in informatica un work-
+                                                            around è una x transitoria in attesa che si possa trovare una soluzione con il
+                                                            metodo tradizionale].
+
+
+
+
+          5.2.1.2. Con itti: il Con icts Field (il campo "Entra in con itto con...")
+
+          Il Con icts Field dichiara se e quando un pacchetto non può essere installato simultaneamente con
+          un altro. Le ragioni scaturenti più consuete sono che: l'altro pacchetto comprende un le con lo
+          stesso nome o path (percorso); l'altro pacchetto fornisce lo stesso servizio sullo stesso port TCP; i
+          pacchetti, se installati simultaneamente, intralciano vicendevolmente le rispettive funzioni.
+
+          Si precisa che dpkg non installerà mai un nuovo pacchetto che innesca un con itto con un pacchetto
+          già installato, a meno che il nuovo pacchetto non dichiari esplicitamente di essere in grado di
+          sostituirlo e, si reitera, che solo in tale evenienza dpkg accetterà di effettuare la sostituzione del
+          vecchio pacchetto già installato con quello nuovo. Invece apt seguirà sempre le vostre istruzioni: se
+          sceglierete di installare un nuovo pacchetto vi offrirà di disinstallare automaticamente i pacchetti
+          che presentano problemi.
+
+
+          5.2.1.3. Incompatibilità: il Breaks Field (il campo "Interrompe ...")
+
+          Il Breaks Field produce dei risultati simili al Con icts Field, ma ha un proposito speci co. Questo
+          campo avvisa l'utente che l'installazione di un pacchetto "interromperà" un altro pacchetto (o delle
+          speci che versioni di questi). Generalmente l'incompatibilità tra i due pacchetti è transitoria, inoltre
+          la combinazione tra i due pacchetti che ne determina l'incompatibilità è circostanziata a delle
+          speci che versioni.
+          Si precisa che dpkg si ri uterà di installare un pacchetto che interrompe un pacchetto già installato
+          e che apt, d'altronde, proverà a risolvere il problema aggiornando il pacchetto che potrebbe essere
+          "rotto" [broken - non funzionante] ad una versione più recente (che si presume sia stata nel
+          frattempo riparata e, di conseguenza, di nuovo compatibile).
+          Il soprammenzionato contesto potrebbe veri carsi a causa di aggiornamenti con vizi di
+          retrocompatibilità: ad esempio quando una nuova versione non supporta più alcune funzionalità
+          della versione precedente, innescando un malfunzionamento in un altro programma che si ritroverà
+          scoperto del dovuto sostegno. Il Breaks Field dovrebbe essere in grado teoricamente di tutelare
+          l'utente da tali problematiche.
+
+
+          5.2.1.4. Provided Items [Gli Oggetti Forniti]: il Provides Field (il campo "Fornisce ...")
+
+          Il Provides Field introduce un concetto davvero interessante ovvero quello dei "virtual packages". Il
+          virtual package ricopre diversi ruoli, di cui due di notevole in uenza. Il primo ruolo consiste
+
+
+
+
+                         TDAH_2.0             Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 83
+fi
+fi
+     fl
+          fi
+               fl
+                    fi
+                                    fi
+                                         fi
+                                              fl
+                                                               fi
+                                                                      fi
+                                                                           fl
+                                                                                      fi
+                                                                                           fl
+                                                                                            fl
+                                                                                                              fl
+                                                                                                                       fi
+                                                                                                                            fi
+          nell'associare il "virtual package" ad un servizio generico (da qui si intuisce le ragioni del nome del
+          campo "Provides Field" ossia "il pacchetto fornisce il servizio ..."). Il secondo ruolo invece consiste
+          nell'avvertire l'utente che un pacchetto è in grado di sostituire completamente un altro pacchetto,
+          soddisfacendo tra l'altro anche le dipendenze che il pacchetto replicato è in grado di soddisfare. Ciò
+          rende possibile realizzare un pacchetto sostitutivo senza vincoli sul suo nome.
+
+
+                DIZIONARIO                  Occorre distinguere i meta-packages dai virtual packages. I primi sono pacchetti
+           Meta-package e                   reali che includono un le .deb e la loro unica ragione d’esistere è la mera
+           virtual package                  dichiarazione delle dipendenze.
+                                            I pacchetti virtuali, diversamente, non esistono sicamente; sono solo un mezzo per
+                                            identi care i pacchetti reali ltrandoli in base ad un criterio logico che hanno in
+                                            comune (il servizio fornito, la compatibilità con un programma standard o con un
+                                            pacchetto preesistente, ecc.).
+
+
+
+          5.2.1.4.1 Un esempio di un "Servizio fornito".
+
+          Il caso che qui tratteremo sarà discusso dettagliatamente attraverso un esempio: tutti i servers mail
+          come post x o sendmail dichiarano di "fornire" il virtual package mail-transport-agent. Pertanto,
+          qualsiasi pacchetto che necessita questo servizio per funzionare (ad esempio un sistema di gestione
+          di mailing list, come smartlist o sympa) dichiarerà semplicemente nelle sue dipendenze di aver
+          bisogno di un mail-transport-agent anziché speci care un'ampia e probabilmente insoddisfacente
+          lista di possibili soluzioni (post x|sendmail|exim4| ...). È bene ribadire che non ha senso installare
+          due servers mail sulla stessa macchina, per cui ciascuno di questi pacchetti di servers mail
+          dichiarerà a sua volta un con itto con lo stesso virtual package mail-transport-agent
+          individualmente fornito. Nell'atto pratico durante l'installazione, di uno di questi pacchetti di servers
+          mail (premesso che non ci siano già altri servers mail installati sulla stessa macchina) o di uno di
+          questi pacchetti che necessitano di un mail-transport-agent, tale con itto (ovvero il con itto di un
+          pacchetto con se stesso) sarà ignorato dal sistema e di conseguenza questo metodo impedirà
+          all'utente l'installazione di due servers mail contemporaneamente.
+
+
+            DEBIAN POLICY                   I nomi dei virtual packages devono essere concordati in modo da garantire la
+           L’elenco dei                     disponibilità. Per tale ragione sono standardizzati nella Debian Policy.
+           pacchetti virtuali               Nell’elenco sono inclusi tra l’altro: mail-transport-agent per i mail servers;
+                                            c-compiler per i compilatori in linguaggio di programmazione C; www-browser per i
+                                            web browsers; httpd per i web servers; ftp-server per i FTP servers; x-terminal-
+                                            emulator per i terminal emulators [gli emulatori di terminale o terminali virtuali]
+                                            in graphical mode [modalità gra ca] (xterm) e x-window-manager per i window
+                                            managers [i gestori delle nestre].
+                                            L’elenco completo può essere trovato sul web.
+                                               http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt
+
+
+
+          5.2.1.4.2 L'intercambiabilità con un altro pacchetto.
+
+          Il Provides Field ha la sua importanza anche in quei casi in cui il contenuto di un pacchetto è stato
+          ormai integrato in un pacchetto più grande. Per esempio, in passato il modulo Perl libdigest-md5-perl
+          era inizialmente un modulo opzionale per Perl 5.6, che poi è stato integrato come standard in Perl
+          5.8 (e nelle sue versioni successive, tra cui la versione 5.28 presente in Buster). Per questo il
+          pacchetto perl a partire dalla versione 5.8 presenta la seguente dichiarazione <<Provides Field:
+          libdigest-md5-perl>>, per far sì che le dipendenze che necessitano di questo pacchetto siano
+          soddisfatte dalla mera presenza di Perl 5.8 o delle sue versioni successive. Quindi il pacchetto
+          libdigest-md5-perl, modulo opzionale delle vecchie versioni di Perl ormai eliminate, può oggi a sua
+          volta essere eventualmente eliminato, non avendo più ragione di esistere.
+
+
+
+
+          Pagina 84 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+     fi
+                   fi
+                        fi
+                             fi
+                                  fl
+                                  fi
+                                       fi
+                                                    fi
+                                                          fi
+                                                                                fl
+                                                                                                     fl
+                                                       Prima Dopo
+
+                  Figura 5.1 Come viene impiegato il Provides eld in modo da non "interrompere" le dipendenze.
+
+          Questa!"#$
+                  funzione
+                      0)&(-*) #$è A)*2
+                                  molto  utile$#.%)
+                                       -$)0-9:  in quanto,
+                                                    #( #$ .)A)*pur non essendo
+                                                                '/$$#,9)            possibile
+                                                                         (/ &.(#%#'&()         prevedere
+                                                                                       (") A&5&*#)$          tutte le evoluzioni ad
+                                                                                                    /0 +)A)9/'8).(:
+          libitum  dello  sviluppo,    metterà    in  condizioni   di  far  fronte  alla ridenominazione
+                &.+ #( #$ .)%)$$&*2 (/ ,) &,9) (/ &+`-$( (/ *).&8#.5: &.+ /(")* &-(/8&(#% *)'9&%)8).(: /0 /,$/7e ad altri rimpiazzi
+          automatici    del software
+                9)() $/0(;&*)6           obsoleto.
+
+
+
+                 BASILARE                Perl (Practical Extraction and Report Language) è un linguaggio di
+          Perl, un                       programmazione ampiamente conosciuto. Presenta diversi moduli pronti all’uso
+          linguaggio di                  che possono essere impiegati da una vasta gamma di applicazioni e che sono
+                                         distribuiti attraverso i servers CPAN (Comprehensive Perl Archive Network),
+                                               ! U**"J::]]]%"&)A%5)$:
+          programmazione                 un’esaustiva rete di pacchetti in Perl.
+                                               ! U**"J::]]]%@"(6%5)$:
+                                           https://www.perl.org/
+                                           https://www.cpan.org/
+                                         Essendo un interpreted language, un programma scritto in Perl non necessita di
+                                         una compilazione prima della sua esecuzione. Per questo motivo questi programmi
+                                         sono de niti “Perl scripts”.
+                 !)80 9%:%0)0%#'8 Z#*(-&9 '&%4&5)$ -$)+ (/ $-00)* 0*/8 $/8) 9#8#(&(#/.$: (") 8/$( $#5.#0#%&.(
+                 /0 ;"#%" ;&$ (") &,$).%) /0 & A)*$#/. .-8,)*6 !/ *)(-*. (/ (") '*)A#/-$ )=&8'9): & +)').+).%2
+          5.2.1.4.3
+                 $-%" Le
+                       &$ limitazioni passate.               : +)$'#() (") '*)$).%) /0 ])*9 O6NM: ;/-9+ .)A)* ,)
+                 %/.$#+)*)+ &$ $&(#$0#)+ ,2 (") '&%4&5#.5 $2$()8 X ;"#9) #. 0&%( #( 8/$( 9#4)92 #$ $&(#$0#)+6 >.7
+                 &;&*)
+          I virtual     /0 ("#$: (")
+                     packages        '&%4&5) $2$()8
+                                  presentavano     in%"/$) (") 9)&$(
+                                                      passato        *#$42 limitazioni,
+                                                                diverse    /'(#/.: &$$-8#.5
+                                                                                        tra("&(   (") A)*$#/.$
+                                                                                             le quali          +/
+                                                                                                       la più importante era
+                 ./( 8&(%"6
+          l'assenza   del numero identi cativo della versione. Riprendendo l'esempio precedente, il mancato
+          riconoscimento     del"&$
+                !"#$ 9#8#(&(#/.  numero      identi
+                                     ,)). 9#0()+      cativo
+                                                 #. ,467       della
+                                                         N6ND6NN: &.+ versione
+                                                                      #$ ./ 9/.5)*comportava      ad esempio
+                                                                                   *)9)A&.( #. a)$$#)6          che la
+                                                                                                       ]&%4&5)$ %&.
+          dichiarazione    <<Depends:libdigest-md5-perl            (>=1.6)>>   non   fosse suf
+                &$$#5. & A)*$#/. (/ (") A#*(-&9 '&%4&5)$ (")2 '*/A#+) ;#(" & +)').+).%2 $-%" &$  ciente   per far considerare al
+          packaging system la dipendenza
+                                   6                soddisfatta,    nonostante     la presenza    ad   esempio   di Perl 5.10 — e di
+          conseguenza nonostante fosse di fatto soddisfatta.
+          Reso inconsapevole dal suddetto limite, il packaging system, che adotta ancora oggi un metodo
+          decisionale con una preferenza di scelte a rischio minimo, ipotizzava che le versioni non fossero
+          compatibili.
+          Questa limitazione è stata risolta con dpkg 1.17.11. e la sua presenza è stata del tutto rimossa. I
+          pacchetti nalmente possono assegnare ai virtual packages, indicati nel loro Provides Field, un
+          numero identi cativo della versione, ad esempio <<Provides:libdigest-md5-perl (=1.8)>>.
+
+
+
+
+            TDAH_2.0    Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 85
+fi
+     fi
+            fi
+                            fi
+                                    fi
+                                             fi
+                                                                             fi
+                           5.2.1.5 Sostituzione dei Files: il Replaces Field (il campo "Sostituisce...")
+
+                           Il Replaces eld dichiara i les contenuti dal pacchetto stesso che, pur essendo presenti in altri
+                           pacchetti, è comunque legittimamente autorizzato a sostituire. Senza un'espressa dichiarazione nel
+                           suddetto eld dpkg interrompe la sua esecuzione, annunciando a sua volta di non potere
+                           sovrascrivere i les di un altro pacchetto (anche se teoricamente è possibile comunque farlo,
+                           nonostante non sia considerata una procedura da prendere come modello, aggiungendo al comando
+                           dpkg --force-overwrite). Il op di dpkg consente l'identi cazione di potenziali anomalie ed
+                           impone al maintainer di studiare la questione prima di aggiungere qualcosa nei elds.
+                           L'uso di questo eld è giusti cato quando il nome di un pacchetto è cambiato o quando un pacchetto
+                           è incluso in un altro. In particolare quest'ultime evenienze possono palesarsi anche quando il
+                           manutentore decide di distribuire i les in modo diverso tra diversi pacchetti binari prodotti dallo
+                           stesso pacchetto sorgente: si precisa che un le sostituito non appartiene più al vecchio pacchetto,
+                           ma solo a quello nuovo.
+                           Se tutti i les in un pacchetto installato sono stati sostituiti, il pacchetto è considerato eliminato.
+                           In ne, questo campo richiede anche a dpkg di eliminare il pacchetto sostituito in caso di con itto.
+
+                              ANDANDO OLTRE                                Anche nell’esempio soprastante possiamo scorgere la presenza del eld Tag, che
+                            Il eld Tag                                     non è stato ancora descritto. Questo eld non è impiegato per evidenziare un mero
+                                                                           confronto/rapporto da i pacchetti, bensì è un metodo pratico per catalogare i
+                                                                           pacchetti in base ad una tassonomia tematica. Tale classi cazione, messa in atto
+                                                                           secondo diversi criteri (tipo di interfaccia, linguaggio di programmazione, l’area di
+                                                                           competenza, ecc.) è disponibile da diverso tempo. Ma, nonostante ciò, non tutti i
+                                                                           pacchetti hanno delle tags [metadati - parole chiave] accurate e/o non tutti i tools
+                                                                           di Debian sono stati integrati con tale sistema; aptitude ne consente sia la visione,
+                                                                           sia di disporne come metodo di ricerca. Per coloro che sono allergici ai metodi di
+                                                                           ricerca di aptitude possono usufruire del seguente database tags on line:
+                                                                             http://debtags.alioth.debian.org/
+
+
+
+                           5.2.2. Scripts di Con gurazione
+
+                           Oltre al le control, all'archivio control.tar.gz i pacchetti Debian possono contenere una quantità di
+                           scripts, richiamati da dpkg durante le differenti fasi dell'elaborazione di un pacchetto. La Debian
+                           Policy descrive dettagliatamente tutti i casi che possono potenzialmente veri carsi (https://
+                           www.debian.org/doc/debian-policy/ch-maintainerscripts.html), indicando speci camente gli scripts
+                           richiamati e gli argomenti da questi accettati. Questi scripts potrebbero essere talmente complessi
+                           da costringere dpkg ad interrompere l'installazione o la rimozione in corso ed a tornare ad uno
+                           status [del pacchetto] soddisfacente (per quanto possa essere ancora possibile).
+
+                           [Negli scripts un ciclo (o iterazione) è una ripetizione di una determinata azione per un dato
+                           numero di volte (ciclo “for”). Diversamente un ciclo o iterazione “while”, è una ripetizione di una
+                           determinata azione sino a quando una data condizione non sarà soddisfatta.]
+
+                             ANDANDO OLTRE                                 Tutti gli scripts di con gurazione dei pacchetti installati sono immagazzinati nella
+                            Perl, un linguaggio                            directory /var/lib/dpkg/info sotto forma di le che ha come pre sso il nome del
+                            di                                             pacchetto associato. La suddetta directory include anche il le con estensione .list
+                                                                           di ogni pacchetto installato, contenente la lista dei les che appartengono al
+                            programmazione                                 pacchetto associato.
+                                                                           Il le /var/lib/dpkg/status contiene una serie di blocco dati (nello stesso formato
+                                                                           degli headers mail, RFC 2822) che descrivono lo status di ogni pacchetto. Le
+                                                                           informazioni contenute nel le control dei pacchetti installati sono riprese anche
+                                                                           nel suddetto le.
+
+
+
+
+                           Pagina 86 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+ fi
+     fi
+          fi
+               fi
+                fi
+                     fi
+                      fi
+                              fi
+                                   fi
+                                        fi
+                                             fi
+                                                  fi
+                                                       fi
+                                                       fl
+                                                            fi
+                                                                 fi
+                                                                      fi
+                                                                            fi
+                                                                                  fi
+                                                                                       fi
+                                                                                            fi
+                                                                                                 fi
+                                                                                                      fi
+                                                                                                           fi
+                                                                                                                fi
+                                                                                                                        fi
+                                                                                                                             fi
+                                                                                                                             fi
+                                                                                                                                         fl
+               Solitamente, lo script preinst è eseguito prima di installare il pacchetto, mentre lo script postinst
+               viene eseguito dopo l'installazione. Allo stesso modo, lo script prerm è invocato prima della
+               rimozione di un pacchetto, mentre lo script postrm è invocato dopo una rimozione. L'effetto
+               dell'aggiornamento di un pacchetto determina la rimozione della versione non più aggiornata e
+               l'installazione della più recente compatibile. Per ovvie ragioni non è possibile enunciare tutti i
+               possibili scenari in questa sede, ma possiamo limitarci a trattare i due più comuni: l'installazione/
+               aggiornamento e la rimozione.
+
+                    ATTENZIONE                        Le sequenze descritte in questo paragrafo richiamano gli scripts di con gurazione
+                I nomi “simbolici”                    attraverso degli speci ci nomi, come ad esempio old-prerm o new-postinst. Questi
+                [sotto forma di                       due nomi in particolare si riferiscono rispettivamente: il primo al prerm script,
+                                                      contenuto nella vecchia versione del pacchetto (installata di conseguenza prima del
+                nomenclatura                          suo aggiornamento) ed il secondo al postinst script, contenuto nella nuova versione
+                rappresentativa]                      del pacchetto (installata attraverso l’aggiornamento).
+                degli scripts
+
+
+                 SUGGERIMENTO                         Manoj Srivastava e Margarita Manterola hanno realizzato i seguenti diagrammi di
+                I Diagrammi di                        stato che descrivono come gli scripts di con gurazione sono chiamati da dpkg.
+                Stato
+                                                         https://people.debian.org/~srivasta/MaintainerScripts.html
+                                                         https://www.debian.org/doc/debian-policy/ap- owcharts.html
+
+
+
+
+               [Un diagramma di stato (anche detto pallogramma) è un tipo di diagramma usato in informatica
+               per descrivere il comportamento dei sistemi, attraverso l'analisi e la rappresentazione di una serie
+               di eventi associati a ciascuno stato. Il sistema deve essere però composto da un numero nito di stati
+               e qualora così non fosse lo si può descrivere tramite astrazione].
+
+
+               5.2.2.1 Installazione e Aggiornamento
+
+               Quanto esposto in seguito descrive cosa avviene durante un installazione (o aggiornamento):
+               1. Per effettuare l'aggiornamento, dpkg chiama lo script old-prerm upgrade new-version .
+               2. Durante l'aggiornamento dpkg esegue anche new-preinst upgrade old-version;
+               diversamente durante una prima installazione esegue new-preinst install; qualora il
+               pacchetto fosse stato installato e rimosso da tempo dpkg aggiungerà l'ultimo parametro "old-
+               version" (ciò signi ca che i les di con gurazione, nonostante la rimozione del pacchetto, sono
+               stati mantenuti ovvero che il pacchetto non è stato "purgato") [in gergo linux "purge" viene
+               utilizzato per eliminare del tutto ed in modo de nitivo un pacchetto].
+               3. I les del nuovo pacchetto vengono quindi "spacchettati". Se uno di questi les già esiste sulla
+               macchina, viene sostituito, ma una copia dello stesso le sostituito viene conservata
+               temporaneamente.
+               4. Per continuare l'aggiornamento dpkg esegue old-postrm upgrade new-version.
+               5. Dpkg aggiorna tutti i dati (l'elenco dei les, gli scripts di con gurazione, ecc.) e rimuove le copie
+               dei le sostituiti. Raggiunta questa fase dpkg non può ritornare più sui suoi passi in quanto non
+               ha più accesso ai les necessari per ripristinare lo status precedente.
+               6. Dpkg aggiornerà anche i les di con gurazione, chiedendo il permesso all'utente qualora non
+               fosse autorizzato ad eseguire questa attività automaticamente. I dettagli di questa procedura
+               sono trattati nel paragrafo 5.2.3, "Checksum, Elenco dei Files di Con gurazione" a pag. 89.
+               7. In ne, dpkg con gura il pacchetto eseguendo new-postinst configure last-version-
+               configured.
+
+
+               5.2.2.2 Rimozione di un Pacchetto
+
+               Quanto esposto in seguito descrive cosa avviene durante una rimozione:
+
+
+
+
+                 TDAH_2.0               Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 87
+fi
+     fi
+          fi
+                    fi
+                         fi
+                              fi
+                                   fi
+                                           fi
+                                                fi
+                                                        fi
+                                                             fi
+                                                                  fi
+                                                                       fi
+                                                                            fl
+                                                                                 fi
+                                                                                      fi
+                                                                                           fi
+                                                                                                fi
+                                                                                                     fi
+                                                                                                          fi
+                                                                                                                    fi
+                1. dpkg chiama prerm remove.
+                2. dpkg rimuove tutti i les del pacchetto, tranne i les di con gurazione e gli scripts di
+                con gurazione.
+                3. dpkg esegue postrm remove. Tutti gli script di con gurazione, eccetto postrm, sono rimossi. Se
+                l'utente durante la rimozione non ha usato l’opzione "purge", il processo nisce qui.
+                4. Quando viene "purgato" completamente il pacchetto (attraverso il comando dpkg --purge
+                oppure attraverso dpkg -P), anche i les di con gurazione vengono rimossi, così come alcune
+                speci che copie (*.dpkg-top,*.dpkg-old, *.dpkg-new) ed i les temporanei; dpkg poi esegue
+                postrm purge.
+
+                              DIZIONARIO              Quando un pacchetto Debian è rimosso, i les di con gurazione sono conservati allo
+                          Purge, una                  scopo di rendere possibile una sua re-installazione. Anche i dati generati da un
+                          rimozione                   demone (ad esempio il contenuto di una directory di un LPDA server o di un
+                                                      database SQL) sono comunemente conservati.
+                          completa                    Per rimuovere tutti i dati relativi ad un pacchetto, è indispensabile “purgare” lo
+                                                      stesso pacchetto con i comandi: dpkg -P package; apt-get remove --purge
+                                                      package oppure aptitude purge package.
+                                                      Data la sua ef cacia permanente l’opzione “purge” non dovrebbe essere presa alla
+                                                      leggera.
+
+
+                I quattro scripts sopra descritti sono integrati da un con g script, di cui sono muniti gli stessi
+                pacchetti che si intendono rimuovere ed ottenuto sempre da questi pacchetti grazie all'utilizzo di
+                debconf per acquisire informazioni per la con gurazione dall'utente. Difatti durante la loro
+                installazione, questo script raccoglie dettagliatamente le risposte alle domande poste attraverso
+                debconf. Le risposte sono registrate nel database debconf per agevolare la loro consultazione. Lo
+                script è generalmente eseguito da apt prima di installare i pacchetti uno ad uno, allo scopo di
+                raccogliere tutte le risposte e conoscere tutto sulle preferenze dell'utente prima dell'inizio del
+                processo di installazione. Gli scripts pre e post installazione possono quindi utilizzare poi queste
+                informazioni per svolgere i loro processi in linea con le suddette preferenze utente.
+
+                              STRUMENTI               In passato debconf fu creato per risolvere una ricorrente anomalia di Debian. In
+                                  TOOLS               pratica tutti i pacchetti Debian, inabili di svolgere le loro funzioni senza le
+                          debconf                     informazioni essenziali per la loro con gurazione, erano soliti porre delle domande
+                                                      negli scripts shell postinst (ed in altri scripts simili), attraverso chiamate ai
+                                                      comandi echo e read. Ciò comportava che l’utente fosse obbligato a stare “incollato”
+                                                      al proprio computer durante le installazioni più complesse o durante gli
+                                                      aggiornamenti, per poter rispondere alle domande che potevano presentarsi senza
+                                                      preavviso. Oggi invece si è quasi del tutto dispensati da questa interazione manuale
+                                                      grazie allo strumento debconf.
+                                                      Inoltre debconf offre diverse funzionalità degne di nota: impone allo sviluppatore di
+                                                      de nire dettagliatamente l’interazione con l’utente; consente di effettuare la
+                                                      localizzazione di tutte le stringhe mostrate all’utente (tutte le traduzioni sono
+                                                      contenute nel le template che de nisce le summenzionate interazioni); ha
+                                                      differenti frontends per le diverse modalità con cui possono essere esposte le
+                                                      domande all’utente (testuale, gra ca o non interattiva); consente la creazione di un
+                                                      archivio risposte principiale attraverso cui condividere la stessa con gurazione fra
+                                                      diverse computers... ma la cosa più meritevole è che debconf pone in successione
+                                                      queste domande all’utente prima che inizi un lungo processo d’installazione o di
+                                                      aggiornamento. L’utente può quindi occuparsi della propria attività lavorativa,
+                                                      mentre il sistema gestisce l‘installazione dei pacchetti in base alle sue preferenze,
+                                                      senza essere costretto a stare davanti lo schermo in attesa di ricevere delle
+                                                      domande.
+                [In informatica un LDAP (Lightweight Directory Access Protocol) è un protocollo standard per
+                l'interrogazione e la modi ca dei servizi di directory, ossia in generale per l'interrogazione o la
+                modi ca di qualsiasi raggruppamento di informazioni che può essere espresso come record di dati ed
+                organizzato in modo gerarchico. Mentre il debconf, in altre parole, è un “assistente all'installazione”
+                che, durante l'installazione o aggiornamento di ogni singolo pacchetto o di un gruppo di pacchetti,
+                pone all'utente delle domande di con gurazione, una ad una e tutte in successione, memorizzando le
+                preferenze dell'utente in un database. Durante l'installazione o l'aggiornamento dei pacchetti, gli
+                scripts, degli stessi pacchetti in fase di installazione o aggiornamento, utilizzano le preferenze di
+                con gurazione, raccolte nel database, per generare i les di con gurazione e compiere attività
+                amministrative, senza la necessità di con gurazioni manuali ex post o il presentarsi di domande
+                poste durante l'installazione o l'aggiornamento che ne prolungherebbero i tempi o peggio, in caso di
+                temporanea assenza dell'utente, ne impedirebbero la stessa installazione o aggiornamento.]
+                Pagina 88 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+     fi
+     fi
+          fi
+           fi
+                fi
+                     fi
+                                 fi
+                                      fi
+                                           fi
+                                            fi
+                                                 fi
+                                                      fi
+                                                       fi
+                                                            fi
+                                                                 fi
+                                                                      fi
+                                                                           fi
+                                                                                fi
+                                                                                     fi
+                                                                                          fi
+                                                                                           fi
+                                                                                                fi
+                                                                                                     fi
+                                                                                                          fi
+                                                                                                               fi
+                                                                                                                    fi
+                                                                                                                         fi
+                    5.2.3 Checksum, Elenco dei Files di Con gurazione
+
+                    Oltre ai control data ed agli scripts di con gurazione già menzionati nei paragra precedenti,
+                    l'archivio control.tar.gz dei pacchetti Debian contiene altri les meritevoli di essere citati.
+                    Il primo fra questi è l'md5sums che contiene il checksum in MD5 di tutti i les del pacchetto. Il suo
+                    principale scopo è di consentire la validazione dei suddetti les tramite il comando dpkg --verify
+                    (trattato a pagina 413 dal paragrafo 14.3.3.1 “La validazione dei pacchetti tramite il comando dpkg
+                    --verify” ) e debsums (trattato a pagina 414 dal paragrafo 14.3.4.2 “Veri ca dei pacchetti con
+                    debsums nonostante i suoi limiti”), ed accertarsi che non siano stati modi cati dopo l'installazione.
+                    Si fa presente che quando questo le non esiste, viene generato automaticamente durante
+                    l'installazione (e conservato nel database dpkg insieme agli altri control les).
+                    conffiles elenca i les del pacchetto che devono essere gestiti come les di con gurazione (andate
+                    a leggere al riguardo deb-confiles(5)). I les di con gurazione possono essere modi cati
+                    dall'amministratore, e dpkg tenterà di preservare tali modi che durante gli aggiornamenti del
+                    pacchetto.
+                    Di conseguenza dpkg nel suddetto contesto cerca di comportarsi nel modo più ef ciente possibile: se
+                    il modello a cui il le di con gurazione fa riferimento non è cambiato sia nella versione non più
+                    recente e precedentemente installata, sia nella nuova versione aggiornata che sta per essere
+                    installata, dpkg non compie alcuna azione. Diversamente se il le è stato modi cato tenterà di
+                    aggiornarlo. Sono quindi possibili due scenari: il primo in cui dpkg, non avendo l'amministratore
+                    modi cato il le, esegue l'aggiornamento; il secondo in cui dpkg, avendo l'amministratore modi cato
+                    il le, chiede allo stesso amministratore se desidera mantenere la versione del le modi cato oppure
+                    sostituirla con il le incluso nel pacchetto aggiornato. Per facilitare la decisione dell'amministratore
+                    dpkg gli propone anche di consultare un "diff" che mostra le differenze fra le due versioni. Se l'utente
+                    sceglie di mantenere la vecchia versione, la nuova versione sarà comunque conservata nella stessa
+                    collocazione come le con suf sso .dpkg-dist Se l'utente sceglie la nuova versione, la vecchia
+                    versione è conservata come le con suf sso .dpkg-old Un'ulteriore azione disponibile all'utente
+                    consiste nell'interrompere temporaneamente dpkg nella scrittura in corso del le e tentare di
+                    ripristinare le modi che più importanti (precedentemente identi cate tramite diff).
+
+
+
+
+                          ANDANDO OLTRE                                                        L’opzione --force-confask impone a dpkg di porre le domande inerenti i les di
+                         Come forzare dpkg                                                     con gurazione, anche qualora non fosse necessario. Così facendo, durante la re-
+                         a porre le                                                            installazione del pacchetto dpkg porrà nuovamente le domande sui les di
+                                                                                               con gurazione modi cati o rimossi dall’amministratore. Ciò fa comodo quando
+                         domande per il le                                                     sono stati rimossi permanentemente i les di con gurazione originali e non si
+                         di con gurazione                                                      hanno delle copie: difatti una normale reinstallazione non sarà suf ciente a
+                                                                                               ripristinarli in quanto dpkg considererà la rimozione come una modi ca legittima,
+                                                                                               non installando in sostanza la con gurazione automatica.
+
+
+
+
+                         TDAH_2.0                             Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 89
+fi
+     fi
+     fi
+          fi
+               fi
+                    fi
+                           fi
+                                fi
+                                     fi
+                                          fi
+                                               fi
+                                                    fi
+                                                         fi
+                                                                 fi
+                                                                      fi
+                                                                           fi
+                                                                                fi
+                                                                                     fi
+                                                                                          fi
+                                                                                                fi
+                                                                                                     fi
+                                                                                                          fi
+                                                                                                               fi
+                                                                                                                    fi
+                                                                                                                         fi
+                                                                                                                              fi
+                                                                                                                               fi
+                                                                                                                                    fi
+                                                                                                                                         fi
+                                                                                                                                              fi
+                                                                                                                                                   fi
+                                                                                                                                                        fi
+                                                                                                                                                             fi
+                                                                                                                                                                  fi
+                                                                                                                                                                       fi
+                                                                                                                                                                            fi
+                                                                                                                                                                                 fi
+                                                                                                                                                                                      fi
+                                                                                                                                                                                           fi
+                                                                                                                                                                                                fi
+                                                                                                                                                                                                     fi
+                                                                                                                                                                                                          fi
+                                                                                                                                                                                                               fi
+                                                                                                                                                                                                                fi
+                                                                                                                                                                                                                     fi
+                                                                                                                                                                                                                          fi
+                                                                                                                                                                                                                               fi
+                                                                                                                                                                                                                                    fi
+                            ANDANDO OLTRE                   dpkg gestisce gli aggiornamenti del le di con gurazione ed a tale scopo
+                           Come evitare le                  interrompe il processo per ricevere gli input dall’amministratore. Questo potrebbe
+                           domande per il le                determinare degli inconvenienti a chi sceglie la modalità non interattiva. Per
+                                                            questo motivo il programma offre anche la possibilità di far rispondere
+                           di con gurazione
+                                                            automaticamente alle domande direttamente il sistema: --force-confnew
+                                                            utilizza la nuova versione del le (queste scelte sono rispettate anche se
+                                                            l’amministratore di fatto non ha effettuato modi che, pur essendo tale evenienza
+                                                            rara). Aggiungendo invece --force-confdef, consentirete a dpkg di scegliere da
+                                                            solo le risposte quando è possibile (ovvero quando il le originale non è stato
+                                                            modi cato), pertanto utilizzate --force-confold e --force-confnew solo per
+                                                            gli altri casi.
+                                                            Queste opzioni appartengono a dpkg e trattate da dpkg(1) o illustrate da dpkg --
+                                                            force-help, ma il più delle volte un amministratore utilizza altri programmi
+                                                            come aptitude o apt. Di conseguenza, qualora si intendesse utilizzare uno di
+                                                            questi programmi e trasmettere queste opzioni a dpkg, è di primaria importanza
+                                                            conoscere la sintassi corretta (anche se i comandi sono simili):
+
+                                                            # apt -o DPkg::options::=“--force-confdef” -o DPkg::options
+                                                            -> ::=“--force-confold” full-upgrade
+
+                                                            Queste opzioni possono essere impartite modi cando direttamente il le
+                                                            con gurazione di apt, che si trova in /etc/apt/apt.conf.d/local :
+
+                                                            DPkg::options { “--force-confdef”; “--force-confold”; }
+
+                                                            In questo modo non avrete la necessità di digitarle di volta in volta, saranno valide
+                                                            anche per la modalità gra ca e di conseguenza pure per aptitude.
+
+
+
+
+                          5.3 Struttura di un Pacchetto Sorgente
+
+
+                          5.3.1 Struttura
+
+                          Un pacchetto sorgente comprende generalmente tre les: un le .dsc, un le .orig.tar.gz e un
+                            le .debian.tar.xz (o .diff.gz). Questi tre les consentono la creazione dei pacchetti in formato binario
+                          (i les .deb precedentemente descritti) a partire dai les del codice sorgente di un programma,
+                          scritti in linguaggio di programmazione.
+                          Il le .dsc (Debian Source Control) è un breve le di testo che contiene un header RFC 2822 (proprio
+                          come il control le analizzato nel paragrafo 5.2.1 "Descrizione: il control File" a pag. 80) che a sua
+                          volta descrive il pacchetto sorgente e speci ca gli altri les che ne fanno parte. È rmato dal
+                          maintainer che ne certi ca l'autenticità. Per maggiori informazioni sull'argomento recatevi al
+                          paragrafo 6.6 "Veri ca dell'autenticità del pacchetto" a pag. 133.
+
+
+
+
+                          Pagina 90 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+     fi
+      fi
+           fi
+                fi
+                     fi
+                             fi
+                              fi
+                                   fi
+                                        fi
+                                             fi
+                                                  fi
+                                                       fi
+                                                              fi
+                                                                   fi
+                                                                        fi
+                                                                             fi
+                                                                                  fi
+                                                                                       fi
+                                                                                            fi
+                                                                                                 fi
+                                                                                                 fi
+                                                                                                      fi
+                                                                                                           fi
+                                                                                                                fi
+                                                                                                                     fi
+                                                                                                                          fi
+                                              Esempio 5.1 Un le .dsc
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 3.0 (quilt)
+Source: zim
+Binary: zim
+Architecture: all
+Version: 0.68-1
+Maintainer: Zim Package Maintainers <zim@packages.debian.org>
+Uploaders: Raphaël Hertzog <hertzog@debian.org>
+Homepage: http://zim-wiki.org
+Standards-Version: 4.1.3
+Vcs-Browser: https://salsa.debian.org/debian/zim
+Vcs-Git: https://salsa.debian.org/debian/zim.git
+Build-Depends: debhelper (>= 11), xdg-utils, python (>= 2.6.6-3~), libgtk2.0-0 (>=
+-> 2.6), python-gtk2, python-xdg, dh-python
+Package-List:
+ zim deb x11 optional arch=all
+Checksums-Sha1:
+ a3b50aa8e44126cc7edd2c1912adf9820f50ad58 2044224 zim_0.68.orig.tar.gz
+ 4e13b37625789334da2d95b93e51e41ffd3b6b01 9300 zim_0.68-1.debian.tar.xz
+Checksums-Sha256:
+ d91518e010f6a6e951a75314138b5545a4c51151fc99f513aa7768a18858df15 2044224 zim_0.68.
+-> orig.tar.gz
+ 23f4ddc69af74509932acc3b5f0d4cd2af943016e4fd5740b9d98ec4d49fd8c2 9300 zim_0.68-1.
+-> debian.tar.xz
+
+Files:
+336041a16687abb66fd9f604b98407e8 2044224 zim_0.68.orig.tar.gz
+1714f67b35ab69e709849ad707206ca8 9300 zim_0.68-1.debian.tar.xz
+
+-----BEGIN PGP SIGNATURE-----
+
+Comment: Signed by Raphael Hertzog
+iQEzBAEBCgAdFiEE1823g1EQnhJ1LsbSA4gdq+vCmrkFAlqyOxkACgkQA4gdq+vC mrnCqAf/
+Ww9wg97VragtVhSFvehoVoJ0ZhoqNaSuCP/W1Fuf+P0YklzL2BlkVRXW
+ X23c8Qs1v6VE2iRY3mEkdWwgBs1QwF0MX7H1jjQfPHCynGHKlH5dfo5fqLizgCeu
+c9Pug3ZisjF90CgsseO7SVDqHVmO6QsfAaGWpHAw92HDz/xwjrS/4Ejntqjy0b+r
+Gmw2AZuBdhp+7C6p7In/Gg6DHPBLQGMLCKypoZKQdl+L0fWjjeykOzMIbjry2sRH
+H0J4FLVGAGumh3zIZlm/t3ehGfP9Dg8FvzMaCNsf8OtYCSAEutrQEDBaskcTSIpq
+L0GQhKlViDuu8gzsqm7efPEhPcsF1A==
+=6jGR
+ -----END PGP SIGNATURE-----
+
+
+
+
+  TDAH_2.0 Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 91
+  fi
+                    Si precisa che anche il pacchetto sorgente ha delle dipendenze (Build-Depends) completamente
+                    distinte da quelle dei pacchetti binari e che tali dipendenze speci cano gli strumenti necessari per
+                    compilare il software in questione e costruire il relativo pacchetto binario.
+                    [Un namespace è un insieme di simboli che vengono utilizzati per organizzare oggetti di vario tipo, in
+                    modo che questi possano essere speci cati per nome. Un namespace garantisce che tutti i suoi
+                    identi catori abbiano nomi univoci in modo che questi possano essere facilmente distinti.]
+
+                         ATTENZIONE                È importante farvi notare che non c’è una corrispondenza fra il nome del pacchetto
+                     Distinti                      binario e quello del pacchetto sorgente da cui il primo è stato generato. Di
+                                                   conseguenza è facilmente intuibile che da un pacchetto sorgente potrebbero essere
+                     namespaces
+                                                   creati diversi pacchetti binari. Difatti il le .dsc possiede dei Field distinti, Source e
+                                                   Binary, per puntualizzare il nome del pacchetto sorgente (Source Field) ed allo
+                                                   stesso tempo elencare i pacchetti binari (Binary Field) che il pacchetto sorgente,
+                                                   precedentemente individuato, è in grado di generare.
+
+
+
+
+                              CULTURA               Molto frequentemente un pacchetto sorgente (di un determinato software) può
+                     Le ragioni per cui             generare diversi pacchetti binari. La suddivisione è giusti cata dalla possibilità di
+                     il contenuto di un             usare il software (o delle sue parti) in contesti differenti.
+                                                    Prendiamo in considerazione una libreria condivisa, potrebbe essere installata per
+                     pacchetto sorgente
+                                                    far funzionare un’applicazione (ad esempio, libc6) oppure per sviluppare un
+                     viene diviso in                nuovo programma (libc6-deb di conseguenza sarà il pacchetto “corretto” ovvero
+                     diversi pacchetti              modi cato e/o migliorato). Troviamo la stessa logica per i servizi client/server in
+                                                    cui vogliamo installare la parte server su una macchina e la parte client su altre
+                                                    (questo è il caso, ad esempio, di openssh-server e openssh-client).
+                                                    [La logica in informatica è in generale l’insieme dei principi scelti per la
+                                                    progettazione di un sistema di elaborazione automatica di dati.]
+                                                    Altrettanto frequentemente, la documentazione viene fornita in un pacchetto
+                                                    dedicato: l’utente può installarlo indipendentemente dal software e può in
+                                                    qualsiasi momento scegliere di rimuoverlo per risparmiare spazio sul disco.
+                                                    Inoltre, ciò consente di risparmiare spazio sul disco dei mirrors Debian, poiché il
+                                                    pacchetto di documentazione sarà condiviso tra tutte le architetture (invece di
+                                                    avere la documentazione duplicata nei pacchetti per ciascuna architettura).
+
+
+
+
+                                                    Inizialmente esisteva un solo formato di pacchetto sorgente. Era il formato 1.0,
+                       IN PROSPETTIVA
+                                                    che associava un archivio .orig.tar.gz ad una patch.diff.gz per “debianize”
+                     I formati dei
+                                                    [“debianizzare” un pacchetto non nato per Debian ossia eseguire una
+                     pacchetti sorgente             “debianization”] (di tale formato esiste anche una variante, costituita da un
+                     sono diversi                   singolo archivio .tar.gz, che viene automaticamente utilizzata se non è
+                                                    disponibile un archivio orig.tar.gz).
+                                                    A partire da Debian 6 Squeeze, gli sviluppatori Debian hanno avuto l’opportunità
+                                                    di utilizzare dei nuovi formati che hanno corretto molti problemi del formato
+                                                    storico. Ad esempio il formato 3.0 (quilt) può combinare più archivi a monte
+                                                    nello stesso pacchetto sorgente: inoltre può includere oltre ai soliti
+                                                    archivi .orig.tar.gz anche degli archivi supplementari .orig-
+                                                    component.tar.gz. Tale sistema è utile in particolare con quel software che è
+                                                    distribuito in più componenti a monte, ma che si preferisce redistribuirlo in un
+                                                    singolo pacchetto sorgente. Questi archivi possono anche essere compressi con xz
+                                                    anziché con gzip, consentendo di risparmiare spazio sul disco e risorse di rete.
+                                                    In ne, la monolitic patch [in un unico blocco], .diff.gz è stata sostituita da un
+                                                    archivio .debian.tar.xz contenente le istruzioni di compilazione e la serie di
+                                                    patches up-stream [a monte] fornite dal manutentore del pacchetto. E queste
+                                                    ultime vengono salvate in un formato compatibile con quilt, un tool, che non a
+                                                    caso, facilita la gestione di una serie di patch.
+
+
+
+                    Il le .orig.tar.gz è un archivio contenente il codice sorgente fornito dallo sviluppatore originale.
+                    Ai manutentori dei pacchetti Debian viene chiesto di non modi care questo archivio per poter
+                    veri care facilmente l'origine e l'integrità del le (mediante un semplice confronto con un checksum)
+                    e rispettare le preferenze di alcuni autori.
+
+
+
+
+                    Pagina 92 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+fi
+     fi
+          fi
+               fi
+                                              fi
+                                                    fi
+                                                              fi
+                                                                     fi
+                                                                                  fi
+                                                                                       fi
+          Il le .debian.tar.xz contiene tutte le modi che apportate dal manutentore Debian e per di più una
+          directory "debian" contenente le istruzioni da eseguire per mettere insieme il pacchetto Debian.
+
+                 STRUMENTI             Se avete un pacchetto sorgente, potete usare il comando dpkg-source (dal
+                      TOOL             pacchetto dpkg-dev) per decomprimerlo:
+           Come
+           decomprimere un             $ dpkg-source -x zim_0.68-1.dsc
+           pacchetto sorgente          dpkg-source: info: extracting zim in zim-0.68
+                                       dpkg-source: info: unpacking zim_0.68.orig.tar.gz
+                                       dpkg-source: info: unpacking zim_0.68-1.debian.tar.xz
+
+                                       Potete anche usare apt per scaricare un pacchetto sorgente e spacchettarlo
+                                       istantaneamente. Tale metodo tuttavia richiede la presenza delle righe
+                                       appropriate deb-src nel le elenco /etc/apt/sources.list (per ulteriori dettagli,
+                                       consultate il paragrafo 6.1., “Come compilare il le sources.list” a pag. 108). Questi
+                                         les .list sono usati per elencare le “fonti” dei pacchetti sorgente (ovvero i servers
+                                       sui quali viene ospitato un gruppo di pacchetti sorgente).
+
+                                       $ apt source package
+                                       Reading package lists... Done
+                                       Selected version ’0.68-1’ (stable) for zim
+                                       NOTICE: ’zim’ packaging is maintained in the ’Git’ version
+                                       -> control system at:
+                                       https://salsa.debian.org/debian/zim.git
+                                       Please use:
+                                       git clone https://salsa.debian.org/debian/zim.git
+                                       to retrieve the latest (possibly unreleased) updates to the
+                                       -> package.
+                                       Need to get 2055 kB of source archives.
+                                       Get:1 https://cdn-aws.deb.debian.org/debian stable/main zim
+                                       -> 0.68-1(dsc)[1586B]
+                                       Get:2 https://cdn-aws.deb.debian.org/debian stable/main zim
+                                       -> 0.68-1(tar)[2044kB]
+                                       Get:3 https://cdn-aws.deb.debian.org/debian stable/main zim
+                                       -> 0.68-1(diff)[9300B]
+                                       Fetched 2055 kB in 1s (3356 kB/s)
+                                       dpkg-source: info: extracting zim in zim-0.68
+                                       dpkg-source: info: unpacking zim_0.68.orig.tar.gz
+                                       dpkg-source: info: unpacking zim_0.68-1.debian.tar.xz
+
+
+
+
+          5.3.2. Utilizzo in Debian
+
+          Ogni cosa su Debian si basa sui pacchetti sorgente. Tutti i pacchetti Debian provengono da un
+          pacchetto sorgente e ogni modi ca in un pacchetto Debian è la conseguenza di una modi ca
+          apportata al pacchetto sorgente. I manutentori Debian operano direttamente sul pacchetto sorgente,
+          essendo consapevoli, tuttavia, degli effetti delle loro azioni sui pacchetti binari. Di conseguenza i
+
+
+
+
+            TDAH_2.0    Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 93
+fi
+     fi
+                   fi
+                                fi
+                                              fi
+                                                   fi
+                                                                                                    fi
+frutti delle loro fatiche sono riconoscibili nei pacchetti sorgente disponibili su Debian: quindi qualora
+lo desideriate potrete sempre recuperare i pacchetti sorgente, in quanto, si reitera, tutto deriva da
+loro.
+Quando una nuova versione di un pacchetto (pacchetto sorgente ed uno o più pacchetti binari)
+arriva sul server Debian, il pacchetto sorgente è il componente più importante. Infatti, questi sarà
+utilizzato da diverse macchine di architettura diversa connesse in una rete allo scopo di compilarlo
+in base alle varie architetture supportate da Debian. Il fatto che lo sviluppatore invii anche uno o più
+pacchetti binari per una data architettura (di solito i386 o amd64) è piuttosto irrilevante, dal
+momento che tali pacchetti potrebbero anche essere stati generati automaticamente.
+
+  https://buildd.debian.org/
+
+  ANDANDO OLTRE             Il Release Team ha appena annunciato che non saranno più consentiti gli
+ Solo gli                   aggiornamenti del Maintainer dei pacchetti binari della sorgente per la sezione
+ aggiornamenti              main e pertanto tutti i pacchetti binari inclusi nella suddetta sezione saranno
+                            compilati automaticamente soltanto dagli aggiornamenti della sorgente
+ della sorgente da          obbligatori.
+ parte del
+ Maintainer
+
+
+
+
+5.4 Manipolazione dei Pacchetti con dpkg
+
+dpkg è il comando su cui si fonda la gestione dei pacchetti Debian sul sistema. Quando avrete a che
+fare con i pacchetti .deb, sarà dpkg che ve ne consentirà l'installazione o l'analisi dei loro contenuti.
+Ma questo programma ha solo una visione parziale dell'universo Debian: è in grado di riconoscere
+cosa è installato sul sistema e di rispondere alle istruzioni sulla riga di comando, ma non è in grado
+di recepire informazioni in merito alla disponibilità di altri pacchetti. Pertanto fallisce se una
+dipendenza non viene soddisfatta. Diversamente, uno strumento come apt ed aptitude stabilirà
+l'elenco delle dipendenze per poter installare tutto ciò che è disponibile nel modo più automatico
+possibile.
+[In informatica i termini front end e back end indicano rispettivamente: il primo la parte visibile
+all'utente di un programma con cui può interagire (ossia un'interfaccia utente); il secondo la parte
+non visibile all'utente di un programma, che però permette l'effettivo funzionamento delle
+interazioni con lo stesso utente.]
+
+               NOTA         Dpkg altri non è che uno strumento di sistema (backend), mentre APT è uno
+ Dpkg o APT?                strumento più vicino alle esigenze dell’utente, essendo in grado di colmare le
+ Quale scegliere?           lacune del primo. Questi strumenti di fatto lavorano insieme, ciascuno con le
+                            proprie competenze, specializzate in determinate attività.
+
+
+
+5.4.1 Installazione dei Pacchetti
+
+dpkg è innanzitutto lo strumento per installare un pacchetto Debian già disponibile (in quanto al
+bisogno non è in grado di scaricare nulla). Per effettuare un'installazione dovrete utilizzare l'opzione
+-i o --install.
+
+                             Esempio 5.2 Installazione di un pacchetto tramite dpkg
+
+# dpkg -i man-db_2.8.5-2_amd64.deb
+(Reading database ... 14913 files and directories currently installed.)
+Preparing to unpack man-db_2.8.5-2_amd64.deb ...
+Unpacking man-db (2.8.5-2) over (2.8.5-2) ...
+Setting up man-db (2.8.5-2) ...
+Updating database of manual pages ...
+
+
+
+
+Pagina 94 Il Manuale dell’Amministratore di Debian TDAH_2.0
+          Processing triggers for mime-support (3.62) ...
+
+          Dall'esempio soprastante pare evidente che potrete visualizzare i diversi passaggi effettuati da dpkg;
+          in questo modo potrete veri care in quale fase potrebbe essersi veri cato un errore. L'installazione
+          può essere anche effettuata in due fasi: nella prima lo spacchettamento, mentre nella seconda la
+          con gurazione. Ciò avvantaggia apt che può limitare il numero di chiamate a dpkg (dal momento
+          che ciascuna chiamata determina un costo in termini di caricamento del database in memoria, in
+          particolare dell'elenco dei les già installati).
+
+                                           Esempio 5.3 Spacchettamento e con gurazioni separatamente
+
+          # dpkg --unpack man-db_2.8.5-2_amd64.deb
+          (Reading database ... 14937 files and directories currently installed.)
+          Preparing to unpack man-db_2.8.5-2_amd64.deb ...
+          Unpacking man-db (2.8.5-2) over (2.8.5-2) ...
+          Processing triggers for mime-support (3.62) ...
+          # dpkg --configure man-db
+          Setting up man-db (2.8.5-2) ...
+          Updating database of manual pages ...
+
+          A volte dpkg non è in grado di installare un pacchetto, comunicando l'evento all'utente sotto forma
+          di errore; se l'utente gli ordina di ignorarlo, emetterà semplicemente un avvertimento: ecco a cosa
+          servono le varie opzioni --force-*. Il comando dpkg --force-help o la documentazione di questo
+          comando vi forniranno l'elenco completo di queste opzioni. L'errore più comune, che prima o poi
+          incontrerete, è il " le collision”. Si veri ca quando un pacchetto contiene un le già installato da un
+          altro pacchetto e dpkg ri uta di installarlo. Vengono quindi visualizzati i seguenti messaggi:
+
+
+          Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...
+          dpkg: error processing /var/cache/apt/archives/libgdm_3.8.3-2_amd64.deb (--unpack):
+           trying to overwrite ‘/usr/bin/gdmflexiserver’, which is also in package gdm3 3.4.1-9
+
+          In questo caso, qualora riteniate che la sostituzione di questo le non rappresenti un rischio
+          signi cativo per la stabilità del vostro sistema (il che capita spesso), potrete utilizzare l'opzione
+          --force-overwrite, che imporrà a dpkg di ignorare questo errore e di sovrascrivere il le.
+          Sebbene esistano molte opzioni --force-*, è probabile che utilizzerete solo --force-overwrite
+          regolarmente. Queste opzioni esistono solo per situazioni eccezionali ed è consigliabile farne a meno
+          il più possibile in modo da rispettare le regole imposte dal complesso delle parti che costituiscono il
+          pacchetto. Difatti non dovete dimenticare, che tali regole garantiscono la coerenza e la stabilità del
+          sistema.
+
+
+
+
+            TDAH_2.0   Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 95
+fi
+     fi
+                fi
+                       fi
+                            fi
+                                 fi
+                                      fi
+                                              fi
+                                                                      fi
+                                                                            fi
+                                                                                     fi
+                                                                                                    fi
+                      ATTENZIONE                L’opzione --force-*, se non usata con parsimonia, può compromettere un
+                L’uso ef cace di --             sistema al punto tale che i comandi della famiglia APT si ri uteranno di
+                                                funzionare. Difatti, alcune di queste opzioni consentono di installare un pacchetto
+                force-*
+                                                anche quando una dipendenza non è soddisfatta o nonostante la presenza di un
+                                                con itto. Le conseguenze di ciò saranno un sistema non compatto in termini di
+                                                dipendenze ed il ri uto dei comandi APT di eseguire qualsiasi azione, eccetto
+                                                quelle che ne consentano il ripristino del sistema ad uno status coerente (il che
+                                                spesso consiste nell’installazione della dipendenza mancante o nella rimozione del
+                                                pacchetto problematico). Ciò si traduce spesso ad esempio in un messaggio come il
+                                                sottostante, in questo caso dovuto a seguito dell’installazione di una nuova
+                                                versione di rdesktop priva della sua dipendenza libc6 in una versione più recente:
+
+                                                # apt full-upgrade
+                                                [...]
+                                                You might want to run ‘apt-get -f install’ to correct these.
+                                                The following packages have unmet dependencies:
+                                                rdesktop: Depends: libc6 (>= 2.5) but 2.3.6.ds1-13etch7 is installed
+                                                E: Unmet dependencies. Try using -f.
+
+                                                Gli amministratori avventati che sono certi della correttezza della loro analisi
+                                                possono scegliere di ignorare una dipendenza od un con itto e quindi utilizzare
+                                                l’opzione --force-* relativa. In questo caso, per poter continuare ad usare apt o
+                                                aptitude, dovranno però modi care /var/lib/dpkg/status per rimuovere o
+                                                modi care la dipendenza od il con itto di cui hanno scelto di eseguirne l’override.
+                                                Questa manipolazione è un hack squallido, che non dovrebbe essere mai usato, se
+                                                non in casi di estrema necessità. Spesso, una soluzione più adeguata è ricompilare
+                                                il pacchetto che crea problematiche (consultate il paragrafo 15.1, “Ricompilazione
+                                                di un Pacchetto dalle sue Sorgenti” a pagina 448) o persino recuperare una
+                                                versione più recente (potenzialmente corretta) da un repository come ad esempio
+                                                stable-backports (andate a vedere il paragrafo 6.1.2.4, “Stable Backport” a pagina
+                                                112).
+
+
+
+
+               5.4.2 Rimozione di un Pacchetto
+
+               Invocando dpkg con l'opzione -r o --remove seguita da un nome di un pacchetto, quest'ultimo sarà
+               rimosso. Questa rimozione non è tuttavia completa in quanto rimarranno conservati tutti i les che il
+               pacchetto rimosso gestiva ovvero: i les di con gurazione, gli scripts di con gurazione, i les log (i
+               registri di sistema) e tutti i dati utente. Questo metodo consente di disinstallare un programma e di
+               reinstallarlo rapidamente con la stessa con gurazione. Per rimuovere il programma ed i suoi
+               contenuti permanentemente dovrete usare l'opzione -P o --purge seguita dal nome del pacchetto.
+
+                                         Esempio 5.4 Le opzioni Remove e Purge sul pacchetto debian-cd.
+
+               # dpkg -r debian-cd
+               (Reading database ... 15915                      files and directories currently installed.)
+               Removing debian-cd (3.1.25)                      ...
+               # dpkg -P debian-cd
+               (Reading database ... 15394                      files and directories currently installed.)
+               Purging configuration files                      for debian-cd (3.1.17) ...
+
+
+
+
+               Pagina 96 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fl
+     fi
+          fi
+                    fi
+                               fi
+                                    fl
+                                           fi
+                                                      fi
+                                                           fi
+                                                                  fl
+                                                                       fi
+                                                                                          fi
+                                                                                                         fi
+                                                                                                              fi
+          5.4.3 Querying (Richieste) per il Database di dpkg ed ispezione dei Files .deb
+
+
+                 BASILARE                La maggior parte delle opzioni sono disponibili nella versione “lunga” (una o più
+          La sintassi delle              parole signi cative, precedute da un doppio trattino) o “breve” (una singola lettera,
+                                         spesso l’iniziale di una parola della versione lunga, preceduta da un singolo trattino).
+          options                        Questa convenzione è così comune che è diventata uno standard POSIX.
+
+
+
+          Prima di concludere questo paragrafo, abbiamo descritto, attraverso il sottostante esempio, una
+          serie di opzioni di dpkg che "interrogano" il suo database interno per ottenere informazioni. Prima
+          ivi citeremo le opzioni lunghe e poi le corrispondenti opzioni brevi (che ovviamente se utilizzate
+          accettano gli stessi argomenti) ovvero: --listfiles (o -L) package, che mostra l'elenco dei les
+          installati da questo pacchetto; --search (o -S) file, che trova il pacchetto da cui proviene il le; --
+          status (o -s) package, che mostra l'header di un pacchetto installato; --list (o -l), che visualizza
+          l'elenco dei pacchetti noti al sistema e il loro status di installazione; --contents (o -c) file.deb,
+          che mostra l'elenco dei les contenuti nel pacchetto Debian speci cato; --info (o -I) file.deb, che
+          mostra le intestazioni del pacchetto Debian indicato.
+
+
+                                         Per diverse ragioni (per maggiori dettagli visitate https://
+               ATTENZIONE
+                                         www.freedesktop.org/wiki/Software/systemd/TheCaseForTheUsrMerge/)
+          dpkg --search ed               Debian al momento installa per impostazione prede nita alcune top-level directories
+          il collegamento                come collegamenti simbolici alle corrispettive directories in /usr. Per esempio /
+          a /usr                         bin, /sbin e /usr/lib sono rispettivamente collegamenti simbolici di /usr/bin, /
+                                         usr/sbin e /usr/lib.
+                                         Per quanto ciò comporti dei bene ci, spesso è anche fonte di confusione. Difatti, dpkg
+                                         riuscirà a rispondere alla vostra query in merito a quale pacchetto include un dato
+                                          le solo se indicherete il percorso originale:
+
+                                         $ dpkg --search /bin/mount
+                                         mount: /bin/mount
+                                         $ dpkg --search /usr/bin/mount
+                                          dpkg-query: no path found matching pattern /usr/bin/mount
+                                         $ dpkg --search /bin/apt
+                                         dpkg-query: no path found matching pattern /bin/apt
+                                         $ dpkg --search /usr/bin/apt
+                                         apt: /usr/bin/apt
+
+
+
+
+                                                    Esempio 5.5 Le diverse queries via dpkg
+          $ dpkg -L base-passwd
+          /.
+          /usr
+          /usr/sbin
+          /usr/sbin/update-passwd
+          /usr/share
+          /usr/share/base-passwd
+          /usr/share/base-passwd/group.master
+
+
+
+
+            TDAH_2.0        Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 97
+fi
+     fi
+                       fi
+                                  fi
+                                                      fi
+                                                                            fi
+                                                                                                               fi
+                                                                                                                    fi
+/usr/share/base-passwd/passwd.master
+/usr/share/doc
+/usr/share/doc/base-passwd
+/usr/share/doc/base-passwd/README
+/usr/share/doc/base-passwd/changelog.gz
+/usr/share/doc/base-passwd/copyright
+/usr/share/doc/base-passwd/users-and-groups.html
+/usr/share/doc/base-passwd/users-and-groups.txt.gz
+/usr/share/doc-base
+/usr/share/doc-base/users-and-groups
+/usr/share/lintian
+/usr/share/lintian/overrides
+/usr/share/lintian/overrides/base-passwd
+/usr/share/man
+/usr/share/man/de
+/usr/share/man/de/man8
+/usr/share/man/de/man8/update-passwd.8.gz
+/usr/share/man/es
+/usr/share/man/es/man8
+/usr/share/man/es/man8/update-passwd.8.gz
+/usr/share/man/fr
+/usr/share/man/fr/man8
+/usr/share/man/fr/man8/update-passwd.8.gz
+/usr/share/man/ja
+/usr/share/man/ja/man8
+/usr/share/man/ja/man8/update-passwd.8.gz
+/usr/share/man/man8
+/usr/share/man/man8/update-passwd.8.gz
+/usr/share/man/pl
+/usr/share/man/pl/man8
+/usr/share/man/pl/man8/update-passwd.8.gz
+/usr/share/man/ru
+/usr/share/man/ru/man8
+/usr/share/man/ru/man8/update-passwd.8.gz
+$ dpkg -S /bin/date
+coreutils: /bin/date
+$ dpkg -s coreutils
+Package: coreutils
+Essential: yes
+Status: install ok installed
+Priority: required
+Section: utils
+Installed-Size: 15719
+Maintainer: Michael Stone <mstone@debian.org>
+Architecture: amd64
+Multi-Arch: foreign
+Version: 8.30-3
+Pre-Depends: libacl1 (>= 2.2.23), libattr1 (>= 1:2.4.44), libc6 (>= 2.28),
+-> libselinux1 (>= 2.1.13)
+
+
+
+
+Pagina 98 Il Manuale dell’Amministratore di Debian TDAH_2.0
+Description: GNU core utilities
+This package contains the basic file, shell and text manipulation
+utilities which are expected to exist on every operating system.
+   .
+Specifically, this package includes:
+arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp
+csplit cut date dd df dir dircolors dirname du echo env expand expr
+factor false flock fmt fold groups head hostid id install join link ln
+logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc numfmt
+od paste pathchk pinky pr printenv printf ptx pwd readlink realpath rm
+rmdir runcon sha*sum seq shred sleep sort split stat stty sum sync tac
+tail tee test timeout touch tr true truncate tsort tty uname unexpand
+uniq unlink users vdir wc who whoami yes
+Homepage: http://gnu.org/software/coreutils
+$ dpkg -l ’b*’
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name Version Architecture Description
++++-====================-===============-===============-
+========================================
+ ̄
+un backupninja <none> <none> (no description
+-> available)
+un backuppc <none> <none> (no description
+-> available)
+un baobab <none> <none> (no description
+-> available)
+un base <none> <none> (no description
+-> available)
+un base-config <none> <none> (no description
+-> available)
+ii base-files 11 amd64 Debian base system
+-> miscellaneous files
+ii base-passwd 3.5.46 amd64 Debian base system
+-> master password and group files
+ii bash 5.0-4 amd64 GNU Bourne Again SHell
+[..]
+$ dpkg -c /var/cache/apt/archives/gnupg-utils_2.2.12-1_amd64.deb
+drwxr-xr-x root/root 0 2018-12-15 02:17 ./
+drwxr-xr-x root/root 0 2018-12-15 02:17 ./usr/
+drwxr-xr-x root/root 0 2018-12-15 02:17 ./usr/bin/
+-rwxr-xr-x root/root 3516 2018-12-15 02:17 ./usr/bin/gpg-zip
+-rwxr-xr-x root/root 866256 2018-12-15 02:17 ./usr/bin/gpgcompose
+-rwxr-xr-x root/root 30792 2018-12-15 02:17 ./usr/bin/gpgparsemail
+-rwxr-xr-x root/root 84432 2018-12-15 02:17 ./usr/bin/gpgsplit
+-rwxr-xr-x root/root 154952 2018-12-15 02:17 ./usr/bin/gpgtar
+-rwxr-xr-x root/root 166568 2018-12-15 02:17 ./usr/bin/kbxutil
+-rwxr-xr-x root/root 1081 2017-08-28 12:22 ./usr/bin/lspgpot
+
+
+
+
+ TDAH_2.0   Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 99
+-rwxr-xr-x root/root2194 2018-11-18 23:37 ./usr/bin/migrate-pubring-from-
+-> classic-gpg
+-rwxr-xr-x root/root 121576 2018-12-15 02:17 ./usr/bin/symcryptrun
+-rwxr-xr-x root/root 18424 2018-12-15 02:17 ./usr/bin/watchgnupg
+drwxr-xr-x root/root 0 2018-12-15 02:17 ./usr/sbin/
+-rwxr-xr-x root/root 3075 2018-12-15 02:17 ./usr/sbin/addgnupghome
+-rwxr-xr-x root/root 2217 2018-12-15 02:17 ./usr/sbin/applygnupgdefaults
+drwxr-xr-x root/root 0 2018-12-15 02:17 ./usr/share/
+drwxr-xr-x root/root 0 2018-12-15 02:17 ./usr/share/doc/
+[...]
+$ dpkg -I /var/cache/apt/archives/gnupg-utils_2.2.12-1_amd64.deb
+new Debian package, version 2.0.
+size 857408 bytes: control archive=1844 bytes.
+    1564 bytes,     32 lines      control
+    1804 bytes,     28 lines      md5sums
+Package: gnupg-utils
+Source: gnupg2
+Version: 2.2.12-1
+Architecture: amd64
+Maintainer: Debian GnuPG Maintainers <pkg-gnupg-maint@lists.alioth.debian.org>
+Installed-Size: 1845
+Depends: libassuan0 (>= 2.0.1), libbz2-1.0, libc6 (>= 2.25), libgcrypt20 (>=
+-> 1.8.0), libgpg-error0 (>= 1.26-2~), libksba8 (>= 1.3.4), libreadline7 (>=
+-> 6.0),zlib1g(>=1:1.1.4)
+Recommends: gpg, gpg-agent, gpgconf, gpgsm
+Breaks: gnupg (<< 2.1.21-4), gnupg-agent (<< 2.1.21-4)
+Replaces: gnupg (<< 2.1.21-4), gnupg-agent (<< 2.1.21-4)
+Section: utils
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.gnupg.org/
+Description: GNU privacy guard - utility programs
+GnuPG is GNU’s tool for secure communication and data storage.
+.
+This package contains several useful utilities for manipulating
+OpenPGP data and other related cryptographic elements. It includes:
+.
+* addgnupghome -- create .gnupg home directories
+* applygnupgdefaults -- run gpgconf --apply-defaults for all users
+* gpgcompose -- an experimental tool for constructing arbitrary
+                  sequences of OpenPGP packets (e.g. for testing)
+* gpgparsemail -- parse an e-mail message into annotated format
+* gpgsplit -- split a sequence of OpenPGP packets into files
+* gpgtar -- encrypt or sign files in an archive
+* kbxutil -- list, export, import Keybox data
+* lspgpot -- convert PGP ownertrust values to GnuPG
+* migrate-pubring-from-classic-gpg -- use only ”modern” formats
+* symcryptrun -- use simple symmetric encryption tool in GnuPG framework
+* watchgnupg -- watch socket-based logs
+
+
+
+
+Pagina 100 Il Manuale dell’Amministratore di Debian TDAH_2.0
+[..]
+
+
+  ANDANDO OLTRE             Dal momento che dpkg è il programma di riferimento per la gestione dei pacchetti
+ La comparazione            Debian, sempre a questi è af dato anche il compito di fornire l’implementazione [ossia
+                            la procedura a partire dagli studi preliminari no alla sua messa in opera de nitiva]
+ delle versioni             del metodo logico comparativo dei numeri di versione. Questo è il motivo per cui dpkg
+                            ha un’opzione --compare-version che può essere utilizzata dai programmi esterni
+                            (ed in particolare dagli scripts di con gurazione eseguiti dallo stesso dpkg). Questa
+                            opzione richiede tre parametri: un numero di versione, un operatore di confronto e un
+                            secondo numero di versione. I diversi operatori possibili sono lt (minore a), le
+                            (minore o uguale a), eq (uguale a), ne (diverso da), ge (maggiore o uguale a) e gt
+                            (maggiore di). Se l’operatore di confronto impostato è corretto, dpkg restituisce come
+                            valore di ritorno 0 (esito positivo); in caso contrario restituisce un valore diverso da
+                            zero (che indica un errore).
+
+                            $ dpkg --compare-versions 1.2-3 gt 1.1-4
+                            $ echo $?
+                            0
+                            $ dpkg --compare-versions 1.2-3 lt 1.1-4
+                            $ echo $?
+                            1
+                            $ dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1
+                            $ echo $?
+                            1
+                            Notate il fallimento imprevisto dell’ultimo confronto: per dpkg l’espressione pre, che
+                            indica in genere una pre-rilascio, non ha alcun signi cato particolare; questo
+                            programma confronta i caratteri alfabetici allo stesso modo dei numeri (a<b<c ...),
+                            in ordine lessicogra co [è un criterio di ordinamento di stringhe costituite da una
+                            sequenza di simboli per cui è già presente un ordine interno; il suddetto criterio logico
+                            di ordinamento corrisponde a quello utilizzato nei dizionari, da cui deriva il nome,
+                            anche se è esteso ad un qualunque insieme di simboli]. Per questo motivo dpkg
+                            considera “Opre3” maggiore di “0”. Pertanto quando si vuole speci care nel numero di
+                            versione di un pacchetto che si tratta di una pre-rilascio, si usa il carattere tilde “~”:
+
+                            $ dpkg --compare-versions 2.6.0-pre3-1 lt 2.6.0-1
+                            $ echo $?
+                            0
+
+
+5.4.4 Il Log File di dpkg
+
+dpkg tiene un registro [log, in inglese, signi ca registro] di tutte le sue azioni, in /var/log/dpkg.log.
+Questo registro è estremamente "verboso", perché descrive in dettaglio ciascuna delle fasi attraverso
+cui dpkg gestisce i pacchetti. Oltre ad offrire un metodo per verbalizzare le funzioni di dpkg, tale
+registro facilita soprattutto il mantenimento della cronologia sul development del sistema: difatti
+attraverso questi è possibile conoscere l'esatto momento in cui ciascun pacchetto è stato installato o
+aggiornato e queste informazioni possono essere estremamente utili per comprendere le ragioni di
+un recente cambiamento nel suo funzionamento. Inoltre, considerato che tutte le versioni sono
+documentate, è semplice eseguire un confronto incrociato delle informazioni con il
+changelog.Debian.gz dei pacchetti in questione, anche con le segnalazioni di bugs disponibili online.
+
+
+
+
+ TDAH_2.0   Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 101
+       fi
+              fi
+                       fi
+                                    fi
+                                         fi
+                                              fi
+                                                         fi
+                                                                    fi
+5.4.5 Supporto Multi-Arch
+
+Tutti i pacchetti Debian hanno un campo Architecture nel loro control information. Questo campo
+può dichiarare sia il valore "all" (per i pacchetti che non dipendono da una particolare architettura)
+o altrimenti il nome dell'architettura a cui il pacchetto è destinato (ad esempio amd64, armhf, ecc.).
+In quest'ultimo caso, per impostazione prede nita, dpkg accetterà di installare il pacchetto solo se
+l'architettura dichiarata soddisfa l'architettura dell'host ovvero quella restituita dal comando dpkg
+--print-architecture.
+Questa restrizione garantisce che gli utenti non niscano con pacchetti binari compilati per
+un'architettura errata. Tale metodo potrebbe essere certamente quello de nitivo se non fosse che
+esistono alcuni computers in grado di eseguire i pacchetti binari compilati anche per altre
+architetture: sia nativamente (un sistema amd64 può eseguire programmi i386); sia tramite
+emulatori.
+
+
+5.4.5.1 Abilitare Multi-Arch
+
+Il supporto multi-architettura di dpkg consente all'amministratore di de nire le "foreign
+architectures" [architetture non native che possono essere aggiunte] i cui pacchetti possono essere
+installati sul sistema. Tale con gurazione può essere impartita all'host tramite il comando dpkg --
+add-architecture come mostrato nel seguente esempio. Esiste anche il comando per disabilitare
+il supporto per l'architettura aggiunta ovvero dpkg --remove-architecture, ma può essere
+utilizzato solo se non è rimasto installato alcun pacchetto di quell'architettura.
+
+# dpkg --print-architecture
+amd64
+# dpkg --print-foreign-architectures
+# dpkg -i gcc-8-base_8.3.0-6_armhf.deb
+dpkg: error processing archive gcc-8-base_8.3.0-6_armhf.deb (--install):
+ package architecture (armhf) does not match system (amd64)
+ Errors were encountered while processing:
+ gcc-8-base_8.3.0-6_armhf.deb
+# dpkg --add-architecture armhf
+# dpkg --add-architecture armel
+# dpkg --print-foreign-architectures armhf
+ armel
+# dpkg -i gcc-8-base_8.3.0-6_armhf.deb
+(Reading database ... 14319 files and directories currently installed.)
+Preparing to unpack gcc-8-base_8.3.0-6_armhf.deb ...
+Unpacking gcc-8-base:armhf (8.3.0-6) ...
+Setting up gcc-8-base:armhf (8.3.0-6) ...
+# dpkg --remove-architecture armhf
+dpkg: error: cannot remove architecture ’armhf’ currently in use by the database
+# dpkg --remove-architecture armel
+# dpkg --print-foreign-architectures
+armhf
+
+
+
+
+Pagina 102 Il Manuale dell’Amministratore di Debian TDAH_2.0
+                    fi
+                                     fi
+                                          fi
+                                                               fi
+                                                                    fi
+                        NOTA         APT, se il supporto per le “foreign architectures” tramite dpkg è stato con gurato,
+      Il supporto multi              sarà in grado: di rilevare automaticamente le “foreign architectures” e di scaricare
+      arch di APT                    automaticamente i les dei pacchetti corrispondenti durante il processo di
+                                     aggiornamento. Quindi i pacchetti di una speci ca foreign architectures, potranno
+                                     essere installati con il semplice comando : apt install package:architecture
+
+
+
+
+             IN PRATICA               Esistono diverse ragioni per usufruire del supporto multi-architettura fra le quali
+                                      la più comune è la possibilità di eseguire i binari a 32 bit (i386) - a volte con licenza
+      Come usare i
+                                      proprietaria - su sistemi a 64 bit (amd64) oppure per la cross-compilazione di
+      pacchetti binario               software, nativo per piattaforme o architetture differenti rispetto a quelle del
+      i386 su                         sistema in cui intendete eseguirlo.
+      architetture                    [Il testo originale in inglese fa riferimento agli use cases, ovvero una serie di
+      amd64                           azioni o di eventi che de niscono tipicamente le interazioni tra un ruolo
+                                      (denominato attore nell’Unified Modeling Language - UML) e un sistema
+                                      indirizzato al raggiungimento di un obiettivo]
+
+
+
+
+     5.4.5.2 I cambiamenti dovuti a Multi-Arch
+
+     Af nché il supporto multi-architettura sia davvero utile e utilizzabile, le librerie devono essere
+     rimpacchettate e spostate in una directory destinata all'architettura (ovvero in base ad una
+     strategia mirata alle differenti architetture), in modo da poter installare più copie della stessa
+     libreria, ma compilate per architetture diverse, allo stesso tempo. In questo modo i pacchetti
+     aggiornati saranno etichettati nell'header con il campo "Multi-Arch:same" che avvisa il sistema di
+     gestione dei pacchetti che più architetture dello stesso pacchetto possono essere co-installate in
+     modo sicuro (e che questi pacchetti a loro volta possono soddisfare solo le dipendenze dei pacchetti
+     con la stessa architettura). Il supporto Multi-Arch è attivo solo a partire da Debian Wheezy e diverse
+     librerie sono state già convertite; le restanti librerie non saranno mai convertite senza un’esplicita
+     richiesta (magari attraverso un bug report).
+
+     $ dpkg -s gcc-8-base
+     dpkg-query: error: --status needs a valid package name but ’gcc-8-base’ is not:
+     -> ambiguous package name ’gcc-8-base’ with more than one installed instance
+
+     Use --help for help about querying packages.
+     $ dpkg -s gcc-8-base:amd64 gcc-8-base:armhf | grep ^Multi
+     Multi-Arch: same
+     Multi-Arch: same
+     $ dpkg -L libgcc1:amd64 |grep .so
+     /lib/x86_64-linux-gnu/libgcc_s.so.1
+     $ dpkg -S /usr/share/doc/gcc-8-base/copyright
+     gcc-8-base:amd64, gcc-8-base:armhf: /usr/share/doc/gcc-8-base/copyright
+
+
+     Occorre precisare che i pacchetti "Multi-Arch: same" sono identi cabili in modo inequivocabile solo
+     se il loro nome è quali cato con la loro architettura. Questi pacchetti hanno anche la possibilità di
+     condividere i les con le altre istanze dello stesso pacchetto; dpkg si assicura che questi les
+     condivisi fra i pacchetti siano identici bit per bit. In ne, ricordiamo che tutte le istanze dello stesso
+     pacchetto devono avere la stessa versione e quindi devono essere aggiornate contemporaneamente.
+
+     Il supporto multi-architettura comporta anche alcune complicazioni nella gestione delle dipendenze.
+     Una dipendenza per essere soddisfatta richiede una delle seguenti due alternative: che un pacchetto
+     sia contrassegnato come "Multi-Arch:foreign" oppure un pacchetto con architettura identica a
+     quella del pacchetto che ne dichiara la dipendenza (durante questo processo di risoluzione delle
+     dipendenze, i pacchetti con architettura indipendente si presume siano della stessa architettura
+     dell'host). Una dipendenza può anche essere resa più essibile in modo da poter essere soddisfatta
+
+
+
+
+      TDAH_2.0        Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 103
+fi
+      fi
+           fi
+                fi
+                 fi
+                                            fi
+                                                       fi
+                                                            fl
+                                                                      fi
+                                                                           fi
+                                                                                                   fi
+da un pacchetto di diversa architettura, attraverso la sintassi "package:any", ma i pacchetti di
+architetture aggiunte possono soddisfare tale dipendenza solo se sono contrassegnati come "Multi-
+Arch:allowed".
+
+
+
+5.5 Coesistenza con altri Packaging Systems
+
+I pacchetti Debian non sono gli unici pacchetti software utilizzati nel mondo del software libero. Il
+principale concorrente è il formato RPM della distribuzione Red Hat Linux ed i suoi numerosi
+derivati. Red Hat Linux è una distribuzione commerciale a cui spesso si fa riferimento. È sovente che
+il software di terze parti sia distribuito come pacchetto RPM, piuttosto che come pacchetto Debian.
+
+In questo caso, dovreste sapere che il programma rpm, che vi permette di gestire i pacchetti RPM,
+esiste anche come pacchetto Debian; è quindi possibile usare i pacchetti di questo formato su una
+macchina Debian. Ma allo stesso tempo, dovreste prestare attenzione a limitarvi a questo tipo di
+pratiche, dall'estrazione di informazioni dal pacchetto o alla veri ca della sua integrità. Difatti non è
+conveniente usare rpm per installare un pacchetto RPM su un sistema Debian in quanto i pacchetti
+RPM usano i propri database, separati da quelli del software nativo Debian (tra cui dpkg). Questo è il
+motivo per cui non è possibile garantire una stabile coesistenza tra i due sistemi di gestione
+pacchetti.
+Inoltre l'utility alien può convertire i pacchetti RPM in pacchetti Debian e viceversa.
+
+
+        COMUNITÀ            Se usate regolarmente il comando alien per installare i pacchetti RPM
+Come incoraggiare           provenienti da terze parti a cui fate riferimento, non esitate a comunicare
+l’adozione di .deb          loro gentilmente la vostra preferenza per il formato .deb. Si noti, tuttavia,
+                            che il formato del pacchetto non è tutto: un pacchetto .deb creato con alien,
+                            o preparato per un’altra versione di Debian rispetto a quella in uso, o anche
+                            per una distribuzione derivata come Ubuntu, probabilmente non offrirà lo
+                            stesso livello di qualità ed integrazione rispetto ad un pacchetto sviluppato
+                            appositamente per Debian Buster
+
+
+
+$ fakeroot alien --to-deb phpMyAdmin-4.7.5-2.noarch.rpm
+phpmyadmin_4.7.5-3_all.deb generated
+$ ls -s phpmyadmim_4.7.5-3_all.deb
+  4356 phpmyadmim_4.7.5-3_all.deb
+
+Scoprirete che questo processo è estremamente semplice. Tuttavia, dovete sapere, che il pacchetto
+generato non ha informazioni sulle dipendenze, poiché le dipendenze dei due formati del pacchetto
+non hanno corrispondenze sistematiche fra loro. Spetta quindi all'amministratore assicurarsi
+personalmente che il pacchetto convertito funzioni correttamente ed è per questo che si dovrebbero
+evitare, per quanto possibile, i pacchetti Debian generati in questo modo. Fortunatamente, Debian
+dispone della più grande raccolta di pacchetti software di tutte le distribuzioni ed è probabile che ciò
+che state cercando esista già nel formato nativo.
+Se leggerete la pagina man del comando alien, potrete anche notare che questo programma supporta
+altri formati (di pacchetto), in particolare quello della distribuzione Slackware (realizzati
+semplicemente con un archivio tar.gz).
+
+
+
+
+Pagina 104 Il Manuale dell’Amministratore di Debian TDAH_2.0
+                                                           fi
+               È la stabilità del software con gurato attraverso il tool dpkg a contribuire alla fama di Debian. La
+               suite di strumenti APT, descritta nel prossimo capitolo, preserva il summenzionato merito
+               dispensando l'amministratore dalla gestione dello status dei pacchetti, un'attività necessaria ma
+               dif cile.
+
+               [*
+               Per il supporto multi-arch, specialmente con distro derivate come Ubuntu, anche se con Debian non
+               ce n'è bisogno, è possibile modi care manualmente anche il le apt.conf in /etc/apt/ o in /etc/
+               apt/apt.conf.d ed il le sources.list in /etc/apt/ o in /etc/apt/sources.list.d/.]
+
+               Sul le apt.conf basta aggiungere le architetture nel seguente modo:
+               APT::Architecture="<arch> <arch>"
+
+               Sul le sources.list basta aggiungere le architetture nel seguente modo:
+               [arch=amd64,i386]                  deb http://deb.debian.org/debian buster main contrib non-free
+               [arch=amd64,i386]                  deb-src http://deb.debian.org/debian buster main contrib non-free
+
+               [arch=amd64,i386]                  deb http://deb.debian.org/debian-security buster/updates main contrib
+               non-free
+               [arch=amd64,i386]                  deb-src http://deb.debian.org/debian-security buster/updates main
+               contrib non-free
+
+               [arch=amd64,i386]                  deb http://deb.debian.org/debian buster-updates main contrib non-free
+               [arch=amd64,i386]                  deb-src http://deb.debian.org/debian buster-updates main contrib non-
+               free
+
+               Dopodiché se intendete utilizzare le soprastanti sorgenti su distro derivate da Debian dovrete
+               scaricare ed installare il keyring di Debian per convalidare i pacchetti scaricati dai repositories
+               Debian e viceversa. Ad esempio se intendete installare i pacchetti da Kali Linux su Debian dovrete
+               aggiungere sia i repositories uf ciali di Kali come sopra mostrato, nonché il keyring di Kali per
+               convalidarne i pacchetti su Debian:
+
+               wget https://http.kali.org/pool/main/k/kali-archive-keyring/kali-archive-
+               keyring_***_all.deb
+               sudo dpkg -i kali-archive-keyring_***_all.deb
+
+               In ne vi basterà aggiornare il sistema e la macchina con
+               sudo apt-get update && sudo apt-get upgrade && sudo update-initramfs -u && sudo update-
+               grub && sudo reboot
+
+               Occorre tenere in considerazione però che il sistema installerà i pacchetti della “release” prede nita.
+               Dovrete pertanto speci care per i pacchetti non nativi la distro di origine tramite il comando apt
+               oppure gestire il tutto attraverso pinning. ]
+
+
+
+
+                TDAH_2.0        Capitolo V - Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi Fondamentali Pagina 105
+fi
+     fi
+          fi
+          fi
+                           fi
+                           fi
+                                       fi
+                                            fi
+                                             fi
+                                                                           fi
+                                                                                                                      fi
+      Parole chiave
+apt
+apt-get
+apt-cache
+aptitude
+synaptic
+sources.list
+apt-cdrom
+
