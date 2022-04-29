@@ -2478,9 +2478,7 @@ Pagina 96 Il Manuale dell’Amministratore di Debian TDAH_1.0
                          dif cile.
 
                          [*
-                         Per il supporto multi-arch, specialmente con distro derivate come Ubuntu, anche se con Debian non
-                         ce n'è bisogno, è possibile modi care manualmente anche il le apt.conf su /etc/apt/ o su /etc/
-                         apt/apt.conf ed il le sources.list su /etc/apt/ o su /etc/apt/sources.list.d/
+                         Per il supporto multi-arch, specialmente con distro derivate come Ubuntu, anche se con Debian non   ce n'è bisogno, è possibile modificare manualmente anche il  file  apt.conf  in  /etc/apt/  o in  /etc/ apt/apt.conf.d  ed il  file sources.list in  /etc/apt/  o in  /etc/apt/sources.list.d/.
 
                          Sul le apt.conf basta aggiungere le architetture nel seguente modo:
                          APT::Architecture="<arch> <arch>"
@@ -2509,7 +2507,7 @@ Pagina 96 Il Manuale dell’Amministratore di Debian TDAH_1.0
                          sudo dpkg -i kali-archive-keyring_***_all.de
 
                          In ne vi basterà aggiornare il sistema e la macchina con
-                         sudo apt-get update && sudo update-initramfs -u && sudo apt-update-grub && sudo reboo
+                         sudo apt-get update && sudo apt-get upgrade && sudo update-initramfs -u && sudo updategrub && sudo reboot
 
                          Occorre tenere in considerazione però che il sistema installerà i pacchetti della “release” prede nita.
                          Dovrete pertanto speci care per i pacchetti non nativi la distro di origine tramite il comando apt
