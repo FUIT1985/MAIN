@@ -62,85 +62,85 @@ fi
                          fi
                               fi
                                    fi
-          [Per inizializzazione in informatica si intende l'insieme di operazioni necessarie per predisporre un
-          dispositivo, un programma o una risorsa nel suo stato iniziale, a partire dal quale può essere
-          utilizzato.
-          Per solver, in informatica, si intende una parte del software, che fa uso di algoritmi matematici,
-          dedicata alla ricerca di soluzioni a problemi generici, in modo che tali soluzioni siano applicabili ad
-          ogni situazione si presenti.]
+     [Per inizializzazione in informatica si intende l'insieme di operazioni necessarie per predisporre un
+     dispositivo, un programma o una risorsa nel suo stato iniziale, a partire dal quale può essere
+     utilizzato.
+     Per solver, in informatica, si intende una parte del software, che fa uso di algoritmi matematici,
+     dedicata alla ricerca di soluzioni a problemi generici, in modo che tali soluzioni siano applicabili ad
+     ogni situazione si presenti.]
 
-          APT è l'abbreviazione di Advanced Package Tool. Ciò che rende questo programma "avanzato" è il
-          suo approccio ai pacchetti. Non solo valuta i pacchetti individualmente, ma li considera nel loro
-          insieme e ottiene la loro migliore combinazione possibile tenendo in considerazione tutto ciò che è
-          disponibile e compatibile (in termini di dipendenze).
+     APT è l'abbreviazione di Advanced Package Tool. Ciò che rende questo programma "avanzato" è il
+     suo approccio ai pacchetti. Non solo valuta i pacchetti individualmente, ma li considera nel loro
+     insieme e ottiene la loro migliore combinazione possibile tenendo in considerazione tutto ciò che è
+     disponibile e compatibile (in termini di dipendenze).
 
-                DIZIONARIO                       Il termine sorgente può essere fuorviante. Non dovete confondere un pacchetto
-           Pacchetto                             sorgente - un pacchetto contenente il codice sorgente di un programma - con la
-                                                 sorgente di un pacchetto - un repository (un sito Web, un server FTP, un CD-Rom,
-           sorgente e la                         una local directory, ecc.) che contiene i pacchetti.
-           sorgente dei
-           pacchetti
+               DIZIONARIO                      Il termine sorgente può essere fuorviante. Non dovete confondere un pacchetto
+          Pacchetto                            sorgente - un pacchetto contenente il codice sorgente di un programma - con la
+                                               sorgente di un pacchetto - un repository (un sito Web, un server FTP, un CD-Rom,
+          sorgente e la                        una local directory, ecc.) che contiene i pacchetti.
+          sorgente dei
+          pacchetti
 
-          APT necessita che gli sia fornita una “lista di sorgenti dei pacchetti (repositories)”: il le /etc/apt/
-          sources.list elenca i diversi repositories che distribuiscono i pacchetti Debian. APT dovrà quindi
-          importare l'elenco dei pacchetti pubblicati da ciascuna di queste sorgenti, nonché le relative
-          intestazioni. APT realizza questa operazione [l'insieme dei processi e delle attività che utilizzano
-          risorse per trasformare input in output] scaricando ed analizzandone il contenuto: dalle sorgenti dei
-          pacchetti binari i les Packages.xz (o in altre varianti che utilizzano differenti metodi di
-          compressione tra cui .gz, .bz2) e dalle sorgenti dei pacchetti sorgente i les Sources.xz (o in altre
-          varianti che utilizzano differenti metodi di compressione). APT è in grado di aggiornare le vecchie
-          copie di questi les già in suo possesso scaricando solo le diseguaglianze (per maggiori dettagli
-          andate a leggere la casella di testo "Aggiornamento incrementale" a pagina 117).
-
-
-
-                  BASILARE                       Un’estensione .gz di un le compresso è ottenuta attraverso l’utility gzip. gzip è
-           La compressione                       un’utility rapida ed ef ciente per la compressione dei les di tradizione UNIX. Tools
-                                                 più moderni riescono a realizzare le compressioni in tempi più rapidi, ma
-           attraverso tools                      necessitano di più risorse per comprimere e decomprimere i les (in termini di
-           gzip, bzip2,                          computation time e memoria). Occorre citare, in un ordine basato sulla data di
-           LZMA e XZ                             pubblicazione: bzip2 (che genera les con estensione .bz2), LZMA (che genera les
-                                                 con estensione .lzma) e xz (che genera les con estensione .xz).
+     APT necessita che gli sia fornita una “lista di sorgenti dei pacchetti (repositories)”: il le /etc/apt/
+     sources.list elenca i diversi repositories che distribuiscono i pacchetti Debian. APT dovrà quindi
+     importare l'elenco dei pacchetti pubblicati da ciascuna di queste sorgenti, nonché le relative
+     intestazioni. APT realizza questa operazione [l'insieme dei processi e delle attività che utilizzano
+     risorse per trasformare input in output] scaricando ed analizzandone il contenuto: dalle sorgenti dei
+     pacchetti binari i les Packages.xz (o in altre varianti che utilizzano differenti metodi di
+     compressione tra cui .gz, .bz2) e dalle sorgenti dei pacchetti sorgente i les Sources.xz (o in altre
+     varianti che utilizzano differenti metodi di compressione). APT è in grado di aggiornare le vecchie
+     copie di questi les già in suo possesso scaricando solo le diseguaglianze (per maggiori dettagli
+     andate a leggere la casella di testo "Aggiornamento incrementale" a pagina 117).
 
 
 
-
-          6.1 Come compilare il le sources.list
-
-          6.1.1 Sintassi
-
-          Il le /etc/apt/sources.list contiene su ogni riga attiva una descrizione della sorgente
-          (repository), che è divisa in 3 parti separate da spazi. Per maggiori informazioni sulla sintassi del
-            le e sulle voci ammesse fate riferimento a sources.list(5).
-
-                                      Esempio 6.1 Esempio della sintassi delle voci del le /etc/apt/sources.list
-
-          deb url distribution component1 component2 component3 [..] componentx
-          deb-src url distribution component1 component2 component3 [..] componentx
-
-          Il primo campo indica il tipo di sorgente:
-
-          • deb sorgente (repository) dei pacchetti binari.
+                 BASILARE                      Un’estensione .gz di un le compresso è ottenuta attraverso l’utility gzip. gzip è
+          La compressione                      un’utility rapida ed ef ciente per la compressione dei les di tradizione UNIX. Tools
+                                               più moderni riescono a realizzare le compressioni in tempi più rapidi, ma
+          attraverso tools                     necessitano di più risorse per comprimere e decomprimere i les (in termini di
+          gzip, bzip2,                         computation time e memoria). Occorre citare, in un ordine basato sulla data di
+          LZMA e XZ                            pubblicazione: bzip2 (che genera les con estensione .bz2), LZMA (che genera les
+                                               con estensione .lzma) e xz (che genera les con estensione .xz).
 
 
 
 
-          Pagina 108 Il Manuale dell’Amministratore di Debian TDAH_2.0
+     6.1 Come compilare il le sources.list
+
+     6.1.1 Sintassi
+
+     Il le /etc/apt/sources.list contiene su ogni riga attiva una descrizione della sorgente dei
+     pacchetti (repository), che è divisa in 3 parti separate da spazi. Per maggiori informazioni sulla
+     sintassi del le e sulle voci ammesse fate riferimento a sources.list(5).
+
+                                    Esempio 6.1 Esempio della sintassi delle voci del le /etc/apt/sources.list
+
+     deb url distribution component1 component2 component3 [..] componentx
+     deb-src url distribution component1 component2 component3 [..] componentx
+
+     Il primo campo indica il tipo di sorgente:
+
+     • deb sorgente (repository) dei pacchetti binari.
+
+
+
+
+     Pagina 108 Il Manuale dell’Amministratore di Debian TDAH_2.0
 fi
      fi
-             fi
-                  fi
-                       fi
-                            fi
-                                 fi
-                                      fi
-                                            fi
-                                                          fi
-                                                               fi
-                                                                     fi
-                                                                                       fi
-                                                                                        fi
-                                                                                                       fi
+           fi
+                fi
+                     fi
+                          fi
+                               fi
+                                    fi
+                                          fi
+                                                        fi
+                                                             fi
+                                                                   fi
+                                                                                     fi
+                                                                                      fi
+                                                                                                     fi
                     • deb-src sorgente (repository) dei pacchetti sorgente.
 
                     Il secondo campo indica l’URL "base" della sorgente che deve essere poi combinato con i lenames
@@ -187,7 +187,7 @@ fi
 
 
 
-                      SUGGERIMENTO            Se fate riferimento a molteplici sorgenti di pacchetti, può esservi utile separarle in
+                      SUGGERIMENTO            Se fate riferimento a molteplici sorgenti dei pacchetti, può esservi utile separarle in
                      Il le /etc/apt/          più les. Ciascuna di queste deve essere poi inclusa in /etc/apt/sources.list.d/
                                                lename.list (andate a leggere la casella di testo “Le Directories che terminano
                      sources.list.d/          in .d” a pagina 121).
@@ -729,40 +729,41 @@ fi
           l'aggiornamento dovrebbe essere piuttosto veloce.
 
 
-                SUGGERIMENTO                      Come già espresso precedentemente, lo scopo del comando apt update è quello di
-               Aggiornamento                      scaricare i corrispondenti les Packages (o Sources) di ciascun pacchetto sorgente.
-               incrementale                       Tuttavia questi les, anche dopo essere stati compressi con xz, rimangono di grandi
-                                                  dimensioni (i Packages.xz della sezione main di Buster occupano più di 7 MB). Ne
-                                                  consegue che qualora siate costretti ad effettuare aggiornamenti regolarmente,
-                                                  questi downloads potrebbero farvi perdere molto tempo.
-                                                  Pertanto invece di scaricare un intero le, per accelerare il processo, APT è in grado
-                                                  di scaricare i les “diff” che elencano singolarmente i cambiamenti del correlato
-                                                  pacchetto dal precedente aggiornamento [tale metodo viene de nito incrementale].
-                                                  Per consentire la suddetta operazione i mirrors uf ciali di Debian assegnano
-                                                  numerosi les che elencano le differenze da una versione all’altra di ciascun
-                                                  pacchetto. Inoltre questi les sono creati durante l’aggiornamento degli archivi e
-                                                  viene conservata una copia della cronologia di ogni settimana. Ciascun le “diff”
-                                                  della Unstable generalmente pesa solo una dozzina di kilobyte in modo tale che
-                                                  l’ammontare di dati da ricevere settimanalmente via apt update sia di fatto un
-                                                  decimo. Nelle distribuzioni come la Stable e la Testing, con minori cambiamenti, il
-                                                  guadagno è ancora più evidente.
-                                                  Ciò nonostante potreste avere comunque bisogno di forzare il download del formato
-                                                  intero del le dei pacchetti, specialmente nei casi in cui l’ultimo aggiornamento è
-                                                  troppo obsoleto e di conseguenza la procedura incrementale non vi può essere
-                                                  d’aiuto. Inoltre, si reitera, potreste essere costretti a forzare il download del formato
-                                                  intero del le dei pacchetti nei casi in cui, pur essendo l’accesso alla rete molto
-                                                  veloce, il processore della macchina da aggiornare è relativamente lento. Di
-                                                  conseguenza il tempo che risparmierete per il download dei les verrà poi perso
-                                                  nell’elaborazione delle nuove versioni di questi les a partire dalle vecchie versioni
-                                                  (incluse le differenze da applicare). Per disattivare l’aggiornamento incrementale,
-                                                  dovrete impostare il parametro di con gurazione Acquire::Pdiffs su false.
+                SUGGERIMENTO                        Come già espresso precedentemente, lo scopo del comando apt update è quello di
+               Aggiornamento                        scaricare i corrispondenti les Packages (o Sources) di ciascuna sorgente dei
+               incrementale                         pacchetti. Tuttavia questi les, anche dopo essere stati compressi con xz,
+                                                    rimangono di grandi dimensioni (i Packages.xz della sezione main di Buster
+                                                    occupano più di 7 MB). Ne consegue che qualora siate costretti ad effettuare
+                                                    aggiornamenti regolarmente, questi downloads potrebbero farvi perdere molto
+                                                    tempo.
+                                                    Pertanto invece di scaricare un intero le, per accelerare il processo, APT è in grado
+                                                    di scaricare i les “diff” che elencano singolarmente i cambiamenti del correlato
+                                                    pacchetto dal precedente aggiornamento [tale metodo viene de nito incrementale].
+                                                    Per consentire la suddetta operazione i mirrors uf ciali di Debian assegnano
+                                                    numerosi les che elencano le differenze da una versione all’altra di ciascun
+                                                    pacchetto. Inoltre questi les sono creati durante l’aggiornamento degli archivi e
+                                                    viene conservata una copia della cronologia di ogni settimana. Ciascun le “diff”
+                                                    della Unstable generalmente pesa solo una dozzina di kilobyte in modo tale che
+                                                    l’ammontare di dati da ricevere settimanalmente via apt update sia di fatto un
+                                                    decimo. Nelle distribuzioni come la Stable e la Testing, con minori cambiamenti, il
+                                                    guadagno è ancora più evidente.
+                                                    Ciò nonostante potreste avere comunque bisogno di forzare il download del formato
+                                                    intero del le dei pacchetti, specialmente nei casi in cui l’ultimo aggiornamento è
+                                                    troppo obsoleto e di conseguenza la procedura incrementale non vi può essere
+                                                    d’aiuto. Inoltre, si reitera, potreste essere costretti a forzare il download del formato
+                                                    intero del le dei pacchetti nei casi in cui, pur essendo l’accesso alla rete molto
+                                                    veloce, il processore della macchina da aggiornare è relativamente lento. Di
+                                                    conseguenza il tempo che risparmierete per il download dei les verrà poi perso
+                                                    nell’elaborazione delle nuove versioni di questi les a partire dalle vecchie versioni
+                                                    (incluse le differenze da applicare). Per disattivare l’aggiornamento incrementale,
+                                                    dovrete impostare il parametro di con gurazione Acquire::Pdiffs su false.
 
-                                                  $ sudo apt -o “Acquire::PDiffs=false” update
+                                                    $ sudo apt -o “Acquire::PDiffs=false” update
 
-                                                  Attraverso l’opzione Acquire::* potrete gestire sia altri aspetti del download,
-                                                  nonché i metodi. Acquire::Languages può limitare o disabilitare il download dei
-                                                   les Translation-language-code e farvi risparmiare ulteriore tempo. Per
-                                                  maggiori informazioni consultate apt.conf(5).
+                                                    Attraverso l’opzione Acquire::* potrete gestire sia altri aspetti del download,
+                                                    nonché i metodi. Acquire::Languages può limitare o disabilitare il download dei
+                                                     les Translation-language-code e farvi risparmiare ulteriore tempo. Per
+                                                    maggiori informazioni consultate apt.conf(5).
 
 
 
@@ -777,25 +778,25 @@ fi
 
 
 
-                                                         TDAH_2.0 Capitolo VI - Manutenzione e Aggiornamenti : gli strumenti di APT Pagina 117
+                                                           TDAH_2.0 Capitolo VI - Manutenzione e Aggiornamenti : gli strumenti di APT Pagina 117
 fi
      fi
      fi
      fi
           fi
-               fi
-                    fi
-                         fi
-                              fi
-                                   fi
-                                        fi
-                                             fi
-                                                    fi
-                                                            fi
-                                                                 fi
-                                                                         fi
-                                                                              fi
-                                                                                     fi
+                 fi
+                      fi
+                           fi
+                                fi
+                                     fi
+                                          fi
+                                               fi
+                                                      fi
+                                                              fi
+                                                                   fi
+                                                                           fi
+                                                                                fi
+                                                                                       fi
              SUGGERIMENTO              Talvolta può essere necessario installare sistematicamente lo stesso elenco di
            Come installare la          pacchetti su più computers. Tale operazione può essere svolta facilmente.
            stessa dpkg’s               Innanzitutto, dovete ottenere l’elenco dei pacchetti installati sul computer che
@@ -2108,7 +2109,8 @@ fi
                                                                       Acquire::AllowReleaseInfoChange.
 
 
-                         Dopo aver salvato le nuove sorgenti, dovrete effettuare un aggiornamento minimo con apt upgrade.
+                         Dopo aver salvato le nuove sorgenti dei pacchetti, dovrete effettuare un aggiornamento minimale
+                         con apt upgrade.
                          Così facendo sempli cherete il carico di lavoro degli strumenti di gestione dei pacchetti ed in
                          particolare, garantirete che i suddetti strumenti siano aggiornati alla loro ultima versione e che
                          quindi ricevano quelle bug xes e quei miglioramenti che potrebbero rivelarsi necessari durante
@@ -2133,7 +2135,6 @@ fi
 
                          Nonostante tutti gli sforzi dei manutentori Debian, un importante aggiornamento del sistema
                          operativo non ha sempre un esito così prevedibile come si potrebbe sperare. Le nuove versioni di
-                         alcuni software sono talvolta incompatibili con quelle precedenti (per esempio a causa del
                          Pagina 136 Il Manuale dell’Amministratore di Debian TDAH_2.0
 fi
      fi
@@ -2160,7 +2161,8 @@ fi
                                                                                                                        fi
                                                                                                                             fi
                                                                                                                                  fi
-     cambiamento del loro funzionamento di default o del loro formato dati). Inoltre alcuni bug riescono
+     alcuni software sono talvolta incompatibili con quelle precedenti (per esempio a causa del
+     cambiamento del loro funzionamento di default o del loro formato dati). Inoltre alcuni bug riescono
      comunque a passare inosservati nonostante la fase testing che precede il rilascio di una nuova
      versione Debian.
 
@@ -2228,8 +2230,8 @@ fi
 A volte i Debian FTP Master rimuovono i pacchetti dall'archivio Debian, perché contengono bugs
 critici per la release oppure perché sono stati abbandonati dall'autore a monte o dal manutentore dei
 pacchetti, o semplicemente in quanto hanno raggiunto la ne del loro ciclo di vita. Di conseguenza
-verranno esclusi nella nuova versione di Debian. Per trovare tutti i pacchetti che non hanno un
-pacchetto sorgente dovrete utilizzare il comando apt-show-versions:
+verranno esclusi nella nuova versione di Debian. Per trovare tutti i pacchetti che non hanno una
+sorgente dei pacchetti dovrete utilizzare il comando apt-show-versions:
 
 $ apt-show-versions | grep "No available version"
 
