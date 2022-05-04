@@ -1,0 +1,356 @@
+Analisi di un contesto
+plausibilmente veri cabile
+                          Capitolo 2
+2. Analisi di un contesto plausibilmente veri cabile                                           pag. 33
+        1. Esigenza di forte crescita IT                                                       pag. 34
+        2. Master Plan — il piano strategico aziendale                                         pag. 34
+        3. Perché una distribuzione GNU/Linux?                                                 pag. 35
+        4. Perché la distribuzione Debian?                                                     pag. 37
+                1. Distribuzioni: commerciali o guidate da una comunità                        pag. 37
+        5. Perché Debian Buster?                                                               pag. 38
+
+
+ << Poniamo il caso che siate l’amministratore di sistema di una piccola attività imprenditoriale che
+intende espandersi. È pertanto giunto il momento per voi di ride nire con i vostri superiori lo
+“information systems master plan” per il nuovo anno ovvero il piano strategico aziendale di
+ristrutturazione di un sistema informativo [attività, persone, struttura o ruoli e tecnologie].
+Mettiamo che per ragioni pratiche ed economiche abbiate scelto di migrare a Debian.
+Vediamo quindi con maggiori dettagli cosa c’è in serbo per voi... >>
+
+[CASE STUDY, non letteralmente - CASO STUDIO - è un modello esempli cativo utilizzato nella
+manualistica a scopo propedeutico.]
+                                fi
+                                           fi
+                                                     fi
+                                                            fi
+          Abbiamo trattato e concepito questo contesto plausibilmente veri cabile per introdurre tutti i
+          moderni servizi di un sistema informativo, [ovvero un sistema di raccolta e rielaborazione dati a ni
+          creativi, promozionali, statistici, commerciali, ecc.] correntemente usato dalle piccole e medie
+          imprese. Dopo aver letto questo libro avrete tutte le competenze necessarie per installare Debian sui
+          vostri servers e per volare con le vostre ali. Saprete anche dove trovare ef cacemente le
+          informazioni necessarie nel caso vi trovaste in dif coltà.
+          [I sistemi informativi o sistemi di informazione sono sistemi formali, sociotecnici ed organizzativi
+          progettati per raccogliere, elaborare, archiviare e distribuire informazioni. In una prospettiva
+          sociotecnica, i sistemi di informazione sono composti da quattro elementi: attività, persone,
+          struttura (o ruoli) e tecnologie. I sistemi sociotecnici nello sviluppo organizzativo sono quei metodi
+          destinati alla progettazione complessa del lavoro organizzativo e prediligono l'interazione tra
+          persone e tecnologia nei luoghi di lavoro. Un sistema informativo informatico è un sistema, composto
+          da persone e computer, che elabora o interpreta le informazioni. Il termine viene talvolta utilizzato
+          anche in senso lato per indicare solo il software utilizzato per accedere ad una banca dati
+          informatica o per fare riferimento solo ad un sistema informatico. Un computer system o sistema
+          informatico è un computer essenziale, completo e funzionale, che include l'hardware e il software
+          necessari per renderlo funzionale per un utente. Deve avere la capacità di ricevere gli input
+          dell'utente, elaborare i dati e, con i dati elaborati, creare informazione per l'archiviazione e/o
+          l’output.]
+
+          2.1 Esigenza di forte crescita IT
+
+          La Falcot Corp è una casa produttrice di componenti audio di alta qualità. La società si sta
+          espandendo e ha due distaccamenti, uno a Saint-Étienne ed un altro a Montpellier. Saint-Étienne ha
+          all’incirca 150 impiegati; ospita una fabbrica per la produzione di casse audio, un laboratorio di
+          design e l’intero uf cio di amministrazione. Montpellier è una sede più piccola, con soltanto circa 50
+          operai e produce ampli catori.
+
+                            NOTA        La Falcot Corp è una società inventata a scopi meramente esempli cativi.
+               Società inventata a      Qualsiasi riferimento ad una società realmente esistente è puramente causale.
+                                        Allo stesso modo i contesti esempli cativi di questo libro, dall’inizio sino alla sua
+               scopi meramente
+                                         ne, potrebbero essere immaginari.
+               esempli cativi
+
+          Il sistema informativo aziendale ha avuto serie dif coltà a restare al passo con l’espansione della
+          società, pertanto sono ora determinati a metterlo del tutto in discussione pur di raggiungere gli
+          obiettivi pre ssati dalla direzione:
+          1. un’infrastruttura all’avanguardia e facilmente scalabile;
+          2. riduzione dei costi delle licenze software grazie all’utilizzo di software Open Source;
+          3. installazione di un sito web e-commerce, possibilmente B2B (business to business, ossia destinato
+          non ai consumatori privati bensì ad altre società), che di fatto colleghi i sistemi informativi delle
+          diverse società frapponendosi tra di loro — le summenzionate società a seconda dei casi possono
+          ricoprire il ruolo di fornitrici o clienti [si ricorda che in questo caso il sistema informativo è un
+          sistema, composto da persone e computer, che elabora o interpreta le informazioni];
+          4. un rilevante progresso nel settore della sicurezza per rafforzare la protezione dei diritti di
+          proprietà intellettuale sui nuovi prodotti dallo spionaggio industriale, in base a quanto previsto dalla
+          disciplina giuridica sui segreti industriali o aziendali.
+
+          L’intero sistema informativo (attività, persone, struttura o ruoli e tecnologie) sarà ristrutturato in
+          funzione dei suddetti obiettivi.
+
+          2.2. Master Plan — il piano strategico aziendale
+
+          Dopo la vostra consulenza, la direzione IT ha condotto un’analisi leggermente più ampia, sollevando
+          qualche eccezione e de nendo un piano di migrazione per il sistema operativo prescelto, ovvero
+          Debian.
+          Un’importante riserva evidenziata dalla direzione IT riguarda l’uso di uno speci co software da
+          parte della contabilità, software che funziona solo su Microsoft WindowsTM. Inoltre il lavoratorio, per
+          svolgere i suoi servizi, usa computer con software dedicati al design che funzionano su OS XTM.
+
+
+
+          Pagina 34 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+     fi
+          fi
+                    fi
+                         fi
+                              fi
+                                   fi
+                                                      fi
+                                                           fi
+                                                                 fi
+                                                                        fi
+                                                                                   fi
+                                                                                         fi
+                                                                                                              fi
+                     Sede di Saint-Étienne                    Servers in loco
+
+
+                     Laboratorio di design                             Uf cio di amministrazione
+
+
+
+
+                     Sede di Montpellier
+
+                         Figura 2.1 Rappresentazione della rete (network) della Falcot Corp
+
+     Il passaggio a Debian sarà graduale; una piccola-media impresa non può oggettivamente mutare ogni
+     cosa in una notte. Per cominciare, lo staff IT deve essere istruito o aggiornato sull’amministrazione
+     di Debian. I servers dovranno essere convertiti, iniziando dall’infrastruttura di rete (routers,
+       rewalls, ecc.) in base ai servizi-utente pregressi (condivisione le, Web, SMTP — il protocollo di
+     comunicazione per la trasmissione email, ecc.). Successivamente i computer aziendali dovranno
+     gradualmente migrare a Debian e ciascun dipartimento dovrà essere istruito o aggiornato
+     (individualmente) in corso d’opera ovvero mentre le attività di installazione, con gurazione
+     (compreso eventuale adattamento in base ai servizi che i suoi utenti devono svolgere) e veri ca del
+     sistema sono ancora in atto. [Tali attività sono de nite genericamente “deployment”].
+
+     2.3. Perché una distribuzione GNU/Linux?
+
+              BASILARE        Linux, come voi già saprete, è solo il kernel. Le espressioni “Linux distribution” e
+                              “Linux system” sono pertanto errate: difatti esistono solo “distribuzioni” o
+      Linux o GNU/
+                              “sistemi” basati su Linux. Le summenzionate espressioni, invece, omettono di
+      Linux?                  menzionare il software che integra il kernel, composto da programmi sviluppati
+                              dal Progetto GNU. Il Dr. Richard Stallman, fondatore di questo progetto, ha sempre
+                              insistito che l’espressione “GNU Linux” debba essere usata speci catamente per
+                              evidenziare gli importanti contributi realizzati dal Progetto GNU ed i principi di
+                              libertà su cui si fondano.
+                              Debian, pertanto, ha deciso di assecondare questa raccomandazione conferendo
+                              un nome alle proprie distribuzioni (ad esempio la distribuzione stabile corrente, al
+                              termine della stesura della presente opera, è Debian GNU/Linux 10).
+
+
+
+
+                                        TDAH_2.0      Capitolo II - Analisi di un contesto plausibilmente veri cabile Pagina 35
+fi
+                                   fi
+                                            fi
+                                                 fi
+                                                         fi
+                                                                  fi
+                                                                                      fi
+                                                                                                    fi
+               Diversi fattori hanno comportato questa decisione. L’amministratore di sistema, che aveva già
+               con denza con questa distribuzione, ha assicurato che Debian era comunque fra le candidate in lista
+               per la revisione del sistema informatico aziendale. Soltanto che le dif coltà economiche e la feroce
+               competizione avevano limitato il budget per questa operazione, nonostante fosse di primaria
+               importanza per il futuro della società. Inoltre la soluzione Open Source è stata intrapresa con tanta
+               rapidità in quanto: diversi recenti studi, effettuati dalla compagnia, hanno messo in evidenza che
+               sono meno dispendiose rispetto alle distribuzioni proprietario (con diritti di proprietà intellettuale)
+               ed allo stesso tempo garantiscono un’equivalente, se non addirittura migliore, qualità di servizio
+               purché sia già disponibile il personale quali cato per gestirle.
+
+                      IN PRATICA                 Il Total Cost of Ownership (TCO) è un metodo di estimazione dei costi totali del ciclo
+                Il Total Cost of                 di vita di un'apparecchiatura informatica IT [sviluppato dalla Gartner Inc., società
+                                                 che si occupa di consulenza strategica, ricerca e analisi nel campo della tecnologia
+                Ownership (TCO)
+                                                 dell’informazione,] e rappresenta in generale il bilancio preventivo per il possesso,
+                — il preventivo                  la gestione o l’acquisto di un bene o un servizio e nel nostro caso si riferisce al
+                per il possesso, la              sistema operativo. Il suddetto rendiconto include qualsiasi costo dovuto alla licenza
+                gestione e                       (non solo l’acquisto, ma anche eventuali concessioni dei diritti a pagamento), i costi
+                l’acquisto.                      per i corsi di aggiornamento o istruzione del personale che usufruirà del nuovo
+                                                 software, la sostituzione di macchine troppo lente, ulteriori riparazioni o
+                                                 adattamenti, ecc.. Qualsiasi effetto o conseguenza in termini di costi riconducibile
+                                                 direttamente a questa decisione iniziale è tenuto in considerazione nel
+                                                 summenzionato preventivo. Il TCO, che varia a seconda dei criteri stabiliti dalla
+                                                 direzione, raramente ha valore di per sé, se è l’unico preso in considerazione dalla
+                                                 società. Diversamente, è più utile confrontare più TCOs, con alternative differenti,
+                                                 estimati con lo stesso metodo e ssati con gli stessi criteri stabiliti dalla direzione.
+                                                 Questa analitica visione d’insieme è, pertanto, di primaria importanza, ed è facile da
+                                                 stilare in modo da potere raggiungere i punti pre ssati. Di conseguenza, il TCO di
+                                                 una singola macchina non ha signi cato, dal momento che il “costo” per un
+                                                 amministratore è anche condizionato dal numero di macchine da gestire, un
+                                                 numero che evidentemente dipende dal sistema operativo e dalle applicazioni
+                                                 proposte.
+
+
+               Fra i sistemi operativi free, il reparto IT ha anche valutato i sistemi free BSD (OpenBSD, FreeBSD e
+               NetBSD), GNU Hurd e le distribuzioni Linux. GNU Hurd, che non ha (al momento della stesura della
+               presente opera) una versione stabile rilasciata è stato immediatamente rigettato. Scegliere fra BSD e
+               Linux è più semplice. BDS ha molti meriti, specialmente per quel concerne i servers. Ad ogni modo
+               un atteggiamento pragmatico suggerisce di scegliere il sistema Linux, dal momento che la sua
+               installazione di base e la sua popolarità sono entrambe molto signi cative con conseguenze positive
+               in termini di costi e nella riuscita dell’operazione. Difatti una di queste conseguenze è che più facile
+               trovare personale quali cato per amministrare macchine Linux rispetto a tecnici con esperienza
+               BSD. Inoltre si adatta al moderno hardware più velocemente rispetto a BSD (sebbene i sistemi BSD
+               siano spesso testa a testa con Linux da questo punto di vista). In ne, nelle distribuzioni Linux
+               l’interfaccia gra ca può essere resa più semplice ed intuitiva per gli utenti, requisito indispensabile
+               per i neo ti durante la migrazione al nuovo sistema di tutti i computer aziendali.
+
+
+                   ALTERNATIVA                   Fin da Debian 6 Squeeze, è possibile utilizzare Debian con un kernel FreeBSD su
+                     Debian GNU/                 computers a 32 bit e a 64 bit; le corrispettive architetture sono kfreebsd-i386 e
+                       kFreeBSD                  kfreebsd-amd64. Queste architetture non sono rilasciate uf cialmente (e vengono
+                                                 concesse attraverso un mirror dedicato - ports.debian.org) sebbene il 70% circa
+                                                 del software “impacchettato” da Debian sia con loro compatibile. Queste
+                                                 architetture potrebbero essere una scelta appropriata per gli amministratori della
+                                                 Falcot Corp, specialmente per un rewall (il kernel supporta tre tipi differenti di
+                                                  rewalls: IPF, IPFW, PF) o per un NAS (acronimo di Network Attached Storage
+                                                 systems, per il quale il lesystem ZFS è stato già testato e convalidato).
+
+
+
+
+               Pagina 36 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+     fi
+          fi
+                   fi
+                        fi
+                             fi
+                                  fi
+                                       fi
+                                            fi
+                                                         fi
+                                                              fi
+                                                                      fi
+                                                                                 fi
+                                                                                      fi
+                                                                                           fi
+           2.4 Perché la distribuzione Debian?
+
+           Una volta che si è stabilito di impiegare una distribuzione della famiglia Linux, occorre valutare
+           speci catamente ulteriori fattori. Come in precedenza, ci sono molti criteri da prendere in
+           considerazione. La distribuzione scelta deve essere ef ciente per diversi anni, in quanto la
+           successiva migrazione potrebbe comportare costi aggiuntivi (seppur minori rispetto alla migrazione
+           fra due sistemi operativi totalmente diversi, come ad esempio da Windows o da OS X).
+
+           La sua sostenibilità è, pertanto, essenziale e deve garantire aggiornamenti regolari e patches di
+           sicurezza per diversi anni. È anche rilevante la sua sincronizzazione attraverso gli aggiornamenti
+           uf ciali, dal momento che, e con così tante macchine da amministrare, la Falcot Corp non può
+           dirigere questa complessa operazione troppo spesso. Il reparto IT, di conseguenza, pressa af nché
+           sia installata l’ultima versione stabile, per poter godere della migliore assistenza tecnica e per
+           assicurarsi le patches di sicurezza. Difatti, gli aggiornamenti sulla sicurezza sono generalmente
+           garantiti esclusivamente per un tempo limitato sulle vecchie versioni di una distribuzione.
+
+           In ne, per ragioni di omogeneità e di facile gestione, la stessa distribuzione deve essere installata su
+           tutti i servers e sui computer aziendali.
+
+           2.4.1 Distribuzioni: commerciali o guidate da una comunità
+
+           Ci sono due principali categorie di distribuzioni Linux: commerciali e guidate da una comunità. Le
+           commerciali, sviluppate dalle società, sono vendute con un servizio di supporto-assistenza a
+           pagamento. Le distribuzioni guidate da una comunità sono sviluppate, invece, con un modello di
+           progettazione “aperto” come del resto prevede la famiglia free software di cui fanno parte.
+
+           Una distribuzione commerciale avrà, così, una tendenza a rilasciare nuove versioni piuttosto di
+           frequente, in modo da migliorare l’offerta di aggiornamenti e servizi annessi. Il futuro di tali
+           distribuzioni è strettamente connesso al successo delle società che le rappresentano, difatti molte di
+           queste sono repentinamente tramontate (Caldera Linux, StormLinux, Mandriva Linux, ecc.).
+
+           Diversamente una distribuzione guidata da una comunità non segue uno schema preordinato, bensì
+           asseconda la sua stessa natura. Come lo stesso kernel Linux, le nuove versioni sono rilasciate solo
+           quando ritenute stabili, mai prima. La sussistenza di una distribuzione guidata da una comunità
+           sarà, pertanto, assicurata per il tutto il tempo che un suf ciente numero di singoli sviluppatori e
+           società terze saranno disposti a sostenerla.
+
+           Un confronto fra le diverse distribuzioni di Linux chiarisce per quali ragioni si è deciso in favore di
+           Debian:
+           • è una distribuzione guidata da una comunità, il cui sviluppo è garantito ed è indipendente da
+           qualsiasi restrizione commerciale; i suoi obiettivi, squisitamente di natura tecnica, sembrano
+           favorire soprattutto la qualità del prodotto.
+           • di tutte le distribuzioni guidate da una comunità, è la più importante sotto molti punti di vista: per
+           la quantità di contributori, per l’ammontare di pacchetti software disponibili e per il numero di anni
+           della sua permanente presenza. La dimensione della sua stessa comunità è un’indiscutibile
+           testimonianza della sua continuità.
+           • statisticamente, le nuove versioni sono rilasciate ogni 18/24 mesi e sono supportate per 5 anni,
+           una prospettiva accettabile per gli amministratori.
+           • un rapido confronto di diverse società di bandiera francese, specializzate in servizi di supporto per
+           il free software, ha dimostrato che tutte queste forniscono assistenza tecnica a Debian; inoltre
+
+
+
+
+                                             TDAH_2.0          Capitolo II - Analisi di un contesto plausibilmente veri cabile Pagina 37
+fi
+ fi
+      fi
+                                                     fi
+                                                          fi
+                                                                fi
+                                                                                                             fi
+          molte di loro hanno scelto tale distribuzione come sistema operativo per la loro azienda. Questa
+          varietà di potenziali fornitori di servizi è la sua maggior risorsa, in quanto garantisce l’indipendenza
+          della Falcot Corp.
+          • in ne, Debian è compatibile con diverse architetture, incluso ppc64el per i processori
+          OpenPOWER; sarà, così, possibile installare Debian sul server IBM più recente della Falcot Corp.
+
+
+                 IN PRATICA          Il Progetto del Supporto a Lungo Termine di Debian (LTS) è incominciato nel 2014
+           Il Supporto a             ed aspira a fornire 5 anni di supporto alla sicurezza a tutti i rilasci stabili di Debian.
+                                     In quanto servizio di supporto a lungo termine (LTS) è di vitale importanza per le
+           Lungo Termine di          organizzazioni con attività di deployments su vasta scala [per deployment si
+           Debian                    intendono tutte quelle attività che rendono funzionale un sistema operativo quali ad
+                                     esempio l’installazione, la con gurazione comprensiva di eventuale adattamento
+                                     del sistema in base ai servizi che i suoi utenti devono svolgere, la veri ca,
+                                     l’aggiornamento, la sincronizzazione, ecc.], di conseguenza il progetto si sforza di
+                                     trarre le sue risorse dalle società che utilizzano Debian come sistema operativo
+                                     aziendale:
+                                        https://wiki.debian.org/LTS
+                                     La Falcot Corp non è abbastanza grande per consentire ad un membro dello staff IT
+                                     di collaborare con il progetto LTS, pertanto la suddetta società ha preferito invece
+                                     stipulare un contratto con Freexian per il supporto a lungo termine di Debian (LTS)
+                                     elargendole un sostegno economico.
+                                     Così facendo gli amministratori della Falcot sono consapevoli che i pacchetti da loro
+                                     utilizzati saranno gestiti dal team LTS con priorità e che avranno un contatto
+                                     diretto con loro nel caso in cui sorgessero problematiche.
+                                        https://wiki.debian.org/LTS/Funding
+                                        https://www.frexian.com/services/debian-lts.html
+
+
+
+
+          Una volta che si è stabilito di impiegare Debian, occorre valutare quale versione utilizzare. Lasciateci
+          chiarire perché gli amministratori hanno optato per Debian Buster.
+
+          2.5 Perché Debian Buster?
+
+          Ogni distribuzione Debian comincia il suo ciclo di vita come una distribuzione costantemente in
+          evoluzione denominata “Testing”. Ma al momento, ossia durante la stesura di quest’opera, la
+          versione stabile più recente è Debian Buster.
+
+          La ducia accordata dagli scriventi a Debian Buster, in codesto contesto esempli cativo, è ben
+          riposta in quanto qualsiasi amministratore particolarmente interessato alla qualità del servizio per i
+          suoi servers sarà propenso nei confronti della corrente versione stabile di Debian.
+          Inoltre, anche qualora la precedente versione stabile fosse ancora supportata, gli amministratori
+          Falcot non la prenderebbero in considerazione, poiché il suo servizio di supporto non durerebbe
+          suf cientemente a lungo ed in quanto la versione stabile più recente contiene sempre nuove
+          accattivanti funzionalità che questi apprezzerebbero molto.
+
+
+
+
+          Pagina 38 Il Manuale dell’Amministratore di Debian TDAH_2.0
+fi
+fi
+     fi
+                          fi
+                                                                    fi
+                                                                                         fi
+           Parole chiave
+     Con gurazione
+     Preesistente
+     Riutilizzo
+     Migrazione
+fi
+
