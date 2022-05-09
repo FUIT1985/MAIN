@@ -1,0 +1,842 @@
+Indice dei Contenuti
+
+1. Il progetto Debian                                                            pag. 1
+        1. Cosa è debian?                                                        pag. 2
+                  1. Un sistema operativo multi piattaforma                      pag. 2
+                  2. La Qualità del Free Software                                pag. 4
+                  3. L’ente giuridico: organizzazione non-pro t                  pag. 4
+        2. I Documenti Fondanti                                                  pag. 5
+                  1. L’impegno nei confronti degli utenti                        pag. 5
+                  2. Le Linee Guida di Debian Free Software                      pag. 7
+        3. Gli incarichi interni del Progetto Debian                             pag. 9
+                  1. Gli sviluppatori di Debian                                  pag. 9
+                  2. Il ruolo attivo degli utenti                               pag. 14
+                           1. Come effettuare il report dei bugs                pag. 14
+                           2. Traduzioni e documentazione                       pag. 15
+                           3. Come condividere una x [riparazione]              pag. 15
+                           4. Altri modi per contribuire                        pag. 17
+                  3. Teams e Sotto-Progetti                                     pag. 18
+                           1. Gli attuali Sotto-Progetti Debian                 pag. 18
+                           2. Teams di Amministrazione                          pag. 19
+                           3. Teams di Sviluppo, Schieramenti Trasversali dei   pag. 21
+                           Teams
+        4. Come seguire gli aggiornamenti di Debian                             pag. 21
+        5. Il ruolo delle distribuzioni                                         pag. 23
+                  1. Il programma che installa Debian: debian-installer         pag. 23
+                  2. La libreria Software                                       pag. 23
+        6. Il ciclo di vita di un rilascio                                      pag. 24
+                  1. Lo Status di Experimental (condizione)                     pag. 24
+                  2. Lo Status di Unstable (condizione)                         pag. 24
+                  3. Il trasferimento (migrazione) a Testing                    pag. 26
+                  4. L’avanzamento (conversione) da Testing a Stable            pag. 27
+                  5. Gli Status (condizioni) di Oldstable e di Oldoldstable     pag. 31
+
+
+
+
+2. Analisi di un contesto plausibilmente veri cabile                            pag. 33
+       1. Esigenza di forte crescita IT                                         pag. 34
+       2. Master Plan — il piano strategico aziendale                           pag. 34
+       3. Perché una distribuzione GNU/Linux?                                   pag. 35
+       4. Perché la distribuzione Debian?                                       pag. 37
+                     fi
+                               fi
+                                    fi
+                               1. Distribuzioni: commerciali o guidate da una comunità     pag. 37
+                        5. Perché Debian Buster?                                           pag. 38
+
+
+
+
+           3. Valutazione con gurazione preesistente e migrazione                          pag. 41
+                  1. Coesistenza in ambienti eterogenei                                    pag. 42
+                          1. Integrazione con macchine Windows                             pag. 42
+                          2. Integrazione con macchine OS X                                pag. 42
+                          3. Integrazione con altre macchine Linux/Unix                    pag. 42
+                  2. Come Migrare                                                          pag. 43
+                          1. Rilevamento ed Identi cazione dei Servizi                     pag. 43
+                                  1. Network e processi                                    pag. 44
+                          2. Back-Up (Copia di Ripristino) della Con gurazione             pag. 45
+                          Preesistente
+                          3. Recupero ed Integrazione di un Server Debian Preesistente     pag. 45
+                          4. Installazione di Debian                                       pag. 46
+                          5. Installazione e Con gurazione dei Servizi Prescelti           pag. 47
+
+
+
+
+           4. Installazione                                                                pag. 51
+                  1. Metodi di Installazione                                               pag. 52
+                          1. Installazione da un CD-ROM/DVD-ROM                            pag. 52
+                          2. Booting (avviamento) da una chiave USB                        pag. 53
+                          3. Installazione per mezzo del Network Booting (Avviamento via   pag. 54
+                          Rete)
+                          4. Altri Metodi di Installazione                                 pag. 54
+                  2. Installazione Passo dopo Passo                                        pag. 54
+                          1. Booting (avviamento) ed Inizio del Programma di               pag. 54
+                          Installazione
+                          2. Selezione della lingua                                        pag. 56
+                          3. Selezione del paese                                           pag. 57
+                          4. Selezione del layout della tastiera                           pag. 57
+                          5. Rilevamento dell’Hardware                                     pag. 58
+                          6. Caricamento delle componenti software                         pag. 58
+                          7. Rilevamento dell’Hardware di Rete                             pag. 58
+                          8. Con gurazione della Rete                                      pag. 59
+                          9. La password dell’Amministratore                               pag. 59
+                          10. Creazione del Primo Utente                                   pag. 60
+                          11. Con gurazione dell’ora                                       pag. 61
+                          12. Rilevamento di Dischi e di altri dispositivi                 pag. 61
+                          13. Inizio del Programma di Partizione                           pag. 61
+                                   1. Partizionamento Guidato                              pag. 63
+                                   2. Partizionamento Manuale                              pag. 65
+                                   3. Con gurazione dei Dispositivi Multidisco (RAID)      pag. 66
+                                   4. Con gurazione del Logical Volume Manager (LVM)       pag. 67
+                                   5. Creazione di Partizioni Criptate                     pag. 67
+                          14. Installazione del Sistema Base                               pag. 68
+                          15. Con gurazione del Package Manager (apt)                      pag. 69
+                          16. Adesione al Debian Package Popularity Contest                pag. 70
+                          17. Selezione dei Pacchetti da Installare                        pag. 71
+
+           Pagina IV          Il Manuale dell’Amministratore di Debian   TDAH_2.0
+fi
+fi
+fi
+     fi
+      fi
+                   fi
+                         fi
+                                 fi
+                                                     fi
+                              18. Installazione di GRUB come bootloader (programma di                      pag. 71
+                              avvio)
+                              19. Termine dell’Installazione e Riavvio                                     pag. 72
+                       3. Dopo il Primo Avvio                                                              pag. 73
+                              1. Installazione del Software Aggiuntivo                                     pag. 73
+                              2. Aggiornamento del Sistema                                                 pag. 74
+
+
+
+     5. Packaging System (Sistema Gestione dei Pacchetti): Strumenti e Principi                            pag. 77
+     Fondamentali
+            1. Struttura di un Pacchetto Binario                                                           pag. 78
+            2. La Meta-Informazione di un Pacchetto                                                        pag. 80
+                    1. Descrizione: il control File                                                        pag. 80
+                             1. Dipendenze: il Depends Field (il campo "Dipende da ...")                   pag. 81
+                             2. Con itti: il Con icts Field (il campo "Entra in con itto                   pag. 83
+                             con ...")
+                             3. Incompatibilità: il Breaks Field (il campo                                 pag. 83
+                             "Interrompe ...")
+                             4. Provided Items [Gli Oggetti Forniti]: il Provides Field                    pag. 83
+                             (il campo "Fornisce ...")
+                                       1. Un esempio di un "Servizio fornito".                             pag. 84
+                                       2. L'intercambiabilità con un altro pacchetto.                      pag. 84
+                                       3. Le limitazioni passate.                                          pag. 85
+                             5. Sostituzione dei Files: il Replaces Field (il campo                        pag. 86
+                             "Sostituisce ...")
+                    2. Scripts di Con gurazione                                                            pag. 86
+                             1. Installazione e Aggiornamento                                              pag. 87
+                             2. Rimozione di un Pacchetto                                                  pag. 87
+                    3. Checksum, Elenco dei Files di Con gurazione                                         pag. 89
+            3. Struttura di un Pacchetto Sorgente                                                          pag. 90
+                    1. Struttura                                                                           pag. 90
+                    2. Utilizzo in Debian                                                                  pag. 93
+            4. Manipolazione dei Pacchetti con dpkg                                                        pag. 94
+                    1. Installazione dei Pacchetti                                                         pag. 94
+                    2. Rimozione di un Pacchetto                                                           pag. 96
+                    3. Querying (Richieste) per il Database di dpkg ed ispezione dei                       pag. 97
+                    Files .deb
+                    4. Il Log File di dpkg                                                                pag. 101
+                    5. Supporto Multi-Arch                                                                pag. 102
+                             1. Abilitare Multi-Arch                                                      pag. 102
+                             2. I cambiamenti dovuti a Multi-Arch                                         pag. 103
+            5. Coesistenza con altri Packaging Systems                                                    pag. 104
+
+
+     6. Manutenzione e Aggiornamenti: gli strumenti di APT                                               pag. 107
+           1. Come compilare il le sources.list                                                          pag. 108
+                  1. Sintassi                                                                            pag. 108
+                  2. I Repositories per gli utenti della versione Stable                                 pag. 110
+                          1. Gli Aggiornamenti di Sicurezza                                              pag. 111
+                          2. Gli Aggiornamenti della versione Stable                                     pag. 111
+                          3. Proposed Updates                                                            pag. 112
+                          4. Stable Backports                                                            pag. 112
+                  3. I Repositories per gli utenti della versione Testing/Unstable                       pag. 112
+                          1. Experimental Repository                                                     pag. 113
+                  4. Come utilizzare dei Mirrors Alternativi                                             pag. 114
+                  5. Risorse NON Uf ciali: mentors.debian.net                                            pag. 114
+                  6. Come usare un server Cache Proxy per i Pacchetti Debian                             pag. 115
+
+                                                                             TDAH_2.0   Indice dei Contenuti Pagina V
+fl
+        fi
+             fl
+                  fi
+                       fi
+                                      fi
+                                                   fl
+                            2. I comandi aptitude, apt-get e apt                                    pag. 116
+                                    1. Inizializzazione                                             pag. 116
+                                    2. Installazione e Rimozione                                    pag. 117
+                                    3. Aggiornamento del Sistema                                    pag. 120
+                                    4. Le Opzioni per la Con gurazione                              pag. 121
+                                    5. Gestione delle Package Priorities                            pag. 122
+                                    6. Come utilizzare più distribuzioni                            pag. 124
+                                    7. Come resocontare i pacchetti installati automaticamente      pag. 125
+                            3. Il comando apt-cache                                                 pag. 126
+                            4. Il comando apt- le                                                   pag. 128
+                            5. Frontends: aptitude, synaptic                                        pag. 129
+                                    1. aptitude                                                     pag. 129
+                                        1. Gestire i Reccomendations, i Suggestions e le Tasks      pag. 131
+                                        2. I migliori Solver Algorithms                             pag. 132
+                                    2. synaptic                                                     pag. 132
+                            6. Veri ca dell’autenticità del pacchetto                               pag. 133
+                            7. Aggiornamento di una distribuzione alla versione corrente Stable     pag. 135
+                                    1. Le procedure raccomandate                                    pag. 135
+                                    2. Come gestire i problemi dopo un aggiornamento                pag. 136
+                                    3. “Pulizia” dopo un aggiornamento                              pag. 137
+                                             1. I pacchetti rimossi dall'archivio Debian            pag. 138
+                                             2. Pacchetti Dummy e Transitional                      pag. 138
+                                             3. File di con gurazione obsoleti o non utilizzati     pag. 138
+                                             4. I les che non appartengono ad alcun pacchetto       pag. 138
+                            8. Mantenere un Sistema Aggiornato                                      pag. 139
+                            9. Aggiornamenti Automatici                                             pag. 141
+                                    1. Come con gurare dpkg                                         pag. 141
+                                    2. Come con gurare APT                                          pag. 141
+                                    3. Come con gurare debconf                                      pag. 141
+                                    4. Come comportarsi con le interazioni da riga di comando       pag. 141
+                                    5. La combinazione miracolosa                                   pag. 142
+                            10. Come ricercare i Pacchetti                                          pag. 142
+
+
+
+
+                7. Come risolvere le problematiche e trovare le informazioni adeguate               pag. 147
+                       1. Le “Sorgenti” della documentazione                                        pag. 148
+                               1. Manual Pages                                                      pag. 148
+                               2. Documentazione info                                               pag. 150
+                               3. Documentazione speci ca                                           pag. 151
+                               4. I Websites                                                        pag. 151
+                               5. I Tutorials (HOWTO)                                               pag. 152
+                       2. Le procedure abituali                                                     pag. 153
+                               1. Come con gurare un programma                                      pag. 153
+                               2. Come monitorare l’attività dei Demoni                             pag. 154
+                               3. Come effettuare una richiesta di assistenza su una mailing list   pag. 155
+
+
+
+
+                Pagina VI    Il Manuale dell’Amministratore di Debian   TDAH_2.0
+fi
+     fi
+          fi
+          fi
+           fi
+           fi
+                fi
+                      fi
+                               fi
+                                    fi
+                                                     4. Come effettuare la segnalazione di un bug qualora non si riuscisse a                pag. 156
+                                                     trovare una soluzione
+
+
+
+
+                                     8. Con gurazione di base: rete, accounts, stampa ...                                                   pag. 159
+                                            1. Come con gurare il Sistema per un'altra lingua                                               pag. 160
+                                                    1. Come impostare la lingua prede nita                                                  pag. 160
+                                                    2. Come con gurare la tastiera                                                          pag. 161
+                                                    3. Migrazione a UTF-8                                                                   pag. 162
+                                            2. Come con gurare la rete                                                                      pag. 163
+                                                    1. Interfaccia Ethernet                                                                 pag. 165
+                                                    2. La connessione PPP tramite modem PSTN                                                pag. 166
+                                                    3. Interfaccia Wireless                                                                 pag. 166
+                                                            1. Installazione dei rmwares                                                    pag. 167
+                                                            2. Alcune voci speci che per le reti wireless in /etc/                          pag. 167
+                                                            network/interfaces
+                                                    4. La connessione tramite modem ADSL                                                    pag. 168
+                                                            1. I Modems che supportano PPPOE                                                pag. 168
+                                                            2. I Modems che supportano PPTP                                                 pag. 169
+                                                            3. I Modems che supportano DHCP                                                 pag. 169
+                                                    5. Con gurazione della rete automatica per i Roaming Users                              pag. 169
+                                            3. Assegnazione dell'Hostname e Con gurazione del Name Service                                  pag. 170
+                                                    1. Risoluzione dei nomi                                                                 pag. 171
+                                                            1. Con gurazione del server DNS                                                 pag. 171
+                                                            2. Il le /etc/hosts                                                             pag. 171
+                                            4. Database utenti e gruppi                                                                     pag. 172
+                                                    1. Elenco degli utenti: /etc/passwd                                                     pag. 173
+                                                    2. Il le /etc/shadow, criptato e nascosto                                               pag. 173
+                                                    3. Modi ca un account o una password esistenti                                          pag. 174
+                                                    4. Come bloccare un account                                                             pag. 174
+                                                    5. Elenco dei gruppi: /etc/group                                                        pag. 174
+                                            5. Creazione degli accounts                                                                     pag. 175
+                                            6. Ambiente Shell                                                                               pag. 176
+                                            7. Come con gurare la stampante                                                                 pag. 178
+                                            8. Con gurazione del Bootloader                                                                 pag. 179
+                                                    1. Come identi care i vostri dischi                                                     pag. 179
+                                                    2. Con gurazione di LILO                                                                pag. 181
+                                                    3. La con gurazione di GRUB 2                                                           pag. 182
+                                            9. Altre con gurazioni: sincronizzazione dell'orologio, logs, condivisione                      pag. 183
+                                                    1. Timezone - Fuso orario                                                               pag. 183
+                                                    2. Sincronizzazione dell'orologio                                                       pag. 184
+                                                            1. Per le Workstations                                                          pag. 185
+                                                            2. Per i servers                                                                pag. 185
+                                                    3. Log Rotation                                                                         pag. 185
+                                                    4. Condivisione dei diritti di amministratore                                           pag. 186
+                                                    5. Elenco dei Mount Points                                                              pag. 186
+                                                    6. locate e updatedb                                                                    pag. 189
+
+
+
+
+                                                                                                              TDAH_2.0   Indice dei Contenuti Pagina VII
+fi
+fi
+     fi
+      fi
+      fi
+      fi
+           fi
+                fi
+                     fi
+                          fi
+                          fi
+                               fi
+                                fi
+                                fi
+                                      fi
+                                           fi
+                                                fi
+                                                                  fi
+                                                                       fi
+                           10. Come compilare un kernel                                           pag. 189
+                                   1. Introduzione e Prerequisiti                                 pag. 189
+                                   2. Come recuperare le Sorgenti                                 pag. 190
+                                   3. Con gurazione del kernel                                    pag. 191
+                                   4. Compiling [letteralmente "compilazione"] e Building         pag. 192
+                                   [letteralmente "costruzione", "generazione"] di un pacchetto
+                                   5. Compilazione dei moduli esterni                             pag. 192
+                                   6. Come applicare una patch del kernel                         pag. 193
+                           11. Installazione di un kernel                                         pag. 195
+                                   1. Funzionalità di un Debian Kernel Package                    pag. 195
+                                   2. Installazione con dpkg                                      pag. 195
+
+
+                9. Unix Services                                                                  pag. 197
+                       1. System Boot                                                             pag. 198
+                               1. Il sistema init systemd                                         pag. 198
+                               2. Il sistema init System V                                        pag. 204
+                       2. Remote Login                                                            pag. 207
+                               1. Secure Remote Login: SSH                                        pag. 207
+                                         1. Autenticazione basata su chiave                       pag. 208
+                                         2. Come da usare da remoto le applicazioni X11           pag. 210
+                                         3. Port Forwarding: come creare gli Encrypted Tunnels    pag. 210
+                               2. Come utilizzare i Remote Graphical Desktops                     pag. 211
+                       3. Gestione dei diritti [permessi]                                         pag. 213
+                       4. Interfacce di amministrazione                                           pag. 215
+                               1. Come amministrare attraverso un’interfaccia web: webmin         pag. 215
+                               2. Con gurazione dei pacchetti: debconf                            pag. 217
+                       5. Eventi di sistema di syslog                                             pag. 218
+                               1. Principi e funzionamento                                        pag. 218
+                               2. Il le di con gurazione                                          pag. 219
+                                         1. Sintassi del Selector                                 pag. 219
+                                         2. Sintassi delle Actions                                pag. 219
+                       6. L'inetd Super-Server                                                    pag. 220
+                       7. Scheduling Tasks attraverso cron e atd                                  pag. 221
+                               1. Formato di un le crontab                                        pag. 222
+                               2. Come utilizzare il comando at                                   pag. 224
+                       8. Scheduling Asynchronous Tasks: anacron                                  pag. 225
+                       9. Quotas                                                                  pag. 225
+                       10. Backup                                                                 pag. 227
+                               1. Backup con rsync                                                pag. 227
+                               2. Ripristino delle macchine senza Backups                         pag. 229
+                       11. Hot Plugging: hotplug                                                  pag. 230
+                               1. Introduzione                                                    pag. 230
+                               2. Il problema dell'assegnazione dei nomi                          pag. 230
+                               3. Come funziona udev                                              pag. 230
+                               4. Un caso concreto                                                pag. 232
+
+
+                10. Network Infrastructure                                                        pag. 221
+                       1. Gateway                                                                 pag. 222
+                       2. Virtual Private Network                                                 pag. 224
+                               1. OpenVPN                                                         pag. 224
+                                       1. Infrastruttura a chiave pubblica: easy-rsa              pag. 224
+                                       2. Come con gurare l’OpenVPN server                        pag. 228
+                                       3. Come con gurare l’OpenVPN client                        pag. 229
+                               2. Virtual Private Network con SSH                                 pag. 229
+                               3. IPsec                                                           pag. 230
+                               4. PPTP                                                            pag. 231
+                                       1. Come con gurare il Client                               pag. 231
+                                       2. Come con gurare il Server                               pag. 232
+
+                Pagina VIII   Il Manuale dell’Amministratore di Debian   TDAH_2.0
+fi
+     fi
+     fi
+          fi
+           fi
+           fi
+           fi
+                 fi
+                      fi
+                        12.Power Management: Advanced Con guration and Power Interface                           pag. 234
+                        (ACPI)
+
+
+
+
+                 10. Network Infrastructure                                                                      pag. 237
+                        1. Gateway                                                                               pag. 238
+                        2. I Certi cati X.509                                                                    pag. 240
+                                1. Come creare i “Trusted Certi cates” gratis                                    pag. 240
+                                2. Infrastruttura a chiave pubblica: easy-rsa                                    pag. 243
+                        3. Virtual Private Network                                                               pag. 247
+                                1. OpenVPN                                                                       pag. 247
+                                        1. Come con gurare l’OpenVPN server                                      pag. 248
+                                        2. Come con gurare l’OpenVPN client                                      pag. 249
+                                2. Virtual Private Network con SSH                                               pag. 249
+                                3. IPsec                                                                         pag. 250
+                                4. PPTP                                                                          pag. 250
+                                        1. Come con gurare il Client                                             pag. 251
+                                        2. Come con gurare il Server                                             pag. 252
+                        4. Qualità del Servizio                                                                  pag. 255
+                                1. Principio e Funzionamento                                                     pag. 255
+                                2. Con gurazione e Implementazione                                               pag. 255
+                                        1. Riduzione delle Latenze: wondershaper                                 pag. 255
+                                        2. Con gurazione Standard                                                pag. 256
+                        5. Dynamic Routing                                                                       pag. 257
+                        6. IPv6                                                                                  pag. 257
+                                1. Tunneling                                                                     pag. 259
+                        7. Domain Name Servers (DNS)                                                             pag. 259
+                                1. Software DNS                                                                  pag. 260
+                                2. Con gurazione di bind                                                         pag. 260
+                        8. DHCP                                                                                  pag. 263
+                                1. Con gurazione                                                                 pag. 263
+                                2. DHCP e DNS                                                                    pag. 264
+                        9. Strumenti per effettuare diagnosi sulle anomalie della rete                           pag. 265
+                                1. Diagnostica locale: netstat                                                   pag. 265
+                                2. Diagnostica da remoto: nmap                                                   pag. 266
+                                3. Sniffers: tcpdump e wireshark                                                 pag. 268
+
+
+
+
+                 11. Servizi di rete                                                                             pag. 271
+                        1. Mail Server [I servers che si occupano della posta elettronica]                       pag. 272
+                                 1. Installazione di Post x                                                      pag. 272
+                                 2. Con gurazione dei Virtual Domains                                            pag. 275
+                                         1. Virtual Alias Domains                                                pag. 276
+                                         2. Virtual Mailbox Domains                                              pag. 276
+                                 3. Restrizioni per la Ricezione e la Trasmissione                               pag. 277
+                                         1. Come limitare l’accesso in base all’indirizzo IP                     pag. 278
+
+                                                                                    TDAH_2.0   Indice dei Contenuti Pagina IX
+fi
+ fi
+ fi
+ fi
+ fi
+      fi
+           fi
+           fi
+            fi
+            fi
+                           fi
+                                    fi
+                                           fi
+                                               2. Veri ca della legittimità attraverso il comando EHLO o   pag. 279
+                                               HELO
+                                               3. Consenso o diniego in base al Mittente Annunciato        pag. 280
+                                               4. Consenso o diniego in base al Destinatario               pag. 281
+                                               5. Restrizioni relative al comando DATA                     pag. 282
+                                               6. Messa in atto delle restrizioni                          pag. 282
+                                               7. Filtraggio basato sul contenuto del messaggio            pag. 282
+                                       4. Con gurazione: greylisting                                       pag. 283
+                                       5. Personalizzazione dei ltri in base al destinatario               pag. 285
+                                       6. Integrazione di un antivirus                                     pag. 286
+                                       7. Come difendersi dallo spam con SPF, DKIM e DMARC [per            pag. 287
+                                       contrastare l’email spoo ng]
+                                               1. Integrazione del Sender Policy Framework (SPF)           pag. 288
+                                               2. Integrazione del DomainKeys (DKIM) Firma e               pag. 289
+                                               validazione
+                                               3. Integrazione del Domain-based Message                    pag. 291
+                                               Authentication, Reporting and Conformance (DMARC)
+                                       8. Autenticated SMTP                                                pag. 292
+                                2. Server Web (HTTP)                                                       pag. 293
+                                       1. Installazione di Apache                                          pag. 294
+                                       2. Come aggiungere il supporto SSL                                  pag. 295
+                                       3. Con gurazione dei Virtual Hosts                                  pag. 295
+                                       4. Common Directives (Le direttive maggiormente utilizzate)         pag. 297
+                                               1. Come richiedere l’Autenticazione                         pag. 298
+                                               2. Come limitare l’Accesso                                  pag. 299
+                                       4. Log Analyzers                                                    pag. 299
+                                3. FTP File Server                                                         pag. 301
+                                4. NFS File Server                                                         pag. 302
+                                       1. Securing NFS [come con gurare le funzionalità di sicurezza di    pag. 303
+                                       NFS]
+                                       2. NFS Server                                                       pag. 303
+                                       3. NFS Client                                                       pag. 304
+                                5. Con gurare Windows Shares attraverso Samba                              pag. 305
+                                       1. Samba Server                                                     pag. 305
+                                               1. Con gurazione con debconf                                pag. 306
+                                               2. Con gurazione manuale                                    pag. 306
+                                                        1. Le modi che a smb.conf                          pag. 306
+                                                        2. Come aggiungere gli Utenti                      pag. 307
+                                       2. Samba Client                                                     pag. 307
+                                               1. Il programma smbclient                                   pag. 308
+                                               2. Mounting delle Windows Shares                            pag. 308
+                                               3. Come stampare su una stampante condivisa                 pag. 308
+                                6. Proxy HTTP/FTP                                                          pag. 309
+                                       1. Installazione                                                    pag. 309
+                                       2. Con gurazione di una cache                                       pag. 309
+                                       3. Come con gurare un ltro                                          pag. 310
+                                7. LDAP Directory                                                          pag. 311
+                                       1. Installazione                                                    pag. 311
+                                       2. Compilazione nel LDAP Directory                                  pag. 312
+                                       3. La gestione degli Accounts con LDAP                              pag. 313
+
+
+
+
+                     Pagina X    Il Manuale dell’Amministratore di Debian   TDAH_2.0
+fi
+ fi
+ fi
+ fi
+ fi
+ fi
+      fi
+           fi
+                fi
+                                    fi
+                                         fi
+                                              fi
+                                                   fi
+                                       1. Come con gurare NSS                                               pag. 313
+                                       2. Come con gurare PAM                                               pag. 315
+                                       3. Come proteggere lo Scambio Dati di LDAP                           pag. 316
+                                               1. Con gurazione lato server                                 pag. 316
+                                               2. Con gurazione lato client                                 pag. 319
+                       8. Real-Time Communication Service                                                   pag. 320
+                               1. Impostazioni DNS per i servizi RTC                                        pag. 320
+                               2. TURN server                                                               pag. 321
+                               3. SIP Proxy Server [Session Initiation Protocol]                            pag. 321
+                                       1. Installazione del SIP proxy                                       pag. 322
+                               4. XMPP Server                                                               pag. 323
+                                       1. Installazione del XMPP server                                     pag. 323
+                                       2. Come gestire il server XMPP                                       pag. 323
+                               5. Come eseguire i servizi sul port 443                                      pag. 324
+                               6. Come aggiungere un servizio WebRTC                                        pag. 324
+
+
+
+
+            12. Amministrazione avanzata                                                                    pag. 327
+                  1. RAID e LVM                                                                             pag. 328
+                          1. Software RAID                                                                  pag. 328
+                                  1. I diversi livelli RAID                                                 pag. 329
+                                  2. Come con gurare un RAID                                                pag. 331
+                                  3. Backup della con gurazione                                             pag. 337
+                          2. LVM                                                                            pag. 339
+                                  1. I Concetti LVM                                                         pag. 339
+                                  2. Come con gurare un sistema LVM                                         pag. 340
+                                  3. La tecnologia LVM ed il manifestarsi di nuove esigenze                 pag. 344
+                                  nel corso del tempo
+                          3. RAID o LVM?                                                                    pag. 346
+                  2. Virtualizzazione                                                                       pag. 349
+                          1. Xen                                                                            pag. 350
+                          2. LXC                                                                            pag. 356
+                                  1. Le fasi preliminari                                                    pag. 357
+                                  2. Con gurazione di rete                                                  pag. 357
+                                  3. Con gurazione del sistema                                              pag. 358
+                                  4. Avvio del container                                                    pag. 359
+                          3. Virtualizzazione con KVM                                                       pag. 360
+                                  1. Fasi preliminari                                                       pag. 361
+                                  2. Con gurazione di rete                                                  pag. 361
+                                  3. Installazione in virt-install                                          pag. 362
+                                  4. Gestione delle macchine con virsh                                      pag. 364
+                                  5. Come installare un sistema RPM su Debian attraverso                    pag. 364
+                                  yum
+                  3. Installazione automatizzata                                                            pag. 365
+                          1. Fully Automatic Installer (FAI)                                                pag. 366
+                          2. Preseeding Debian-Installer                                                    pag. 367
+                                  1. Come utilizzare un Preseeding File                                     pag. 367
+                                  2. Creazione di un Preseed File                                           pag. 368
+                                  3. Creazione di un supporto di avvio Media                                pag. 369
+                                  personalizzato
+                                           1. Avvio dalla rete                                              pag. 369
+                                           2. Preparazione di una chiave USB di avvio                       pag. 369
+                                           3. Creare un’immagine CD-Rom                                     pag. 369
+
+
+
+                                                                               TDAH_2.0   Indice dei Contenuti Pagina XI
+fi
+ fi
+ fi
+ fi
+ fi
+      fi
+       fi
+       fi
+       fi
+                  fi
+                                        3. Simple-CDD: la soluzione all-in-one                     pag. 370
+                                                1. Creazione dei pro li                            pag. 370
+                                                2. Come con gurare ed impiegare build-simple-cdd   pag. 371
+                                                3. Creazione dell’immagine ISO                     pag. 372
+                                 4. Monitoring [Monitoraggio o Supervisione]                       pag. 372
+                                        1. Con gurazione di Munin                                  pag. 372
+                                                1. Con gurazione degli host da monitorare          pag. 373
+                                                2. Con gurazione del Grapher                       pag. 374
+                                        2. Con gurazione di Nagios                                 pag. 374
+                                                1. Installazione                                   pag. 375
+                                                2. Con gurazione                                   pag. 375
+
+
+
+
+                13. Workstation                                                                    pag. 381
+                      1. Con gurazione dell’ X11 server                                            pag. 382
+                      2. Personalizzazione della GUI (Interfaccia gra ca)                          pag. 383
+                              1. Scegliere un display manager                                      pag. 383
+                              2. Scegliere un Window Manager                                       pag. 383
+                              3. Gestione del menù                                                 pag. 384
+                      3. Graphical Desktops                                                        pag. 385
+                              1. GNOME                                                             pag. 385
+                              2. KDE e Plasma                                                      pag. 386
+                              3. Xfce e altri                                                      pag. 387
+                              4. Altri Ambienti Desktop                                            pag. 388
+                      4. E-mail                                                                    pag. 389
+                              1. Evolution                                                         pag. 389
+                              2. KMail                                                             pag. 390
+                              3. Thunderbird                                                       pag. 390
+                      5. I web browsers                                                            pag. 391
+                      6. Development (Sviluppo)                                                    pag. 393
+                              1. Strumenti per GTK+ dedicati a GNOME                               pag. 393
+                              2. Strumenti per Qt dedicati a KDE                                   pag. 393
+                      7. Collaborative Work (Lavoro collaborativo)                                 pag. 394
+                              1. Lavoro di gruppo: groupware                                       pag. 394
+                              2. Lavoro collaborativo attraverso FusionForge                       pag. 394
+                      8. Le Suites per Uf cio                                                      pag. 395
+                      9. Emulazione di Windows: Wine                                               pag. 396
+                      10. Real-Time Communication Software                                         pag. 397
+
+
+
+
+                14. Amministrazione avanzata                                                       pag. 401
+                      1. Come de nire una Security Policy (Politica di Sicurezza)                  pag. 402
+                      2. Firewall o Packet Filtering                                               pag. 403
+                              1. Come funziona nftables                                            pag. 404
+                              2. Traduzione delle iptables in nftables                             pag. 406
+                              3. Sintassi di nft                                                   pag. 408
+                              4. Come installare le regole in modo che vengano riprodotte ad       pag. 409
+                              ogni avvio
+
+
+                Pagina XII        Il Manuale dell’Amministratore di Debian   TDAH_2.0
+fi
+fi
+fi
+ fi
+ fi
+ fi
+      fi
+           fi
+                       fi
+                            fi
+                                                               fi
+                     3. Supervisione: prevenzione, rilevamento, dissuasione                                   pag. 410
+                             1. Monitoraggio dei logs con logcheck                                            pag. 410
+                             2. Monitoraggio delle attività                                                   pag. 411
+                                      1. In tempo reale                                                       pag. 411
+                                      2. Storico                                                              pag. 411
+                             3. Come evitare le intrusioni                                                    pag. 412
+                             4. Rilevamento delle modi che                                                    pag. 413
+                                      1. La validazione dei pacchetti tramite il comando dpkg --              pag. 413
+                                      verify
+                                      2. Veri ca dei pacchetti con debsums nonostante i suoi                   pag. 414
+                                      limiti
+                                      3. Monitoraggio dei les: AIDE                                           pag. 414
+                                      4. Intrusion Detection System/Network Detection                         pag. 416
+                                      System (IDS/NIDS)
+                     4. Introduzione ad AppArmor                                                              pag. 417
+                             1. I principi                                                                    pag. 417
+                             2. Come attivare AppArmor e gestire i pro li AppArmor                            pag. 417
+                             3. Come creare un nuovo pro lo                                                   pag. 418
+                     5. Introduzione a SELinux                                                                pag. 424
+                             1. I principi                                                                    pag. 424
+                             2. Come con gurare SELinux                                                       pag. 426
+                             3. Come gestire un sistema SELinux                                               pag. 427
+                                      1. Gestione dei moduli SELinux                                          pag. 427
+                                      2. Gestione delle identità                                              pag. 428
+                                      3. Gestione di File Contexts, Ports e Booleans                          pag. 429
+                             4. Adeguamento delle Regole                                                      pag. 430
+                                      1. Come scrivere un le .fc                                              pag. 430
+                                      2. Come scrivere un le .if                                              pag. 430
+                                      3. Come scrivere un le .te                                              pag. 432
+                                      4. Compilazione dei les                                                 pag. 435
+                     6. Altre considerazioni sulla sicurezza                                                  pag. 435
+                             1. I rischi dovuti alle applicazioni web                                         pag. 435
+                             2. Sapere cosa aspettarsi                                                        pag. 436
+                             3. Scegliere il software con prudenza                                            pag. 437
+                             4. Gestire una macchina nel suo insieme                                          pag. 438
+                             5. Gli utenti sono Giocatori/Attori                                              pag. 438
+                             6. Sicurezza sica                                                                pag. 439
+                             7. Responsabilità legale                                                         pag. 439
+                     7. Come comportarsi con una macchina compromessa                                         pag. 440
+                             1. Rilevamento ed analisi dell’intrusione del Cracker                            pag. 440
+                             2. Mettere il server of ine                                                      pag. 440
+                             3. Preservare tutto ciò che può costituire una prova                             pag. 441
+                             4. Reinstallazione                                                               pag. 442
+                             5. Analisi forense                                                               pag. 442
+                             6. Ricostruzione dello scenario di un attacco                                    pag. 443
+
+
+
+
+          15. Come creare un pacchetto Debian                                                                 pag. 447
+
+
+                                                                               TDAH_2.0   Indice dei Contenuti Pagina XIII
+fi
+     fi
+          fi
+                fi
+                fi
+                     fi
+                      fi
+                      fi
+                           fl
+                                fi
+                                     fi
+                                           fi
+               1. Ricompilazione di un pacchetto dalla sue sorgenti               pag. 448
+                      1. Come recuperare le Sorgenti                              pag. 448
+                      2. Come apportare delle modi che                            pag. 448
+                      3. Come avviare la Rebuild                                  pag. 450
+               2. Come compilare il vostro primo pacchetto                        pag. 451
+                      1. Meta-Pacchetti o Fake Packages                           pag. 451
+                      2. Come gestire gli archivi dei les facilmente              pag. 452
+               3. Come creare un repository dei pacchetti per APT                 pag. 456
+               4. Come diventare il Maintainer di un Pacchetto                    pag. 458
+                      1. Come imparare a realizzare i Pacchetti                   pag. 458
+                               1. Le regole                                       pag. 459
+                               2. Le procedure                                    pag. 459
+                               3. Gli strumenti                                   pag. 459
+                                        1. Il Programma lintian                   pag. 459
+                                        2. Il Programma piuparts                  pag. 459
+                                        3. devscripts                             pag. 460
+                                        4. debhelper e dh-make                    pag. 460
+                                        5. autopkgtest                            pag. 460
+                                        6. reprotest                              pag. 460
+                                        7. dupload e dput                         pag. 460
+                      2. Il processo di approvazione                              pag. 461
+                               1. Prerequisiti                                    pag. 461
+                               2. Registrazione                                   pag. 461
+                               3. Accettazione dei principi                       pag. 462
+                               4. Veri ca delle competenze                        pag. 462
+                               5. Approvazione nale                               pag. 463
+
+
+
+
+     16. Epilogo: Il Futuro di Debian                                             pag. 465
+            1. I Developments imminenti                                           pag. 466
+            2. Il Futuro di Debian                                                pag. 466
+            3. Il Futuro di questo Libro                                          pag. 467
+
+
+
+     A. Distribuzioni Derivate                                                    pag. 469
+            1. Censimento e Cooperazione                                          pag. 469
+            2. Ubuntu                                                             pag. 469
+            3. Linux Mint                                                         pag. 470
+            4. Knoppix                                                            pag. 471
+            5. Aptosid e Siduction                                                pag. 471
+            6. Grml                                                               pag. 472
+            7. Tails                                                              pag. 472
+            8. Kali Linux                                                         pag. 472
+            9. Devuan                                                             pag. 472
+            10. DoudouLinux                                                       pag. 472
+            11. Raspbian                                                          pag. 473
+            12. PureOS                                                            pag. 473
+            13. SteamOS                                                           pag. 473
+            14. Le altre distribuzioni                                            pag. 473
+
+
+     B. Breve Corso di Recupero                                                   pag. 475
+            1. Interprete dei comandi (Shell) e comandi di base                   pag. 475
+                    1. Come consultare la struttura ad albero delle directories   pag. 475
+                    (Directory Tree) e gestire i les
+                    2. Visualizzazione e modi ca di un le di testo                pag. 475
+
+
+     Pagina XIV   Il Manuale dell’Amministratore di Debian   TDAH_2.0
+fi
+          fi
+                    fi
+                         fi
+                              fi
+                                   fi
+                                        fi
+                        3. Come cercare un le e come consultare il contenuto di un le                pag. 477
+                        4. Gestione dei Processi                                                     pag. 477
+                        5. Informazioni di Sistema (System Information o System                      pag. 477
+                        Pro ler): Memoria, Spazio sul Disco, Identità
+                2. Organizzazione della Gerarchia del Filesystem                                     pag. 478
+                        1. La Root Directory                                                         pag. 478
+                        2. La Home Directory di ciascun utente                                       pag. 479
+                3. Come funziona un computer: i diversi Layers (livelli) coinvolti                   pag. 480
+                        1. Il Deepest Layer, il livello più basso: l'hardware                        pag. 480
+                        2. Lo starter: BIOS o UEFI                                                   pag. 481
+                        3. Il Kernel                                                                 pag. 482
+                        4. L’User Space                                                              pag. 482
+                4. Alcune funzioni svolte dal Kernel                                                 pag. 482
+                        1. Il controllo dell’Hardware                                                pag. 482
+                        2. Filesystems                                                               pag. 483
+                        3. Funzioni Condivise                                                        pag. 484
+                        4. Gestione dei Processi                                                     pag. 484
+                        5. Gestione dei diritti [e dei permessi]                                     pag. 485
+                5. L’User Space                                                                      pag. 485
+                        1. Processi                                                                  pag. 486
+                        2. Demoni                                                                    pag. 486
+                        3. Inter-Process Communications (IPC)                                        pag. 487
+                        4. Libraries (Librerie)                                                      pag. 488
+
+
+
+
+     Il Glossario (denominato “Index” nel testo sorgente in inglese) non è stato trascritto dallo
+     scrivente per ovvie ragioni. Difatti questa traduzione non uf ciale in italiano presenta un layout
+     quasi del tutto speculare (anche se non perfettamente uguale) a quello del testo sorgente in
+     inglese. Quindi senza necessità di ulteriori trasposizioni potrete agevolmente usufruire del
+     Glossario del testo sorgente e trovare nel presente testo (si reitera, tradotto non uf cialmente in
+     italiano) i lemmi di vostro interesse con molta probabilità allo stesso numero di pagina originale.
+     Del resto questa traduzione è stata realizzata in modo da permettere a tutte le parti interessate
+     nonché a terzi il confronto con l’originale al ne di apportare correzioni, modi che personali e
+     migliorie. Ricordatevi a tal proposito che una copia dei capitoli del testo sorgente in inglese è
+     inclusa gratuitamente anche nel repository github.com dedicato al sottoprogetto correlato (TDAH
+     versione 2.0) del main project denominato FUIT (acronimo di Free Unofficial Italian
+     Translation), nella directory chiamata source:
+
+       https://github.com/FUIT1985/MAIN/tree/main/TDAH_FUIT/2.0/source
+
+
+
+                                                                                        Antonio Bonaccorso
+
+
+
+
+                                                                       TDAH_2.0    Indice dei Contenuti Pagina XV
+fi
+           fi
+                                       fi
+                                                      fi
+                                                      fi
+                                                                        fi
+                                                                              fi
+
