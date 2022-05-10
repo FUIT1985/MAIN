@@ -19,3 +19,5 @@
 27 Marzo 2022 Ho dato comunicazione formale via email a tutti gli autori reperibili ed a terzi suggeriti da Mr. Raphaël Hertzog (debian-l10n-italian:  debian-l10n-italian@lists.debian.org). Il repository privato MAIN (ed indirettamente tutti i progetti correlati) è stato condiviso pubblicamente per consentire la consultazione di TDAH_FUIT. 
 
 —————————
+
+9 Maggio 2022 Ho comunicato a Freexian SARL che la traduzione non ufficiale TDAH_2.0 è stata ultimata.
