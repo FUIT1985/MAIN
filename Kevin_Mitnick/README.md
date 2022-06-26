@@ -33,7 +33,7 @@ A titolo di contraddittorio nei confronti della posizione dell'Ucraina ed a favo
 
 - l'attaccante si ritira dalla discussione piuttosto che continuare a parlare una volta ottenute delle risposte dall'interlocutore oppure l'attaccante continua a porre ripetutamente la stessa domanda senza mai recepire di fatto i punti di vista e le argomentazioni dell'interlocutore-bersaglio;
 
-- l'attaccante sminuisce le argomentazioni dell'interlocutore bersaglio anteponendo le proprie argomentazioni durante la discussione (come se avessero maggiore importanza o gravità). Per implementare tale tattica l'attaccante può vantare immeritatamente un'utilità sociale o un danno e/o un pericolo di qualsiasi natura per assoggettare, per stigmatizzare o per tentare di raggirare il bersaglio oppure eccepire una debolezza emotiva o un disagio mentale dell'interlocutore-bersaglio in realtà inesistente sempre allo scopo di stigmatizzarlo. 
+- l'attaccante sminuisce le argomentazioni dell'interlocutore bersaglio anteponendo le proprie argomentazioni durante la discussione (come se avessero maggiore importanza o gravità). Per implementare tale tattica l'attaccante può vantare immeritatamente un'utilità sociale o un danno e/o un pericolo di qualsiasi natura per assoggettare, per stigmatizzare o per tentare di raggirare il bersaglio oppure eccepire una debolezza emotiva, un'incapacità professionale o dovuta al genere sessuale di appartenenza o un disagio mentale dell'interlocutore-bersaglio in realtà inesistente sempre allo scopo di stigmatizzarlo. 
 
  
 
