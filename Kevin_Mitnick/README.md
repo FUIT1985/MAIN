@@ -35,7 +35,7 @@ A titolo di contraddittorio nei confronti della posizione dell'Ucraina ed a favo
 
 - l'attaccante sminuisce le argomentazioni dell'interlocutore bersaglio anteponendo le proprie argomentazioni durante la discussione (come se avessero maggiore importanza o gravità). Per implementare tale tattica l'attaccante può vantare immeritatamente un'utilità sociale o un danno e/o un pericolo di qualsiasi natura per assoggettare, per stigmatizzare o per tentare di raggirare il bersaglio oppure eccepire una debolezza emotiva, un'incapacità professionale o un'incapacità dovuta al genere sessuale di appartenenza, alla razza, al credo religioso o un disagio mentale, ecc. in poche parole un difetto, in realtà inesistente, di qualsiasi natura o origine dell'interlocutore-bersaglio sempre allo scopo di annullarlo o stigmatizzarlo. 
 
-Diversamente il generico "trolling" come il name-dropping viene usato per suscitare sensazioni ed emozioni su un bersaglio. Può essere anche usato in difesa offensiva contro un attaccante. Molti credono che l'ingegneria sociale sia scienza, ma... 
+Diversamente il generico "trolling" come il name-dropping viene usato per suscitare sensazioni ed emozioni su un bersaglio. Può essere anche usato in difesa offensiva contro un attaccante, specialmente se ha la coda di paglia. Molti credono che l'ingegneria sociale sia scienza, ma... 
 
  
 
