@@ -19,7 +19,7 @@ Questo libro descrive le strategie di "social engineering" impiegate dagli hacke
 
 www.feltrinellieditore.it/opera/opera/larte-dellinganno/
 
-###### NOTE
+###### NOTE (*4 - "concern-trolling" - è stata redatta utilizzando ingegneria sociale) 
 
 1) ADI_v. 1.0 - L’arte dell’inganno
 Negli appunti viene citato il servizio WARRANT CANARY dei providers email non statunitensi. Si precisa, onde evitare equivoci, che il servizio informa indirettamente gli utenti del non recepimento di atti giudiziari USA o del quantitativo di atti giudiziari USA ricevuti in un arco temporale, senza specificare il nome dell'utente indagato o informarlo direttamente. Viene sostanzialmente pubblicata una nota generica come quella ad esempio allegata al link sottostante:
