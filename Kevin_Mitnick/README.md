@@ -24,7 +24,7 @@ www.feltrinellieditore.it/opera/opera/larte-dellinganno/
 
 *una delle società di sicurezza offensiva più famose al mondo è la "Scorpion Computer Services", di cui la CBS ha realizzato una serie televisa. Solitamente le società di sicurezza offensiva dispongono di professionisti di diversi settori per organizzare un attacco in pentesting. Purtroppo anche organizzazioni criminali a scopo fraudolento o di monitoraggio illegale di un obiettivo (singoli individui o enti pubblici o privati) dispongono di simili risorse
 
-*4 - "concern-trolling" - è stata redatta utilizzando "ingegneria sociale") 
+*4 - "concern-trolling" - è stata redatta utilizzando "ingegneria sociale"
 
 1) ADI_v. 1.0 - L’arte dell’inganno
 Negli appunti viene citato il servizio WARRANT CANARY dei providers email non statunitensi. Si precisa, onde evitare equivoci, che il servizio informa indirettamente gli utenti del non recepimento di atti giudiziari USA o del quantitativo di atti giudiziari USA ricevuti in un arco temporale, senza specificare il nome dell'utente indagato o informarlo direttamente. Viene sostanzialmente pubblicata una nota generica come quella ad esempio allegata al link sottostante:
