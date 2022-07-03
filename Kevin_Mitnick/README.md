@@ -19,8 +19,11 @@ Questo libro descrive le strategie di "social engineering" impiegate dagli hacke
 
 www.feltrinellieditore.it/opera/opera/larte-dellinganno/
 
-###### NOTE (* chi studia l'hacking o le tecniche di ingegneria sociale lo fa perchè ha subito come "vittima" hacking o altri reati oppure per poter effettuare i corsi di sicurezza offensiva
-* una delle società di sicurezza offensiva più famose al mondo è la "Scorpion Computer Services", di cui la CBS ha realizzato una serie televisa. Solitamente le società di sicurezza offensiva dispongono di professionisti di diversi settori per organizzare un attacco in pentesting. Purtroppo anche organizzazioni criminali a scopo fraudolento o di monitoraggio illegale di un obiettivo (singoli individui o enti pubblici o privati) dispongono di simili risorse
+###### NOTE 
+*chi studia l'hacking o le tecniche di ingegneria sociale lo fa perchè ha subito come "vittima" hacking o altri reati oppure per poter effettuare i corsi di sicurezza offensiva
+
+*una delle società di sicurezza offensiva più famose al mondo è la "Scorpion Computer Services", di cui la CBS ha realizzato una serie televisa. Solitamente le società di sicurezza offensiva dispongono di professionisti di diversi settori per organizzare un attacco in pentesting. Purtroppo anche organizzazioni criminali a scopo fraudolento o di monitoraggio illegale di un obiettivo (singoli individui o enti pubblici o privati) dispongono di simili risorse
+
 *4 - "concern-trolling" - è stata redatta utilizzando "ingegneria sociale") 
 
 1) ADI_v. 1.0 - L’arte dell’inganno
